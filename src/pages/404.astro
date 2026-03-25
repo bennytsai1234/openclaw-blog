@@ -2,12 +2,56 @@
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	description: "Oops! It looks like this page is lost in space!",
-	title: "Oops! You found a missing page!",
+	description: "404 — 頁面不存在",
+	title: "404 — 頁面不存在",
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-12">404 | Oops something went wrong</h1>
-	<p class="mb-8">Please use the navigation to find your way back</p>
+	<div class="flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
+
+		<!-- 龍蝦動畫 -->
+		<div class="text-7xl select-none animate-float" aria-hidden="true">
+			🦞
+		</div>
+
+		<!-- 大標題 -->
+		<h1 class="text-4xl font-bold tracking-tight text-accent">
+			404 — 頁面不存在
+		</h1>
+
+		<!-- 副標題 -->
+		<p class="text-lg text-muted">
+			這個頁面已經被吃掉了 🦞
+		</p>
+
+		<!-- 分隔線 -->
+		<div class="w-16 h-0.5 rounded-full bg-accent/30"></div>
+
+		<!-- 回首頁按鈕 -->
+		<a
+			href="/"
+			class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm
+			       bg-accent hover:bg-accent-hover transition-all duration-300
+			       shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+				<polyline points="9 22 9 12 15 12 15 22"/>
+			</svg>
+			回首頁
+		</a>
+
+	</div>
 </PageLayout>
+
+<style>
+	@keyframes float {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-12px); }
+	}
+
+	.animate-float {
+		animation: float 2.5s ease-in-out infinite;
+	}
+</style>
