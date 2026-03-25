@@ -1,34 +1,99 @@
 ---
-import { getAllPosts, getUniqueTagsWithCount } from "@/data/post";
+import { getAllPosts, getTagMeta, getUniqueTagsWithCount } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
 
 const allPosts = await getAllPosts();
 const allTags = getUniqueTagsWithCount(allPosts);
 
+// 每個 tag 的詳細資訊
+const tagInfos = await Promise.all(
+	allTags.map(async ([tag, count]) => {
+		const tagMeta = await getTagMeta(tag);
+		// 取該分類最新一篇文章的標題當「代表文章」
+		const postsInTag = allPosts
+			.filter((p) => p.data.tags.includes(tag))
+			.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+		const latestPost = postsInTag[0];
+		return {
+			tag,
+			count,
+			title: tagMeta?.data.title ?? tag,
+			description: tagMeta?.data.description ?? "",
+			excerpt: tagMeta?.data.excerpt ?? latestPost?.data.description ?? "",
+			latestPostTitle: latestPost?.data.title,
+			latestPostId: latestPost?.id,
+		};
+	})
+);
+
 const meta = {
-	description: "瀏覽所有文章分類",
+	description: "瀏覽所有文章分類，每個分類都有深入的技術介紹",
 	title: "文章分類",
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-6">文章分類</h1>
-	<ul class="space-y-4">
+	<!-- Header -->
+	<div class="mb-10">
+		<h1 class="title mb-2 text-3xl">文章分類</h1>
+		<p class="text-muted text-sm">共 {allTags.length} 個分類，{allPosts.length} 篇文章</p>
+	</div>
+
+	<!-- 分類卡片網格 -->
+	<div class="grid gap-4 sm:grid-cols-2">
 		{
-			allTags.map(([tag, val]) => (
-				<li class="flex items-center gap-x-2">
-					<a
-						class="cactus-link inline-block"
-						href={`/category/${tag}/`}
-						title={`查看分類：${tag}`}
-					>
-						&#35;{tag}
-					</a>
-					<span class="inline-block">
-						- {val} 篇文章
-					</span>
-				</li>
+			tagInfos.map(({ tag, count, title, description, latestPostTitle, latestPostId }) => (
+				<a
+					class="group relative flex flex-col rounded-2xl border border-transparent bg-[--color-surface] p-6 transition-all duration-300 hover:border-[--color-accent]/30 hover:bg-[--color-surface]/80 hover:shadow-lg"
+					href={`/category/${tag}/`}
+				>
+					<!-- 頂部：標籤 + 數量 -->
+					<div class="mb-3 flex items-center justify-between">
+						<div class="flex items-center gap-2">
+							<span class="inline-flex items-center rounded-full bg-[--color-accent]/10 px-3 py-1 text-sm font-semibold text-[--color-accent]">
+								#{title}
+							</span>
+						</div>
+						<span class="text-muted text-xs font-medium">
+							{count} 篇
+						</span>
+					</div>
+
+					<!-- 描述 -->
+					<p class="mb-4 flex-1 text-sm leading-relaxed text-[--color-muted]">
+						{description}
+					</p>
+
+					<!-- 底部：最新文章提示 -->
+					{latestPostTitle && (
+						<div class="mt-auto flex items-center gap-1.5 border-t border-[--color-surface-hover] pt-3">
+							<svg
+								class="h-3.5 w-3.5 shrink-0 text-[--color-accent]"
+								fill="none"
+								focusable="false"
+								stroke="currentColor"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+							>
+								<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+							<span class="truncate text-xs text-muted">
+								最新：{latestPostTitle}
+							</span>
+							<svg
+								class="ms-auto h-3.5 w-3.5 shrink-0 text-muted transition-transform duration-200 group-hover:translate-x-0.5"
+								fill="none"
+								focusable="false"
+								stroke="currentColor"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+							>
+								<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
+					)}
+				</a>
 			))
 		}
-	</ul>
+	</div>
 </PageLayout>

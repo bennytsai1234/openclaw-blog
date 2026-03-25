@@ -56,6 +56,9 @@
 	--color-accent-soft: oklch(90% 0.05 280);
 	--color-accent-2: oklch(18.15% 0 0);
 	--color-quote: oklch(55% 0.15 280);
+	/* 卡片表面色 */
+	--color-surface: oklch(96% 0.01 280);
+	--color-surface-hover: oklch(92% 0.02 280);
 	/* 字體定義 - UI/UX Pro Max */
 	--font-sans: "Inter", "Noto Sans TC", system-ui, sans-serif;
 	--font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -83,6 +86,9 @@
 			--color-accent-soft: oklch(30% 0.05 280);
 			--color-accent-2: oklch(94.66% 0 0);
 			--color-quote: oklch(70% 0.12 280);
+			/* 卡片表面色 */
+			--color-surface: oklch(25% 0.02 280);
+			--color-surface-hover: oklch(30% 0.02 280);
 		}
 
 		--color-mode-transition-duration: 300ms;
@@ -95,7 +101,8 @@
 			--color-link var(--color-mode-transition-duration) var(--color-mode-transition-easing),
 			--color-accent var(--color-mode-transition-duration) var(--color-mode-transition-easing),
 			--color-accent-2 var(--color-mode-transition-duration) var(--color-mode-transition-easing),
-			--color-quote var(--color-mode-transition-duration) var(--color-mode-transition-easing);
+			--color-quote var(--color-mode-transition-duration) var(--color-mode-transition-easing),
+			--color-surface var(--color-mode-transition-duration) var(--color-mode-transition-easing);
 	}
 
 	:target {
