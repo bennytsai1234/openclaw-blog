@@ -2,23 +2,15 @@ import type { Config } from "tailwindcss";
 
 export default {
 	plugins: [require("@tailwindcss/typography")],
+	// Tailwind v4: 大部分樣式已移至 src/styles/global.css @theme
+	// 這裡只保留 typography 必要覆蓋，避免與 CSS 衝突
 	theme: {
 		extend: {
 			typography: () => ({
 				DEFAULT: {
 					css: {
-						a: {
-							textUnderlineOffset: "2px",
-							"&:hover": {
-								"@media (hover: hover)": {
-									textDecorationColor: "var(--color-link)",
-									textDecorationThickness: "2px",
-								},
-							},
-						},
-						blockquote: {
-							borderLeftWidth: "0",
-						},
+						// 連結底線由 global.css 處理
+						// Blockquote 樣式由 global.css 處理
 						code: {
 							border: "1px dotted #666",
 							borderRadius: "2px",
@@ -28,62 +20,8 @@ export default {
 								background: "var(--color-global-text)",
 							},
 						},
-						hr: {
-							borderTopStyle: "dashed",
-						},
-						strong: {
-							fontWeight: "700",
-						},
 						sup: {
 							marginInlineStart: "calc(var(--spacing) * 0.5)",
-							a: {
-								"&:after": {
-									content: "']'",
-								},
-								"&:before": {
-									content: "'['",
-								},
-								"&:hover": {
-									"@media (hover: hover)": {
-										color: "var(--color-link)",
-									},
-								},
-							},
-						},
-						/* Table */
-						"tbody tr": {
-							borderBottomWidth: "none",
-						},
-						tfoot: {
-							borderTop: "1px dashed #666",
-						},
-						thead: {
-							borderBottomWidth: "none",
-						},
-						"thead th": {
-							borderBottom: "1px dashed #666",
-							fontWeight: "700",
-						},
-						'th[align="center"], td[align="center"]': {
-							"text-align": "center",
-						},
-						'th[align="right"], td[align="right"]': {
-							"text-align": "right",
-						},
-						'th[align="left"], td[align="left"]': {
-							"text-align": "left",
-						},
-						".expressive-code, .admonition, .github-card": {
-							marginTop: "calc(var(--spacing)*4)",
-							marginBottom: "calc(var(--spacing)*4)",
-						},
-					},
-				},
-				sm: {
-					css: {
-						code: {
-							fontSize: "var(--text-sm)",
-							fontWeight: "400",
 						},
 					},
 				},
