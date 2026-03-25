@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, render } from "astro:content";
 import { getAllPosts } from "@/data/post";
+import calcReadingTime from "reading-time";
 
 import Masthead from "@/components/blog/Masthead.astro";
 import TOC from "@/components/blog/TOC.astro";
@@ -18,7 +19,7 @@ const { ogImage, tags, title, description, updatedDate, publishDate } = post.dat
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings, remarkPluginFrontmatter } = await render(post);
-const rt: string = remarkPluginFrontmatter.readingTime;
+const readingTime: string = remarkPluginFrontmatter.readingTime;
 
 // 相關文章計算
 const allPosts = await getAllPosts();
@@ -56,13 +57,6 @@ if (otherPosts.length > 0) {
 		if (relatedPosts.length >= 3) break;
 	}
 
-	// 為相關文章預先計算 readingTime
-	relatedPosts = await Promise.all(
-		relatedPosts.map(async (p) => {
-			const { remarkPluginFrontmatter } = await render(p);
-			return { ...p, rt: remarkPluginFrontmatter.readingTime as string };
-		})
-	) as typeof relatedPosts;
 }
 
 function formatDate(date: Date): string {
@@ -81,7 +75,7 @@ function formatDate(date: Date): string {
 >
 	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
 	<article class="grow break-words" data-pagefind-body>
-		<div id="blog-hero" class="mb-12"><Masthead content={post} readingTime={rt} /></div>
+		<div id="blog-hero" class="mb-12"><Masthead content={post} readingTime={readingTime} /></div>
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
 			<!-- Sidebar: TOC + Author Card -->
 			<div class="hidden xl:block lg:sticky lg:top-12 lg:order-2 lg:-me-32 lg:basis-64">
@@ -190,7 +184,7 @@ function formatDate(date: Date): string {
 						<h2 class="mb-5 text-lg font-semibold text-[--color-text]">📚 相關文章</h2>
 						<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
 							{relatedPosts.map((related) => {
-								const rt = ("rt" in related ? (related as any).rt : "未知") as string;
+								const rt = (related.data as any).readingTime ?? calcReadingTime(related.body ?? "").text;
 								return (
 									<li>
 										<a
