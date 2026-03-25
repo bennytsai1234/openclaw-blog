@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
 	url: "https://openclaw-blog.vercel.app/",
 	title: "技術筆記",
 	author: "Benny",
-	description: "個人技術部落格，記錄開發心得與工具分享",
+	description: "記錄開發所見所得，專注前端・網路・開發工具",
 	lang: "zh-TW",
 	ogLocale: "zh_TW",
 	date: {
