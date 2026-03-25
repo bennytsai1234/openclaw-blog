@@ -277,6 +277,7 @@ function formatDate(date: Date): string {
 	// 閱讀進度條
 	const progressBar = document.getElementById("reading-progress") as HTMLDivElement;
 	const article = document.querySelector("article") as HTMLElement;
+	let hideTimer: ReturnType<typeof setTimeout> | null = null;
 
 	function updateProgress() {
 		if (!article || !progressBar) return;
@@ -290,7 +291,17 @@ function formatDate(date: Date): string {
 			: 100;
 		progressBar.style.width = `${progress}%`;
 		progressBar.setAttribute("aria-valuenow", String(Math.round(progress)));
-		progressBar.classList.toggle("visible", progress > 0 && progress < 100);
+
+		// 進度 > 0 就顯示；到 100% 時延遲 800ms 再淡出
+		if (progress > 0) {
+			if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+			progressBar.classList.add("visible");
+		}
+		if (progress >= 100) {
+			hideTimer = setTimeout(() => {
+				progressBar.classList.remove("visible");
+			}, 800);
+		}
 	}
 
 	window.addEventListener("scroll", updateProgress, { passive: true });
