@@ -126,7 +126,10 @@ const meta = {
 	const postItems = document.querySelectorAll<HTMLLIElement>(".post-item");
 	const emptyState = document.getElementById("empty-state");
 
+	let currentTag = "all";
+
 	function filterPosts(tag: string) {
+		currentTag = tag;
 		let visibleCount = 0;
 
 		postItems.forEach((item) => {
@@ -143,7 +146,7 @@ const meta = {
 
 		// Update active button
 		filterBtns.forEach((btn) => {
-			btn.classList.toggle("active", btn.dataset.tag === tag);
+			btn.classList.toggle("active", btn.dataset.tag === currentTag);
 		});
 	}
 
