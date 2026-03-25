@@ -3,9 +3,9 @@ import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
 	url: "https://openclaw-blog.vercel.app/",
-	title: "雪蓮與塔菲",
-	author: "東雪蓮 & 永雛塔菲",
-	description: "一個關於 VTuber 東雪蓮與永雛塔菲的粉絲技術部落格",
+	title: "技術筆記",
+	author: "Benny",
+	description: "個人技術部落格，記錄開發心得與工具分享",
 	lang: "zh-TW",
 	ogLocale: "zh_TW",
 	date: {
