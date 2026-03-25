@@ -1,0 +1,156 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { getAllPosts, getUniqueTags } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+import FormattedDate from "@/components/FormattedDate.astro";
+
+const allPosts = await getAllPosts();
+const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
+const uniqueTags = getUniqueTags(allPosts);
+
+const meta = {
+	description: "所有文章列表，記錄開發所見所得",
+	title: "所有文章",
+};
+---
+
+<PageLayout meta={meta}>
+	<!-- Header -->
+	<div class="mb-8">
+		<h1 class="title text-accent mb-2 text-3xl">所有文章</h1>
+		<p class="text-muted text-sm">共 {allPostsByDate.length} 篇文章</p>
+	</div>
+
+	<!-- Tag Filter -->
+	<div class="mb-8 flex flex-wrap gap-2" id="tag-filters">
+		<button
+			class="tag-filter-btn active rounded-full px-3 py-1 text-xs font-medium transition-all duration-200"
+			data-tag="all"
+		>
+			全部
+		</button>
+		{
+			uniqueTags.map((tag) => (
+				<button
+					class="tag-filter-btn rounded-full px-3 py-1 text-xs font-medium transition-all duration-200"
+					data-tag={tag}
+				>
+					&#35;{tag}
+				</button>
+			))
+		}
+	</div>
+
+	<!-- Posts List -->
+	<ul class="space-y-6" id="posts-list" role="list">
+		{
+			allPostsByDate.map((post) => (
+				<li
+					class="post-item rounded-xl border border-transparent bg-[--color-surface] p-4 transition-all duration-200 hover:border-accent/20 hover:bg-[--color-surface]/80 sm:p-6"
+					data-tags={post.data.tags.join(",")}
+				>
+					<div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
+						<!-- Date -->
+						<div class="shrink-0">
+							<FormattedDate
+								class="text-muted text-xs font-medium"
+								date={post.data.publishDate}
+							/>
+						</div>
+
+						<!-- Content -->
+						<div class="min-w-0 flex-1">
+							<!-- Title -->
+							<h2 class="mb-1 text-base font-semibold">
+								<a class="cactus-link" href={`/posts/${post.id}/`}>
+									{post.data.title}
+								</a>
+							</h2>
+
+							<!-- Description -->
+							{post.data.description && (
+								<p class="text-muted mb-2 line-clamp-2 text-xs leading-relaxed">
+									{post.data.description}
+								</p>
+							)}
+
+							<!-- Tags -->
+							{
+								post.data.tags.length > 0 && (
+									<div class="flex flex-wrap gap-1.5">
+										{post.data.tags.map((tag) => (
+											<span class="rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent hover:bg-accent/20">
+												&#35;{tag}
+											</span>
+										))}
+									</div>
+								)
+							}
+						</div>
+					</div>
+				</li>
+			))
+		}
+	</ul>
+
+	<!-- Empty State -->
+	<div class="hidden py-12 text-center" id="empty-state">
+		<p class="text-muted text-sm">找不到符合篩選條件的文章</p>
+	</div>
+</PageLayout>
+
+<style>
+	/* Tag filter buttons */
+	.tag-filter-btn {
+		background-color: var(--color-surface);
+		color: var(--color-muted);
+		border: 1px solid var(--color-surface-hover);
+	}
+
+	.tag-filter-btn:hover {
+		background-color: var(--color-accent);
+		color: white;
+		border-color: var(--color-accent);
+	}
+
+	.tag-filter-btn.active {
+		background-color: var(--color-accent);
+		color: white;
+		border-color: var(--color-accent);
+	}
+</style>
+
+<script>
+	const filterBtns = document.querySelectorAll<HTMLButtonElement>(".tag-filter-btn");
+	const postItems = document.querySelectorAll<HTMLLIElement>(".post-item");
+	const emptyState = document.getElementById("empty-state");
+
+	function filterPosts(tag: string) {
+		let visibleCount = 0;
+
+		postItems.forEach((item) => {
+			const tags = item.dataset.tags?.split(",") ?? [];
+			const show = tag === "all" || tags.includes(tag);
+			item.classList.toggle("hidden", !show);
+			if (show) visibleCount++;
+		});
+
+		// Update empty state
+		if (emptyState) {
+			emptyState.classList.toggle("hidden", visibleCount > 0);
+		}
+
+		// Update active button
+		filterBtns.forEach((btn) => {
+			btn.classList.toggle("active", btn.dataset.tag === tag);
+		});
+	}
+
+	filterBtns.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const tag = btn.dataset.tag ?? "all";
+			filterPosts(tag);
+		});
+	});
+</script>
