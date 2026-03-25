@@ -159,3 +159,21 @@
 	--tw-prose-quotes: var(--color-quote);
 	--tw-prose-th-borders: #666;
 }
+
+/* 閱讀進度條 */
+#reading-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 3px;
+	background: linear-gradient(to right, var(--color-accent), var(--color-link));
+	z-index: 9999;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+#reading-progress.visible {
+	opacity: 1;
+}

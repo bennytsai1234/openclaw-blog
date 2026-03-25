@@ -28,6 +28,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 		title,
 	}}
 >
+	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
 	<article class="grow break-words" data-pagefind-body>
 		<div id="blog-hero" class="mb-12"><Masthead content={post} readingTime={readingTime} /></div>
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
@@ -79,4 +80,23 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 
 	const observer = new IntersectionObserver(callback);
 	observer.observe(targetHeader);
+
+	// 閱讀進度條
+	const progressBar = document.getElementById("reading-progress") as HTMLDivElement;
+	const article = document.querySelector("article") as HTMLElement;
+
+	function updateProgress() {
+		if (!article || !progressBar) return;
+		const articleTop = article.offsetTop;
+		const articleHeight = article.offsetHeight;
+		const windowHeight = window.innerHeight;
+		const scrollY = window.scrollY;
+		const progress = Math.min(100, Math.max(0, ((scrollY - articleTop + windowHeight * 0.1) / (articleHeight - windowHeight * 0.1)) * 100));
+		progressBar.style.width = `${progress}%`;
+		progressBar.setAttribute("aria-valuenow", String(Math.round(progress)));
+		progressBar.classList.toggle("visible", progress > 0 && progress < 100);
+	}
+
+	window.addEventListener("scroll", updateProgress, { passive: true });
+	updateProgress();
 </script>
