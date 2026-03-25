@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, render } from "astro:content";
+import { getAllPosts } from "@/data/post";
 
 import Masthead from "@/components/blog/Masthead.astro";
 import TOC from "@/components/blog/TOC.astro";
@@ -18,6 +19,49 @@ const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings, remarkPluginFrontmatter } = await render(post);
 const readingTime: string = remarkPluginFrontmatter.readingTime;
+
+// 相關文章計算
+const allPosts = await getAllPosts();
+const otherPosts = allPosts.filter((p) => p.id !== post.id);
+
+if (otherPosts.length === 0) {
+	// no related posts possible
+} else {
+	// 先取同 tags 的文章
+	const tagSet = new Set(tags);
+	const taggedPosts = otherPosts.filter((p) =>
+		p.data.tags.some((t: string) => tagSet.has(t))
+	);
+
+	// Fisher-Yates shuffle
+	const shuffle = <T,>(arr: T[]): T[] => {
+		const a = [...arr];
+		for (let i = a.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[a[i], a[j]] = [a[j], a[i]];
+		}
+		return a;
+	};
+
+	const shuffledTagged = shuffle(taggedPosts);
+	const shuffledOther = shuffle(otherPosts);
+
+	// 合併：同 tags 的優先，不足的用隨機補足，取最多 3 篇
+	const combined = shuffledTagged.concat(shuffledOther);
+	const seen = new Set<string>();
+	const relatedPosts = [];
+	for (const p of combined) {
+		if (!seen.has(p.id)) {
+			seen.add(p.id);
+			relatedPosts.push(p);
+		}
+		if (relatedPosts.length >= 3) break;
+	}
+}
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString("zh-TW", { year: "numeric", month: "long", day: "numeric" });
+}
 ---
 
 <BaseLayout
@@ -106,6 +150,38 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 					已複製！
 				</div>
 
+				{/* 相關文章 */}
+				{relatedPosts && relatedPosts.length > 0 && (
+					<aside class="not-prose mt-12 rounded-xl border border-[--color-border] bg-[--color-bg-secondary] p-6">
+						<h2 class="mb-5 text-lg font-semibold text-[--color-text]">📚 相關文章</h2>
+						<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+							{relatedPosts.map((related: CollectionEntry<"post">) => {
+								const rt: string = related.rendered?.remarkPluginFrontmatter?.readingTime
+									?? (() => { const r = related.render; return r ? "未知" : "未知"; })();
+								return (
+									<li>
+										<a
+											class="group flex flex-col gap-1.5 rounded-lg border border-transparent p-3 transition-all duration-200 hover:border-[--color-accent] hover:bg-[--color-bg] hover:shadow-md"
+											href={`/posts/${related.id}/`}
+										>
+											<span class="line-clamp-2 text-sm font-medium leading-snug text-[--color-text] group-hover:text-[--color-accent]">
+												{related.data.title}
+											</span>
+											<span class="flex items-center gap-2 text-xs text-[--color-muted]">
+												<time datetime={related.data.publishDate.toISOString()}>
+													{formatDate(related.data.publishDate)}
+												</time>
+												<span>·</span>
+												<span>{rt}</span>
+											</span>
+										</a>
+									</li>
+								);
+							})}
+						</ul>
+					</aside>
+				)}
+
 				<Giscus />
 			</div>
 		</div>
@@ -129,6 +205,29 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 			<path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
 		</svg>
 	</button>
+
+	<!-- 圖片燈箱 -->
+	<div
+		aria-label="圖片燈箱"
+		aria-modal="true"
+		class="lightbox-overlay"
+		id="lightbox"
+		role="dialog"
+	>
+		<button
+			aria-label="關閉燈箱"
+			class="lightbox-close"
+			id="lightbox-close"
+			type="button"
+		>
+			<svg aria-hidden="true" class="h-6 w-6" fill="none" focusable="false" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+				<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+			</svg>
+		</button>
+		<div class="lightbox-content">
+			<img alt="" class="lightbox-img" id="lightbox-img" src="" />
+		</div>
+	</div>
 </BaseLayout>
 
 <script>
@@ -196,4 +295,55 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 			}, 2000);
 		});
 	}
+
+	// ===== 圖片燈箱功能 =====
+	const lightbox = document.getElementById("lightbox") as HTMLDivElement;
+	const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
+	const lightboxClose = document.getElementById("lightbox-close") as HTMLButtonElement;
+	const prose = document.querySelector(".prose") as HTMLElement;
+
+	function openLightbox(src: string, alt: string) {
+		lightboxImg.src = src;
+		lightboxImg.alt = alt;
+		lightbox.classList.add("active");
+		document.body.style.overflow = "hidden";
+		lightboxClose.focus();
+	}
+
+	function closeLightbox() {
+		lightbox.classList.remove("active");
+		document.body.style.overflow = "";
+		lightboxImg.src = "";
+		lightboxImg.alt = "";
+	}
+
+	// 监听文章區塊內所有 img（排除 code 區塊內的圖片）
+	if (prose) {
+		prose.addEventListener("click", (e) => {
+			const target = e.target as HTMLElement;
+			if (target.tagName !== "IMG") return;
+			// 排除 code, pre, a 標籤內的圖片
+			const parent = target.closest("code, pre, a");
+			if (parent) return;
+
+			const src = (target as HTMLImageElement).src;
+			const alt = (target as HTMLImageElement).alt || "";
+			openLightbox(src, alt);
+		});
+	}
+
+	// 點擊背景關閉
+	lightbox.addEventListener("click", (e) => {
+		if (e.target === lightbox) closeLightbox();
+	});
+
+	// 關閉按鈕
+	lightboxClose.addEventListener("click", closeLightbox);
+
+	// ESC 關閉
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && lightbox.classList.contains("active")) {
+			closeLightbox();
+		}
+	});
 </script>
