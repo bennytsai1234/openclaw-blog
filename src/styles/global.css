@@ -158,7 +158,8 @@
 	.toc-link {
 		@apply text-muted;
 		& .toc-hash {
-			@apply opacity-0;
+			@apply opacity-30;
+			transition: opacity 200ms ease;
 		}
 		&:hover {
 			@apply text-accent;
@@ -176,6 +177,92 @@
 			}
 		}
 	}
+
+	/* ===== A. 段落與字體增強 ===== */
+	/* B. 連結底線精緻化 */
+	.prose a:not(.cactus-link) {
+		text-decoration: underline dotted;
+		text-decoration-color: var(--color-accent);
+		text-underline-offset: 3px;
+		transition: text-decoration-style 200ms ease;
+		&:hover {
+			text-decoration-style: solid;
+			color: var(--color-accent);
+		}
+	}
+
+	/* A. Blockquote 樣式 */
+	.prose blockquote {
+		border-left: 4px solid var(--color-accent);
+		background: linear-gradient(to right, var(--color-accent-soft), transparent);
+		padding-left: 1.25rem;
+		padding-right: 1rem;
+		font-style: italic;
+		border-radius: 0 4px 4px 0;
+	}
+
+	/* C. H2 標題左側紫色豎線 */
+	.prose h2 {
+		position: relative;
+		padding-left: 1rem !important;
+		border-left: 3px solid var(--color-accent) !important;
+	}
+	/* C. H3 加粗紫色 */
+	.prose h3 {
+		color: var(--color-accent) !important;
+		font-weight: 700 !important;
+		font-size: 1.25rem !important;
+	}
+
+	/* D. 圖片陰影 */
+	.prose img {
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		border-radius: 6px;
+	}
+	:where([data-theme="dark"]) .prose img {
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+	}
+	/* D. 圖片說明（figcaption/em） */
+	.prose em:has(+ img),
+	.prose img + p > em,
+	.prose figure + p em,
+	.prose figcaption {
+		display: block;
+		text-align: center;
+		font-size: 0.8rem;
+		color: var(--color-muted);
+		margin-top: 0.5rem;
+		font-style: normal;
+	}
+
+	/* E. Tags 紫色背景 */
+	.prose .cactus-link:has(> span) {
+		font-size: 0.875rem;
+		background: var(--color-accent-soft);
+		color: var(--color-accent);
+		border-radius: 9999px;
+		padding: 0.125rem 0.625rem;
+		text-decoration: none;
+		transition: background 200ms ease;
+		&:hover {
+			background: var(--color-accent);
+			color: white;
+		}
+	}
+
+	/* Masthead Tags 樣式 */
+	.article-tags a {
+		font-size: 0.875rem;
+		background: var(--color-accent-soft);
+		color: var(--color-accent);
+		border-radius: 9999px;
+		padding: 0.125rem 0.625rem;
+		transition: background 200ms ease;
+		&:hover {
+			background: var(--color-accent);
+			color: white;
+		}
+	}
 }
 
 @utility prose {
@@ -187,6 +274,7 @@
 	--tw-prose-hr: 0.5px dashed #666;
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
+	--tw-prose-quote-borders: 4px solid var(--color-accent);
 	--tw-prose-th-borders: #666;
 }
 
@@ -219,7 +307,7 @@
 	justify-content: center;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 0.25s ease;
+	transition: opacity 0.2s ease;
 	cursor: zoom-out;
 }
 

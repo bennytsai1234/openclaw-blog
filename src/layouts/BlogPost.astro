@@ -338,9 +338,13 @@ function formatDate(date: Date): string {
 			// 顯示提示
 			toast.style.opacity = "1";
 			toast.style.transform = "translateY(-50%) scale(1)";
+			// 按鈕變綠色打勾
+			copyBtn.classList.add("bg-emerald-500", "border-emerald-500", "text-white");
+			copyBtn.querySelector("svg")?.setAttribute("fill", "currentColor");
 			setTimeout(() => {
 				toast.style.opacity = "0";
 				toast.style.transform = "translateY(-50%) scale(0.9)";
+				copyBtn.classList.remove("bg-emerald-500", "border-emerald-500", "text-white");
 			}, 2000);
 		});
 	}

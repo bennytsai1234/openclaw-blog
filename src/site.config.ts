@@ -47,17 +47,19 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 		codePaddingInline: "1rem",
 		frames: {
 			frameBoxShadowCssValue: "none",
-			// 複製按鈕紫/藍色系樣式
+			// 複製按鈕可見（idle 時顯示）
 			inlineButtonBackground: "oklch(60% 0.18 280)",
 			inlineButtonForeground: "oklch(98% 0.01 280)",
 			inlineButtonBorder: "oklch(60% 0.18 280)",
-			inlineButtonBackgroundIdleOpacity: "0",
-			inlineButtonBackgroundHoverOrFocusOpacity: "0.25",
-			inlineButtonBackgroundActiveOpacity: "0.4",
-			inlineButtonBorderOpacity: "0.5",
+			inlineButtonBackgroundIdleOpacity: "1",
+			inlineButtonBackgroundHoverOrFocusOpacity: "1",
+			inlineButtonBackgroundActiveOpacity: "1",
+			inlineButtonBorderOpacity: "0.3",
 		},
 		uiLineHeight: "inherit",
 	},
+	showLineNumbers: true,
+	lineNumbersTheme: "dracula",
 	themeCssSelector(theme, { styleVariants }) {
 		if (styleVariants.length >= 2) {
 			const baseTheme = styleVariants[0]?.theme;
