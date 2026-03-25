@@ -50,10 +50,15 @@
 	--color-global-text: oklch(26.99% 0.0096 235.05);
 	--color-muted: oklch(44.6% 0.03 256.802);
 	--color-link: oklch(55.44% 0.0431 185.69);
-	/* 紫/藍色系 - 雪蓮喜歡的顏色 */
-	--color-accent: oklch(55% 0.15 280);
+	/* 紫/藍色系 - 雪蓮喜歡的顏色 - Royal Tech Violet */
+	--color-accent: oklch(60% 0.18 280);
+	--color-accent-hover: oklch(55% 0.22 280);
+	--color-accent-soft: oklch(90% 0.05 280);
 	--color-accent-2: oklch(18.15% 0 0);
 	--color-quote: oklch(55% 0.15 280);
+	/* 字體定義 - UI/UX Pro Max */
+	--font-sans: "Inter", "Noto Sans TC", system-ui, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 @layer base {
@@ -68,12 +73,14 @@
 
 		&[data-theme="dark"] {
 			color-scheme: dark;
-			--color-global-bg: oklch(23.64% 0.0045 248);
-			--color-global-text: oklch(83.54% 0 264);
+			--color-global-bg: oklch(20% 0.02 280);
+			--color-global-text: oklch(92% 0.01 280);
 			--color-muted: oklch(70.7% 0.022 261.325);
 			--color-link: oklch(70.44% 0.1133 349);
-			/* 紫/藍色系 - 雪蓮喜歡的顏色 */
-			--color-accent: oklch(70% 0.12 280);
+			/* 紫/藍色系 - 深色模式 Royal Tech Violet */
+			--color-accent: oklch(75% 0.15 280);
+			--color-accent-hover: oklch(80% 0.18 280);
+			--color-accent-soft: oklch(30% 0.05 280);
 			--color-accent-2: oklch(94.66% 0 0);
 			--color-quote: oklch(70% 0.12 280);
 		}
@@ -117,11 +124,27 @@
 	@import "./components/github-card.css";
 
 	.cactus-link {
-		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
+		@apply relative no-underline transition-colors duration-300;
+		&::after {
+			content: '';
+			@apply absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300;
+		}
+		&:hover::after {
+			@apply w-full;
+		}
+		&:hover {
+			@apply text-accent;
+		}
 	}
 
 	.title {
-		@apply text-accent-2 text-2xl font-semibold;
+		@apply text-accent-2 text-2xl font-semibold tracking-tight;
+	}
+
+	/* Bento 風格文章卡片 */
+	.post-card {
+		@apply p-4 rounded-lg border border-transparent hover:border-accent-soft 
+		       hover:bg-accent-soft/10 transition-all duration-300;
 	}
 }
 
