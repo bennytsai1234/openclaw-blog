@@ -1,5 +1,5 @@
 import { Resvg } from "@resvg/resvg-js";
-import type { APIContext, InferGetStaticPropsType } from "astro";
+import type { APIContext, InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 import satori, { type SatoriOptions } from "satori";
 import RobotoMonoBold from "@/assets/roboto-mono-700.ttf";
 import RobotoMono from "@/assets/roboto-mono-regular.ttf";
@@ -30,13 +30,13 @@ const ogOptions: SatoriOptions = {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 export async function GET(context: APIContext) {
-	const { pubDate, title } = context.props as Props;
+	const { pubDate, title, description } = context.props as Props;
 
 	const postDate = getFormattedDate(pubDate, {
 		month: "long",
 		weekday: "long",
 	});
-	const svg = await satori(ogMarkup(title, postDate), ogOptions);
+	const svg = await satori(ogMarkup(title, postDate, description), ogOptions);
 	const pngBuffer = new Resvg(svg).render().asPng();
 	const png = new Uint8Array(pngBuffer);
 	return new Response(png, {
@@ -53,8 +53,9 @@ export async function getStaticPaths() {
 		.values()
 		.filter(({ data }) => !data.ogImage)
 		.map((post) => ({
-			params: { slug: post.id },
+			params: { slug: post.id } as InferGetStaticParamsType<typeof getStaticPaths>,
 			props: {
+				description: post.data.description,
 				pubDate: post.data.updatedDate ?? post.data.publishDate,
 				title: post.data.title,
 			},

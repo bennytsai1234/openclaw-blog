@@ -2,30 +2,43 @@ import { html } from "satori-html";
 import { siteConfig } from "@/site.config";
 
 // OG image markup, use https://og-playground.vercel.app/ to design your own.
-export const ogMarkup = (title: string, pubDate: string) =>
-	html`<div tw="flex flex-col w-full h-full bg-[#1d1f21] text-[#c9cacc]">
-		<div tw="flex flex-col flex-1 w-full p-10 justify-center">
-			<p tw="text-2xl mb-6">${pubDate}</p>
-			<h1 tw="text-6xl font-bold leading-snug text-white">${title}</h1>
+export const ogMarkup = (title: string, pubDate: string, description: string) =>
+	html`<div
+		tw="flex flex-col w-full h-full"
+		style="background: linear-gradient(135deg, #0f0a1e 0%, #1a0f2e 40%, #0d1b3e 100%)"
+	>
+		<div tw="flex flex-col flex-1 w-full px-14 py-12 justify-center">
+			<p tw="text-2xl mb-4" style="color: #a78bfa">${pubDate}</p>
+			<h1 tw="text-5xl font-bold leading-snug mb-6" style="color: #f1f5f9">${title}</h1>
+			<p tw="text-2xl leading-relaxed" style="color: #c4b5fd; max-width: 900px">${description}</p>
 		</div>
-		<div tw="flex items-center justify-between w-full p-10 border-t border-[#2bbc89] text-xl">
+		<div
+			tw="flex items-center justify-between w-full px-14 py-8"
+			style="border-top: 2px solid; border-image: linear-gradient(90deg, #7c3aed, #3b82f6) 1"
+		>
 			<div tw="flex items-center">
-				<svg height="60" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 480">
+				<svg height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
-						fill="#cdffb8"
-						d="M181.334 93.333v-40L226.667 80v40zM136.001 53.333 90.667 26.667v426.666L136.001 480zM45.333 220 0 193.334v140L45.333 360z"
-					/>
+						d="M12 2L2 7l10 5 10-5-10-5z"
+						fill="#8b5cf6"
+						stroke="#a78bfa"
+						stroke-width="1.5"
+						stroke-linejoin="round"></path>
 					<path
-						fill="#d482ab"
-						d="M90.667 26.667 136.001 0l45.333 26.667-45.333 26.666zM181.334 53.33l45.333-26.72L272 53.33 226.667 80zM136 240l-45.333-26.67v53.34zM0 193.33l45.333-26.72 45.334 26.72L45.333 220zM181.334 93.277 226.667 120l-45.333 26.67z"
-					/>
+						d="M2 17l10 5 10-5"
+						stroke="#6366f1"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
 					<path
-						fill="#2abc89"
-						d="m136 53.333 45.333-26.666v120L226.667 120V80L272 53.333V160l-90.667 53.333v240L136 480V306.667L45.334 360V220l45.333-26.667v73.334L136 240z"
-					/>
+						d="M2 12l10 5 10-5"
+						stroke="#818cf8"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
 				</svg>
-				<p tw="ml-3 font-semibold">${siteConfig.title}</p>
+				<p tw="ml-3 font-semibold text-xl" style="color: #e2e8f0">${siteConfig.title}</p>
 			</div>
-			<p>by ${siteConfig.author}</p>
+			<p tw="text-xl" style="color: #94a3b8">by ${siteConfig.author}</p>
 		</div>
 	</div>`;
