@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { ogImage, title, description, updatedDate, publishDate } = post.data;
+const { ogImage, tags, title, description, updatedDate, publishDate } = post.data;
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings, remarkPluginFrontmatter } = await render(post);
@@ -25,6 +25,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 		articleDate,
 		description,
 		ogImage: socialImage,
+		tags,
 		title,
 	}}
 >
@@ -38,6 +39,73 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 			>
 				<slot />
 				<WebMentions />
+
+				{/* 社群分享按鈕 */}
+				<div class="not-prose mt-10 flex flex-wrap items-center gap-3" id="share-buttons">
+					<span class="me-1 text-sm font-medium text-[--color-muted]">分享：</span>
+
+					<!-- Facebook -->
+					<a
+						aria-label="分享至 Facebook"
+						class="flex h-9 w-9 items-center justify-center rounded-full bg-[--color-accent] text-white transition-all duration-200 hover:scale-110 hover:bg-[--color-accent-hover] hover:shadow-lg"
+						href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+						</svg>
+					</a>
+
+					<!-- Twitter / X -->
+					<a
+						aria-label="分享至 X (Twitter)"
+						class="flex h-9 w-9 items-center justify-center rounded-full bg-[--color-link] text-white transition-all duration-200 hover:scale-110 hover:brightness-110 hover:shadow-lg"
+						href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(Astro.url.href)}&text=${encodeURIComponent(title)}`}
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+						</svg>
+					</a>
+
+					<!-- LINE -->
+					<a
+						aria-label="分享至 LINE"
+						class="flex h-9 w-9 items-center justify-center rounded-full bg-[#00B900] text-white transition-all duration-200 hover:scale-110 hover:brightness-110 hover:shadow-lg"
+						href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(Astro.url.href)}`}
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" fill="#00B900"/>
+						</svg>
+					</a>
+
+					<!-- 複製連結 -->
+					<button
+						aria-label="複製連結"
+						class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[--color-accent] text-[--color-accent] transition-all duration-200 hover:scale-110 hover:bg-[--color-accent] hover:text-white"
+						id="copy-link-btn"
+						type="button"
+					>
+						<svg class="h-4 w-4" fill="none" focusable="false" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</button>
+				</div>
+
+				{/* 複製提示 */}
+				<div
+					aria-live="polite"
+					class="pointer-events-none fixed end-6 top-1/2 z-50 -translate-y-1/2 rounded-lg bg-[--color-accent] px-4 py-2 text-sm font-medium text-white opacity-0 shadow-xl transition-all duration-300"
+					id="copy-toast"
+					role="status"
+				>
+					已複製！
+				</div>
+
 				<Giscus />
 			</div>
 		</div>
@@ -99,4 +167,33 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 
 	window.addEventListener("scroll", updateProgress, { passive: true });
 	updateProgress();
+
+	// 複製連結功能
+	const copyBtn = document.getElementById("copy-link-btn");
+	const toast = document.getElementById("copy-toast");
+
+	if (copyBtn && toast) {
+		copyBtn.addEventListener("click", async () => {
+			try {
+				await navigator.clipboard.writeText(window.location.href);
+			} catch {
+				// Fallback for older browsers
+				const textarea = document.createElement("textarea");
+				textarea.value = window.location.href;
+				textarea.style.position = "fixed";
+				textarea.style.opacity = "0";
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				document.body.removeChild(textarea);
+			}
+			// 顯示提示
+			toast.style.opacity = "1";
+			toast.style.transform = "translateY(-50%) scale(1)";
+			setTimeout(() => {
+				toast.style.opacity = "0";
+				toast.style.transform = "translateY(-50%) scale(0.9)";
+			}, 2000);
+		});
+	}
 </script>
