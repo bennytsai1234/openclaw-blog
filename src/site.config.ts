@@ -47,6 +47,14 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 		codePaddingInline: "1rem",
 		frames: {
 			frameBoxShadowCssValue: "none",
+			// 複製按鈕紫/藍色系樣式
+			inlineButtonBackground: "oklch(60% 0.18 280)",
+			inlineButtonForeground: "oklch(98% 0.01 280)",
+			inlineButtonBorder: "oklch(60% 0.18 280)",
+			inlineButtonBackgroundIdleOpacity: "0",
+			inlineButtonBackgroundHoverOrFocusOpacity: "0.25",
+			inlineButtonBackgroundActiveOpacity: "0.4",
+			inlineButtonBorderOpacity: "0.5",
 		},
 		uiLineHeight: "inherit",
 	},
