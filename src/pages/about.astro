@@ -5,20 +5,150 @@ const meta = {
 	description: "個人技術部落格，記錄開發心得與工具分享",
 	title: "關於",
 };
+
+const techStack = [
+	{ name: "Astro", color: "bg-orange-500/20 text-orange-400", tag: "框架" },
+	{ name: "Tailwind CSS", color: "bg-sky-500/20 text-sky-400", tag: "樣式" },
+	{ name: "TypeScript", color: "bg-blue-500/20 text-blue-400", tag: "語言" },
+	{ name: "React", color: "bg-cyan-500/20 text-cyan-400", tag: "框架" },
+	{ name: "Node.js", color: "bg-green-500/20 text-green-400", tag: "運行時" },
+	{ name: "Git", color: "bg-red-500/20 text-red-400", tag: "版本控制" },
+	{ name: "OpenClaw", color: "bg-purple-500/20 text-purple-400", tag: "助理" },
+	{ name: "Vercel", color: "bg-gray-500/20 text-gray-400", tag: "部署" },
+];
+
+const expertise = [
+	{
+		title: "前端開發",
+		desc: "專注於現代前端框架與互動體驗，從元件設計到效能優化",
+		icon: "⚡",
+	},
+	{
+		title: "網路技術",
+		desc: "探索網頁標準、API 設計與前後端整合的各種可能",
+		icon: "🌐",
+	},
+	{
+		title: "開發工具",
+		desc: "折騰各种效率工具、指令稿與開發環境，打造順手的工具鏈",
+		icon: "🛠️",
+	},
+	{
+		title: "AI 助理應用",
+		desc: "研究 AI 助理在工作流程中的實際應用與人機協作模式",
+		icon: "🤖",
+	},
+];
 ---
 
 <PageLayout meta={meta}>
 	<h1 class="title mb-12">關於本站</h1>
-	<div class="prose prose-sm prose-cactus max-w-none">
-		<p>嗨！這是一個個人技術部落格，記錄我在開發過程中的所見所得。</p>
-		<p>本站使用 <a class="cactus-link" href="https://astro.build" target="_blank" rel="noreferrer">Astro</a> 框架建構，🦞 以 OpenClaw 龍蝦為品牌形象，專注於內容載入速度與閱讀體驗。</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>⚡ 極速靜態生成</li>
-			<li>📱 完整響應式設計</li>
-			<li>🌗 淺色/深色模式</li>
-			<li>💬 Giscus 留言系統</li>
-			<li>🔍 站內搜尋功能</li>
-		</ul>
-		<p>如果你喜歡這個部落格，歡迎到 <a class="cactus-link" href="https://github.com/bennytsai1234/openclaw-blog" target="_blank" rel="noreferrer">GitHub</a> 看看原始碼！</p>
+
+	<!-- 自我介紹 -->
+	<div class="mb-8">
+		<p class="mb-3 text-base leading-relaxed text-muted">
+			嗨！這是一個個人技術部落格，記錄我在開發過程中的所見所得。
+		</p>
+		<p class="mb-3 text-base leading-relaxed text-muted">
+			本站使用 <a class="cactus-link" href="https://astro.build" target="_blank" rel="noreferrer">Astro</a> 框架建構，🦞 以 OpenClaw 龍蝦為品牌形象，專注於內容載入速度與閱讀體驗。
+		</p>
+		<p class="text-base leading-relaxed text-muted">
+			如果你喜歡這個部落格，歡迎到 <a class="cactus-link" href="https://github.com/bennytsai1234/openclaw-blog" target="_blank" rel="noreferrer">GitHub</a> 看看原始碼！
+		</p>
 	</div>
+
+	<!-- 技術棧 -->
+	<section class="mb-8">
+		<h2 class="text-lg font-semibold text-accent-2 mb-4 flex items-center gap-2">
+			<span>💻</span> 技術棧
+		</h2>
+		<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+			{
+				techStack.map((tech) => (
+					<div class="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-transparent bg-accent-soft/40 hover:border-accent hover:bg-accent-soft/20 transition-all duration-300 text-center group">
+						<span class={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${tech.color}`}>
+							{tech.name}
+						</span>
+						<span class="text-[10px] text-muted">{tech.tag}</span>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- 擅長領域 -->
+	<section class="mb-8">
+		<h2 class="text-lg font-semibold text-accent-2 mb-4 flex items-center gap-2">
+			<span>🎯</span> 擅長領域
+		</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+			{
+				expertise.map((item) => (
+					<div class="flex gap-3 p-4 rounded-xl border border-transparent bg-accent-soft/30 hover:border-accent hover:bg-accent-soft/15 transition-all duration-300">
+						<span class="text-2xl shrink-0 mt-0.5">{item.icon}</span>
+						<div>
+							<h3 class="font-medium text-accent-2 mb-1">{item.title}</h3>
+							<p class="text-xs text-muted leading-relaxed">{item.desc}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- 站點特色 + 關注我 -->
+	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+		<!-- 站點特色 -->
+		<div class="p-4 rounded-xl border border-transparent bg-accent-soft/30 hover:border-accent hover:bg-accent-soft/15 transition-all duration-300">
+			<h2 class="text-base font-semibold text-accent-2 mb-3 flex items-center gap-2">
+				<span>🦞</span> 站點特色
+			</h2>
+			<ul class="space-y-2">
+				<li class="flex items-center gap-2 text-sm text-muted">
+					<span class="text-accent text-xs">⚡</span> 極速靜態生成
+				</li>
+				<li class="flex items-center gap-2 text-sm text-muted">
+					<span class="text-accent text-xs">📱</span> 完整響應式設計
+				</li>
+				<li class="flex items-center gap-2 text-sm text-muted">
+					<span class="text-accent text-xs">🌗</span> 淺色/深色模式
+				</li>
+				<li class="flex items-center gap-2 text-sm text-muted">
+					<span class="text-accent text-xs">💬</span> Giscus 留言系統
+				</li>
+				<li class="flex items-center gap-2 text-sm text-muted">
+					<span class="text-accent text-xs">🔍</span> 站內搜尋功能
+				</li>
+			</ul>
+		</div>
+
+		<!-- 關注我 -->
+		<div class="p-4 rounded-xl border border-transparent bg-accent-soft/30 hover:border-accent hover:bg-accent-soft/15 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3">
+			<h2 class="text-base font-semibold text-accent-2 flex items-center gap-2">
+				<span>🔗</span> 關注我
+			</h2>
+			<p class="text-xs text-muted leading-relaxed">
+				有興趣的話可以到 GitHub 看看我的專案，也歡迎 Follow！
+			</p>
+			<a
+				href="https://github.com/bennytsai1234"
+				target="_blank"
+				rel="noreferrer noopener"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 hover:bg-accent/20 border border-accent/30 hover:border-accent text-accent text-sm font-medium transition-all duration-300"
+			>
+				<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<path
+						fill-rule="evenodd"
+						d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+						clip-rule="evenodd"></path>
+				</svg>
+				GitHub
+			</a>
+		</div>
+	</div>
+
+	<!-- 版權宣告 -->
+	<p class="text-center text-xs text-muted/60">
+		© {new Date().getFullYear()} 技術筆記 · 使用 Astro 與 Tailwind CSS 構建
+	</p>
 </PageLayout>
