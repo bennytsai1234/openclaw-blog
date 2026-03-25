@@ -24,16 +24,16 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "首頁",
 	},
 	{
-		path: "/about/",
-		title: "關於",
-	},
-	{
 		path: "/posts/",
 		title: "文章",
 	},
 	{
-		path: "/notes/",
-		title: "筆記",
+		path: "/category/",
+		title: "分類",
+	},
+	{
+		path: "/about/",
+		title: "關於",
 	},
 ];
 

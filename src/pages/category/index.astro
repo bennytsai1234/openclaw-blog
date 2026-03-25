@@ -1,0 +1,34 @@
+---
+import { getAllPosts, getUniqueTagsWithCount } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+
+const allPosts = await getAllPosts();
+const allTags = getUniqueTagsWithCount(allPosts);
+
+const meta = {
+	description: "瀏覽所有文章分類",
+	title: "文章分類",
+};
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-6">文章分類</h1>
+	<ul class="space-y-4">
+		{
+			allTags.map(([tag, val]) => (
+				<li class="flex items-center gap-x-2">
+					<a
+						class="cactus-link inline-block"
+						href={`/category/${tag}/`}
+						title={`查看分類：${tag}`}
+					>
+						&#35;{tag}
+					</a>
+					<span class="inline-block">
+						- {val} 篇文章
+					</span>
+				</li>
+			))
+		}
+	</ul>
+</PageLayout>
