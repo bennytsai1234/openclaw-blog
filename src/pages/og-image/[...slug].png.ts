@@ -1,5 +1,5 @@
 import { Resvg } from "@resvg/resvg-js";
-import type { APIContext, InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
+import type { APIContext } from "astro";
 import satori, { type SatoriOptions } from "satori";
 import RobotoMonoBold from "@/assets/roboto-mono-700.ttf";
 import RobotoMono from "@/assets/roboto-mono-regular.ttf";
@@ -27,7 +27,7 @@ const ogOptions: SatoriOptions = {
 	width: 1200,
 };
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+type Props = { title: string; description: string; pubDate: Date };
 
 export async function GET(context: APIContext) {
 	const { pubDate, title, description } = context.props as Props;
@@ -53,7 +53,7 @@ export async function getStaticPaths() {
 		.values()
 		.filter(({ data }) => !data.ogImage)
 		.map((post) => ({
-			params: { slug: post.id } as InferGetStaticParamsType<typeof getStaticPaths>,
+			params: { slug: post.id },
 			props: {
 				description: post.data.description,
 				pubDate: post.data.updatedDate ?? post.data.publishDate,

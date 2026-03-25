@@ -58,8 +58,6 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 		},
 		uiLineHeight: "inherit",
 	},
-	showLineNumbers: true,
-	lineNumbersTheme: "dracula",
 	themeCssSelector(theme, { styleVariants }) {
 		if (styleVariants.length >= 2) {
 			const baseTheme = styleVariants[0]?.theme;

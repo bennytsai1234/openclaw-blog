@@ -18,10 +18,8 @@ const tagInfos = await Promise.all(
 			tag,
 			count,
 			title: tagMeta?.data.title ?? tag,
-			description: tagMeta?.data.description ?? "",
-			excerpt: tagMeta?.data.excerpt ?? latestPost?.data.description ?? "",
+			description: tagMeta?.data.description ?? latestPost?.data.description ?? "",
 			latestPostTitle: latestPost?.data.title,
-			latestPostId: latestPost?.id,
 		};
 	})
 );
@@ -42,7 +40,7 @@ const meta = {
 	<!-- 分類卡片網格 -->
 	<div class="grid gap-4 sm:grid-cols-2">
 		{
-			tagInfos.map(({ tag, count, title, description, latestPostTitle, latestPostId }) => (
+			tagInfos.map(({ tag, count, title, description, latestPostTitle }) => (
 				<a
 					class="group relative flex flex-col rounded-2xl border border-transparent bg-[--color-surface] p-6 transition-all duration-300 hover:border-[--color-accent]/30 hover:bg-[--color-surface]/80 hover:shadow-lg"
 					href={`/category/${tag}/`}

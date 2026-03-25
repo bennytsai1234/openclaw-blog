@@ -18,7 +18,7 @@ const {
 
 <html class="scroll-smooth" lang={siteConfig.lang}>
 	<head>
-		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} tags={tags} title={title} />
+		<BaseHead description={description} title={title} {...(articleDate && { articleDate })} {...(ogImage && { ogImage })} {...(tags && { tags })} />
 		<ThemeProvider />
 	</head>
 	<body
