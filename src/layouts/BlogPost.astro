@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, render } from "astro:content";
 import { getAllPosts } from "@/data/post";
-import calcReadingTime from "reading-time";
 
 import Masthead from "@/components/blog/Masthead.astro";
 import TOC from "@/components/blog/TOC.astro";
@@ -75,7 +74,7 @@ function formatDate(date: Date): string {
 >
 	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
 	<article class="grow break-words" data-pagefind-body>
-		<div id="blog-hero" class="mb-12"><Masthead content={post} readingTime={readingTime} /></div>
+		<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
 		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
 			<!-- Sidebar: TOC + Author Card -->
 			<div class="hidden xl:block lg:sticky lg:top-12 lg:order-2 lg:-me-32 lg:basis-64">
@@ -184,7 +183,7 @@ function formatDate(date: Date): string {
 						<h2 class="mb-5 text-lg font-semibold text-[--color-text]">📚 相關文章</h2>
 						<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
 							{relatedPosts.map((related) => {
-								const rt = (related.data as any).readingTime ?? calcReadingTime(related.body ?? "").text;
+								const rt = "rt" in related ? (related as any).rt : "未知";
 								return (
 									<li>
 										<a
@@ -285,7 +284,10 @@ function formatDate(date: Date): string {
 		const articleHeight = article.offsetHeight;
 		const windowHeight = window.innerHeight;
 		const scrollY = window.scrollY;
-		const progress = Math.min(100, Math.max(0, ((scrollY - articleTop + windowHeight * 0.1) / (articleHeight - windowHeight * 0.1)) * 100));
+		const scrollable = articleHeight - windowHeight;
+		const progress = scrollable > 0
+			? Math.min(100, Math.max(0, ((scrollY - articleTop) / scrollable) * 100))
+			: 100;
 		progressBar.style.width = `${progress}%`;
 		progressBar.setAttribute("aria-valuenow", String(Math.round(progress)));
 		progressBar.classList.toggle("visible", progress > 0 && progress < 100);
