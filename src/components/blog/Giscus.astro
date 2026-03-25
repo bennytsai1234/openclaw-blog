@@ -1,0 +1,25 @@
+---
+// Giscus comments component
+// See: https://giscus.app
+---
+
+<div class="giscus mt-12 pt-8 border-t border-global-text/20"></div>
+
+<script is:inline>
+	const giscusScript = document.createElement("script");
+	giscusScript.src = "https://giscus.app/client.js";
+	giscusScript.setAttribute("data-repo", "bennytsai1234/openclaw-blog");
+	giscusScript.setAttribute("data-repo-id", "R_kgDORvowwA");
+	giscusScript.setAttribute("data-category", "Announcements");
+	giscusScript.setAttribute("data-category-id", "DIC_kwDORvowwM4C5N8S");
+	giscusScript.setAttribute("data-mapping", "pathname");
+	giscusScript.setAttribute("data-strict", "0");
+	giscusScript.setAttribute("data-reactions-enabled", "1");
+	giscusScript.setAttribute("data-emit-metadata", "0");
+	giscusScript.setAttribute("data-input-position", "bottom");
+	giscusScript.setAttribute("data-theme", "preferred_color_scheme");
+	giscusScript.setAttribute("data-lang", "zh-TW");
+	giscusScript.setAttribute("crossorigin", "anonymous");
+	giscusScript.async = true;
+	document.querySelector(".giscus").appendChild(giscusScript);
+</script>
