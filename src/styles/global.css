@@ -146,6 +146,29 @@
 		@apply p-4 rounded-lg border border-transparent hover:border-accent-soft 
 		       hover:bg-accent-soft/10 transition-all duration-300;
 	}
+
+	/* TOC 主動態高亮 */
+	.toc-link {
+		@apply text-muted;
+		& .toc-hash {
+			@apply opacity-0;
+		}
+		&:hover {
+			@apply text-accent;
+			& .toc-hash {
+				@apply opacity-100;
+			}
+		}
+		&.toc-active {
+			@apply text-accent font-semibold;
+			& .toc-hash {
+				@apply opacity-100;
+			}
+			& .toc-text {
+				@apply border-l-2 border-accent pl-2;
+			}
+		}
+	}
 }
 
 @utility prose {

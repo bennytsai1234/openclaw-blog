@@ -56,6 +56,13 @@ if (otherPosts.length > 0) {
 		if (relatedPosts.length >= 3) break;
 	}
 
+	// 為相關文章附加 readingTime
+	relatedPosts = (await Promise.all(
+		relatedPosts.map(async (p) => {
+			const { remarkPluginFrontmatter } = await render(p);
+			return { ...p, rt: remarkPluginFrontmatter.readingTime as string };
+		})
+	)) as typeof relatedPosts;
 }
 
 function formatDate(date: Date): string {
@@ -112,58 +119,60 @@ function formatDate(date: Date): string {
 				<WebMentions />
 
 				{/* 社群分享按鈕 */}
-				<div class="not-prose mt-10 flex flex-wrap items-center gap-3" id="share-buttons">
-					<span class="me-1 text-sm font-medium text-[--color-muted]">分享：</span>
-
+				<div class="not-prose mt-10 flex flex-wrap items-center gap-2" id="share-buttons">
 					<!-- Facebook -->
 					<a
 						aria-label="分享至 Facebook"
-						class="flex h-9 w-9 items-center justify-center rounded-full bg-[--color-accent] text-white transition-all duration-200 hover:scale-110 hover:bg-[--color-accent-hover] hover:shadow-lg"
+						class="flex items-center gap-1.5 rounded-full bg-[#1877F2] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
 						href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
 						rel="noopener noreferrer"
 						target="_blank"
 					>
-						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
 							<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
 						</svg>
+						Facebook
 					</a>
 
 					<!-- Twitter / X -->
 					<a
 						aria-label="分享至 X (Twitter)"
-						class="flex h-9 w-9 items-center justify-center rounded-full bg-[--color-link] text-white transition-all duration-200 hover:scale-110 hover:brightness-110 hover:shadow-lg"
+						class="flex items-center gap-1.5 rounded-full bg-black px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md dark:bg-[#1D9BF0] dark:text-black"
 						href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(Astro.url.href)}&text=${encodeURIComponent(title)}`}
 						rel="noopener noreferrer"
 						target="_blank"
 					>
-						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
 							<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
 						</svg>
+						X
 					</a>
 
 					<!-- LINE -->
 					<a
 						aria-label="分享至 LINE"
-						class="flex h-9 w-9 items-center justify-center rounded-full bg-[#00B900] text-white transition-all duration-200 hover:scale-110 hover:brightness-110 hover:shadow-lg"
+						class="flex items-center gap-1.5 rounded-full bg-[#00B900] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
 						href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(Astro.url.href)}`}
 						rel="noopener noreferrer"
 						target="_blank"
 					>
-						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-							<path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" fill="#00B900"/>
+						<svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+							<path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0 .345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
 						</svg>
+						LINE
 					</a>
 
 					<!-- 複製連結 -->
 					<button
 						aria-label="複製連結"
-						class="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[--color-accent] text-[--color-accent] transition-all duration-200 hover:scale-110 hover:bg-[--color-accent] hover:text-white"
+						class="flex items-center gap-1.5 rounded-full border-2 border-[--color-accent] px-3.5 py-1.5 text-xs font-semibold text-[--color-accent] transition-all duration-200 hover:scale-105 hover:bg-[--color-accent] hover:text-white"
 						id="copy-link-btn"
 						type="button"
 					>
-						<svg class="h-4 w-4" fill="none" focusable="false" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
 							<path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
+						複製連結
 					</button>
 				</div>
 
@@ -386,4 +395,42 @@ function formatDate(date: Date): string {
 			closeLightbox();
 		}
 	});
+
+	// ===== TOC 主動態高亮 =====
+	const tocLinks = document.querySelectorAll<HTMLAnchorElement>("[data-toc-slug]");
+	if (tocLinks.length > 0) {
+		const headingMap = new Map<string, HTMLAnchorElement>();
+		tocLinks.forEach((link) => {
+			const slug = link.dataset.tocSlug;
+			if (slug) headingMap.set(slug, link);
+		});
+
+		// 替所有 heading 加上 id（以防萬一）
+		document.querySelectorAll<HTMLElement>("h1[id], h2[id], h3[id], h4[id]").forEach((h) => {
+			headingMap.set(h.id, document.querySelector(`[data-toc-slug="${h.id}"]`)!);
+		});
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						const slug = entry.target.id;
+						// 移除舊 active
+						document.querySelectorAll(".toc-active").forEach((el) => el.classList.remove("toc-active"));
+						// 加上新的 active
+						const link = headingMap.get(slug);
+						if (link) link.classList.add("toc-active");
+					}
+				}
+			},
+			{
+				rootMargin: "-20% 0% -70% 0%",
+				threshold: 0,
+			}
+		);
+
+		document.querySelectorAll<HTMLElement>("h1[id], h2[id], h3[id], h4[id]").forEach((h) => {
+			observer.observe(h);
+		});
+	}
 </script>
