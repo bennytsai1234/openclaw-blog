@@ -66,7 +66,7 @@ const expertise = [
 			{
 				techStack.map((tech) => (
 					<div class="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-transparent bg-accent-soft/40 hover:border-accent hover:bg-accent-soft/20 transition-all duration-300 text-center group">
-						<span class={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${tech.color}`}>
+						<span class={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-sm font-medium ${tech.color}`}>
 							{tech.name}
 						</span>
 						<span class="text-[10px] text-muted">{tech.tag}</span>
@@ -88,7 +88,7 @@ const expertise = [
 						<span class="text-2xl shrink-0 mt-0.5">{item.icon}</span>
 						<div>
 							<h3 class="font-medium text-accent-2 mb-1">{item.title}</h3>
-							<p class="text-xs text-muted leading-relaxed">{item.desc}</p>
+							<p class="text-sm text-muted leading-relaxed">{item.desc}</p>
 						</div>
 					</div>
 				))
@@ -127,7 +127,7 @@ const expertise = [
 			<h2 class="text-base font-semibold text-accent-2 flex items-center gap-2">
 				<span>🔗</span> 關注我
 			</h2>
-			<p class="text-xs text-muted leading-relaxed">
+			<p class="text-sm text-muted leading-relaxed">
 				有興趣的話可以到 GitHub 看看我的專案，也歡迎 Follow！
 			</p>
 			<a
@@ -148,7 +148,7 @@ const expertise = [
 	</div>
 
 	<!-- 版權宣告 -->
-	<p class="text-center text-xs text-muted/60">
+	<p class="text-center text-sm text-muted/60">
 		© {new Date().getFullYear()} 技術筆記 · 使用 Astro 與 Tailwind CSS 構建
 	</p>
 </PageLayout>
