@@ -38,11 +38,11 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 	{data.title}
 </h1>
 {data.description && (
-	<p class="text-muted mb-4 w-full border-l-2 border-accent/40 pl-4 text-sm leading-relaxed italic">
+	<p class="text-muted mb-4 w-full border-l-2 border-accent/40 pl-4 text-base leading-relaxed italic">
 		{data.description}
 	</p>
 )}
-<div class="article-tags flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-accent/10 pb-4 text-sm">
+<div class="article-tags flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-accent/10 pb-4 text-base">
 	<time class="text-accent font-semibold" datetime={data.publishDate.toISOString()}>
 		{dateStr}
 	</time>

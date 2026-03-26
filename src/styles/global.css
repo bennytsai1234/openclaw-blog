@@ -77,18 +77,18 @@
 		&[data-theme="dark"] {
 			color-scheme: dark;
 			/* Ghost Casper 精準深色配色 */
-			--color-global-bg: #282c35;
-			--color-global-text: #e2e2e2;
-			--color-muted: #9a9a9a;
-			--color-link: #e2e2e2;
-			--color-accent: #2a9d8f;
-			--color-accent-hover: #35b8a8;
+			--color-global-bg: #1a1a1a;
+			--color-global-text: #ffffff;
+			--color-muted: #cccccc;
+			--color-link: #ffffff;
+			--color-accent: #35b8a8;
+			--color-accent-hover: #4fd8c4;
 			--color-accent-soft: #1a3d3a;
-			--color-accent-2: #f0f0f0;
-			--color-quote: #aaaaaa;
+			--color-accent-2: #ffffff;
+			--color-quote: #dddddd;
 			/* 卡片表面色 */
-			--color-surface: #2f333c;
-			--color-surface-hover: #3b3e46;
+			--color-surface: #2a2a2a;
+			--color-surface-hover: #333333;
 		}
 
 		--color-mode-transition-duration: 300ms;
