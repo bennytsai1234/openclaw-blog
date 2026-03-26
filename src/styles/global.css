@@ -11,54 +11,54 @@
 @property --color-global-bg {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(98% 0 0);
+	initial-value: #ffffff;
 }
 @property --color-global-text {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(20% 0 0);
+	initial-value: #333333;
 }
 @property --color-muted {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(50% 0 0);
+	initial-value: #999999;
 }
 @property --color-link {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(40% 0 0);
+	initial-value: #333333;
 }
 @property --color-accent {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(35% 0 0);
+	initial-value: #2a9d8f;
 }
 @property --color-accent-2 {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(15% 0 0);
+	initial-value: #15171a;
 }
 @property --color-quote {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(40% 0 0);
+	initial-value: #555555;
 }
 
 /* you could refactor below to use light-dark(), depending on your target audience */
 @theme {
-	--color-global-bg: oklch(98% 0 0);
-	--color-global-text: oklch(20% 0 0);
-	--color-muted: oklch(50% 0 0);
-	--color-link: oklch(40% 0 0);
-	/* 極簡灰階配色 - 仿 Ghost 風格 */
-	--color-accent: oklch(35% 0 0);
-	--color-accent-hover: oklch(25% 0 0);
-	--color-accent-soft: oklch(94% 0 0);
-	--color-accent-2: oklch(15% 0 0);
-	--color-quote: oklch(45% 0 0);
+	--color-global-bg: #ffffff;
+	--color-global-text: #333333;
+	--color-muted: #999999;
+	--color-link: #333333;
+	/* Ghost Casper Teal 配色（微調版：#2a9d8f） */
+	--color-accent: #2a9d8f;
+	--color-accent-hover: #21867a;
+	--color-accent-soft: #e8f6f5;
+	--color-accent-2: #15171a;
+	--color-quote: #555555;
 	/* 卡片表面色 */
-	--color-surface: oklch(97% 0 0);
-	--color-surface-hover: oklch(95% 0 0);
+	--color-surface: #f6f6f6;
+	--color-surface-hover: #eeeeee;
 	/* 字體定義 - 現代無襯線 */
 	--font-sans: "Inter", "Noto Sans TC", system-ui, sans-serif;
 	--font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -76,19 +76,19 @@
 
 		&[data-theme="dark"] {
 			color-scheme: dark;
-			--color-global-bg: oklch(12% 0 0);
-			--color-global-text: oklch(92% 0 0);
-			--color-muted: oklch(65% 0 0);
-			--color-link: oklch(85% 0 0);
-			/* 灰階配色 - 深色模式 */
-			--color-accent: oklch(80% 0 0);
-			--color-accent-hover: oklch(90% 0 0);
-			--color-accent-soft: oklch(22% 0 0);
-			--color-accent-2: oklch(96% 0 0);
-			--color-quote: oklch(75% 0 0);
+			/* Ghost Casper 精準深色配色 */
+			--color-global-bg: #282c35;
+			--color-global-text: #e2e2e2;
+			--color-muted: #868686;
+			--color-link: #e2e2e2;
+			--color-accent: #2a9d8f;
+			--color-accent-hover: #35b8a8;
+			--color-accent-soft: #1a3d3a;
+			--color-accent-2: #f0f0f0;
+			--color-quote: #aaaaaa;
 			/* 卡片表面色 */
-			--color-surface: oklch(18% 0 0);
-			--color-surface-hover: oklch(22% 0 0);
+			--color-surface: #2f333c;
+			--color-surface-hover: #3b3e46;
 		}
 
 		--color-mode-transition-duration: 300ms;
