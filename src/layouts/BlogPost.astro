@@ -83,15 +83,11 @@ function formatDate(date: Date): string {
 >
 	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
 	
-	<div class="mx-auto max-w-6xl">
-		<article class="break-words" data-pagefind-body>
-			<div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[1fr_260px]">
-				<!-- Main Content Area -->
-				<div class="min-w-0">
-					<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
-					<div
-						class="prose prose-sm prose-headings:font-bold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted/30 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
-					>
+	<article class="break-words" data-pagefind-body>
+		<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
+		<div
+			class="prose prose-sm prose-headings:font-bold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted/30 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
+		>
 						<slot />
 						
 						<WebMentions />
@@ -192,24 +188,20 @@ function formatDate(date: Date): string {
 							</aside>
 						)}
 
-						<Giscus />
-					</div>
-				</div>
+				<Giscus />
+		</div>
+	</article>
 
-				<!-- Sidebar: TOC only -->
-				<aside class="hidden lg:block">
-					<div class="sticky top-12">
-						{!!headings.length && (
-							<div>
-								<h2 class="mb-4 text-[10px] font-bold uppercase tracking-widest text-muted/60">目錄</h2>
-								<TOC headings={headings} />
-							</div>
-						)}
-					</div>
-				</aside>
-			</div>
-		</article>
-	</div>
+	{/* Fixed TOC: floats right of max-w-3xl body, only on wide screens */}
+	{!!headings.length && (
+		<aside
+			aria-label="文章目錄"
+			class="toc-float hidden xl:block"
+		>
+			<h2 class="mb-3 text-[10px] font-bold uppercase tracking-widest text-muted/60">目錄</h2>
+			<TOC headings={headings} />
+		</aside>
+	)}
 
 	<button
 		class="hover:border-link fixed end-4 bottom-8 z-90 flex h-10 w-10 translate-y-28 cursor-pointer items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all transition-discrete duration-300 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12 dark:bg-zinc-700"

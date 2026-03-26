@@ -278,6 +278,22 @@
 	--tw-prose-th-borders: #666;
 }
 
+/* ===== 文章頁面浮動目錄 ===== */
+/* body is max-w-3xl (768px) centered. TOC floats to the right of it. */
+.toc-float {
+	position: fixed;
+	top: 5rem;
+	/* 50% = viewport center; 384px = half of 768px body; 24px = gap */
+	left: calc(50% + 408px);
+	width: 200px;
+	max-height: calc(100vh - 6rem);
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+.toc-float::-webkit-scrollbar {
+	display: none;
+}
+
 /* 閱讀進度條 */
 #reading-progress {
 	position: fixed;
