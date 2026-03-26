@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import type { HTMLTag, Polymorphic } from "astro/types";
-import FormattedDate from "@/components/FormattedDate.astro";
+import getReadingTime from "reading-time";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 	post: CollectionEntry<"post">;
@@ -9,13 +9,27 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 };
 
 const { as: Tag = "div", post, withDesc = false } = Astro.props;
+
+const dateStr = new Intl.DateTimeFormat("en-GB", {
+	day: "numeric",
+	month: "short",
+	year: "numeric",
+}).format(post.data.publishDate);
+
+const readingMins = Math.ceil(getReadingTime(post.body ?? "").minutes);
+const readingTimeStr = `${readingMins} min`;
 ---
 
-<FormattedDate class="text-muted min-w-24 font-medium" date={post.data.publishDate} />
-<Tag>
+<time
+	class="text-accent min-w-28 shrink-0 font-semibold text-sm"
+	datetime={post.data.publishDate.toISOString()}
+	title={post.data.publishDate.toISOString()}
+>{dateStr}</time>
+<Tag class="flex-1 min-w-0">
 	{post.data.draft && <span class="text-red-500">(Draft) </span>}
 	<a class="hover:text-accent font-semibold transition-colors duration-200" href={`/posts/${post.id}/`}>
 		{post.data.title}
 	</a>
 </Tag>
+<span class="text-muted shrink-0 text-sm tabular-nums">{readingTimeStr}</span>
 {withDesc && <q class="line-clamp-3 italic">{post.data.description}</q>}
