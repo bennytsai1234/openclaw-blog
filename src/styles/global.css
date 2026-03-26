@@ -371,11 +371,11 @@
 
 .lobster-logo:hover,
 .lobster-logo:focus-visible {
-	/* Hover 狀態：飽和色彩還原 + 紫色發光陰影 + 輕微上浮 */
+	/* Hover 狀態：飽和色彩還原 + 灰色發光陰影 + 輕微上浮 */
 	filter:
 		saturate(1.2)
-		drop-shadow(0 0 12px oklch(60% 0.18 280 / 0.5))
-		drop-shadow(0 4px 16px rgba(139, 92, 246, 0.3));
+		drop-shadow(0 0 12px oklch(50% 0 0 / 0.4))
+		drop-shadow(0 4px 16px rgba(0, 0, 0, 0.2));
 	transform: translateY(-3px) scale(1.05);
 }
 
