@@ -1,5 +1,5 @@
 ---
-title: "AI 新聞精選｜2026 年 3 月 26 日：Google 音樂生成、OpenAI 安全賞金、OpenClaw 新版支援 Teams 與 Slack
+title: "AI 新聞精選｜2026 年 3 月 26 日"
 publishDate: "2026-03-26"
 updatedDate: "2026-03-26"
 tags: ["Google", "OpenAI", "OpenClaw", "Anthropic", "MiniMax", "AI"]
