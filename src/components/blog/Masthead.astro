@@ -34,11 +34,11 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 	)
 }
 {data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
-<h1 class="title mb-3 w-full text-balance">
+<h1 class="title mb-3 w-full">
 	{data.title}
 </h1>
 {data.description && (
-	<p class="text-muted mb-4 w-full border-l-2 border-accent/40 pl-4 text-sm leading-relaxed italic [overflow-wrap:anywhere]">
+	<p class="text-muted mb-4 w-full border-l-2 border-accent/40 pl-4 text-sm leading-relaxed italic">
 		{data.description}
 	</p>
 )}
