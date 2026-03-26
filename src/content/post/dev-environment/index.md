@@ -2,7 +2,7 @@
 title: "我的開發環境：VS Code + WSL2 + Neovim"
 description: "分享我日常使用的開發環境設定，包括 VS Code Remote WSL2 遠端開發，以及 Neovim 作為終端編輯器。"
 publishDate: "2026-03-25"
-tags: ["開發環境", "工具", "VSCode", "Neovim"]
+tags: ["tools"]
 pinned: false
 ---
 

@@ -2,7 +2,7 @@
 title: "為什麼個人使用者該三思？Cloudflare Zero Trust (WARP) 並非萬靈丹"
 description: "许多人将 Cloudflare Zero Trust (WARP) 视为免费 VPN，但实际上它可能让你的网络变得更慢、更不稳定。本文深入分析 MTU 冲突、MASQUE 协定兼容性等核心问题。"
 publishDate: "2026-03-25"
-tags: ["網路技術", "Cloudflare", "Zero Trust", "故障排除"]
+tags: ["network", "troubleshooting"]
 pinned: false
 ---
 

@@ -2,7 +2,7 @@
 title: "Git Worktrees：並行開發的秘密武器"
 description: "介紹 Git worktree 功能，讓你可以在同一個 repo 同時開多個分支工作，不需要來回切換分支。"
 publishDate: "2026-03-25"
-tags: ["Git", "開發工具", "工作流"]
+tags: ["tools"]
 pinned: true
 ---
 

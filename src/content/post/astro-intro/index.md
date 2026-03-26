@@ -2,7 +2,7 @@
 title: "使用 Astro 建構高效能部落格"
 description: "探索 Astro 靜態網站框架的魅力，以及如何使用它快速架設一個載入速度極快的技術部落格。"
 publishDate: "2026-03-25"
-tags: ["Astro", "前端", "技術"]
+tags: ["frontend"]
 pinned: true
 ---
 

@@ -2,7 +2,7 @@
 title: "YouTube 淨化大師 — 打造純淨 YouTube 體驗的使用者腳本"
 description: "深入解析 YouTube Cleaner 專案：一個用 TypeScript 開發的模組化瀏覽器腳本，如何透過智慧過濾、Anti-Adblock 處理與多國語言支援，讓 YouTube 回歸純粹的影片瀏覽體驗。"
 publishDate: "2026-03-25"
-tags: ["開發工具", "前端", "TypeScript", "使用者腳本"]
+tags: ["frontend", "tools"]
 pinned: false
 ---
 
