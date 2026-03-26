@@ -1,0 +1,141 @@
+<h2>設計對比：現有 Blog vs tbbbk.com</h2>
+<p class="subtitle">探索兩個設計的差異，確認對齊範圍</p>
+
+<div class="split" style="gap: 24px; margin-top: 24px;">
+  <!-- LEFT: Current Blog -->
+  <div style="flex:1;">
+    <div class="mockup" style="min-height: 520px;">
+      <div class="mockup-header">現有 openclaw-blog（Cactus 主題）</div>
+      <div class="mockup-body" style="font-family: Inter, sans-serif; background: #fafafa; padding: 20px;">
+
+        <!-- Header -->
+        <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom: 12px; border-bottom: 1px solid #eee; margin-bottom: 20px;">
+          <div style="display:flex; align-items:center; gap: 10px;">
+            <div style="width:24px; height:32px; background:#e74c3c; border-radius:4px; display:flex;align-items:center;justify-content:center; font-size:10px; color:white;">🦞</div>
+            <span style="font-size:14px; font-weight:700; color:#222;">技術筆記</span>
+          </div>
+          <div style="display:flex; gap:12px; font-size:11px; color:#888;">
+            <span>首頁</span><span>文章</span><span>分類</span><span>關於</span>
+            <span style="border:1px solid #ddd; padding:2px 6px; border-radius:4px;">🔍</span>
+            <span style="border:1px solid #ddd; padding:2px 6px; border-radius:4px;">☀</span>
+          </div>
+        </div>
+
+        <!-- Hero -->
+        <div style="text-align:center; padding: 20px 0 24px;">
+          <div style="font-size:32px; margin-bottom:8px;">🦞</div>
+          <div style="font-size:22px; font-weight:900; color:#111; letter-spacing:-0.5px; margin-bottom:8px;">技術筆記</div>
+          <div style="font-size:12px; color:#888; max-width:280px; margin:0 auto;">記錄開發過程中的所見所得，專注於前端技術、後端技術…</div>
+        </div>
+
+        <!-- Post list -->
+        <div style="font-size:10px; font-weight:700; color:#aaa; letter-spacing:2px; margin-bottom:10px; text-transform:uppercase;">最新文章</div>
+        <div style="border-top:1px solid #f0f0f0;">
+          <div style="display:grid; grid-template-columns:80px 1fr; gap:4px; padding:8px 0; border-bottom:1px solid #f5f5f5;">
+            <span style="font-size:11px; color:#999;">Mar 23, 2026</span>
+            <span style="font-size:12px; font-weight:600; color:#222;">OpenClaw 子 Agent 怎麼用</span>
+          </div>
+          <div style="display:grid; grid-template-columns:80px 1fr; gap:4px; padding:8px 0; border-bottom:1px solid #f5f5f5;">
+            <span style="font-size:11px; color:#999;">Mar 20, 2026</span>
+            <span style="font-size:12px; font-weight:600; color:#222;">ClawHub Skill 精選</span>
+          </div>
+          <div style="display:grid; grid-template-columns:80px 1fr; gap:4px; padding:8px 0;">
+            <span style="font-size:11px; color:#999;">Mar 15, 2026</span>
+            <span style="font-size:12px; font-weight:600; color:#222;">安裝報錯完全解決手冊</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px; font-size:12px; color:#666;">
+      <strong>設計特色：</strong>
+      <ul style="margin:6px 0; padding-left:16px; line-height:1.8;">
+        <li>🎨 純灰階配色（OKLCH 無彩色）</li>
+        <li>📋 純文字列表 + 日期排列</li>
+        <li>🦞 大型 Hero + 浮動龍蝦 Logo</li>
+        <li>🔤 Inter + Noto Sans TC 字型</li>
+        <li>⬜ 無文章封面圖</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RIGHT: tbbbk.com -->
+  <div style="flex:1;">
+    <div class="mockup" style="min-height: 520px;">
+      <div class="mockup-header">tbbbk.com（Ghost CMS）</div>
+      <div class="mockup-body" style="font-family: -apple-system, sans-serif; background: #fff; padding: 20px;">
+
+        <!-- Header -->
+        <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom: 12px; border-bottom: 1px solid #eee; margin-bottom: 20px;">
+          <div style="display:flex; align-items:center; gap: 10px;">
+            <div style="width:60px; height:18px; background:#318c96; border-radius:2px; display:flex;align-items:center;justify-content:center; font-size:8px; color:white;">LOGO</div>
+          </div>
+          <div style="display:flex; gap:12px; font-size:11px; color:#444;">
+            <span>主页</span><span>建站笔记</span><span>折腾日记</span><span>踩坑记录</span>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <span style="background:#fff; border:1px solid #ddd; font-size:10px; padding:3px 8px; border-radius:3px; color:#444;">Sign in</span>
+            <span style="background:#318c96; font-size:10px; padding:3px 8px; border-radius:3px; color:white;">Subscribe</span>
+          </div>
+        </div>
+
+        <!-- Featured Cards -->
+        <div style="font-size:10px; font-weight:700; color:#aaa; letter-spacing:2px; margin-bottom:10px; text-transform:uppercase;">Featured articles</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
+          <div style="border-radius:6px; overflow:hidden; border:1px solid #eee;">
+            <div style="height:80px; background:linear-gradient(135deg,#667eea,#764ba2); display:flex;align-items:center;justify-content:center;font-size:20px;">🛠</div>
+            <div style="padding:8px;">
+              <div style="font-size:11px; font-weight:600; color:#222; line-height:1.4;">ClawHub Skill 精選</div>
+            </div>
+          </div>
+          <div style="border-radius:6px; overflow:hidden; border:1px solid #eee;">
+            <div style="height:80px; background:linear-gradient(135deg,#f093fb,#f5576c); display:flex;align-items:center;justify-content:center;font-size:20px;">🔧</div>
+            <div style="padding:8px;">
+              <div style="font-size:11px; font-weight:600; color:#222; line-height:1.4;">安裝報錯解決手冊</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post list with reading time -->
+        <div style="font-size:10px; font-weight:700; color:#aaa; letter-spacing:2px; margin-bottom:8px; text-transform:uppercase;">最新文章</div>
+        <div style="border-top:1px solid #f0f0f0;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; border-bottom:1px solid #f5f5f5;">
+            <div>
+              <span style="font-size:10px; color:#318c96; margin-right:6px; font-weight:600;">23 Mar</span>
+              <span style="font-size:12px; font-weight:600; color:#222;">OpenClaw 子 Agent 怎麼用</span>
+            </div>
+            <span style="font-size:10px; color:#aaa;">13 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding:8px 0;">
+            <div>
+              <span style="font-size:10px; color:#318c96; margin-right:6px; font-weight:600;">20 Mar</span>
+              <span style="font-size:12px; font-weight:600; color:#222;">ClawHub Skill 精選</span>
+            </div>
+            <span style="font-size:10px; color:#aaa;">8 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px; font-size:12px; color:#666;">
+      <strong>設計特色：</strong>
+      <ul style="margin:6px 0; padding-left:16px; line-height:1.8;">
+        <li>🎨 Teal 主色調 <code style="background:#e6f4f5;padding:1px 4px;border-radius:3px;">#318c96</code></li>
+        <li>🖼 Featured 文章圖片卡片</li>
+        <li>📰 文章列表含閱讀時間</li>
+        <li>🔤 系統字型 (-apple-system…)</li>
+        <li>🔗 Sign in / Subscribe CTA</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:28px; padding:16px; background:#fffbf0; border:1px solid #ffe082; border-radius:8px;">
+  <div style="font-size:13px; font-weight:600; color:#7c5c00; margin-bottom:8px;">📌 主要差異摘要</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; font-size:11px; color:#555;">
+    <div><strong>色彩系統</strong><br>灰階 → Teal (#318c96)</div>
+    <div><strong>首頁佈局</strong><br>Hero+清單 → 特色卡片+清單</div>
+    <div><strong>文章列表</strong><br>無閱讀時間 → 含閱讀時間</div>
+    <div><strong>導覽列</strong><br>無 CTA → Sign in/Subscribe</div>
+    <div><strong>特色文章</strong><br>無封面圖 → 有封面圖卡片</div>
+    <div><strong>字型</strong><br>Inter+Noto → 系統字型</div>
+  </div>
+</div>

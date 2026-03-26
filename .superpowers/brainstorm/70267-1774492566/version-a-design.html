@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Version A Design Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+
+  .page-title { text-align:center; font-size: 18px; font-weight: 700; color: #333; margin-bottom: 6px; }
+  .page-sub { text-align:center; font-size: 12px; color: #888; margin-bottom: 24px; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; margin: 0 auto; }
+
+  .panel-label { font-size: 11px; font-weight: 700; text-align:center; padding: 6px; border-radius: 4px 4px 0 0; letter-spacing: 1px; text-transform: uppercase; }
+  .label-before { background: #e5e7eb; color: #666; }
+  .label-after { background: #318c96; color: #fff; }
+
+  /* ===== BEFORE (Light) ===== */
+  .blog-before-light {
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+  }
+  .blog-before-light .header { display:flex; align-items:center; justify-content:space-between; padding-bottom:10px; border-bottom:1px solid #eee; margin-bottom:16px; }
+  .blog-before-light .logo { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#111; }
+  .blog-before-light .nav a { font-size:11px; color:#666; margin-left:10px; }
+  .blog-before-light .hero { text-align:center; padding:16px 0 20px; }
+  .blog-before-light .hero-title { font-size:20px; font-weight:900; color:#111; margin-bottom:6px; }
+  .blog-before-light .hero-sub { font-size:11px; color:#888; }
+  .blog-before-light .section-label { font-size:9px; font-weight:700; color:#bbb; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .blog-before-light .post-row { display:grid; grid-template-columns:72px 1fr; gap:4px; padding:7px 0; border-bottom:1px solid #f5f5f5; }
+  .blog-before-light .post-date { font-size:10px; color:#aaa; }
+  .blog-before-light .post-title { font-size:11px; font-weight:600; color:#222; }
+  /* Accent = near-black */
+  .blog-before-light .accent { color: #333; }
+
+  /* ===== AFTER (Light) ===== */
+  .blog-after-light {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
+    font-family: -apple-system, sans-serif;
+  }
+  .blog-after-light .header { display:flex; align-items:center; justify-content:space-between; padding-bottom:10px; border-bottom:1px solid #eee; margin-bottom:16px; }
+  .blog-after-light .logo { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#111; }
+  .blog-after-light .nav a { font-size:11px; color:#738a94; margin-left:10px; }
+  .blog-after-light .nav a:hover { color:#318c96; }
+  .blog-after-light .hero { text-align:center; padding:16px 0 20px; }
+  .blog-after-light .hero-title { font-size:20px; font-weight:900; color:#15171a; margin-bottom:6px; }
+  .blog-after-light .hero-sub { font-size:11px; color:#738a94; }
+  .blog-after-light .section-label { font-size:9px; font-weight:700; color:#738a94; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .blog-after-light .post-row { display:flex; align-items:baseline; justify-content:space-between; padding:7px 0; border-bottom:1px solid #f0f0f0; }
+  .blog-after-light .post-meta { display:flex; align-items:baseline; gap:8px; flex:1; }
+  .blog-after-light .post-date { font-size:10px; color:#318c96; font-weight:600; min-width:46px; }
+  .blog-after-light .post-title { font-size:11px; font-weight:600; color:#15171a; }
+  .blog-after-light .post-read { font-size:10px; color:#738a94; white-space:nowrap; }
+  /* Accent = teal */
+  .blog-after-light .accent { color: #318c96; }
+  .blog-after-light .tag { display:inline-block; background:#e6f4f5; color:#318c96; border-radius:999px; padding:1px 8px; font-size:9px; font-weight:600; margin-left:6px; }
+
+  /* ===== BEFORE (Dark) ===== */
+  .blog-before-dark {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+  }
+  .blog-before-dark .header { display:flex; align-items:center; justify-content:space-between; padding-bottom:10px; border-bottom:1px solid #333; margin-bottom:16px; }
+  .blog-before-dark .logo { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#eee; }
+  .blog-before-dark .nav a { font-size:11px; color:#777; margin-left:10px; }
+  .blog-before-dark .hero { text-align:center; padding:16px 0 20px; }
+  .blog-before-dark .hero-title { font-size:20px; font-weight:900; color:#eee; margin-bottom:6px; }
+  .blog-before-dark .hero-sub { font-size:11px; color:#666; }
+  .blog-before-dark .section-label { font-size:9px; font-weight:700; color:#555; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .blog-before-dark .post-row { display:grid; grid-template-columns:72px 1fr; gap:4px; padding:7px 0; border-bottom:1px solid #2a2a2a; }
+  .blog-before-dark .post-date { font-size:10px; color:#666; }
+  .blog-before-dark .post-title { font-size:11px; font-weight:600; color:#ccc; }
+
+  /* ===== AFTER (Dark) ===== */
+  .blog-after-dark {
+    background: #15171a;
+    border: 1px solid #2d3136;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
+    font-family: -apple-system, sans-serif;
+  }
+  .blog-after-dark .header { display:flex; align-items:center; justify-content:space-between; padding-bottom:10px; border-bottom:1px solid #2d3136; margin-bottom:16px; }
+  .blog-after-dark .logo { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#e5e7eb; }
+  .blog-after-dark .nav a { font-size:11px; color:#6b7280; margin-left:10px; }
+  .blog-after-dark .hero { text-align:center; padding:16px 0 20px; }
+  .blog-after-dark .hero-title { font-size:20px; font-weight:900; color:#f9fafb; margin-bottom:6px; }
+  .blog-after-dark .hero-sub { font-size:11px; color:#6b7280; }
+  .blog-after-dark .section-label { font-size:9px; font-weight:700; color:#6b7280; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .blog-after-dark .post-row { display:flex; align-items:baseline; justify-content:space-between; padding:7px 0; border-bottom:1px solid #1f2328; }
+  .blog-after-dark .post-meta { display:flex; align-items:baseline; gap:8px; flex:1; }
+  .blog-after-dark .post-date { font-size:10px; color:#318c96; font-weight:600; min-width:46px; }
+  .blog-after-dark .post-title { font-size:11px; font-weight:600; color:#e5e7eb; }
+  .blog-after-dark .post-read { font-size:10px; color:#4b5563; white-space:nowrap; }
+  .blog-after-dark .tag { display:inline-block; background:#1a3d40; color:#318c96; border-radius:999px; padding:1px 8px; font-size:9px; font-weight:600; margin-left:6px; }
+
+  /* Color swatch row */
+  .swatches { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+  .swatch { display:flex; align-items:center; gap:4px; font-size:10px; color:#555; }
+  .swatch-dot { width:14px; height:14px; border-radius:3px; border:1px solid rgba(0,0,0,0.1); }
+
+  .change-list { font-size:11px; color:#555; margin-top:10px; padding-left:14px; line-height:1.9; }
+  .change-list li { list-style: none; padding-left: 0; }
+  .change-list li::before { content: "→ "; color: #318c96; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="page-title">Version A — 視覺設計預覽</div>
+<div class="page-sub">色彩系統 · 資訊密度 · 深色模式 · 保留 Hero 佈局</div>
+
+<!-- Light Mode Row -->
+<div style="text-align:center; font-size:12px; font-weight:600; color:#666; margin: 0 auto 8px; max-width:1100px;">☀️ 淺色模式</div>
+<div class="split" style="margin-bottom:20px;">
+  <div>
+    <div class="panel-label label-before">Before — 現有</div>
+    <div class="blog-before-light">
+      <div class="header">
+        <div class="logo">🦞 技術筆記</div>
+        <div class="nav"><a href="#">首頁</a><a href="#">文章</a><a href="#">分類</a></div>
+      </div>
+      <div class="hero">
+        <div style="font-size:28px;">🦞</div>
+        <div class="hero-title">技術筆記</div>
+        <div class="hero-sub">記錄開發過程中的所見所得…</div>
+      </div>
+      <div class="section-label">最新文章</div>
+      <div class="post-row"><span class="post-date">Mar 23, 2026</span><span class="post-title">OpenClaw 子 Agent 怎麼用</span></div>
+      <div class="post-row"><span class="post-date">Mar 20, 2026</span><span class="post-title">ClawHub Skill 精選</span></div>
+      <div class="post-row"><span class="post-date">Mar 15, 2026</span><span class="post-title">安裝報錯完全解決手冊</span></div>
+    </div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-dot" style="background:#fafafa;"></div>背景</div>
+      <div class="swatch"><div class="swatch-dot" style="background:#111;"></div>文字</div>
+      <div class="swatch"><div class="swatch-dot" style="background:#555;"></div>Accent（灰）</div>
+      <div class="swatch"><div class="swatch-dot" style="background:#aaa;"></div>Muted</div>
+    </div>
+  </div>
+  <div>
+    <div class="panel-label label-after">After — 對齊 tbbbk</div>
+    <div class="blog-after-light">
+      <div class="header">
+        <div class="logo">🦞 技術筆記</div>
+        <div class="nav"><a href="#">首頁</a><a href="#">文章</a><a href="#">分類</a></div>
+      </div>
+      <div class="hero">
+        <div style="font-size:28px;">🦞</div>
+        <div class="hero-title">技術筆記</div>
+        <div class="hero-sub">記錄開發過程中的所見所得…</div>
+      </div>
+      <div class="section-label">最新文章</div>
+      <div class="post-row">
+        <div class="post-meta"><span class="post-date">23 Mar</span><span class="post-title">OpenClaw 子 Agent 怎麼用<span class="tag">Agent</span></span></div>
+        <span class="post-read">13 min</span>
+      </div>
+      <div class="post-row">
+        <div class="post-meta"><span class="post-date">20 Mar</span><span class="post-title">ClawHub Skill 精選<span class="tag">工具</span></span></div>
+        <span class="post-read">8 min</span>
+      </div>
+      <div class="post-row">
+        <div class="post-meta"><span class="post-date">15 Mar</span><span class="post-title">安裝報錯完全解決手冊</span></div>
+        <span class="post-read">11 min</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-dot" style="background:#ffffff;"></div>背景</div>
+      <div class="swatch"><div class="swatch-dot" style="background:#15171a;"></div>文字</div>
+      <div class="swatch"><div class="swatch-dot" style="background:#318c96;"></div>Accent（Teal）</div>
+      <div class="swatch"><div class="swatch-dot" style="background:#738a94;"></div>Muted</div>
+    </div>
+  </div>
+</div>
+
+<!-- Dark Mode Row -->
+<div style="text-align:center; font-size:12px; font-weight:600; color:#666; margin: 0 auto 8px; max-width:1100px;">🌙 深色模式</div>
+<div class="split" style="margin-bottom:24px;">
+  <div>
+    <div class="panel-label label-before">Before — 現有深色</div>
+    <div class="blog-before-dark">
+      <div class="header">
+        <div class="logo">🦞 技術筆記</div>
+        <div class="nav"><a href="#" style="color:#777">首頁</a><a href="#" style="color:#777;margin-left:10px">文章</a></div>
+      </div>
+      <div class="hero">
+        <div style="font-size:28px;">🦞</div>
+        <div class="hero-title">技術筆記</div>
+        <div class="hero-sub" style="color:#666;">記錄開發過程中的所見所得…</div>
+      </div>
+      <div class="section-label">最新文章</div>
+      <div class="post-row"><span class="post-date">Mar 23, 2026</span><span class="post-title">OpenClaw 子 Agent 怎麼用</span></div>
+      <div class="post-row"><span class="post-date">Mar 20, 2026</span><span class="post-title">ClawHub Skill 精選</span></div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="color:#999"><div class="swatch-dot" style="background:#1a1a1a;border-color:#555;"></div>背景</div>
+      <div class="swatch" style="color:#999"><div class="swatch-dot" style="background:#eee;border-color:#555;"></div>文字</div>
+      <div class="swatch" style="color:#999"><div class="swatch-dot" style="background:#ccc;border-color:#555;"></div>Accent（淡灰）</div>
+    </div>
+  </div>
+  <div>
+    <div class="panel-label label-after">After — Ghost 深色風格</div>
+    <div class="blog-after-dark">
+      <div class="header">
+        <div class="logo">🦞 技術筆記</div>
+        <div class="nav"><a href="#" style="color:#6b7280">首頁</a><a href="#" style="color:#6b7280;margin-left:10px">文章</a></div>
+      </div>
+      <div class="hero">
+        <div style="font-size:28px;">🦞</div>
+        <div class="hero-title">技術筆記</div>
+        <div class="hero-sub">記錄開發過程中的所見所得…</div>
+      </div>
+      <div class="section-label">最新文章</div>
+      <div class="post-row">
+        <div class="post-meta"><span class="post-date">23 Mar</span><span class="post-title">OpenClaw 子 Agent 怎麼用<span class="tag">Agent</span></span></div>
+        <span class="post-read">13 min</span>
+      </div>
+      <div class="post-row">
+        <div class="post-meta"><span class="post-date">20 Mar</span><span class="post-title">ClawHub Skill 精選<span class="tag">工具</span></span></div>
+        <span class="post-read">8 min</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="color:#999"><div class="swatch-dot" style="background:#15171a;border-color:#555;"></div>#15171a</div>
+      <div class="swatch" style="color:#999"><div class="swatch-dot" style="background:#e5e7eb;border-color:#555;"></div>#e5e7eb</div>
+      <div class="swatch" style="color:#999"><div class="swatch-dot" style="background:#318c96;border-color:#555;"></div>Accent Teal</div>
+      <div class="swatch" style="color:#999"><div class="swatch-dot" style="background:#1a3d40;border-color:#555;"></div>Tag bg</div>
+    </div>
+  </div>
+</div>
+
+<!-- Change summary -->
+<div style="max-width:1100px; margin:0 auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:16px;">
+  <div style="font-size:13px; font-weight:700; color:#15171a; margin-bottom:12px;">📋 Version A 修改清單</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div>
+      <div style="font-size:11px; font-weight:600; color:#318c96; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px;">全局顏色</div>
+      <ul class="change-list">
+        <li>accent: 灰階 → #318c96 (teal)</li>
+        <li>dark bg: oklch(12%) → #15171a</li>
+        <li>muted: oklch(65%) → #738a94</li>
+        <li>surface dark: → #1f2328 / #2d3136</li>
+        <li>tag dark bg: → #1a3d40</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size:11px; font-weight:600; color:#318c96; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px;">元件 & 資訊</div>
+      <ul class="change-list">
+        <li>PostPreview 加入閱讀時間</li>
+        <li>日期格式: "Mar 23" → "23 Mar"</li>
+        <li>日期文字色 → #318c96 (teal)</li>
+        <li>nav link hover → teal</li>
+        <li>code block: purple → teal accent</li>
+        <li>reading-progress bar → teal</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
