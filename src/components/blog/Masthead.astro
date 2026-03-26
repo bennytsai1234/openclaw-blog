@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import FormattedDate from "@/components/FormattedDate.astro";
 
 interface Props {
 	content: CollectionEntry<"post">;
@@ -13,9 +12,11 @@ const {
 	readingTime,
 } = Astro.props;
 
-const dateTimeOptions: Intl.DateTimeFormatOptions = {
-	month: "long",
-};
+const dateStr = new Intl.DateTimeFormat("en-GB", {
+	day: "numeric",
+	month: "short",
+	year: "numeric",
+}).format(data.publishDate);
 ---
 
 {
@@ -33,52 +34,34 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 	)
 }
 {data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
-<h1 class="title">
+<h1 class="title mb-3">
 	{data.title}
 </h1>
-<div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-	<p class="flex items-center gap-1.5 font-semibold text-sm">
-			<FormattedDate class="time-relative" date={data.publishDate} dateTimeOptions={dateTimeOptions} />
-		<span class="text-muted">·</span>
-		<span class="text-accent text-sm font-medium">📖 {readingTime}</span>
+{data.description && (
+	<p class="text-muted mb-4 border-l-2 border-accent/40 pl-4 text-sm leading-relaxed italic">
+		{data.description}
 	</p>
-	{
-		data.updatedDate && (
-			<span class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
-				更新於 <FormattedDate date={data.updatedDate} dateTimeOptions={{ month: "short", day: "numeric" }} />
-			</span>
-		)
-	}
+)}
+<div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
+	<time class="text-accent font-semibold" datetime={data.publishDate.toISOString()}>
+		{dateStr}
+	</time>
+	<span class="text-muted/40">·</span>
+	<span class="text-muted">{readingTime}</span>
+	{data.updatedDate && (
+		<span class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
+			更新於 {new Intl.DateTimeFormat("zh-TW", { month: "short", day: "numeric" }).format(data.updatedDate)}
+		</span>
+	)}
 </div>
 {
 	!!data.tags?.length && (
-		<div class="article-tags mt-3 flex flex-wrap gap-2">
-			{data.tags.map((tag, i) => (
-				<>
-					{/* prettier-ignore */}
-					<span class="contents">
-						<a class="inline-block before:content-['#']" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}><span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
-						</a>{i < data.tags.length - 1 && ", "}
-					</span>
-				</>
+		<div class="article-tags mb-6 flex flex-wrap gap-2">
+			{data.tags.map((tag) => (
+				<a data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
+					<span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
+				</a>
 			))}
 		</div>
 	)
 }
-
-<script>
-	// E. 相對時間計算
-	document.querySelectorAll("time[data-relative]").forEach((el) => {
-		const isoDate = el.getAttribute("datetime");
-		if (!isoDate) return;
-		const date = new Date(isoDate);
-		const now = new Date();
-		const diffMs = now.getTime() - date.getTime();
-		const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-		const el2 = el as HTMLElement;
-		if (diffDays > 0) {
-			el2.title = el2.textContent || "";
-			el2.textContent = `${diffDays} 天前`;
-		}
-	});
-</script>

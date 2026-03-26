@@ -85,11 +85,10 @@ function formatDate(date: Date): string {
 	
 	<div class="mx-auto max-w-6xl">
 		<article class="break-words" data-pagefind-body>
-			<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
-			
 			<div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[1fr_260px]">
 				<!-- Main Content Area -->
 				<div class="min-w-0">
+					<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
 					<div
 						class="prose prose-sm prose-headings:font-bold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted/30 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
 					>
@@ -197,49 +196,15 @@ function formatDate(date: Date): string {
 					</div>
 				</div>
 
-				<!-- Sidebar Content -->
+				<!-- Sidebar: TOC only -->
 				<aside class="hidden lg:block">
-					<div class="sticky top-12 space-y-12">
-						{/* Table of Contents */}
+					<div class="sticky top-12">
 						{!!headings.length && (
 							<div>
-								<h2 class="mb-4 text-[10px] font-bold uppercase tracking-widest text-muted/60">內容目錄</h2>
+								<h2 class="mb-4 text-[10px] font-bold uppercase tracking-widest text-muted/60">目錄</h2>
 								<TOC headings={headings} />
 							</div>
 						)}
-						
-						{/* Author Info Card */}
-						<div class="rounded-2xl bg-accent-soft/20 p-6 border border-transparent hover:border-accent/5 transition-all group">
-							<p class="mb-5 text-[10px] font-bold uppercase tracking-widest text-muted/60">關於作者</p>
-							<div class="flex flex-col gap-5">
-								<div class="flex items-center gap-4">
-									<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent text-white font-bold text-xl shadow-sm transition-transform group-hover:scale-105">
-										B
-									</div>
-									<div class="min-w-0">
-										<p class="font-bold text-accent-2 text-base leading-tight">Benny</p>
-										<p class="text-[10px] font-medium uppercase tracking-tighter text-accent mt-0.5">卑鄙工程師</p>
-									</div>
-								</div>
-								<p class="text-xs leading-relaxed text-muted font-medium">
-									專精於全鏈路自動化與 AI 輔助開發的卑鄙工程師
-								</p>
-								<div class="pt-2 border-t border-accent/5">
-									<a
-										aria-label="GitHub"
-										class="inline-flex items-center gap-2 text-xs font-bold text-accent-2 hover:text-accent transition-colors"
-										href="https://github.com/BennyTsai1234"
-										rel="noopener noreferrer"
-										target="_blank"
-									>
-										<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-											<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-										</svg>
-										Follow on GitHub
-									</a>
-								</div>
-							</div>
-						</div>
 					</div>
 				</aside>
 			</div>
