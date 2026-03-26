@@ -84,7 +84,7 @@ function formatDate(date: Date): string {
 	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
 	
 	<article class="w-full break-words" data-pagefind-body>
-		<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
+		<div id="blog-hero" class="w-full max-w-none mb-8"><Masthead content={post} readingTime={readingTime} /></div>
 		<div
 			class="prose prose-sm max-w-none prose-headings:font-bold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted/30 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
 		>
