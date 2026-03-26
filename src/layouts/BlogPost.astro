@@ -82,147 +82,170 @@ function formatDate(date: Date): string {
 	}}
 >
 	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
-	<article class="grow break-words" data-pagefind-body>
-		<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
-		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-			<!-- Sidebar: TOC + Author Card -->
-			<div class="hidden xl:block lg:sticky lg:top-12 lg:order-2 lg:-me-32 lg:basis-64">
-				{!!headings.length && <TOC headings={headings} />}
-				<!-- Author Info Card -->
-				<div class="mb-4 rounded-xl bg-[--color-bg-alt] p-4">
-					<p class="mb-2 text-xs font-semibold uppercase tracking-wide text-[--color-muted]">作者</p>
-					<div class="flex items-center gap-3">
-						<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[--color-accent] text-white font-bold">
-							B
+	
+	<div class="mx-auto max-w-6xl">
+		<article class="break-words" data-pagefind-body>
+			<div id="blog-hero"><Masthead content={post} readingTime={readingTime} /></div>
+			
+			<div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[1fr_260px]">
+				<!-- Main Content Area -->
+				<div class="min-w-0">
+					<div
+						class="prose prose-sm prose-headings:font-bold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted/30 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
+					>
+						<slot />
+						
+						<WebMentions />
+
+						{/* 社群分享按鈕 */}
+						<div class="not-prose mt-12 flex flex-wrap items-center gap-3 border-t border-accent/5 pt-8" id="share-buttons">
+							<span class="text-xs font-bold uppercase tracking-widest text-muted/60 me-2">Share</span>
+							<!-- Facebook -->
+							<a
+								aria-label="分享至 Facebook"
+								class="flex h-8 w-8 items-center justify-center rounded-full bg-accent/5 text-muted transition-all hover:bg-[#1877F2] hover:text-white"
+								href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+								</svg>
+							</a>
+
+							<!-- Twitter / X -->
+							<a
+								aria-label="分享至 X (Twitter)"
+								class="flex h-8 w-8 items-center justify-center rounded-full bg-accent/5 text-muted transition-all hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+								href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(Astro.url.href)}&text=${encodeURIComponent(title)}`}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								<svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+								</svg>
+							</a>
+
+							<!-- LINE -->
+							<a
+								aria-label="分享至 LINE"
+								class="flex h-8 w-8 items-center justify-center rounded-full bg-accent/5 text-muted transition-all hover:bg-[#00B900] hover:text-white"
+								href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(Astro.url.href)}`}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0 .345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+								</svg>
+							</a>
+
+							<!-- 複製連結 -->
+							<button
+								aria-label="複製連結"
+								class="flex h-8 w-8 items-center justify-center rounded-full bg-accent/5 text-muted transition-all hover:bg-accent hover:text-white"
+								id="copy-link-btn"
+								type="button"
+							>
+								<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+									<path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</button>
 						</div>
-						<div class="min-w-0">
-							<p class="font-semibold text-[--color-text]">Benny</p>
-							<p class="truncate text-xs text-[--color-muted]">專精於全鏈路自動化與 AI 輔助開發的卑鄙工程師</p>
+
+						{/* 複製提示 */}
+						<div
+							aria-live="polite"
+							class="pointer-events-none fixed end-6 top-1/2 z-50 -translate-y-1/2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white opacity-0 shadow-xl transition-all duration-300"
+							id="copy-toast"
+							role="status"
+						>
+							已複製！
+						</div>
+
+						{/* 相關文章 */}
+						{relatedPosts && relatedPosts.length > 0 && (
+							<aside class="not-prose mt-16 rounded-2xl border border-accent/5 bg-accent-soft/30 p-8">
+								<h2 class="mb-6 text-sm font-bold uppercase tracking-widest text-muted/60">📚 相關文章</h2>
+								<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+									{relatedPosts.map((related) => {
+										const rt = "rt" in related ? (related as any).rt : "未知";
+										return (
+											<li>
+												<a
+													class="group flex flex-col gap-2 rounded-xl transition-all duration-200"
+													href={`/posts/${related.id}/`}
+												>
+													<span class="line-clamp-2 text-sm font-bold leading-snug text-accent-2 group-hover:text-accent transition-colors">
+														{related.data.title}
+													</span>
+													<span class="flex items-center gap-2 text-[10px] font-medium uppercase tracking-wider text-muted/50">
+														<time datetime={related.data.publishDate.toISOString()}>
+															{formatDate(related.data.publishDate)}
+														</time>
+														<span>·</span>
+														<span>{rt}</span>
+													</span>
+												</a>
+											</li>
+										);
+									})}
+								</ul>
+							</aside>
+						)}
+
+						<Giscus />
+					</div>
+				</div>
+
+				<!-- Sidebar Content -->
+				<aside class="hidden lg:block">
+					<div class="sticky top-12 space-y-12">
+						{/* Table of Contents */}
+						{!!headings.length && (
+							<div>
+								<h2 class="mb-4 text-[10px] font-bold uppercase tracking-widest text-muted/60">內容目錄</h2>
+								<TOC headings={headings} />
+							</div>
+						)}
+						
+						{/* Author Info Card */}
+						<div class="rounded-2xl bg-accent-soft/20 p-6 border border-transparent hover:border-accent/5 transition-all group">
+							<p class="mb-5 text-[10px] font-bold uppercase tracking-widest text-muted/60">關於作者</p>
+							<div class="flex flex-col gap-5">
+								<div class="flex items-center gap-4">
+									<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent text-white font-bold text-xl shadow-sm transition-transform group-hover:scale-105">
+										B
+									</div>
+									<div class="min-w-0">
+										<p class="font-bold text-accent-2 text-base leading-tight">Benny</p>
+										<p class="text-[10px] font-medium uppercase tracking-tighter text-accent mt-0.5">卑鄙工程師</p>
+									</div>
+								</div>
+								<p class="text-xs leading-relaxed text-muted font-medium">
+									專精於全鏈路自動化與 AI 輔助開發的卑鄙工程師
+								</p>
+								<div class="pt-2 border-t border-accent/5">
+									<a
+										aria-label="GitHub"
+										class="inline-flex items-center gap-2 text-xs font-bold text-accent-2 hover:text-accent transition-colors"
+										href="https://github.com/BennyTsai1234"
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+											<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+										</svg>
+										Follow on GitHub
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
-					<a
-						aria-label="GitHub"
-						class="mt-3 flex items-center gap-2 text-xs text-[--color-link] hover:underline"
-						href="https://github.com/BennyTsai1234"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-							<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-						</svg>
-						GitHub
-					</a>
-				</div>
+				</aside>
 			</div>
-			<div
-				class="prose prose-sm prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
-			>
-				<slot />
-				<WebMentions />
+		</article>
+	</div>
 
-				{/* 社群分享按鈕 */}
-				<div class="not-prose mt-10 flex flex-wrap items-center gap-2" id="share-buttons">
-					<!-- Facebook -->
-					<a
-						aria-label="分享至 Facebook"
-						class="flex items-center gap-1.5 rounded-full bg-[#1877F2] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
-						href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-						</svg>
-						Facebook
-					</a>
-
-					<!-- Twitter / X -->
-					<a
-						aria-label="分享至 X (Twitter)"
-						class="flex items-center gap-1.5 rounded-full bg-black px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md dark:bg-[#1D9BF0] dark:text-black"
-						href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(Astro.url.href)}&text=${encodeURIComponent(title)}`}
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-						</svg>
-						X
-					</a>
-
-					<!-- LINE -->
-					<a
-						aria-label="分享至 LINE"
-						class="flex items-center gap-1.5 rounded-full bg-[#00B900] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
-						href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(Astro.url.href)}`}
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0 .345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
-						</svg>
-						LINE
-					</a>
-
-					<!-- 複製連結 -->
-					<button
-						aria-label="複製連結"
-						class="flex items-center gap-1.5 rounded-full border-2 border-[--color-accent] px-3.5 py-1.5 text-xs font-semibold text-[--color-accent] transition-all duration-200 hover:scale-105 hover:bg-[--color-accent] hover:text-white"
-						id="copy-link-btn"
-						type="button"
-					>
-						<svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-							<path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-						複製連結
-					</button>
-				</div>
-
-				{/* 複製提示 */}
-				<div
-					aria-live="polite"
-					class="pointer-events-none fixed end-6 top-1/2 z-50 -translate-y-1/2 rounded-lg bg-[--color-accent] px-4 py-2 text-sm font-medium text-white opacity-0 shadow-xl transition-all duration-300"
-					id="copy-toast"
-					role="status"
-				>
-					已複製！
-				</div>
-
-				{/* 相關文章 */}
-				{relatedPosts && relatedPosts.length > 0 && (
-					<aside class="not-prose mt-12 rounded-xl border border-[--color-border] bg-[--color-bg-secondary] p-6">
-						<h2 class="mb-5 text-lg font-semibold text-[--color-text]">📚 相關文章</h2>
-						<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
-							{relatedPosts.map((related) => {
-								const rt = "rt" in related ? (related as any).rt : "未知";
-								return (
-									<li>
-										<a
-											class="group flex flex-col gap-1.5 rounded-lg border border-transparent p-3 transition-all duration-200 hover:border-[--color-accent] hover:bg-[--color-bg] hover:shadow-md"
-											href={`/posts/${related.id}/`}
-										>
-											<span class="line-clamp-2 text-sm font-medium leading-snug text-[--color-text] group-hover:text-[--color-accent]">
-												{related.data.title}
-											</span>
-											<span class="flex items-center gap-2 text-xs text-[--color-muted]">
-												<time datetime={related.data.publishDate.toISOString()}>
-													{formatDate(related.data.publishDate)}
-												</time>
-												<span>·</span>
-												<span>{rt}</span>
-											</span>
-										</a>
-									</li>
-								);
-							})}
-						</ul>
-					</aside>
-				)}
-
-				<Giscus />
-			</div>
-		</div>
-	</article>
 	<button
 		class="hover:border-link fixed end-4 bottom-8 z-90 flex h-10 w-10 translate-y-28 cursor-pointer items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all transition-discrete duration-300 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12 dark:bg-zinc-700"
 		data-show="false"
