@@ -11,55 +11,55 @@
 @property --color-global-bg {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(98.48% 0 0);
+	initial-value: oklch(98% 0 0);
 }
 @property --color-global-text {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(26.99% 0.0096 235.05);
+	initial-value: oklch(20% 0 0);
 }
 @property --color-muted {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(44.6% 0.03 256.802);
+	initial-value: oklch(50% 0 0);
 }
 @property --color-link {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(55.44% 0.0431 185.69);
+	initial-value: oklch(40% 0 0);
 }
 @property --color-accent {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(55.27% 0.195 19.06);
+	initial-value: oklch(35% 0 0);
 }
 @property --color-accent-2 {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(18.15% 0 0);
+	initial-value: oklch(15% 0 0);
 }
 @property --color-quote {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(55.27% 0.195 19.06);
+	initial-value: oklch(40% 0 0);
 }
 
 /* you could refactor below to use light-dark(), depending on your target audience */
 @theme {
-	--color-global-bg: oklch(98.48% 0 0);
-	--color-global-text: oklch(26.99% 0.0096 235.05);
-	--color-muted: oklch(44.6% 0.03 256.802);
-	--color-link: oklch(55.44% 0.0431 185.69);
-	/* 紫/藍色系 - 雪蓮喜歡的顏色 - Royal Tech Violet */
-	--color-accent: oklch(60% 0.18 280);
-	--color-accent-hover: oklch(55% 0.22 280);
-	--color-accent-soft: oklch(90% 0.05 280);
-	--color-accent-2: oklch(18.15% 0 0);
-	--color-quote: oklch(55% 0.15 280);
+	--color-global-bg: oklch(98% 0 0);
+	--color-global-text: oklch(20% 0 0);
+	--color-muted: oklch(50% 0 0);
+	--color-link: oklch(40% 0 0);
+	/* 極簡灰階配色 - 仿 Ghost 風格 */
+	--color-accent: oklch(35% 0 0);
+	--color-accent-hover: oklch(25% 0 0);
+	--color-accent-soft: oklch(94% 0 0);
+	--color-accent-2: oklch(15% 0 0);
+	--color-quote: oklch(45% 0 0);
 	/* 卡片表面色 */
-	--color-surface: oklch(96% 0.01 280);
-	--color-surface-hover: oklch(92% 0.02 280);
-	/* 字體定義 - UI/UX Pro Max */
+	--color-surface: oklch(97% 0 0);
+	--color-surface-hover: oklch(95% 0 0);
+	/* 字體定義 - 現代無襯線 */
 	--font-sans: "Inter", "Noto Sans TC", system-ui, sans-serif;
 	--font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
@@ -76,19 +76,19 @@
 
 		&[data-theme="dark"] {
 			color-scheme: dark;
-			--color-global-bg: oklch(20% 0.02 280);
-			--color-global-text: oklch(92% 0.01 280);
-			--color-muted: oklch(70.7% 0.022 261.325);
-			--color-link: oklch(70.44% 0.1133 349);
-			/* 紫/藍色系 - 深色模式 Royal Tech Violet */
-			--color-accent: oklch(75% 0.15 280);
-			--color-accent-hover: oklch(80% 0.18 280);
-			--color-accent-soft: oklch(30% 0.05 280);
-			--color-accent-2: oklch(94.66% 0 0);
-			--color-quote: oklch(70% 0.12 280);
+			--color-global-bg: oklch(12% 0 0);
+			--color-global-text: oklch(92% 0 0);
+			--color-muted: oklch(65% 0 0);
+			--color-link: oklch(85% 0 0);
+			/* 灰階配色 - 深色模式 */
+			--color-accent: oklch(80% 0 0);
+			--color-accent-hover: oklch(90% 0 0);
+			--color-accent-soft: oklch(22% 0 0);
+			--color-accent-2: oklch(96% 0 0);
+			--color-quote: oklch(75% 0 0);
 			/* 卡片表面色 */
-			--color-surface: oklch(25% 0.02 280);
-			--color-surface-hover: oklch(30% 0.02 280);
+			--color-surface: oklch(18% 0 0);
+			--color-surface-hover: oklch(22% 0 0);
 		}
 
 		--color-mode-transition-duration: 300ms;
