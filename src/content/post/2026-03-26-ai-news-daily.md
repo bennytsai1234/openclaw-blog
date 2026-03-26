@@ -1,5 +1,6 @@
 ---
 title: "AI 新聞精選｜2026 年 3 月 26 日"
+description: "涵蓋 Google Lyria 3 Pro 音樂生成、OpenAI 安全賞金計畫與資料中心布局、OpenClaw Teams/Slack 整合、MiniMax Office Skills 開源等重點進展。"
 publishDate: "2026-03-26"
 updatedDate: "2026-03-26"
 tags: ["Google", "OpenAI", "OpenClaw", "Anthropic", "MiniMax", "AI"]
