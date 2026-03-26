@@ -21,7 +21,7 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 
 {
 	data.coverImage && (
-		<div class="mb-6 aspect-video">
+		<div class="mb-6 aspect-video w-full">
 			<Image
 				alt={data.coverImage.alt}
 				layout="constrained"
@@ -34,15 +34,15 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 	)
 }
 {data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
-<h1 class="title mb-3">
+<h1 class="title mb-3 w-full">
 	{data.title}
 </h1>
 {data.description && (
-	<p class="text-muted mb-4 border-l-2 border-accent/40 pl-4 text-sm leading-relaxed italic">
+	<p class="text-muted mb-4 w-full border-l-2 border-accent/40 pl-4 text-sm leading-relaxed italic">
 		{data.description}
 	</p>
 )}
-<div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
+<div class="article-tags mb-8 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-accent/10 pb-6 text-sm">
 	<time class="text-accent font-semibold" datetime={data.publishDate.toISOString()}>
 		{dateStr}
 	</time>
@@ -53,15 +53,9 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 			更新於 {new Intl.DateTimeFormat("zh-TW", { month: "short", day: "numeric" }).format(data.updatedDate)}
 		</span>
 	)}
+	{!!data.tags?.length && data.tags.map((tag) => (
+		<a data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
+			<span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
+		</a>
+	))}
 </div>
-{
-	!!data.tags?.length && (
-		<div class="article-tags mb-6 flex flex-wrap gap-2">
-			{data.tags.map((tag) => (
-				<a data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
-					<span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
-				</a>
-			))}
-		</div>
-	)
-}
