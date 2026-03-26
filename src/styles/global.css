@@ -193,23 +193,23 @@
 
 	/* A. Blockquote 樣式 */
 	.prose blockquote {
-		border-left: 4px solid var(--color-accent);
-		background: linear-gradient(to right, var(--color-accent-soft), transparent);
+		border-left: 3px solid var(--color-accent);
+		background: var(--color-accent-soft);
 		padding-left: 1.25rem;
 		padding-right: 1rem;
 		font-style: italic;
 		border-radius: 0 4px 4px 0;
 	}
 
-	/* C. H2 標題左側紫色豎線 */
+	/* C. H2 標題左側實色豎線 */
 	.prose h2 {
 		position: relative;
-		padding-left: 1rem !important;
-		border-left: 3px solid var(--color-accent) !important;
+		padding-left: 0.75rem !important;
+		border-left: 4px solid var(--color-accent) !important;
 	}
-	/* C. H3 加粗紫色 */
+	/* C. H3 標題樣式 */
 	.prose h3 {
-		color: var(--color-accent) !important;
+		color: var(--color-accent-2) !important;
 		font-weight: 700 !important;
 		font-size: 1.25rem !important;
 	}

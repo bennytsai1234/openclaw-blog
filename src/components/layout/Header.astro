@@ -5,16 +5,16 @@ import { menuLinks } from "@/site.config";
 import { siteConfig } from "../../site.config";
 ---
 
-<header class="group relative mb-6 flex items-center sm:mb-12 sm:ps-18" id="main-header">
-	<div class="flex sm:flex-col">
+<header class="group relative mb-12 flex items-center justify-between py-4 sm:mb-20" id="main-header">
+	<div class="flex items-center gap-4">
 		<a
 			aria-current={Astro.url.pathname === "/" ? "page" : false}
-			class="inline-flex items-center sm:relative sm:inline-block"
+			class="flex items-center gap-3 transition-opacity hover:opacity-80"
 			href="/"
 		>
 			<svg
 				aria-hidden="true"
-				class="lobster-logo me-3 h-10 w-6 sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-12"
+				class="lobster-logo h-10 w-6 sm:h-12 sm:w-8"
 				fill="none"
 				focusable="false"
 				viewBox="0 0 100 100"
@@ -43,18 +43,19 @@ import { siteConfig } from "../../site.config";
 				<path d="M65 65 Q70 72 72 75" stroke="#c0392b" stroke-width="2" fill="none"/>
 				<ellipse cx="45" cy="48" rx="8" ry="5" fill="#ff6b6b" opacity="0.5"/>
 			</svg>
-			<span class="text-xl font-bold sm:text-2xl">{siteConfig.title}</span>
+			<span class="text-lg font-bold tracking-tight sm:text-xl">{siteConfig.title}</span>
 		</a>
+
 		<nav
 			aria-label="Main menu"
-			class="bg-global-bg absolute -inset-x-4 top-12 hidden flex-col divide-y px-2 py-4 group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:-ms-4 sm:mt-1 sm:flex sm:flex-row sm:divide-x sm:divide-y-0 sm:bg-transparent sm:p-0"
+			class="bg-global-bg absolute -inset-x-4 top-16 hidden flex-col divide-y px-4 py-2 group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:ms-4 sm:flex sm:flex-row sm:divide-none sm:bg-transparent sm:p-0"
 			id="navigation-menu"
 		>
 			{
 				menuLinks.map((link) => (
 					<a
 						aria-current={Astro.url.pathname === link.path ? "page" : false}
-						class="text-accent px-2 py-3 font-semibold sm:px-4 sm:py-0 sm:underline-offset-2 sm:hover:underline"
+						class="py-3 text-sm font-medium text-muted transition-colors hover:text-accent sm:px-3 sm:py-0"
 						href={link.path}
 					>
 						{link.title}
@@ -63,47 +64,42 @@ import { siteConfig } from "../../site.config";
 			}
 		</nav>
 	</div>
-	<Search />
-	<ThemeToggle />
-	<mobile-button>
-		<button
-			aria-expanded="false"
-			aria-haspopup="menu"
-			class="group relative ms-4 h-7 w-7 sm:invisible sm:hidden"
-			id="toggle-navigation-menu"
-			type="button"
-		>
-			<span class="sr-only">Open main menu</span>
-			<svg
-				aria-hidden="true"
-				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transition-all group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
-				fill="none"
-				focusable="false"
-				id="line-svg"
-				stroke="currentColor"
-				stroke-width="1.5"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg"
+
+	<div class="flex items-center gap-2">
+		<Search />
+		<ThemeToggle />
+		<mobile-button>
+			<button
+				aria-expanded="false"
+				aria-haspopup="menu"
+				class="ms-2 flex h-8 w-8 items-center justify-center rounded-md border border-accent/10 hover:bg-accent/5 sm:hidden"
+				id="toggle-navigation-menu"
+				type="button"
 			>
-				<path d="M3.75 9h16.5m-16.5 6.75h16.5" stroke-linecap="round" stroke-linejoin="round"
-				></path>
-			</svg>
-			<svg
-				aria-hidden="true"
-				class="text-accent absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
-				class="text-accent"
-				fill="none"
-				focusable="false"
-				id="cross-svg"
-				stroke="currentColor"
-				stroke-width="1.5"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
-			</svg>
-		</button>
-	</mobile-button>
+				<span class="sr-only">Open main menu</span>
+				<svg
+					aria-hidden="true"
+					class="h-5 w-5 transition-all group-aria-expanded:hidden"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					viewBox="0 0 24 24"
+				>
+					<path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+				<svg
+					aria-hidden="true"
+					class="hidden h-5 w-5 text-accent group-aria-expanded:block"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					viewBox="0 0 24 24"
+				>
+					<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</button>
+		</mobile-button>
+	</div>
 </header>
 
 <script>
