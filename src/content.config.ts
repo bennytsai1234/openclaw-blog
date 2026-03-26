@@ -53,6 +53,7 @@ const tag = defineCollection({
 	schema: z.object({
 		title: titleSchema.optional(),
 		description: z.string().optional(),
+		icon: z.string().optional(),
 	}),
 });
 
