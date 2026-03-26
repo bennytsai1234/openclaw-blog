@@ -21,7 +21,7 @@
 @property --color-muted {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: #999999;
+	initial-value: #777777;
 }
 @property --color-link {
 	syntax: "<color>";
@@ -48,7 +48,7 @@
 @theme {
 	--color-global-bg: #ffffff;
 	--color-global-text: #333333;
-	--color-muted: #999999;
+	--color-muted: #777777;
 	--color-link: #333333;
 	/* Ghost Casper Teal 配色（微調版：#2a9d8f） */
 	--color-accent: #2a9d8f;
@@ -79,7 +79,7 @@
 			/* Ghost Casper 精準深色配色 */
 			--color-global-bg: #282c35;
 			--color-global-text: #e2e2e2;
-			--color-muted: #868686;
+			--color-muted: #9a9a9a;
 			--color-link: #e2e2e2;
 			--color-accent: #2a9d8f;
 			--color-accent-hover: #35b8a8;
