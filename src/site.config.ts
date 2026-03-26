@@ -48,9 +48,9 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 		frames: {
 			frameBoxShadowCssValue: "none",
 			// 複製按鈕可見（idle 時顯示）
-			inlineButtonBackground: "oklch(60% 0.18 280)",
-			inlineButtonForeground: "oklch(98% 0.01 280)",
-			inlineButtonBorder: "oklch(60% 0.18 280)",
+			inlineButtonBackground: "#2a9d8f",
+			inlineButtonForeground: "#ffffff",
+			inlineButtonBorder: "#2a9d8f",
 			inlineButtonBackgroundIdleOpacity: "1",
 			inlineButtonBackgroundHoverOrFocusOpacity: "1",
 			inlineButtonBackgroundActiveOpacity: "1",
