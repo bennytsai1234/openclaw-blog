@@ -77,7 +77,7 @@
 		&[data-theme="dark"] {
 			color-scheme: dark;
 			/* Ghost Casper 精準深色配色 */
-			--color-global-bg: #1a1a1a;
+			--color-global-bg: #282c35;
 			--color-global-text: #ffffff;
 			--color-muted: #cccccc;
 			--color-link: #ffffff;
@@ -87,8 +87,8 @@
 			--color-accent-2: #ffffff;
 			--color-quote: #dddddd;
 			/* 卡片表面色 */
-			--color-surface: #2a2a2a;
-			--color-surface-hover: #333333;
+			--color-surface: #2f333c;
+			--color-surface-hover: #3b3e46;
 		}
 
 		--color-mode-transition-duration: 300ms;
