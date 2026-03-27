@@ -192,7 +192,7 @@
 	}
 
 	/* 連結底線精緻化 */
-	.prose a:not(.cactus-link) {
+	.prose :where(p, li, blockquote, figcaption, td, th) a:not(.cactus-link) {
 		text-decoration: underline dotted;
 		text-decoration-color: var(--color-accent);
 		text-underline-offset: 3px;
@@ -258,11 +258,13 @@
 		letter-spacing: 0.01em;
 	}
 
-	.article-prose :where(h2, h3, h4) a {
+	.article-prose :where(h1, h2, h3, h4, h5, h6) > a {
 		text-decoration: none;
+		border-bottom: 0;
+		box-shadow: none;
 	}
 
-	.article-prose :where(h2, h3, h4):hover a {
+	.article-prose :where(h1, h2, h3, h4, h5, h6):hover > a {
 		color: var(--color-accent);
 	}
 
@@ -323,7 +325,7 @@
 	--tw-prose-bullets: var(--color-global-text);
 	--tw-prose-code: var(--color-global-text);
 	--tw-prose-headings: var(--color-accent-2);
-	--tw-prose-hr: 0.5px dashed #666;
+	--tw-prose-hr: 1px solid color-mix(in srgb, var(--color-muted) 22%, transparent);
 	--tw-prose-links: var(--color-global-text);
 	--tw-prose-quotes: var(--color-quote);
 	--tw-prose-quote-borders: 4px solid var(--color-accent);
