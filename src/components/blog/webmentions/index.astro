@@ -11,13 +11,14 @@ const webMentions = await getWebmentionsForUrl(`${url}`);
 if (!webMentions.length) return;
 ---
 
-<hr class="border-solid" />
-<h2 class="mb-8 before:hidden">Webmentions for this post</h2>
-<div class="space-y-10">
+<div class="not-prose mt-14 border-t border-accent/10 pt-8 sm:mt-16">
+	<h2 class="mb-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55">Webmentions</h2>
+	<div class="space-y-10">
 	<Likes mentions={webMentions} />
 	<Comments mentions={webMentions} />
+	</div>
+	<p class="mt-8 text-sm text-muted">
+		Responses powered by{" "}
+		<a href="https://webmention.io" rel="noreferrer" target="_blank">Webmentions</a>
+	</p>
 </div>
-<p class="mt-8">
-	Responses powered by{" "}
-	<a href="https://webmention.io" rel="noreferrer" target="_blank">Webmentions</a>
-</p>

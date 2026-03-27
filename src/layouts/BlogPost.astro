@@ -1,11 +1,11 @@
 ---
 import { type CollectionEntry, render } from "astro:content";
-import { getAllPosts } from "@/data/post";
-
+import Giscus from "@/components/blog/Giscus.astro";
 import Masthead from "@/components/blog/Masthead.astro";
 import TOC from "@/components/blog/TOC.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
-import Giscus from "@/components/blog/Giscus.astro";
+import { getAllPosts } from "@/data/post";
+import { collectionDateSort } from "@/utils/date";
 
 import BaseLayout from "./Base.astro";
 
@@ -28,27 +28,12 @@ let relatedPosts: CollectionEntry<"post">[] = [];
 if (otherPosts.length > 0) {
 	// 先取同 tags 的文章
 	const tagSet = new Set(tags);
-	const taggedPosts = otherPosts.filter((p) =>
-		p.data.tags.some((t: string) => tagSet.has(t))
-	);
+	const taggedPosts = otherPosts.filter((p) => p.data.tags.some((t: string) => tagSet.has(t)));
+	const sortedTagged = taggedPosts.sort(collectionDateSort);
+	const sortedOther = otherPosts.sort(collectionDateSort);
 
-	// Fisher-Yates shuffle
-	function shuffle<T>(arr: readonly T[]): T[] {
-		const a = [...arr];
-		for (let i = a.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			const tmp = a[i]!;
-			a[i] = a[j]!;
-			a[j] = tmp;
-		}
-		return a;
-	}
-
-	const shuffledTagged = shuffle(taggedPosts);
-	const shuffledOther = shuffle(otherPosts);
-
-	// 合併：同 tags 的優先，不足的用隨機補足，取最多 3 篇
-	const combined = shuffledTagged.concat(shuffledOther);
+	// 合併：同 tags 的優先，不足的用最新文章補足，取最多 3 篇
+	const combined = [...sortedTagged, ...sortedOther];
 	const seen = new Set<string>();
 	for (const p of combined) {
 		if (!seen.has(p.id)) {
@@ -63,7 +48,7 @@ if (otherPosts.length > 0) {
 		relatedPosts.map(async (p) => {
 			const { remarkPluginFrontmatter } = await render(p);
 			return { ...p, rt: remarkPluginFrontmatter.readingTime as string };
-		})
+		}),
 	)) as typeof relatedPosts;
 }
 
@@ -84,17 +69,17 @@ function formatDate(date: Date): string {
 	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
 	
 	<article class="w-full break-words" data-pagefind-body>
-		<div id="blog-hero" class="w-full max-w-none mb-6"><Masthead content={post} readingTime={readingTime} /></div>
+		<div id="blog-hero" class="mx-auto mb-8 w-full max-w-2xl sm:mb-10"><Masthead content={post} readingTime={readingTime} /></div>
 		<div
-			class="prose prose-lg max-w-none [overflow-wrap:anywhere] prose-headings:font-bold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted/30 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
+			class="article-prose prose prose-lg mx-auto max-w-2xl [overflow-wrap:anywhere] prose-headings:font-bold prose-headings:text-accent-2 sm:prose-th:before:content-none"
 		>
 						<slot />
 						
 						<WebMentions />
 
 						{/* 社群分享按鈕 */}
-						<div class="not-prose mt-12 flex flex-wrap items-center gap-3 border-t border-accent/5 pt-8" id="share-buttons">
-							<span class="text-sm font-bold uppercase tracking-widest text-muted/60 me-2">Share</span>
+						<div class="not-prose mt-10 flex flex-wrap items-center gap-3 border-t border-accent/10 pt-6 sm:mt-12 sm:pt-8" id="share-buttons">
+							<span class="me-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55">Share</span>
 							<!-- Facebook -->
 							<a
 								aria-label="分享至 Facebook"
@@ -159,8 +144,8 @@ function formatDate(date: Date): string {
 
 						{/* 相關文章 */}
 						{relatedPosts && relatedPosts.length > 0 && (
-							<aside class="not-prose mt-16 rounded-2xl border border-accent/5 bg-accent-soft/30 p-8">
-								<h2 class="mb-6 text-sm font-bold uppercase tracking-widest text-muted/60">📚 相關文章</h2>
+							<aside class="not-prose mt-14 rounded-2xl border border-accent/10 bg-accent-soft/20 p-6 sm:mt-16 sm:p-8">
+								<h2 class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55">相關文章</h2>
 								<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
 									{relatedPosts.map((related) => {
 										const rt = "rt" in related ? (related as any).rt : "未知";
@@ -188,7 +173,9 @@ function formatDate(date: Date): string {
 							</aside>
 						)}
 
-				<Giscus />
+				<div class="not-prose mt-14 border-t border-accent/10 pt-8 sm:mt-16">
+					<Giscus />
+				</div>
 		</div>
 	</article>
 
@@ -198,7 +185,7 @@ function formatDate(date: Date): string {
 			aria-label="文章目錄"
 			class="toc-float hidden xl:block"
 		>
-			<h2 class="mb-3 text-[10px] font-bold uppercase tracking-widest text-muted/60">目錄</h2>
+			<h2 class="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted/55">目錄</h2>
 			<TOC headings={headings} />
 		</aside>
 	)}
@@ -304,19 +291,8 @@ function formatDate(date: Date): string {
 
 	if (copyBtn && toast) {
 		copyBtn.addEventListener("click", async () => {
-			try {
-				await navigator.clipboard.writeText(window.location.href);
-			} catch {
-				// Fallback for older browsers
-				const textarea = document.createElement("textarea");
-				textarea.value = window.location.href;
-				textarea.style.position = "fixed";
-				textarea.style.opacity = "0";
-				document.body.appendChild(textarea);
-				textarea.select();
-				document.execCommand("copy");
-				document.body.removeChild(textarea);
-			}
+			if (!("clipboard" in navigator) || !navigator.clipboard.writeText) return;
+			await navigator.clipboard.writeText(window.location.href);
 			// 顯示提示
 			toast.style.opacity = "1";
 			toast.style.transform = "translateY(-50%) scale(1)";

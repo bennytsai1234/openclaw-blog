@@ -21,7 +21,7 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 
 {
 	data.coverImage && (
-		<div class="mb-6 aspect-video w-full">
+		<div class="mb-6 aspect-video w-full overflow-hidden rounded-2xl">
 			<Image
 				alt={data.coverImage.alt}
 				layout="constrained"
@@ -34,22 +34,22 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 	)
 }
 {data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
-<h1 class="title mb-3 w-full">
+<h1 class="title mb-4 w-full text-3xl leading-tight sm:text-4xl">
 	{data.title}
 </h1>
 {data.description && (
-	<p class="text-muted mb-4 w-full border-l-2 border-accent/40 pl-4 text-base leading-relaxed italic">
+	<p class="text-muted mb-5 w-full max-w-[62ch] border-l-2 border-accent/35 pl-4 text-[1.02rem] leading-8 italic">
 		{data.description}
 	</p>
 )}
-<div class="article-tags flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-accent/10 pb-4 text-base">
-	<time class="text-accent font-semibold" datetime={data.publishDate.toISOString()}>
+<div class="article-tags flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-accent/10 pb-5 text-sm sm:text-[0.95rem]">
+	<time class="text-accent font-semibold tracking-[0.01em]" datetime={data.publishDate.toISOString()}>
 		{dateStr}
 	</time>
 	<span class="text-muted/40">·</span>
-	<span class="text-muted">{readingTime}</span>
+	<span class="text-muted/90">{readingTime}</span>
 	{data.updatedDate && (
-		<span class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
+		<span class="rounded-full bg-emerald-100/80 px-2.5 py-1 text-[11px] font-medium text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
 			更新於 {new Intl.DateTimeFormat("zh-TW", { month: "short", day: "numeric" }).format(data.updatedDate)}
 		</span>
 	)}

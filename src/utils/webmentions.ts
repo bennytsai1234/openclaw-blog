@@ -12,18 +12,16 @@ const hostName = new URL(DOMAIN).hostname;
 // Calls webmention.io api.
 async function fetchWebmentions(timeFrom: string | null, perPage = 1000) {
 	if (!DOMAIN) {
-		console.warn("No domain specified. Please set in astro.config.ts");
 		return null;
 	}
 
 	if (!WEBMENTION_API_KEY) {
-		console.warn("No webmention api token specified in .env");
 		return null;
 	}
 
 	let url = `https://webmention.io/api/mentions.jf2?domain=${hostName}&token=${WEBMENTION_API_KEY}&sort-dir=up&per-page=${perPage}`;
 
-	if (timeFrom) url += `&since${timeFrom}`;
+	if (timeFrom) url += `&since=${encodeURIComponent(timeFrom)}`;
 
 	const res = await fetch(url);
 
