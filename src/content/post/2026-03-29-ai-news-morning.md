@@ -1,9 +1,9 @@
 ---
 title: "AI 晨間精選｜2026 年 3 月 29 日"
-description: "Anthropic 付費訂閱翻倍、OpenAI 推出 Codex Skills 用例庫、OpenClaw 生產力案例登上 Towards Data Science。"
+description: "OpenAI 宣布終止 Sora、Anthropic 被比擬為菸草產業的解毒劑、Google Gemini Agent Skill 讓成功率從 28% 飆至 97%。"
 publishDate: "2026-03-29"
 updatedDate: "2026-03-29"
-tags: ["Anthropic", "OpenAI", "OpenClaw"]
+tags: ["Google", "OpenAI", "Anthropic", "OpenClaw"]
 series: "daily-ai-report"
 seriesOrder: 4
 draft: false
@@ -11,64 +11,52 @@ draft: false
 
 ## 今日觀察
 
-本週的 AI 敘事出現了一個值得注意的位移：焦點從「誰的模型更強」悄悄轉向「誰的生態系更黏人」。Anthropic 的付費訂閱翻倍不是因為某個 benchmark 屠榜，而是超級盃廣告精準打中了用戶對訂閱制廣告疲勞的心理開關；OpenAI 的 Codex Skills 用例庫則是把「技能沉積」這件事從極客圈推向大眾的策略一步；同時，OpenClaw 以一人之力驅動多 agent 生產力的案例登上 Towards Data Science，預示了下一波 AI 工具的主流敘事可能不再是「AI 幫我寫程式」，而是「AI 幫我開公司」。
+本日 AI 行業出現三個戰略性位移：OpenAI 確認終止 Sora 的時間表，代表生成式媒體的實驗階段正式結束；Anthropic 的高層敘事從「安全公司」升級為「產業良心」，用菸草工業的對照系來定義自己的品牌位置；與此同時，Google 的 Gemini Agent Skill 首次量化了「技能沉積」對推論效果的爆炸性提升——從 28% 到 97%，這不只是一個數字，而是對整個 Agent Skills 生態系統的原理級驗證。三件事說的是同一個故事：LLM 的戰爭下半場，正在從模型能力轉向生態系統黏性。
 
 ---
 
-## [Anthropic] — 付費訂閱翻倍的秘密：不是技術，是信任
+## [OpenAI] — Sora 確認終結：4月26日下架，9月24日關 API
 
-Anthropic 的付費訂閱用戶數今年翻了一倍以上，這個數字背後的故事比帳面數字更有意思。
+OpenAI 正式確認了 Sora 的兩階段關閉時間表：web 版和 App 版將在 4 月 26 日下線，Sora API 跟進在 9 月 24 日終止服務。用戶被敦促在截止日期前下載所有內容，資料在期限後永久刪除。
 
-根據 TechCrunch 引用 Indagari 對約 2800 萬美國消費者匿名信用卡交易的分析，Anthropic 的新訂閱用戶與回鍋用戶在二月雙雙創下紀錄。值得注意的是，大多數新訂閱者選擇的是每月 20 美元的 Pro 方案，而非 100 或 200 美元的高階層級——這說明付費 AI 的主流入口已經從企業滲透到個人開支決策層。
+這不是一個意外的失敗，而是戰略重心的果斷撤退。根據 The Decoder 的分析，OpenAI 的方向是將算力集中在程式碼工具和企業客戶——與 Anthropic 的策略高度類似——以及一個整合 ChatGPT、Codex 和 Atlas 瀏覽器的超級 App。Sora 將以研究項目的形式繼續存在，專注於世界模型，長期目標是「自動化實體經濟」。
 
-驅動這波成長的有三個槓桿：
-
-**超級盃廣告的心理學**。Anthropic 在超級盃期間播出了一系列嘲諷 ChatGPT 廣告制的創意廣告，承諾 Claude 永遠不打廣告。這不只是創意操作，而是直接命中了付費訂閱者最核心的焦慮：一旦廣告進來，我的訂閱費就變成了「Premium 廣告」而不是「乾淨的 AI」。
-
-**國防部紛爭的免費曝光**。一月底至二月底，華爾街日報、Axios 等媒體大篇幅報導了 Anthropic 與美國國防部的公開衝突：Anthropic 明確拒絕讓國防部將其 AI 用於致命自主武器或大規模監控美國公民。執行長 Dario Amodei 的強硬聲明讓新用戶成長曲線在二月陡峭攀升。法官本週也緊急叫停了政府將 Anthropic 列為「供應鏈風險」的行政令，稱之為「歐威爾式」的言論自由報復。
-
-**Claude Code 與 Computer Use 的產品驅動**。今年一月釋出的 Claude Code 與 Cowork 工具有力地帶動了訂閱，而本週釋出的 Computer Use 功能（讓 Claude 能獨立操作電腦介面、點擊、滾動）則在付費牆內進一步刺激了轉化。
-
-對 OpenAI 而言，好消息是它仍然是用戶量最大的消費級 AI 平台；壞消息是 Anthropic 的成長速度正在縮小差距，而且是以「不接國防部訂單」為代價換來的信任資產，這在當前的政治氣候下可能是更耐打的品牌差異化。
+迪士尼也在 Sora 下線消息後隨即退出與 OpenAI 的合作關係。一個上線僅數月的產品從應用市場和 API 同時撤退，同時合作夥伴跟進切割，這在 AI 行業仍是罕見的終局敘事。
 
 ---
 
-## [OpenAI] — Codex Skills：用OpenAI 的方式做生態系統
+## [Anthropic] — 被比擬為菸草工業的「解毒劑」：品牌定位戰的升級
 
-Greg Brockman 在 X 上宣布了 Codex Use Cases 上線，官方描述是「Codex 的用例就像 Skills，但這次是給人類用的」。一句話濃縮了三件事：Skills 系統已經足夠成熟可以產品化；OpenAI 正在把技能沉積這件事從模型內的能力變成用戶可积累的外部資產；以及「for humans」這個定位暗示著 Codex 的受眾正從專業開發者向更廣的知識工作者擴展。
+Sam Altman 傳記作者 Keach Hagey 的一篇報導揭示了 Anthropic 成立背後更真實的歷史：不只是對 AI 安全風險的擔憂，更是 OpenAI 內部一段充滿個人嫌隙、權力鬥爭與策略分歧的故事，最終形成了 AI 行業史上最具影響力的分裂。
 
-根據區塊鏈新聞與 OpenAI 開發者文件的交叉比對，Codex Use Cases 目前支援的場景包括：透過資料提示生成商業報告、製作行銷內容，以及用 Codex App 直接從用例庫打開起始提示。這代表 OpenAI 正在把 Codex 從「會寫程式的 AI」升級為「會執行各種工作流程的 AI 同事」。
+而 Anthropic 現在試圖將自己定調為 OpenAI「菸草工業模式」的解毒劑——菸草公司知道產品有害但繼續銷售，OpenAI 的批評者則指責它在安全與速度之間選擇了後者。這套論述與 Anthropic 拒絕國防部合約、聯邦法官叫停政府禁令的實際行動形成呼應，構成了一套「說什麼 + 做什麼」的品牌一致性。
 
-Skills 的技術底層是基於 progressive disclosure 的上下文管理：Codex 啟動時先載入技能的 metadata（名稱、描述、檔案路徑），只有在判定需要使用該技能時才完整載入 SKILL.md 說明。這套設計讓 Codex 可以在不同工作表面（App / CLI / IDE）之間無縫切換同一套技能，並且可以將技能提交到 repo 進行團隊共享——這對企業用戶來說是關鍵需求。
-
-這與 OpenClaw 的 agent Skills 設計高度相似，說明業界對於「如何讓 AI agent 掌握可複用技能」這個問題正在收斂到類似的架構範式。
+同一套敘事正在用另一種形式變現：Google 借鑒了 Anthropic 的「記憶遷移」做法，允許 Gemini 用戶從 ChatGPT 和 Claude 匯入保存的提醒事項、偏好設定和完整聊天記錄，過程是將前一個 AI 應用的摘要貼入 Gemini，後者則重新建立自己的上下文。Google 甚至將「Past Chats」重新命名為「Memory」。
 
 ---
 
-## [OpenClaw] — 一人軍火庫：35 個 AI agent 的生產力實驗
+## [Google] — Gemini Agent Skill：28% 到 97% 的實證
 
-Towards Data Science 刊登了一篇頗具份量的第一人稱敘事：作者在 homelab 伺服器上跑了 9 個 OpenClaw orchestrator agent，每個 agent 有自己的領域、所有權、記憶和工作區，合計掌握了 35 個可切換的 persona。
+Google 為 Gemini API 打造了一個「Agent Skill」，直指 AI 編碼助手的最核心缺陷：模型一旦訓練完成，就對自己的更新和當前最佳實踐一無所知。這個新 Skill 為編碼 Agent 提供即時的最新模型資訊、SDK 文件和範例程式碼。
 
-這不是炫技，而是系統性的生產力重分配。Agent 接管的領域包括：技術寫作（部落格、LinkedIn 文章、研究報告）、Homelab 基礎設施監控、SaaS 系統異常警報、家庭自動化、家庭實驗室伺服器維護，以及一個還在「醞釀中」的 fiction 寫作系統。其中一個細節頗具啟發性：作者的家中的 HAL9000 agent 會主動告知感測器離線、設備故障或空氣品質問題——「不需要 SSH 進去查，Slack 給它發訊息，它就處理了。」
+在 117 項任務的測試中，Gemini 3.1 Pro Preview 的成功率從 28.2% 飆升至 96.6%。值得注意的是，2.5 系列等較舊模型的改善幅度極小，Google 將原因歸結為較弱的推理能力——這意味著 Agent Skill 的效果與模型本身的推理能力高度相關：推理越強，從外部知識注入中獲益越多。
 
-Orchestrator 與 Persona 的分層是這套系統的關鍵設計取捨：前者承擔需要判斷力的複雜任務（跑 Opus），後者執行明確指令（可以用更小、更快的模型）。作者的結論是：這種架構讓「一個人能交付的範圍」從「做好一個專案」擴展到「同時運轉一個小型公司」。
-
-對 Agent 開發社群而言，這篇文章的訊號很清楚：當 agent 從「幫我回答問題」進化到「替我擁有某個領域並主動運維」，真正的挑戰不再是模型能力，而是記憶架構、所有權設計、和多 agent 間的通訊協定。
+值得關注的是，Vercel 的研究顯示 AGENTS.md 文字檔案（直接指令）可能比複雜的 Skill 系統更有效。Google 同時也在探索 MCP（Model Context Protocol）服務——而這個協議，正是 OpenClaw 生態系統的關鍵骨幹之一。Skills 生態正在成為各家公司——Anthropic、OpenAI、Google——的兵家必爭之地，而開源社群已經在推動 MCP 成為跨平台的標準。
 
 ---
 
 ## 其他值得關注
 
-**GitHub Claude Code 生態系持續擴張**。oh-my-claudecode（一個支援多 agent 協作的框架）、last30days-skill（跨 Reddit、X、YouTube、Hacker News、Polymarket 的研究技能）與 claude-hud（顯示上下文用量與 agent 進度的視覺外掛）在 GitHub Trending 上同時出現，說明 Claude Code 已經形成了自己的工具鏈生態。
+**Anthropic 的 Claude SDK for Python 登 GitHub Trending**。Anthropic 官方推出的 Claude Agent SDK for Python 現身 GitHub Trending，結合 oh-my-claudecode、claude-hud 等工具，Claude 的開源工具鏈正在快速補完。
 
-**用 Claude 翻譯非平凡程式碼庫**。一位開發者在 Lobsters 上分享了他用 Claude Code（Opus 4.6）將一個 C++ 專案重寫為 Java、將一個 Haskell 專案用 Clojure 重新實現的完整過程。他的結論是：對於語法差異大但語義明確的語言遷移，LLM 已經是實用選項。
+**Cohere 推出開源轉錄模型 Transcribe**。加拿大 AI 公司 Cohere 發布了一款名為「Transcribe」的開源 ASR 模型，宣稱在 Hugging Face Open ASR Leaderboard 拿下榜首。
 
 ---
 
 ## 參考連結
 
-- [Anthropic's Claude popularity with paying consumers is skyrocketing](https://techcrunch.com/2026/03/28/anthropics-claude-popularity-with-paying-consumers-is-skyrocketing/)（TechCrunch）
-- [Codex Skills - GitHub](https://github.com/openai/skills)（GitHub）
-- [Agent Skills - Codex | OpenAI Developers](https://developers.openai.com/codex/skills)（OpenAI）
-- [Using OpenClaw as a Force Multiplier: What One Person Can Ship with Autonomous Agents](https://towardsdatascience.com/using-openclaw-as-a-force-multiplier-what-one-person-can-ship-with-autonomous-agents/)（Towards Data Science）
-- [Translating non-trivial codebases with Claude](https://blog.danieljanus.pl/2026/03/26/claude-nlp/)（Daniel Janus）
+- [OpenAI sets two-stage Sora shutdown](https://the-decoder.com/openai-sets-two-stage-sora-shutdown-with-app-closing-apr)（The Decoder）
+- [Anthropic reportedly views itself as the antidote to OpenAI's "tobacco industry"](https://the-decoder.com/anthropic-reportedly-views-itself-as-the-antidote-to-opena-is-tobacco-industry/)（The Decoder）
+- [Google's new Gemini API Agent Skill patches the knowledge gap](https://the-decoder.com/googles-new-gemini-api-agent-skill-patches-the-knowledge-gap/)（The Decoder）
+- [Anthropic's new data shows AI skill builds over time](https://the-decoder.com/anthropics-new-data-shows-ai-skill-builds-over-time-and-that-could-widen-the-i/)（The Decoder）
+- [Claude SDK for Python on GitHub](https://github.com/anthropics/claude-agent-sdk-python)（GitHub）
