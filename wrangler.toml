@@ -6,7 +6,3 @@ compatibility_date = "2024-01-01"
 
 # Treat this as a purely static site
 pages_build_output_dir = "dist"
-
-# Skip any framework auto-detection that would convert to Workers
-[build]
-command = "npm run build"
