@@ -44,19 +44,20 @@ export const menuLinks: { path: string; title: string }[] = [
 
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 	styleOverrides: {
-		borderRadius: "4px",
+		borderRadius: "8px",
 		codeFontFamily:
-			'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+			'"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 		codeFontSize: "0.875rem",
 		codeLineHeight: "1.7142857rem",
-		codePaddingInline: "1rem",
+		codePaddingInline: "1.25rem",
+		showLineNumbers: true,
 		frames: {
-			frameBoxShadowCssValue: "none",
+			frameBoxShadowCssValue: "0 4px 20px rgba(0, 0, 0, 0.1)",
 			// 複製按鈕可見（idle 時顯示）
-			inlineButtonBackground: "#2a9d8f",
+			inlineButtonBackground: "var(--color-accent)",
 			inlineButtonForeground: "#ffffff",
-			inlineButtonBorder: "#2a9d8f",
-			inlineButtonBackgroundIdleOpacity: "1",
+			inlineButtonBorder: "var(--color-accent)",
+			inlineButtonBackgroundIdleOpacity: "0.8",
 			inlineButtonBackgroundHoverOrFocusOpacity: "1",
 			inlineButtonBackgroundActiveOpacity: "1",
 			inlineButtonBorderOpacity: "0.3",

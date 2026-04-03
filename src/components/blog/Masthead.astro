@@ -43,19 +43,23 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 	</p>
 )}
 <div class="article-tags flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-accent/10 pb-5 text-sm sm:text-[0.95rem]">
-	<time class="text-accent font-semibold tracking-[0.01em]" datetime={data.publishDate.toISOString()}>
+	<time class="text-accent font-semibold tracking-[0.01em]" datetime={data.publishDate.toISOString()} id="publish-date">
 		{dateStr}
 	</time>
 	<span class="text-muted/40">·</span>
-	<span class="text-muted/90">{readingTime}</span>
+	<span class="flex items-center gap-1.5 text-muted/90">
+		<span class="text-base">📖</span> {readingTime}
+	</span>
 	{data.updatedDate && (
-		<span class="rounded-full bg-emerald-100/80 px-2.5 py-1 text-[11px] font-medium text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
-			更新於 {new Intl.DateTimeFormat("zh-TW", { month: "short", day: "numeric" }).format(data.updatedDate)}
+		<span class="rounded-full bg-emerald-100/80 px-2.5 py-1 text-[11px] font-medium text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">
+			✨ 更新於 {new Intl.DateTimeFormat("zh-TW", { month: "short", day: "numeric" }).format(data.updatedDate)}
 		</span>
 	)}
-	{!!data.tags?.length && data.tags.map((tag) => (
-		<a data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
-			<span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
-		</a>
-	))}
+	<div class="flex flex-wrap gap-2">
+		{!!data.tags?.length && data.tags.map((tag) => (
+			<a data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
+				<span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
+			</a>
+		))}
+	</div>
 </div>

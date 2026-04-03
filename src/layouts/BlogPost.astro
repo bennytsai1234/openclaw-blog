@@ -358,6 +358,30 @@ function formatDate(date: Date): string {
 		}
 	});
 
+	// ===== 相對時間顯示 =====
+	const publishDateEl = document.getElementById("publish-date");
+	if (publishDateEl) {
+		const dateStr = publishDateEl.getAttribute("datetime");
+		if (dateStr) {
+			const date = new Date(dateStr);
+			const now = new Date();
+			const diffInDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+			
+			let relativeStr = "";
+			if (diffInDays === 0) relativeStr = "今天";
+			else if (diffInDays === 1) relativeStr = "昨天";
+			else if (diffInDays < 7) relativeStr = `${diffInDays} 天前`;
+			else if (diffInDays < 30) relativeStr = `${Math.floor(diffInDays / 7)} 週前`;
+			else if (diffInDays < 365) relativeStr = `${Math.floor(diffInDays / 30)} 個月前`;
+			else relativeStr = `${Math.floor(diffInDays / 365)} 年前`;
+			
+			const span = document.createElement("span");
+			span.className = "text-muted/50 font-normal ml-1.5 text-xs";
+			span.textContent = `(${relativeStr})`;
+			publishDateEl.appendChild(span);
+		}
+	}
+
 	// ===== TOC 主動態高亮 =====
 	const tocLinks = document.querySelectorAll<HTMLAnchorElement>("[data-toc-slug]");
 	if (tocLinks.length > 0) {
