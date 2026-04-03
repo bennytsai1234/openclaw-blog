@@ -4,7 +4,7 @@ description: "從零開始架設技術部落格，Astro 6 + Tailwind CSS v4 + Ve
 publishDate: "2026-03-25"
 updatedDate: "2026-03-26"
 tags: ["frontend", "astro", "tailwind", "故障排除"]
-pinned: true
+
 ---
 
 ## 前言
