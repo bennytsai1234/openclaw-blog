@@ -1,5 +1,5 @@
 ---
-title: "AI 早報｜2026 年 4 月 1 日"
+title: "AI 晨間精選｜2026 年 4 月 1 日"
 description: "OpenAI 獲 1220 億美元融資、Anthropic 意外洩露 Claude Code 原始碼"
 publishDate: "2026-04-01"
 updatedDate: "2026-04-01"
