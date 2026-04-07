@@ -11,11 +11,11 @@ import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeKatex from "rehype-katex";
 import rehypeUnwrapImages from "rehype-unwrap-images";
+import remarkDirective from "remark-directive"; /* Handle ::: directives as nodes */
 // Remark plugins
 import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import remarkDirective from "remark-directive"; /* Handle ::: directives as nodes */
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions"; /* Add admonitions */
 import { remarkGithubCard } from "./src/plugins/remark-github-card";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
@@ -82,7 +82,13 @@ export default defineConfig({
 			],
 			rehypeUnwrapImages,
 		],
-		remarkPlugins: [remarkMath, remarkReadingTime, remarkDirective, remarkGithubCard, remarkAdmonitions],
+		remarkPlugins: [
+			remarkMath,
+			remarkReadingTime,
+			remarkDirective,
+			remarkGithubCard,
+			remarkAdmonitions,
+		],
 		remarkRehype: {
 			footnoteLabelProperties: {
 				className: [""],
