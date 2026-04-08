@@ -12,10 +12,10 @@ const {
 	readingTime,
 } = Astro.props;
 
-const dateStr = new Intl.DateTimeFormat("en-GB", {
-	day: "numeric",
-	month: "short",
+const dateStr = new Intl.DateTimeFormat("zh-TW", {
 	year: "numeric",
+	month: "2-digit",
+	day: "2-digit",
 }).format(data.publishDate);
 ---
 
@@ -43,14 +43,14 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 	</p>
 )}
 <div class="article-tags flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-accent/10 pb-5 text-sm sm:text-[0.95rem]">
-	<time class="text-accent font-semibold tracking-[0.01em]" datetime={data.publishDate.toISOString()}>
+	<time class="relative-time text-accent font-semibold tracking-[0.01em]" datetime={data.publishDate.toISOString()}>
 		{dateStr}
 	</time>
 	<span class="text-muted/40">·</span>
-	<span class="text-muted/90">{readingTime}</span>
+	<span class="text-muted/90 text-[0.95rem]">📖 {readingTime}</span>
 	{data.updatedDate && (
-		<span class="rounded-full bg-emerald-100/80 px-2.5 py-1 text-[11px] font-medium text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
-			更新於 {new Intl.DateTimeFormat("zh-TW", { month: "short", day: "numeric" }).format(data.updatedDate)}
+		<span class="rounded-full bg-emerald-100/80 px-2.5 py-1 text-[11px] font-medium text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">
+			更新於 {new Intl.DateTimeFormat("zh-TW", { year: "numeric", month: "2-digit", day: "2-digit" }).format(data.updatedDate)}
 		</span>
 	)}
 	{!!data.tags?.length && data.tags.map((tag) => (
@@ -59,3 +59,19 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 		</a>
 	))}
 </div>
+
+<script>
+	// US-015 相對時間
+	const timeEls = document.querySelectorAll('.relative-time');
+	timeEls.forEach((el) => {
+		const date = new Date(el.getAttribute('datetime')!);
+		const now = new Date();
+		const diffTime = now.getTime() - date.getTime();
+		const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+		if (diffDays > 0) {
+			el.innerHTML += ` <span class="text-[0.8rem] text-muted/70 font-normal">（${diffDays} 天前）</span>`;
+		} else if (diffDays === 0) {
+			el.innerHTML += ` <span class="text-[0.8rem] text-muted/70 font-normal">（今天）</span>`;
+		}
+	});
+</script>
