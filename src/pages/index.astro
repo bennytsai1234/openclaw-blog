@@ -1,32 +1,30 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import PostPreview from "@/components/blog/PostPreview.astro";
-import Note from "@/components/note/Note.astro";
 import SocialList from "@/components/SocialList.astro";
 import { getAllPosts } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
-// Posts
+// Posts Data
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
-const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
+
+// Filter Tech Articles and AI News
+const techPosts = allPostsByDate.filter((p) => !p.data.title.includes("精選"));
+const aiPosts = allPostsByDate.filter((p) => p.data.title.includes("精選"));
+
+const latestTechPosts = techPosts.slice(0, MAX_POSTS);
+const latestAiPosts = aiPosts.slice(0, MAX_POSTS);
 
 // Pinned Posts, set to a max of 3;
 const MAX_PINNED_POSTS = 3;
-const pinnedPosts = allPostsByDate
+const pinnedPosts = techPosts
 	.values()
 	.filter((p) => p.data.pinned)
 	.take(MAX_PINNED_POSTS)
 	.toArray();
-
-// Notes, set to a max of 5
-const MAX_NOTES = 5;
-const allNotes = await getCollection("note");
-const latestNotes = allNotes
-	.sort(collectionDateSort)
-	.slice(0, MAX_NOTES) as CollectionEntry<"note">[];
 ---
 
 <PageLayout meta={{ title: "首頁" }}>
@@ -100,11 +98,11 @@ const latestNotes = allNotes
 	}
 	<section class="mb-14 sm:mb-16">
 		<h2 class="mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55">
-			<a class="hover:text-accent" href="/posts/">最新文章</a>
+			<a class="hover:text-accent" href="/posts/">最新技術文章</a>
 		</h2>
 		<ul class="space-y-4 sm:space-y-5" role="list">
 			{
-				latestPosts.map((p) => (
+				latestTechPosts.map((p) => (
 					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
 						<PostPreview post={p} />
 					</li>
@@ -113,15 +111,15 @@ const latestNotes = allNotes
 		</ul>
 	</section>
 	{
-		latestNotes.length > 0 && (
+		latestAiPosts.length > 0 && (
 			<section class="mt-14 sm:mt-16">
-				<h2 class="title text-accent mb-5 text-xl">
-					<a href="/notes/">筆記</a>
+				<h2 class="mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55">
+					<a class="hover:text-accent" href="/posts/">AI 產業動態專欄</a>
 				</h2>
-				<ul class="space-y-5" role="list">
-					{latestNotes.map((note) => (
-						<li>
-							<Note note={note} as="h3" isPreview />
+				<ul class="space-y-4 sm:space-y-5" role="list">
+					{latestAiPosts.map((p) => (
+						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+							<PostPreview post={p} />
 						</li>
 					))}
 				</ul>
