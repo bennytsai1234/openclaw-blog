@@ -395,4 +395,20 @@ function formatDate(date: Date): string {
 			observer.observe(h);
 		});
 	}
+
+	// ===== 寬圖片滿寬顯示 (US-014) =====
+	const articleImgs = document.querySelectorAll<HTMLImageElement>(".prose img");
+	articleImgs.forEach((img) => {
+		const checkWidth = () => {
+			if (img.naturalWidth > 700) {
+				img.setAttribute("data-astro-image", "full-width");
+			}
+		};
+		// 如果已經載入完成
+		if (img.complete) {
+			checkWidth();
+		} else {
+			img.addEventListener("load", checkWidth);
+		}
+	});
 </script>
