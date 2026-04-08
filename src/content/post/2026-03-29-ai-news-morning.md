@@ -1,7 +1,7 @@
 ---
 title: "AI 晨間精選｜2026 年 3 月 29 日"
 description: "OpenAI 宣布終止 Sora、Anthropic 被比擬為菸草產業的解毒劑、Google Gemini Agent Skill 讓成功率從 28% 飆至 97%。"
-publishDate: "2026-03-29"
+publishDate: "2026-03-29T08:00:00+08:00"
 updatedDate: "2026-03-29"
 tags: ["Google", "OpenAI", "Anthropic", "OpenClaw"]
 series: "daily-ai-report"

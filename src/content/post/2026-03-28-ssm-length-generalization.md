@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】SSM 的致命弱點被 Apple 找到了：一個理論證明與解法"
 description: "State Space Models 的固定記憶體機制在「真正長文本生成」上有根本限制，Apple ML Research 用外部工具彌補了這個缺口，讓 SSM 在推理、數學、編碼任務上實現任意長度泛化。"
-publishDate: "2026-03-28"
+publishDate: "2026-03-28T12:00:00+08:00"
 updatedDate: "2026-03-28"
 tags: ["技術", "AI", "ML"]
 draft: false

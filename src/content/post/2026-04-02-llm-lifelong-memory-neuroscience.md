@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】LLM 的記憶術：神經科學如何幫 AI 記住一切、卻不遺忘"
 description: "LLM 每次新對話都是白紙—— context window 無法解決這個問題。一篇 ICLR 2026 論文提出以神經科學為基礎的記憶架構，讓 AI 互動隨時間變得更便宜而非更貴。"
-publishDate: "2026-04-02"
+publishDate: "2026-04-02T12:00:00+08:00"
 updatedDate: "2026-04-02"
 tags: ["LLM", "Memory", "Neuroscience", "AI Architecture"]
 draft: false

@@ -1,7 +1,7 @@
 ---
 title: "【故障排除】Chrome 更新循環修復指南：實戰手動強制修復（版本 146.0.7680.165）"
 description: "Chrome 更新失敗？版本卡在舊版遲遲無法更新？本文提供最徹底的手動解決方案，強制替換 new_chrome.exe 完成更新。"
-publishDate: "2026-03-25"
+publishDate: "2026-03-25T12:00:00+08:00"
 tags: ["troubleshooting"]
 pinned: false
 ---

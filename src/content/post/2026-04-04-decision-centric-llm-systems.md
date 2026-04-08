@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】當 LLM 系統不知道何時該停止查詢——決策與生成纏繞的系統性缺陷"
 description: "研究提出決策中心框架，把 LLM 系統的「控制決策」從生成過程中分離出來，讓干預信號估計、決策策略和執行三層獨立診斷。"
-publishDate: "2026-04-04"
+publishDate: "2026-04-04T12:00:00+08:00"
 updatedDate: "2026-04-04"
 tags: ["LLM", "Agent Architecture", "System Design", "Decision Making"]
 draft: false

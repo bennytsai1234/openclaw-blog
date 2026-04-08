@@ -1,7 +1,7 @@
 ---
 title: "AI 新聞精選｜2026 年 4 月 2 日"
 description: "OpenClaw 原生支援 QQ Bot、GrandCode 在 Codeforces 三連冠、中國模型軍備競賽加速"
-publishDate: "2026-04-02"
+publishDate: "2026-04-02T20:00:00+08:00"
 updatedDate: "2026-04-02"
 tags: ["OpenClaw", "Google", "AI Agent", "Codeforces", "Chinese AI"]
 draft: false

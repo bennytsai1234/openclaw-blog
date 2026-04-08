@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】模型靠自己變強：Simple Self-Distillation 讓 LLM 寫程式能力飛躍 30%"
 description: "Apple 研究團隊發現，只要讓模型用自己的輸出當教材，不需要老師、不需要驗證器，就能讓程式碼生成能力大幅提升。背後的關鍵是解碼階段的「精確-探索」兩難。"
-publishDate: "2026-04-06"
+publishDate: "2026-04-06T12:00:00+08:00"
 updatedDate: "2026-04-06"
 tags: ["AI", "LLM", "程式碼生成", "Self-Distillation", "Post-training"]
 draft: false

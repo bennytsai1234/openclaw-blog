@@ -1,7 +1,7 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 8 日"
 description: "Anthropic 發布 Mythos 模型與 Project Glasswing 網安聯盟；OpenAI、Anthropic、Google 首度聯手對抗中國模型蒸餾；Meta 宣布開放部分新模型。"
-publishDate: "2026-04-08"
+publishDate: "2026-04-08T08:00:00+08:00"
 updatedDate: "2026-04-08"
 tags: ["Anthropic", "OpenAI", "Google", "Meta", "AWS", "OpenClaw"]
 series: "daily-ai-report"

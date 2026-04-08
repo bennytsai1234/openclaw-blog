@@ -1,7 +1,7 @@
 ---
 title: "AI 新聞精選｜2026 年 4 月 1 日"
 description: "OpenAI 完成史上最大規模集資 1220 億美元，同日 Claude Code 原始碼因 npm 失誤全網暴露"
-publishDate: "2026-04-01"
+publishDate: "2026-04-01T20:00:00+08:00"
 updatedDate: "2026-04-01"
 tags: ["OpenAI", "Anthropic", "Google", "Ollama"]
 draft: false

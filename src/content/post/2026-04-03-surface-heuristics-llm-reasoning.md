@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】LLM 說「走」，但不問能不能走到：表面線索如何覆寫隱性推理約束"
 description: "研究發現 LLM 在表面特徵與隱性約束衝突時，會被表面特徵誤導，12/14 模型在移除約束後反而表現更差——這不是知識不足，是推理架構的系統性漏洞。"
-publishDate: "2026-04-03"
+publishDate: "2026-04-03T12:00:00+08:00"
 updatedDate: "2026-04-03"
 tags: ["LLM", "Reasoning", "AI Safety", "Benchmark"]
 draft: false

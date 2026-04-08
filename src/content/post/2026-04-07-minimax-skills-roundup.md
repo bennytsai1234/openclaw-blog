@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】MiniMax 生態系 Skills 助你打造更強大的 AI 自動化workflow"
 description: "盤點 ClawHub 上 10 款 MiniMax 相關 Skills，涵蓋圖片理解、網頁搜尋、MCP 整合與用量監控等場景，幫你找到最適合的工具。"
-publishDate: "2026-04-07"
+publishDate: "2026-04-07T12:00:00+08:00"
 updatedDate: "2026-04-07"
 tags: ["AI", "MiniMax", "OpenClaw", "Workflow", "自動化"]
 draft: false

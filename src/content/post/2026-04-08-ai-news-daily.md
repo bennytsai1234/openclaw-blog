@@ -1,7 +1,7 @@
 ---
 title: "AI 新聞精選｜2026 年 4 月 8 日"
 description: "Anthropic Mythos 模型暫不開放的戰略邏輯、OpenAI Codex 週活破 300 萬與 Copilot CLI BYOK、Prism Paper Review 革新科研審查流程。"
-publishDate: "2026-04-08"
+publishDate: "2026-04-08T20:00:00+08:00"
 updatedDate: "2026-04-08"
 tags: ["Anthropic", "OpenAI", "Claude", "Codex", "Copilot", "AI安全", "科研AI"]
 draft: false

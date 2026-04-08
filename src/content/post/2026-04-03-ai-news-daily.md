@@ -1,7 +1,7 @@
 ---
 title: "AI 新聞精選｜2026 年 4 月 3 日"
 description: "Google Gemma 4 開放重量模型全解析 + OpenClaw 2026.4.x 破壞性更新重點導讀"
-publishDate: "2026-04-03"
+publishDate: "2026-04-03T20:00:00+08:00"
 updatedDate: "2026-04-03"
 tags: ["Google", "OpenClaw", "Anthropic"]
 draft: false

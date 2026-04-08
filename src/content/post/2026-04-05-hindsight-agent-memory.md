@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】讓 Agent 記住教訓而不是只記住對話：Hindsight 重新定義「長期記憶」"
 description: "一款號稱「最準確的 Agent 記憶系統」，在 LongMemEval benchmark 打敗所有對手，號稱 Fortune 500 企業已實際採用。它的核心洞察：大多數 Agent 記憶系統在解決錯誤的問題。"
-publishDate: "2026-04-05"
+publishDate: "2026-04-05T12:00:00+08:00"
 updatedDate: "2026-04-05"
 tags: ["AI Agent", "Memory", "Benchmark", "Vectorize"]
 draft: false

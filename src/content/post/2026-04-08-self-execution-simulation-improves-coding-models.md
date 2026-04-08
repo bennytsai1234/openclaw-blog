@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】讓模型先模擬執行再寫程式碼：Self-Execution Simulation 怎麼做到"
 description: "Code LLM 不只能生成程式，還能被訓練成模擬自己寫的程式執行。最新研究提出 NLEX 訓練框架，讓模型在輸出前就能預判程式執行結果，大幅提升程式正確率。"
-publishDate: "2026-04-08"
+publishDate: "2026-04-08T12:00:00+08:00"
 updatedDate: "2026-04-08"
 tags: ["技術", "AI", "程式設計", "LLM"]
 draft: false

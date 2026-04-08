@@ -1,7 +1,7 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 7 日"
 description: "OpenAI 勾勒 AI 經濟藍圖、Anthropic 年營收突破 300 億美元、晶片先進封裝成下一個 AI 關鍵戰場"
-publishDate: "2026-04-07"
+publishDate: "2026-04-07T08:00:00+08:00"
 updatedDate: "2026-04-07"
 tags: ["OpenAI", "Anthropic", "Google", "Intel", "Broadcom"]
 series: "daily-ai-report"

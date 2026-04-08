@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】Scion：Google Cloud 的並發 Agent 隔離執行架構"
 description: "深入解析 Google Cloud 實驗性專案 Scion 的 Manager-Worker 架構，理解其如何用容器隔離、身份鑑別與多 Runtime 支援來解決並發 LLM Agent 的協調難題。"
-publishDate: "2026-03-29"
+publishDate: "2026-03-29T12:00:00+08:00"
 updatedDate: "2026-03-29"
 tags: ["技術", "AI", "開發"]
 draft: false

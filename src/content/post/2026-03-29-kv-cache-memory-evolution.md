@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】KV Cache 的重量：從 300KB 到 69KB 的記憶術演變"
 description: "深入解析 LLM 的 KV Cache 從 GPT-2 到 DeepSeek V3 的四次架構演變，理解為何記憶成本正在重新定義 AI 推論的經濟學。"
-publishDate: "2026-03-29"
+publishDate: "2026-03-29T12:00:00+08:00"
 updatedDate: "2026-03-29"
 tags: ["技術", "AI", "開發"]
 draft: false

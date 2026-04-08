@@ -1,7 +1,7 @@
 ---
 title: "AI 新聞精選｜2026 年 3 月 26 日"
 description: "OpenClaw 新版支援 Teams 與 Slack，Google Lyria 3 Pro 挑戰音樂生成，OpenAI 關閉 Sora 集中算力衝下一代旗艦模型。"
-publishDate: "2026-03-26"
+publishDate: "2026-03-26T20:00:00+08:00"
 updatedDate: "2026-03-27"
 tags: ["Google", "OpenAI", "Anthropic", "MiniMax", "OpenClaw"]
 draft: false

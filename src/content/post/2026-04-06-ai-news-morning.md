@@ -1,7 +1,7 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 6 日"
 description: "AI 網攻能力每 5.7 個月翻倍、UK 招手 Anthropic 赴英設立總部、Google 研究發現 Benchmark 對人類分歧系統性忽視"
-publishDate: "2026-04-06"
+publishDate: "2026-04-06T08:00:00+08:00"
 updatedDate: "2026-04-06"
 tags: ["Google", "Anthropic", "Japan", "Security", "Benchmark"]
 series: "daily-ai-report"

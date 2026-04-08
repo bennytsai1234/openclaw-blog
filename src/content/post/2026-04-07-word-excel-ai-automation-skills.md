@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】AI 時代的辦公室文件處理技能盤點：Word 與 Excel 生成篇"
 description: "ClawHub 上三款文件生成 Skills 深度解析：yh-minimax-docx、office-document-specialist-suite 與 docx-xlsx-creator，幫你找到最適合自己工作流的工具。"
-publishDate: "2026-04-07"
+publishDate: "2026-04-07T12:00:00+08:00"
 updatedDate: "2026-04-07"
 tags: ["AI", "Word", "Excel", "辦公室自動化", "OpenClaw", "文件生成"]
 draft: false

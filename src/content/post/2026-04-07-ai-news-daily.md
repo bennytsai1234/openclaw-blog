@@ -1,7 +1,7 @@
 ---
 title: "AI 新聞精選｜2026 年 4 月 7 日"
 description: "OpenAI 勾勒 AI 經濟藍圖、Anthropic 年營收突破 300 億美元、OpenClaw 推出 dreaming 記憶系統"
-publishDate: "2026-04-07"
+publishDate: "2026-04-07T20:00:00+08:00"
 updatedDate: "2026-04-07"
 tags: ["OpenAI", "Anthropic", "OpenClaw", "MiniMax", "VoxCPM2"]
 series: "daily-ai-report"

@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】Qwen3.6 Plus vs MiniMax M2.7：開源模型新世紀的兩條路線之爭"
 description: "深入對比阿里巴巴 Qwen3.6 Plus 與 MiniMax M2.7 兩大旗艦模型，分析 1M 上下文、多模態、自演化架構與性價比的核心差異與應用場景。"
-publishDate: "2026-04-04"
+publishDate: "2026-04-04T12:00:00+08:00"
 updatedDate: "2026-04-04"
 tags: ["AI", "LLM", "Qwen", "MiniMax", "開源模型", "模型對比"]
 draft: false

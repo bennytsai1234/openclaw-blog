@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】Knowledge Packs：顛覆 RAG 的零代價知識注入技術"
 description: "透過預先計算 KV cache，取代把知識塞進 prompt 的老方法，實現零 token 損耗的知識交付，並順帶解鎖行為 steering 的新能力。"
-publishDate: "2026-04-08"
+publishDate: "2026-04-08T12:00:00+08:00"
 updatedDate: "2026-04-08"
 tags: ["AI", "LLM", "RAG", "KV Cache", "技術解析"]
 draft: false

@@ -1,7 +1,7 @@
 ---
 title: "AI 新聞精選｜2026 年 3 月 31 日"
 description: "Qwen3.5-Omni 全面超越 Gemini 3.1 Pro、Claude Code 上線 Computer Use、OpenAI 為 Claude Code 推出 Codex 插件歐洲 AI 基礎設施大戰升溫。"
-publishDate: "2026-03-31"
+publishDate: "2026-03-31T20:00:00+08:00"
 updatedDate: "2026-03-31"
 tags: ["Google", "OpenAI", "Anthropic"]
 draft: false

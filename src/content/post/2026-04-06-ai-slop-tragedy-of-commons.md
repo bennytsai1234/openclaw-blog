@@ -1,7 +1,7 @@
 ---
 title: "AI Slop 是公地悲劇：一項研究如何揭示開發者的集體困境"
 description: "一項分析 1,154 則社群討論的質性研究，用「公地悲劇」框架解剖 AI 生成程式碼的代價：個別開發者省時，但 reviewer、maintainer 和開源社群正在付出看不見的集體成本。"
-publishDate: "2026-04-06"
+publishDate: "2026-04-06T12:00:00+08:00"
 updatedDate: "2026-04-06"
 tags: ["AI", "Software Engineering", "Code Review", "Developer Experience", "Open Source"]
 coverImage:

@@ -1,7 +1,7 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 2 日"
 description: "OpenAI 揭示超級應用野心、Claude Code 洩露後續發酵、NVIDIA 開源機器人代理框架"
-publishDate: "2026-04-02"
+publishDate: "2026-04-02T08:00:00+08:00"
 updatedDate: "2026-04-02"
 tags: ["OpenAI", "Anthropic", "NVIDIA", "Google DeepMind", "Perplexity"]
 series: "daily-ai-report"

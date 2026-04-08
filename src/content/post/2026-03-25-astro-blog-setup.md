@@ -1,7 +1,7 @@
 ---
 title: "使用 Astro 建構高效能部落格"
 description: "從零開始架設技術部落格，Astro 6 + Tailwind CSS v4 + Vercel 完整攻略，附上完整程式碼與主題客製化技巧。"
-publishDate: "2026-03-25"
+publishDate: "2026-03-25T12:00:00+08:00"
 updatedDate: "2026-03-26"
 tags: ["frontend", "astro", "tailwind", "故障排除"]
 

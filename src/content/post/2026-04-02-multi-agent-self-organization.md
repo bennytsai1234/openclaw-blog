@@ -1,7 +1,7 @@
 ---
 title: "【技術解析】顛覆認知：讓 LLM Agent 自己決定做什麼，比你幫它安排更好"
 description: "一篇 25,000 任務實驗發現，自組織 LLM 多智能體系統在「只給任務、不給角色」時表現最佳，且開源模型達到封閉模型的 95% 品質，成本僅 1/24。"
-publishDate: "2026-04-02"
+publishDate: "2026-04-02T12:00:00+08:00"
 updatedDate: "2026-04-02"
 tags: ["LLM", "Multi-Agent", "AI Engineering", "System Design"]
 draft: false
