@@ -200,7 +200,9 @@
 		text-decoration: underline dotted;
 		text-decoration-color: var(--color-accent);
 		text-underline-offset: 3px;
-		transition: text-decoration-style 200ms ease, color 200ms ease;
+		transition:
+			text-decoration-style 200ms ease,
+			color 200ms ease;
 		&:hover {
 			text-decoration-style: solid;
 			text-decoration-color: var(--color-accent-hover);
@@ -277,7 +279,9 @@
 	/* 標題 # 符號 (US-009) */
 	.article-prose :where(h2, h3, h4, h5, h6) a.header-link-anchor {
 		opacity: 0.3;
-		transition: opacity 200ms ease, color 200ms ease;
+		transition:
+			opacity 200ms ease,
+			color 200ms ease;
 		margin-left: 0.5rem;
 		display: inline-block;
 		text-decoration: none;
