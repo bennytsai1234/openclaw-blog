@@ -52,6 +52,7 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 		codePaddingInline: "1rem",
 		frames: {
 			frameBoxShadowCssValue: "none",
+			extractFileNameFromCode: true,
 			// 複製按鈕可見（idle 時顯示）
 			inlineButtonBackground: "#2a9d8f",
 			inlineButtonForeground: "#ffffff",
@@ -60,8 +61,13 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 			inlineButtonBackgroundHoverOrFocusOpacity: "1",
 			inlineButtonBackgroundActiveOpacity: "1",
 			inlineButtonBorderOpacity: "0.3",
+			tooltipSuccessBackground: "#10b981",
+			tooltipSuccessForeground: "#ffffff",
 		},
 		uiLineHeight: "inherit",
+	},
+	defaultProps: {
+		showLineNumbers: true,
 	},
 	themeCssSelector(theme, { styleVariants }) {
 		if (styleVariants.length >= 2) {
