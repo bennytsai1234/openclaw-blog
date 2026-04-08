@@ -278,7 +278,7 @@ Stop Hook 是一個雙刃劍：
 
 ### 10.1 Thinking Token 的費用結構
 
-Claude Opus 的 Thinking Token 收費與普通輸出 Token 相同（$75/百萬輸出 Token）。對於一個 30 分鐘的自治 Session，假設每次回應消耗 500 個 Thinking Token，每小時大約消耗 $0.0375。
+Claude Opus 的 Thinking Token 收費與普通輸出 Token 相同（\$75/百萬輸出 Token）。對於一個 30 分鐘的自治 Session，假設每次回應消耗 500 個 Thinking Token，每小時大約消耗 \$0.0375。
 
 ### 10.2 質量損失的隱性成本
 
