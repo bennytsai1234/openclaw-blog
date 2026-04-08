@@ -70,7 +70,7 @@ export default defineConfig({
 	],
 	markdown: {
 		rehypePlugins: [
-			rehypeKatex,
+			[rehypeKatex, { strict: false }],
 			rehypeHeadingIds,
 			[rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: ["not-prose"] } }],
 			[
