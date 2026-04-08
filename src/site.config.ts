@@ -29,10 +29,6 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "文章",
 	},
 	{
-		path: "/notes/",
-		title: "筆記",
-	},
-	{
 		path: "/category/",
 		title: "分類",
 	},
