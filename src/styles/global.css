@@ -336,6 +336,27 @@
 			color: white;
 		}
 	}
+
+	/* 程式碼區塊語言標記 (US-004) */
+	.expressive-code {
+		position: relative;
+	}
+	.expressive-code[data-language]::before {
+		content: attr(data-language);
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: var(--color-accent);
+		color: #ffffff;
+		font-size: 0.72rem;
+		padding: 0.2rem 0.6rem;
+		border-radius: 4px 0 4px 0;
+		z-index: 10;
+		text-transform: uppercase;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		pointer-events: none;
+	}
 }
 
 @utility prose {
