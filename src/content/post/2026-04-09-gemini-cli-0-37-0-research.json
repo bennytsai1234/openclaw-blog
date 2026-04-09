@@ -1,0 +1,281 @@
+{
+  "merged": [
+    {
+      "title": "Preview release: v0.37.0-preview.1 | Gemini CLI",
+      "url": "https://geminicli.com/docs/changelogs/preview/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Gemini CLI 0.37.0 - Chocolatey Software",
+      "url": "https://community.chocolatey.org/packages/gemini-cli/0.37.0",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "@google/gemini-cli 0.37.0-preview.2 on Node.js NPM - NewReleases.io",
+      "url": "https://newreleases.io/project/npm/@google/gemini-cli/release/0.37.0-preview.2",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Google announces Gemini CLI: your open-source AI agent",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-cli-open-source-ai-agent/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "UNPKG",
+      "url": "https://app.unpkg.com/@google/gemini-cli-core@0.1.9/files/dist/src/utils",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Unable to select gemini-3.1-pro-preview despite active Google ... - GitHub",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/25004",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "CLI commands | Gemini CLI",
+      "url": "https://geminicli.com/docs/reference/commands/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "gemini-cli v0.37.0 - Failed - Package Tests Results · GitHub",
+      "url": "https://gist.github.com/choco-bot/6e8f8ba7e4b08882d103531c00b378b4",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Mastering Gemini CLI for FullStack Devs: Advanced Token-Saving ...",
+      "url": "https://www.linkedin.com/pulse/mastering-gemini-cli-fullstack-devs-advanced-part-1-bonato-alves-xzn6e",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "@google/gemini-cli 0.37.0-preview.1 on Node.js NPM",
+      "url": "https://newreleases.io/project/npm/@google/gemini-cli/release/0.37.0-preview.1",
+      "content": "# @google/gemini-cli 0.37.0-preview.1 Release v0.37.0-preview.1 on Node.js NPM\n\nlatest releases: 0.39.0-nightly.20260409.615e07834, 0.39.0-nightly.20260408.a39461718, 0.37.0...\n\n6 days ago\n\n## What's Changed\n\n fix(patch): cherry-pick 64c928f to release/v0.37.0-preview.0-pr-23257 to patch version v0.37.0-preview.0 and create version 0.37.0-preview.1 by @gemini-cli-robot in #24561\n\nFull Changelog: v0.37.0-preview.0...v0.37.0-preview.1\n\nCheck out latest releases or   \n releases around @google/gemini-cli 0.37.0-preview.1\n\nDon't miss a new gemini-cli release\n\nNewReleases is sending notifications on new releases.\n\nGet notifications",
+      "score": 0.7471924,
+      "source": "tavily"
+    },
+    {
+      "title": "google-gemini/gemini-cli v0.37.0-preview.1 on GitHub",
+      "url": "https://newreleases.io/project/github/google-gemini/gemini-cli/release/v0.37.0-preview.1",
+      "content": "# github google-gemini/gemini-cli v0.37.0-preview.1 Release v0.37.0-preview.1 on GitHub\n\ngithub\n\n## What's Changed\n\nFull Changelog: v0.37.0-preview.0...v0.37.0-preview.1\n\nDon't miss a new gemini-cli release\n\nNewReleases is sending notifications on new releases.\n\nNewReleases is sending notifications on new releases.",
+      "score": 0.7348247,
+      "source": "tavily"
+    },
+    {
+      "title": "Releases · google-gemini/gemini-cli - GitHub",
+      "url": "https://github.com/google-gemini/gemini-cli/releases",
+      "content": "Update ink version to 6.6.7 by @jacob314 in #24514\n   fix(acp): handle all InvalidStreamError types gracefully in prompt by @sripasg in #24540\n   Fix crash when vim editor is not found in PATH on Windows by @Nagajyothi-tammisetti in #22423\n   fix(core): move project memory dir under tmp directory by @SandyTao520 in #24542\n   Enable 'Other' option for yesno question type by @ruomengz in #24545\n   fix(cli): clear stale retry/loading state after cancellation (#21096) by @Aaxhirrr in #21960\n   Changelog for v0.37.0-preview.0 by @gemini-cli-robot in #24464\n   feat(core): implement context-aware persistent policy approvals by @jerop in #23257\n   docs: move agent disabling instructions and update remote agent status by @jackwotherspoon in #24559 [...] ## No results found\n\nView all tags\n\nRelease v0.37.0-preview.2Pre-release\n\nPre-release\n\n## What's Changed\n\n   fix(patch): cherry-pick cb7f7d6 to release/v0.37.0-preview.1-pr-24342 to patch version v0.37.0-preview.1 and create version 0.37.0-preview.2 by @gemini-cli-robot in #24842\n\nFull Changelog: v0.37.0-preview.1...v0.37.0-preview.2\n\n### Contributors\n\n   Image 120: @gemini-cli-robot\n\n gemini-cli-robot \n\nAssets 3\n\n   gemini-cli-bundle.zip sha256:f225c30458679f7d16ac263d369a032ed0393c7ecbb4b6fd0fb0a45f1159945f  22.6 MB 2026-04-07T19:12:19Z \n   Source code(zip) 2026-04-07T19:02:56Z \n   Source code(tar.gz) 2026-04-07T19:02:56Z \n\nAll reactions\n\n## Release v0.36.0-nightly.20260407.1c22c5b37\n\n 07 Apr 17:38 \n\nImage 121: @gemini-cli-robotgemini-cli-robot\n\nv0.36.0-nightly.20260407.1c22c5b37 [...] feat(cli): migrate nonInteractiveCli to LegacyAgentSession by @adamfweidman in #22987\n   fix(core): unsafe type assertions in Core File System #19712 by @aniketsaurav18 in #19739\n   fix(ui): hide model quota in /stats and refactor quota display by @danzaharia1 in #24206\n   Changelog for v0.36.0 by @gemini-cli-robot in #24558\n   Changelog for v0.37.0-preview.1 by @gemini-cli-robot in #24568\n   docs: add missing .md extensions to internal doc links by @ishaan-arora-1 in #24145\n   fix(ui): fixed table styling by @devr0306 in #24565\n   fix(core): pass includeDirectories to sandbox configuration by @galz10 in #24573\n   feat(ui): enable \"TerminalBuffer\" mode to solve flicker by @jacob314 in #24512\n   docs: clarify release coordination by @scidomino in #24575",
+      "score": 0.72325134,
+      "source": "tavily"
+    },
+    {
+      "title": "gemini-cli | mise versions",
+      "url": "https://mise-versions.jdx.dev/tools/gemini-cli",
+      "content": "| (553 ) |  |  |\n --- \n| 0.37.0-preview.1 | 0 | yesterday (Apr 2, 2026) |\n| 0.37.0-preview.0 | 0 | 2d ago (Apr 1, 2026) |\n| 0.36.0 | 238 | 2d ago (Apr 1, 2026) |\n| 0.36.0-preview.8 | 0 | 2d ago (Apr 1, 2026) |\n| 0.36.0-preview.7 | 0 | 3d ago (Mar 31, 2026) |\n| 0.36.0-preview.6 | 1 | 1w ago (Mar 28, 2026) |\n| 0.36.0-preview.5 | 0 | 1w ago (Mar 27, 2026) |\n| 0.36.0-preview.4 | 0 | 1w ago (Mar 26, 2026) |\n| 0.36.0-preview.3 | 0 | 1w ago (Mar 25, 2026) |\n| 0.36.0-preview.2 | 0 | 1w ago (Mar 25, 2026) |\n| 0.36.0-preview.0 | 0 | 1w ago (Mar 24, 2026) |\n| 0.36.0-nightly.20260404.4fb379005 | 0 | today (Apr 4, 2026) |\n| 0.36.0-nightly.20260403.1ae0499e5 | 0 | today (Apr 3, 2026) |\n| 0.36.0-nightly.20260402.13ccc1645 | 0 | yesterday (Apr 2, 2026) | [...] mise versions\n\n# gemini-cli\n\nnpm:@google/gemini-cli  · 0.36.0 · 553 versions · 5,493 downloads\n\nInstall with mise:\n\n`mise use gemini-cli@latest`\n\n \n\n## Downloads\n\nLast 30 days\n\n179900\n\nMar 5: 73\n\nMar 6: 56\n\nMar 7: 42\n\nMar 8: 25\n\nMar 9: 42\n\nMar 10: 63\n\nMar 11: 171\n\nMar 12: 102\n\nMar 13: 157\n\nMar 14: 61\n\nMar 15: 49\n\nMar 16: 76\n\nMar 17: 179\n\nMar 18: 152\n\nMar 19: 69\n\nMar 20: 58\n\nMar 21: 33\n\nMar 22: 32\n\nMar 23: 49\n\nMar 24: 67\n\nMar 25: 166\n\nMar 26: 160\n\nMar 27: 162\n\nMar 28: 121\n\nMar 29: 73\n\nMar 30: 121\n\nMar 31: 59\n\nApr 1: 74\n\nApr 2: 155\n\nApr 3: 60\n\nTop versions\n\n0.34.0454\n\n0.32.1453\n\n0.35.3392\n\n0.31.0338\n\n0.33.1331\n\nBy platform\n\nfreebsd: 11linux: 2,722macos: 2,428windows: 332\n\nVersion:\n\n### Release Timeline\n\n553 releases over 1y(~1d avg)\n\n0.28\n\n0.28.2\n\nFeb 11, 2026\n\n0.29\n\n0.29.7\n\nFeb 24, 2026 [...] | 0.36.0-nightly.20260401.cdc602edd | 0 | 2d ago (Apr 1, 2026) |\n| 0.36.0-nightly.20260325.0c919857f | 0 | 1w ago (Mar 25, 2026) |\n| 0.36.0-nightly.20260323.6055c4707 | 0 | 1w ago (Mar 23, 2026) |\n| 0.36.0-nightly.20260321.fc03891a1 | 0 | 2w ago (Mar 21, 2026) |\n| 0.36.0-nightly.20260318.e2658ccda | 11 | 2w ago (Mar 18, 2026) |\n| 0.35.3 | 392 | 1w ago (Mar 28, 2026) |\n| 0.35.2 | 176 | 1w ago (Mar 26, 2026) |\n| 0.35.1 | 153 | 1w ago (Mar 26, 2026) |\n| 0.35.0 | 195 | 1w ago (Mar 24, 2026) |\n| 0.35.0-preview.5 | 0 | 1w ago (Mar 23, 2026) |\n| 0.35.0-preview.4 | 0 | 1w ago (Mar 23, 2026) |\n| 0.35.0-preview.3 | 0 | 1w ago (Mar 23, 2026) |\n| 0.35.0-preview.2 | 0 | 2w ago (Mar 19, 2026) |\n| 0.35.0-preview.1 | 0 | 2w ago (Mar 17, 2026) |",
+      "score": 0.7116118,
+      "source": "tavily"
+    },
+    {
+      "title": "Gemini CLI release notes",
+      "url": "https://geminicli.com/docs/changelogs/",
+      "content": "Core Functionality & Performance: This release includes support for built-in agent skills (#16045 by @NTaylorMullen), refined Gemini 3 system instructions (#16139 by @NTaylorMullen), caching for ignore instances to improve performance (#16185 by @EricRahm), and enhanced retry mechanisms (#16489 by @sehoon38).\n   Bug Fixes and Stability: We’ve squashed numerous bugs across the CLI, core, and workflows, addressing issues with subagent delegation, unicode character crashes, and sticky header regressions. [...] Positional Prompt for Non-Interactive: Seamlessly invoke Gemini CLI headlessly via `gemini \"Hello\"`. Synonymous with passing `-p`. (gif, pr by @allenhutchison)\n   Experimental Tool output truncation: Enable truncating shell tool outputs and saving full output to a file by setting `\"enableToolOutputTruncation\": true`(pr by @SandyTao520)\n   Edit Tool improvements: Gemini CLI’s ability to edit files should now be far more capable. (pr by @silviojr)\n   Custom witty messages: The feature you’ve all been waiting for… Personalized witty loading messages via `\"ui\": { \"customWittyPhrases\": [\"YOLO\"]}` in `settings.json`. (pr by @JayadityaGit)\n   Nested .gitignore File Handling: Nested `.gitignore` files are now respected. (pr by @gsquared94) [...] CLI streamlining: We have deprecated a number of command line arguments in favor of `settings.json`alternatives. We will remove these arguments in a future release. See the PR for the full list of deprecations. (pr by @allenhutchison)\n   JSON session summary: Track and save detailed CLI session statistics to a JSON file for performance analysis with `--session-summary <path>` (pr by @leehagoodjames)\n   Robust keyboard handling: More reliable and consistent behavior for arrow keys, special keys (Home, End, etc.), and modifier combinations across various terminals. (pr by @deepankarsharma)\n   MCP loading indicator: Provides visual feedback during CLI initialization when connecting to multiple servers. (pr by @swissspidy)",
+      "score": 0.7038554,
+      "source": "tavily"
+    },
+    {
+      "title": "@google/gemini-cli",
+      "url": "https://www.npmjs.com/package/@google/gemini-cli",
+      "content": "# @google/gemini-cli - npm\n\nskip to:contentpackage searchsign in\n\n   Pro\n   Teams\n   Pricing\n   Documentation\n\nnpm\n\nImage 3: VersionImage 4: LicenseImage 5: View Code Wiki\n\nImage 6: Gemini CLI Screenshot\n\nGemini CLI is an open-source AI agent that brings the power of Gemini directly into your terminal. It provides lightweight access to Gemini, giving you the most direct path from your prompt to our model.\n\nLearn all about Gemini CLI in our documentation.\n\n## 🚀 Why Gemini CLI?\n\n support for custom integrations.\n   💻 Terminal-first: Designed for developers who live in the command line.\n   🛡️ Open source: Apache 2.0 licensed.\n\n## 📦 Installation\n\n\nnpx @google/gemini-cli\nundefined\n\n#### Install globally with npm\n\n\n\n\n\n\n\n\nnpm install -g @google/gemini-cli\nundefined\n\n## Release Cadence and Tags [...] ## Release Cadence and Tags\n\n to tailor behavior for your projects\n\n### GitHub Integration\n\n\n\n\n\nBenefits:\n\n   Free tier: 60 requests/min and 1,000 requests/day\n   Gemini 3 models with 1M token context window\n   No API key management - just sign in with your Google account\n   Automatic updates to latest models\n\n#### Start Gemini CLI, then choose _Sign in with Google_ and follow the browser authentication flow when prompted\n\n\n   Model selection: Choose specific Gemini models\n   Usage-based billing: Upgrade for higher limits when needed\n\nundefinedshell\n# Get your key from \nexport GEMINI_API_KEY=\"YOUR_API_KEY\"\ngemini\nundefined\n\n### Option 3: Vertex AI\n\n, use `--output-format stream-json` to get newline-delimited JSON events: [...] ### Troubleshooting & Support\n\n, and we encourage the community to:\n\n   Report bugs and suggest features.\n   Improve documentation.\n   Submit code improvements.\n   Share your MCP servers and extensions.\n\nSee our Contributing Guide for development setup, coding standards, and how to submit pull requests.\n\nCheck our Official Roadmap for planned features and priorities.\n\n## 📖 Resources\n\n[](\n\n   Official Roadmap - See what's coming next.\n   Changelog - See recent notable updates.\n   NPM Package - Package registry.\n   GitHub Issues - Report bugs or request features.\n   Security Advisories - Security updates.\n\n### Uninstall\n\n[](\n\nSee the Uninstall Guide for removal instructions.\n\n## 📄 Legal\n\n[](\n\n   License: Apache License 2.0\n   Terms of Service: Terms & Privacy\n   Security: Security Policy",
+      "score": 0.53385985,
+      "source": "tavily"
+    },
+    {
+      "title": "Gemini CLI documentation | Gemini CLI",
+      "url": "https://geminicli.com/docs/",
+      "content": "Extensions: Extend Gemini CLI with new tools and capabilities.\n Agent Skills: Use specialized agents for specific tasks.\n Checkpointing: Automatic session snapshots.\n Headless mode: Programmatic and scripting interface.\n Hooks: Customize Gemini CLI behavior with scripts.\n IDE integration: Integrate Gemini CLI with your favorite IDE.\n MCP servers: Connect to and use remote agents.\n Model routing: Automatic fallback resilience.\n Model selection: Choose the best model for your needs.\n Plan mode 🔬: Use a safe, read-only mode for planning complex changes.\n Subagents 🔬: Using specialized agents for specific tasks.\n Remote subagents 🔬: Connecting to and using remote agents.\n Rewind: Rewind and replay sessions.\n Sandboxing: Isolate tool execution.\n Settings: Full configuration reference. [...] ## Development\n\nSection titled “Development”\n\n Contribution guide: How to contribute to Gemini CLI.\n Integration testing: Running integration tests.\n Issue and PR automation: Automation for issues and pull requests.\n Local development: Setting up a local development environment.\n NPM package structure: The structure of the NPM packages.\n\n## Releases\n\nSection titled “Releases”\n\n Release notes: Release notes for all versions.\n Stable release: The latest stable release.\n Preview release: The latest preview release.\n\nThis website uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic. [...] File management: How to work with local files and directories.\n Get started with Agent skills: Getting started with specialized expertise.\n Manage context and memory: Managing persistent instructions and facts.\n Execute shell commands: Executing system commands safely.\n Manage sessions and history: Resuming, managing, and rewinding conversations.\n Plan tasks with todos: Using todos for complex workflows.\n Web search and fetch: Searching and fetching content from the web.\n Set up an MCP server: Set up an MCP server.\n Automate tasks: Automate tasks.\n\n## Features\n\nSection titled “Features”\n\nTechnical documentation for each capability of Gemini CLI.",
+      "score": 0.51032627,
+      "source": "tavily"
+    },
+    {
+      "title": "Gemini CLI  |  Gemini for Google Cloud  |  Google Cloud Documentation",
+      "url": "https://docs.cloud.google.com/gemini/docs/codeassist/gemini-cli",
+      "content": "The Gemini command line interface (CLI) is an open source AI agent that provides access to Gemini directly in your terminal. The Gemini CLI uses a reason and act (ReAct) loop with your built-in tools and local or remote MCP servers to complete complex use cases like fixing bugs, creating new features, and improving test coverage. While the Gemini CLI excels at coding, it's also a versatile local utility that you can use for a wide range of tasks, from content generation and problem solving to deep research and task management.\n\nEach Gemini Code Assist edition provides quotas for using the Gemini CLI. Note that these quotas are shared between Gemini CLI and Gemini Code Assist agent mode. Gemini CLI also supports using a Gemini API key to pay as you go. [...] Model Context Protocol (MCP) servers\n Gemini CLI commands: `/memory`, `/stats`, `/tools`, `/mcp`\n Yolo mode\n built-in tools like grep, terminal, file read or file write\n Web search\n Web fetch\n\n## What's next\n\n Read more about Gemini CLI documentation.\n Download and install Gemini CLI.\n\nExcept as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates.\n\nLast updated 2026-04-08 UTC.\n\n  \n\n,,[\"Last updated 2026-04-08 UTC.\"],[],[]] [...] The Gemini CLI is available without additional setup in Cloud Shell. To get started with Gemini CLI in other environments, see the Gemini CLI documentation.\n\n### Privacy\n\nFor users of Gemini Code Assist Standard and Enterprise, the data protection and privacy practices described in Security, privacy, and compliance for Gemini Code Assist Standard and Enterprise also apply to Gemini CLI.\n\n## Gemini Code Assist agent mode (Preview)\n\nGemini Code Assist agent mode in VS Code is powered by Gemini CLI. A subset of Gemini CLI functionality is available directly in the Gemini Code Assist chat within VS Code.\n\nThe following Gemini CLI features are available in Gemini Code Assist for VS Code.",
+      "score": 0.4808937,
+      "source": "tavily"
+    },
+    {
+      "title": "Gemini CLI | gemini-cli",
+      "url": "https://google-gemini.github.io/gemini-cli/docs/cli/",
+      "content": "# gemini-cli\n\n# Gemini CLI\n\nWithin Gemini CLI, `packages/cli` is the frontend for users to send and receive prompts with the Gemini AI model and its associated tools. For a general overview of Gemini CLI, see the main documentation page.\n\n## Basic features\n\n Commands: A reference for all built-in slash commands (e.g., `/help`, `/chat`, `/tools`).\n Custom Commands: Create your own commands and shortcuts for frequently used prompts.\n Headless Mode: Use Gemini CLI programmatically for scripting and automation.\n Themes: Customizing the CLI’s appearance with different themes.\n Keyboard Shortcuts: A reference for all keyboard shortcuts to improve your workflow.\n Tutorials: Step-by-step guides for common tasks.\n\n## Advanced features [...] ## Advanced features\n\n Checkpointing: Automatically save and restore snapshots of your session and files.\n Enterprise Configuration: Deploying and manage Gemini CLI in an enterprise environment.\n Sandboxing: Isolate tool execution in a secure, containerized environment.\n Telemetry: Configure observability to monitor usage and performance.\n Token Caching: Optimize API costs by caching tokens.\n Trusted Folders: A security feature to control which projects can use the full capabilities of the CLI.\n Ignoring Files (.geminiignore): Exclude specific files and directories from being accessed by tools.\n Context Files (GEMINI.md): Provide persistent, hierarchical context to the model.\n\n## Non-interactive mode [...] ## Non-interactive mode\n\nGemini CLI can be run in a non-interactive mode, which is useful for scripting and automation. In this mode, you pipe input to the CLI, it executes the command, and then it exits.\n\nThe following example pipes a command to Gemini CLI from your terminal:\n\n```\necho \"What is fine tuning?\"\n```\n\nYou can also use the `--prompt` or `-p` flag:\n\n```\n-p \"What is fine tuning?\"\n```\n\nFor comprehensive documentation on headless usage, scripting, automation, and advanced examples, see the Headless Mode guide.\n\nThis site is open source. Improve this page.",
+      "score": 0.4674539,
+      "source": "tavily"
+    },
+    {
+      "title": "Release notes | Gemini API | Google AI for Developers",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "content": "## December 13 2023\n\nModel updates:\n\n   gemini-pro: New text model for a wide variety of tasks. Balances capability and efficiency.\n   gemini-pro-vision: New multimodal model for a wide variety of tasks. Balances capability and efficiency.\n   embedding-001: New embeddings model.\n   aqa: A new specially tuned model that is trained to answer questions using text passages for grounding generated answers.\n\nSee Gemini models for more details.\n\nAPI version updates:\n\n   v1: The stable API channel.\n   v1beta: Beta channel. This channel has features that may be under development.\n\nSee the API versions topic for more details.\n\nAPI updates:",
+      "score": 0.44594026,
+      "source": "tavily"
+    }
+  ],
+  "by_category": {
+    "official": [
+      {
+        "title": "Preview release: v0.37.0-preview.1 | Gemini CLI",
+        "url": "https://geminicli.com/docs/changelogs/preview/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "CLI commands | Gemini CLI",
+        "url": "https://geminicli.com/docs/reference/commands/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Gemini CLI release notes",
+        "url": "https://geminicli.com/docs/changelogs/",
+        "content": "Core Functionality & Performance: This release includes support for built-in agent skills (#16045 by @NTaylorMullen), refined Gemini 3 system instructions (#16139 by @NTaylorMullen), caching for ignore instances to improve performance (#16185 by @EricRahm), and enhanced retry mechanisms (#16489 by @sehoon38).\n   Bug Fixes and Stability: We’ve squashed numerous bugs across the CLI, core, and workflows, addressing issues with subagent delegation, unicode character crashes, and sticky header regressions. [...] Positional Prompt for Non-Interactive: Seamlessly invoke Gemini CLI headlessly via `gemini \"Hello\"`. Synonymous with passing `-p`. (gif, pr by @allenhutchison)\n   Experimental Tool output truncation: Enable truncating shell tool outputs and saving full output to a file by setting `\"enableToolOutputTruncation\": true`(pr by @SandyTao520)\n   Edit Tool improvements: Gemini CLI’s ability to edit files should now be far more capable. (pr by @silviojr)\n   Custom witty messages: The feature you’ve all been waiting for… Personalized witty loading messages via `\"ui\": { \"customWittyPhrases\": [\"YOLO\"]}` in `settings.json`. (pr by @JayadityaGit)\n   Nested .gitignore File Handling: Nested `.gitignore` files are now respected. (pr by @gsquared94) [...] CLI streamlining: We have deprecated a number of command line arguments in favor of `settings.json`alternatives. We will remove these arguments in a future release. See the PR for the full list of deprecations. (pr by @allenhutchison)\n   JSON session summary: Track and save detailed CLI session statistics to a JSON file for performance analysis with `--session-summary <path>` (pr by @leehagoodjames)\n   Robust keyboard handling: More reliable and consistent behavior for arrow keys, special keys (Home, End, etc.), and modifier combinations across various terminals. (pr by @deepankarsharma)\n   MCP loading indicator: Provides visual feedback during CLI initialization when connecting to multiple servers. (pr by @swissspidy)",
+        "score": 0.7038554,
+        "source": "tavily"
+      },
+      {
+        "title": "Gemini CLI documentation | Gemini CLI",
+        "url": "https://geminicli.com/docs/",
+        "content": "Extensions: Extend Gemini CLI with new tools and capabilities.\n Agent Skills: Use specialized agents for specific tasks.\n Checkpointing: Automatic session snapshots.\n Headless mode: Programmatic and scripting interface.\n Hooks: Customize Gemini CLI behavior with scripts.\n IDE integration: Integrate Gemini CLI with your favorite IDE.\n MCP servers: Connect to and use remote agents.\n Model routing: Automatic fallback resilience.\n Model selection: Choose the best model for your needs.\n Plan mode 🔬: Use a safe, read-only mode for planning complex changes.\n Subagents 🔬: Using specialized agents for specific tasks.\n Remote subagents 🔬: Connecting to and using remote agents.\n Rewind: Rewind and replay sessions.\n Sandboxing: Isolate tool execution.\n Settings: Full configuration reference. [...] ## Development\n\nSection titled “Development”\n\n Contribution guide: How to contribute to Gemini CLI.\n Integration testing: Running integration tests.\n Issue and PR automation: Automation for issues and pull requests.\n Local development: Setting up a local development environment.\n NPM package structure: The structure of the NPM packages.\n\n## Releases\n\nSection titled “Releases”\n\n Release notes: Release notes for all versions.\n Stable release: The latest stable release.\n Preview release: The latest preview release.\n\nThis website uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic. [...] File management: How to work with local files and directories.\n Get started with Agent skills: Getting started with specialized expertise.\n Manage context and memory: Managing persistent instructions and facts.\n Execute shell commands: Executing system commands safely.\n Manage sessions and history: Resuming, managing, and rewinding conversations.\n Plan tasks with todos: Using todos for complex workflows.\n Web search and fetch: Searching and fetching content from the web.\n Set up an MCP server: Set up an MCP server.\n Automate tasks: Automate tasks.\n\n## Features\n\nSection titled “Features”\n\nTechnical documentation for each capability of Gemini CLI.",
+        "score": 0.51032627,
+        "source": "tavily"
+      },
+      {
+        "title": "Gemini CLI  |  Gemini for Google Cloud  |  Google Cloud Documentation",
+        "url": "https://docs.cloud.google.com/gemini/docs/codeassist/gemini-cli",
+        "content": "The Gemini command line interface (CLI) is an open source AI agent that provides access to Gemini directly in your terminal. The Gemini CLI uses a reason and act (ReAct) loop with your built-in tools and local or remote MCP servers to complete complex use cases like fixing bugs, creating new features, and improving test coverage. While the Gemini CLI excels at coding, it's also a versatile local utility that you can use for a wide range of tasks, from content generation and problem solving to deep research and task management.\n\nEach Gemini Code Assist edition provides quotas for using the Gemini CLI. Note that these quotas are shared between Gemini CLI and Gemini Code Assist agent mode. Gemini CLI also supports using a Gemini API key to pay as you go. [...] Model Context Protocol (MCP) servers\n Gemini CLI commands: `/memory`, `/stats`, `/tools`, `/mcp`\n Yolo mode\n built-in tools like grep, terminal, file read or file write\n Web search\n Web fetch\n\n## What's next\n\n Read more about Gemini CLI documentation.\n Download and install Gemini CLI.\n\nExcept as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates.\n\nLast updated 2026-04-08 UTC.\n\n  \n\n,,[\"Last updated 2026-04-08 UTC.\"],[],[]] [...] The Gemini CLI is available without additional setup in Cloud Shell. To get started with Gemini CLI in other environments, see the Gemini CLI documentation.\n\n### Privacy\n\nFor users of Gemini Code Assist Standard and Enterprise, the data protection and privacy practices described in Security, privacy, and compliance for Gemini Code Assist Standard and Enterprise also apply to Gemini CLI.\n\n## Gemini Code Assist agent mode (Preview)\n\nGemini Code Assist agent mode in VS Code is powered by Gemini CLI. A subset of Gemini CLI functionality is available directly in the Gemini Code Assist chat within VS Code.\n\nThe following Gemini CLI features are available in Gemini Code Assist for VS Code.",
+        "score": 0.4808937,
+        "source": "tavily"
+      },
+      {
+        "title": "Gemini CLI | gemini-cli",
+        "url": "https://google-gemini.github.io/gemini-cli/docs/cli/",
+        "content": "# gemini-cli\n\n# Gemini CLI\n\nWithin Gemini CLI, `packages/cli` is the frontend for users to send and receive prompts with the Gemini AI model and its associated tools. For a general overview of Gemini CLI, see the main documentation page.\n\n## Basic features\n\n Commands: A reference for all built-in slash commands (e.g., `/help`, `/chat`, `/tools`).\n Custom Commands: Create your own commands and shortcuts for frequently used prompts.\n Headless Mode: Use Gemini CLI programmatically for scripting and automation.\n Themes: Customizing the CLI’s appearance with different themes.\n Keyboard Shortcuts: A reference for all keyboard shortcuts to improve your workflow.\n Tutorials: Step-by-step guides for common tasks.\n\n## Advanced features [...] ## Advanced features\n\n Checkpointing: Automatically save and restore snapshots of your session and files.\n Enterprise Configuration: Deploying and manage Gemini CLI in an enterprise environment.\n Sandboxing: Isolate tool execution in a secure, containerized environment.\n Telemetry: Configure observability to monitor usage and performance.\n Token Caching: Optimize API costs by caching tokens.\n Trusted Folders: A security feature to control which projects can use the full capabilities of the CLI.\n Ignoring Files (.geminiignore): Exclude specific files and directories from being accessed by tools.\n Context Files (GEMINI.md): Provide persistent, hierarchical context to the model.\n\n## Non-interactive mode [...] ## Non-interactive mode\n\nGemini CLI can be run in a non-interactive mode, which is useful for scripting and automation. In this mode, you pipe input to the CLI, it executes the command, and then it exits.\n\nThe following example pipes a command to Gemini CLI from your terminal:\n\n```\necho \"What is fine tuning?\"\n```\n\nYou can also use the `--prompt` or `-p` flag:\n\n```\n-p \"What is fine tuning?\"\n```\n\nFor comprehensive documentation on headless usage, scripting, automation, and advanced examples, see the Headless Mode guide.\n\nThis site is open source. Improve this page.",
+        "score": 0.4674539,
+        "source": "tavily"
+      },
+      {
+        "title": "Release notes | Gemini API | Google AI for Developers",
+        "url": "https://ai.google.dev/gemini-api/docs/changelog",
+        "content": "## December 13 2023\n\nModel updates:\n\n   gemini-pro: New text model for a wide variety of tasks. Balances capability and efficiency.\n   gemini-pro-vision: New multimodal model for a wide variety of tasks. Balances capability and efficiency.\n   embedding-001: New embeddings model.\n   aqa: A new specially tuned model that is trained to answer questions using text passages for grounding generated answers.\n\nSee Gemini models for more details.\n\nAPI version updates:\n\n   v1: The stable API channel.\n   v1beta: Beta channel. This channel has features that may be under development.\n\nSee the API versions topic for more details.\n\nAPI updates:",
+        "score": 0.44594026,
+        "source": "tavily"
+      }
+    ],
+    "blog": [
+      {
+        "title": "Google announces Gemini CLI: your open-source AI agent",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-cli-open-source-ai-agent/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      }
+    ],
+    "github": [
+      {
+        "title": "Unable to select gemini-3.1-pro-preview despite active Google ... - GitHub",
+        "url": "https://github.com/google-gemini/gemini-cli/issues/25004",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "gemini-cli v0.37.0 - Failed - Package Tests Results · GitHub",
+        "url": "https://gist.github.com/choco-bot/6e8f8ba7e4b08882d103531c00b378b4",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Releases · google-gemini/gemini-cli - GitHub",
+        "url": "https://github.com/google-gemini/gemini-cli/releases",
+        "content": "Update ink version to 6.6.7 by @jacob314 in #24514\n   fix(acp): handle all InvalidStreamError types gracefully in prompt by @sripasg in #24540\n   Fix crash when vim editor is not found in PATH on Windows by @Nagajyothi-tammisetti in #22423\n   fix(core): move project memory dir under tmp directory by @SandyTao520 in #24542\n   Enable 'Other' option for yesno question type by @ruomengz in #24545\n   fix(cli): clear stale retry/loading state after cancellation (#21096) by @Aaxhirrr in #21960\n   Changelog for v0.37.0-preview.0 by @gemini-cli-robot in #24464\n   feat(core): implement context-aware persistent policy approvals by @jerop in #23257\n   docs: move agent disabling instructions and update remote agent status by @jackwotherspoon in #24559 [...] ## No results found\n\nView all tags\n\nRelease v0.37.0-preview.2Pre-release\n\nPre-release\n\n## What's Changed\n\n   fix(patch): cherry-pick cb7f7d6 to release/v0.37.0-preview.1-pr-24342 to patch version v0.37.0-preview.1 and create version 0.37.0-preview.2 by @gemini-cli-robot in #24842\n\nFull Changelog: v0.37.0-preview.1...v0.37.0-preview.2\n\n### Contributors\n\n   Image 120: @gemini-cli-robot\n\n gemini-cli-robot \n\nAssets 3\n\n   gemini-cli-bundle.zip sha256:f225c30458679f7d16ac263d369a032ed0393c7ecbb4b6fd0fb0a45f1159945f  22.6 MB 2026-04-07T19:12:19Z \n   Source code(zip) 2026-04-07T19:02:56Z \n   Source code(tar.gz) 2026-04-07T19:02:56Z \n\nAll reactions\n\n## Release v0.36.0-nightly.20260407.1c22c5b37\n\n 07 Apr 17:38 \n\nImage 121: @gemini-cli-robotgemini-cli-robot\n\nv0.36.0-nightly.20260407.1c22c5b37 [...] feat(cli): migrate nonInteractiveCli to LegacyAgentSession by @adamfweidman in #22987\n   fix(core): unsafe type assertions in Core File System #19712 by @aniketsaurav18 in #19739\n   fix(ui): hide model quota in /stats and refactor quota display by @danzaharia1 in #24206\n   Changelog for v0.36.0 by @gemini-cli-robot in #24558\n   Changelog for v0.37.0-preview.1 by @gemini-cli-robot in #24568\n   docs: add missing .md extensions to internal doc links by @ishaan-arora-1 in #24145\n   fix(ui): fixed table styling by @devr0306 in #24565\n   fix(core): pass includeDirectories to sandbox configuration by @galz10 in #24573\n   feat(ui): enable \"TerminalBuffer\" mode to solve flicker by @jacob314 in #24512\n   docs: clarify release coordination by @scidomino in #24575",
+        "score": 0.72325134,
+        "source": "tavily"
+      }
+    ],
+    "news": [
+      {
+        "title": "Gemini CLI 0.37.0 - Chocolatey Software",
+        "url": "https://community.chocolatey.org/packages/gemini-cli/0.37.0",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "@google/gemini-cli 0.37.0-preview.2 on Node.js NPM - NewReleases.io",
+        "url": "https://newreleases.io/project/npm/@google/gemini-cli/release/0.37.0-preview.2",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "UNPKG",
+        "url": "https://app.unpkg.com/@google/gemini-cli-core@0.1.9/files/dist/src/utils",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Mastering Gemini CLI for FullStack Devs: Advanced Token-Saving ...",
+        "url": "https://www.linkedin.com/pulse/mastering-gemini-cli-fullstack-devs-advanced-part-1-bonato-alves-xzn6e",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "@google/gemini-cli 0.37.0-preview.1 on Node.js NPM",
+        "url": "https://newreleases.io/project/npm/@google/gemini-cli/release/0.37.0-preview.1",
+        "content": "# @google/gemini-cli 0.37.0-preview.1 Release v0.37.0-preview.1 on Node.js NPM\n\nlatest releases: 0.39.0-nightly.20260409.615e07834, 0.39.0-nightly.20260408.a39461718, 0.37.0...\n\n6 days ago\n\n## What's Changed\n\n fix(patch): cherry-pick 64c928f to release/v0.37.0-preview.0-pr-23257 to patch version v0.37.0-preview.0 and create version 0.37.0-preview.1 by @gemini-cli-robot in #24561\n\nFull Changelog: v0.37.0-preview.0...v0.37.0-preview.1\n\nCheck out latest releases or   \n releases around @google/gemini-cli 0.37.0-preview.1\n\nDon't miss a new gemini-cli release\n\nNewReleases is sending notifications on new releases.\n\nGet notifications",
+        "score": 0.7471924,
+        "source": "tavily"
+      },
+      {
+        "title": "google-gemini/gemini-cli v0.37.0-preview.1 on GitHub",
+        "url": "https://newreleases.io/project/github/google-gemini/gemini-cli/release/v0.37.0-preview.1",
+        "content": "# github google-gemini/gemini-cli v0.37.0-preview.1 Release v0.37.0-preview.1 on GitHub\n\ngithub\n\n## What's Changed\n\nFull Changelog: v0.37.0-preview.0...v0.37.0-preview.1\n\nDon't miss a new gemini-cli release\n\nNewReleases is sending notifications on new releases.\n\nNewReleases is sending notifications on new releases.",
+        "score": 0.7348247,
+        "source": "tavily"
+      },
+      {
+        "title": "gemini-cli | mise versions",
+        "url": "https://mise-versions.jdx.dev/tools/gemini-cli",
+        "content": "| (553 ) |  |  |\n --- \n| 0.37.0-preview.1 | 0 | yesterday (Apr 2, 2026) |\n| 0.37.0-preview.0 | 0 | 2d ago (Apr 1, 2026) |\n| 0.36.0 | 238 | 2d ago (Apr 1, 2026) |\n| 0.36.0-preview.8 | 0 | 2d ago (Apr 1, 2026) |\n| 0.36.0-preview.7 | 0 | 3d ago (Mar 31, 2026) |\n| 0.36.0-preview.6 | 1 | 1w ago (Mar 28, 2026) |\n| 0.36.0-preview.5 | 0 | 1w ago (Mar 27, 2026) |\n| 0.36.0-preview.4 | 0 | 1w ago (Mar 26, 2026) |\n| 0.36.0-preview.3 | 0 | 1w ago (Mar 25, 2026) |\n| 0.36.0-preview.2 | 0 | 1w ago (Mar 25, 2026) |\n| 0.36.0-preview.0 | 0 | 1w ago (Mar 24, 2026) |\n| 0.36.0-nightly.20260404.4fb379005 | 0 | today (Apr 4, 2026) |\n| 0.36.0-nightly.20260403.1ae0499e5 | 0 | today (Apr 3, 2026) |\n| 0.36.0-nightly.20260402.13ccc1645 | 0 | yesterday (Apr 2, 2026) | [...] mise versions\n\n# gemini-cli\n\nnpm:@google/gemini-cli  · 0.36.0 · 553 versions · 5,493 downloads\n\nInstall with mise:\n\n`mise use gemini-cli@latest`\n\n \n\n## Downloads\n\nLast 30 days\n\n179900\n\nMar 5: 73\n\nMar 6: 56\n\nMar 7: 42\n\nMar 8: 25\n\nMar 9: 42\n\nMar 10: 63\n\nMar 11: 171\n\nMar 12: 102\n\nMar 13: 157\n\nMar 14: 61\n\nMar 15: 49\n\nMar 16: 76\n\nMar 17: 179\n\nMar 18: 152\n\nMar 19: 69\n\nMar 20: 58\n\nMar 21: 33\n\nMar 22: 32\n\nMar 23: 49\n\nMar 24: 67\n\nMar 25: 166\n\nMar 26: 160\n\nMar 27: 162\n\nMar 28: 121\n\nMar 29: 73\n\nMar 30: 121\n\nMar 31: 59\n\nApr 1: 74\n\nApr 2: 155\n\nApr 3: 60\n\nTop versions\n\n0.34.0454\n\n0.32.1453\n\n0.35.3392\n\n0.31.0338\n\n0.33.1331\n\nBy platform\n\nfreebsd: 11linux: 2,722macos: 2,428windows: 332\n\nVersion:\n\n### Release Timeline\n\n553 releases over 1y(~1d avg)\n\n0.28\n\n0.28.2\n\nFeb 11, 2026\n\n0.29\n\n0.29.7\n\nFeb 24, 2026 [...] | 0.36.0-nightly.20260401.cdc602edd | 0 | 2d ago (Apr 1, 2026) |\n| 0.36.0-nightly.20260325.0c919857f | 0 | 1w ago (Mar 25, 2026) |\n| 0.36.0-nightly.20260323.6055c4707 | 0 | 1w ago (Mar 23, 2026) |\n| 0.36.0-nightly.20260321.fc03891a1 | 0 | 2w ago (Mar 21, 2026) |\n| 0.36.0-nightly.20260318.e2658ccda | 11 | 2w ago (Mar 18, 2026) |\n| 0.35.3 | 392 | 1w ago (Mar 28, 2026) |\n| 0.35.2 | 176 | 1w ago (Mar 26, 2026) |\n| 0.35.1 | 153 | 1w ago (Mar 26, 2026) |\n| 0.35.0 | 195 | 1w ago (Mar 24, 2026) |\n| 0.35.0-preview.5 | 0 | 1w ago (Mar 23, 2026) |\n| 0.35.0-preview.4 | 0 | 1w ago (Mar 23, 2026) |\n| 0.35.0-preview.3 | 0 | 1w ago (Mar 23, 2026) |\n| 0.35.0-preview.2 | 0 | 2w ago (Mar 19, 2026) |\n| 0.35.0-preview.1 | 0 | 2w ago (Mar 17, 2026) |",
+        "score": 0.7116118,
+        "source": "tavily"
+      },
+      {
+        "title": "@google/gemini-cli",
+        "url": "https://www.npmjs.com/package/@google/gemini-cli",
+        "content": "# @google/gemini-cli - npm\n\nskip to:contentpackage searchsign in\n\n   Pro\n   Teams\n   Pricing\n   Documentation\n\nnpm\n\nImage 3: VersionImage 4: LicenseImage 5: View Code Wiki\n\nImage 6: Gemini CLI Screenshot\n\nGemini CLI is an open-source AI agent that brings the power of Gemini directly into your terminal. It provides lightweight access to Gemini, giving you the most direct path from your prompt to our model.\n\nLearn all about Gemini CLI in our documentation.\n\n## 🚀 Why Gemini CLI?\n\n support for custom integrations.\n   💻 Terminal-first: Designed for developers who live in the command line.\n   🛡️ Open source: Apache 2.0 licensed.\n\n## 📦 Installation\n\n\nnpx @google/gemini-cli\nundefined\n\n#### Install globally with npm\n\n\n\n\n\n\n\n\nnpm install -g @google/gemini-cli\nundefined\n\n## Release Cadence and Tags [...] ## Release Cadence and Tags\n\n to tailor behavior for your projects\n\n### GitHub Integration\n\n\n\n\n\nBenefits:\n\n   Free tier: 60 requests/min and 1,000 requests/day\n   Gemini 3 models with 1M token context window\n   No API key management - just sign in with your Google account\n   Automatic updates to latest models\n\n#### Start Gemini CLI, then choose _Sign in with Google_ and follow the browser authentication flow when prompted\n\n\n   Model selection: Choose specific Gemini models\n   Usage-based billing: Upgrade for higher limits when needed\n\nundefinedshell\n# Get your key from \nexport GEMINI_API_KEY=\"YOUR_API_KEY\"\ngemini\nundefined\n\n### Option 3: Vertex AI\n\n, use `--output-format stream-json` to get newline-delimited JSON events: [...] ### Troubleshooting & Support\n\n, and we encourage the community to:\n\n   Report bugs and suggest features.\n   Improve documentation.\n   Submit code improvements.\n   Share your MCP servers and extensions.\n\nSee our Contributing Guide for development setup, coding standards, and how to submit pull requests.\n\nCheck our Official Roadmap for planned features and priorities.\n\n## 📖 Resources\n\n[](\n\n   Official Roadmap - See what's coming next.\n   Changelog - See recent notable updates.\n   NPM Package - Package registry.\n   GitHub Issues - Report bugs or request features.\n   Security Advisories - Security updates.\n\n### Uninstall\n\n[](\n\nSee the Uninstall Guide for removal instructions.\n\n## 📄 Legal\n\n[](\n\n   License: Apache License 2.0\n   Terms of Service: Terms & Privacy\n   Security: Security Policy",
+        "score": 0.53385985,
+        "source": "tavily"
+      }
+    ]
+  },
+  "total": 19
+}
