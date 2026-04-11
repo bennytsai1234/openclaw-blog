@@ -1,0 +1,301 @@
+{
+  "merged": [
+    {
+      "title": "Introducing Muse Spark: Scaling Towards Personal Superintelligence",
+      "url": "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+      "content": "Applications\n\nMuse Spark is the first step toward a personal superintelligence that understands your world. From analyzing your immediate environment to supporting your wellness, the advanced reasoning capabilities of Muse Spark enable powerful, highly personal use cases.\n\nMultimodal. Muse Spark is built from the ground up to integrate visual information across domains and tools. It achieves strong performance on visual STEM questions, entity recognition, and localization. These capabilities come together to enable interactive experiences like creating fun minigames or troubleshooting your home appliances with dynamic annotations. [...] To deliver the most intelligence per token, our RL training maximizes correctness subject to a penalty on thinking time. On a subset of evaluations such as AIME, this causes a phase transition. After an initial period where the model improves by thinking longer, the length penalty causes thought compression — Muse Spark compresses its reasoning to solve problems using significantly fewer tokens. After compressing, the model again extends its solutions to achieve stronger performance. [...] Reinforcement Learning. After pretraining, reinforcement learning (RL) leverages compute to scalably amplify model capabilities. Even though large-scale RL is notoriously prone to instability, our new stack delivers smooth, predictable gains.\n\nThe plots below show the benefits of scaling RL compute (measured in steps) for Muse Spark. On the left, we see log-linear growth in pass@1 and pass@16 (at least one success across 16 attempts) on the training data. This indicates that RL is improving model reliability without compromising reasoning diversity. On the right, accuracy growth on a held-out evaluation set establishes that the gains from RL predictably generalize: Muse Spark smoothly improves on tasks that were not seen in training.",
+      "score": 0.99992454,
+      "source": "tavily"
+    },
+    {
+      "title": "Muse Spark: Features, Benchmarks, and How to Use It - DataCamp",
+      "url": "https://www.datacamp.com/blog/muse-spark",
+      "content": "## Conclusion\n\nThe jump from Llama 4 Maverick's 18 to Muse Spark's 52 on the Artificial Analysis Intelligence Index is not subtle. For a team that rebuilt from scratch in nine months, the health and multimodal results are a real first step, and they hold under independent testing.\n\nSure, the gaps are obvious. Coding and agentic tasks against GPT-5.4 are not close; abstract visual reasoning is a clear weak spot, and there is still no public API. If you need a model you can build against today, Muse Spark is not that yet. [...] ## What Is Muse Spark?\n\nMuse Spark is a natively multimodal reasoning model that handles text, images, audio, and tool use in a single architecture. It supports visual chain-of-thought, meaning the model can work through image-based problems step-by-step rather than just producing a single answer. Multi-agent orchestration is also part of the setup, which we will get to.\n\nEarlier Llama models returned answers based on pattern matching from training. Muse Spark works through problems before responding. That is the actual shift.\n\n### Who is behind it? [...] ## Testing Muse Spark\n\nWith those benchmark scores in mind, let’s put Muse Spark to the test. I will examine the model in multi-step reasoning, image understanding, and code debugging.\n\n### Test 1: Fibonacci–binary logic chain (cascading reasoning stability)\n\nIn my first test, I will target the advanced reasoning capabilities of Muse Spark in a multi-step exercise. The model needs to:\n\n Identify the correct Fibonacci term\n Convert it accurately to binary\n Count bits precisely\n Generate primes in a computed range\n Perform a large summation\n\nThe prompt used was:",
+      "score": 0.9997408,
+      "source": "tavily"
+    },
+    {
+      "title": "Meta's Muse Spark model brings reasoning capabilities ... - Engadget",
+      "url": "https://www.engadget.com/ai/metas-muse-spark-model-brings-reasoning-capabilities-to-the-meta-ai-app-161456684.html",
+      "content": "A GIF demonstrating Muse Spark's multi-agent capabilities.\n\nMuse Spark can also coordinate multiple AI subagents to tackle a request. Meta suggests users will see this capability in action when they ask for help with tasks like family trip planning. In such a scenario, one agent might compile an itinerary, while another finds kid-friendly activities everyone can enjoy. At the same time, Meta has built Spark to be natively multimodal, meaning the model can process images, video and audio. Like Google Lens, this gives you the option to snap a photo with your phone and ask Meta AI questions about what you see. [...] To that point, many of Spark's capabilities are table stakes for a new model in 2026. For instance, it offers both \"Instant\" and \"Thinking\" modes. With the latter engaged, the model will take an extra few moments to reason through a prompt. Other consumer-facing AI systems have had this kind of flexibility for a while. Anthropic, for example, was one of the first AI labs to offer a \"hybrid reasoning model\" when it released Claude Sonnet 3.7 at the start of last year. That said, Meta plans to add an even more powerful \"Contemplating\" mode down the road.\n\nA GIF demonstrating Muse Spark's multi-agent capabilities. [...] Of course, it wouldn't be a 2026 AI release if Muse Spark didn't include a built-in shopping assistant. Like ChatGPT, Spark can compare different items for you, listing the pros and cons of each, with links to make it easy to buy the product that appeals to you.\n\nMuse Spark is available today in the Meta AI app and meta.ai website everywhere where the company offers those services. Meta will begin rolling out the new features the model powers starting in the US. In the coming weeks, the company plans to bring Muse Spark to more countries and places where people can access Meta AI, including Facebook, Instagram and WhatsApp.",
+      "score": 0.99972624,
+      "source": "tavily"
+    },
+    {
+      "title": "Introducing Muse Spark: Meta's Most Powerful Model Yet",
+      "url": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
+      "content": "## A New Model: Muse Spark\n\nOver the last nine months, Meta Superintelligence Labs rebuilt our AI stack from the ground up, moving faster than any development cycle we have run before. Muse Spark is the first model in our new Muse series — a deliberate and scientific approach to model scaling where each generation validates and builds on the last before we go bigger. This initial model is small and fast by design, yet capable enough to reason through complex questions in science, math, and health. It is a powerful foundation, and the next generation is already in development. Muse Spark now powers the Meta AI assistant in the Meta AI app and meta.ai, built to support complex reasoning and multimodal tasks.\n\n## What’s Changed With Meta AI [...] Meta AI logo animation\n\n## Takeaways\n\nToday we are announcing Muse Spark, the first in a new series of large language models built by Meta Superintelligence Labs. We are on our way to personal superintelligence: an assistant that can help anyone, anywhere with the things that matter most to them.\n\n## A New Model: Muse Spark [...] Two phone screens showing a chat with Meta AI estimating calorie count of food shown in a photo\n\nTwo phone screens showing a chat with Meta AI estimating calorie count of food shown in a photo\n\nMultimodal perception is especially valuable for health. With Muse Spark, Meta AI is now able to help you navigate health questions with more detailed responses, including some questions involving images and charts. Health is one of the top reasons people turn to AI, so we worked with a team of physicians to develop the model’s ability to provide helpful information on common health questions and concerns.",
+      "score": 0.999608,
+      "source": "tavily"
+    },
+    {
+      "title": "MuseSpark Frontend",
+      "url": "https://www.musespark.ai/",
+      "content": "## Frequently Asked Questions\n\nMuseSpark brings image, video, audio, 3D, avatar, and text workflows into one workspace, so you can move from first idea to production-ready assets without stitching together separate tools.\n\nStart in Model Space when you want to compare base models and control how content is generated. Start in AI Tools when you want ready-made workflows for jobs like editing, translation, effects, or marketing assets.\n\nChoose based on output type, visual style, speed, and cost. A practical flow is to compare candidates in Model Space, review real examples in Inspiration, then lock in the model that matches your quality and turnaround needs. [...] Yes. MuseSpark offers API access for supported capabilities, making it easier to connect generation workflows with internal tools, automation, or customer-facing products.\n\n## Ready to Unlock True Model Potential?\n\nStart for Free [...] No. You can start with simple prompts and built-in workflows, then add references, aspect ratio, duration, or style controls only when you need finer output control.\n\nIn many cases, yes, but commercial usage depends on the model or tool you select and on whether you have rights to the source assets you upload. Check the relevant model or tool details before shipping client or brand work.\n\nSpeed depends on the model, queue state, resolution, and output length. Image jobs are usually fastest, while longer video or audio generations take more time, especially at higher quality settings.\n\nCredits are consumed according to the model or tool you run and the settings you choose. You can review available plans on the Pricing page and track actual usage from your account after each run.",
+      "score": 0.9995453,
+      "source": "tavily"
+    },
+    {
+      "title": "Muse Spark: Scaling towards personal superintelligence",
+      "url": "https://news.ycombinator.com/item?id=47692043",
+      "content": "unfortunately very, very bad (e.g. search is awful). Can't wait to try this in some real external services where we can see how it performs for real. Definitely getting ordinary high-quality results, overall. But hard to test agentic behavior and hard to test prose quality, even, when just working off of the default chat interface. One thing that stands out is that _for_ the quality it feels very, very fast. Perhaps it's just only very lightly loaded right now, but irrespective it's lovely to feel. I'm quite impressed with the tone overall. It definitely feels much more like Opus than it does, like, GPT or Grok in the sense that the style is conversational, natural and enjoyable. reply Image 240) This seems pretty good. reply Image 241) > Muse Spark is available today at meta.ai and the [...] Image 326 Guidelines | FAQ | Lists | API | Security | Legal | Apply to YC | Contact Search: [...] 241) > Muse Spark is available today at meta.ai and the Meta AI app. We’re opening a private API preview to select users. reply Image 242) So no Open-weight .. why one would choose Muse Spark instead of Anthropic, OpenAI, or Google models all featuring from good to amazing harness? reply Image 243) Can't login. No error message in the UI. But the URL changes to \" reply Image 244) same. closed tab and will forget to ever use it now reply Image 245) I switched to Chrome (from Firefox) and tried again. Now it's \" :facepalm: reply Image 246) Perhaps I'm wrong, but definitely seems to be SOTA. Although looking at it's ARC-AGI-2 score it's reasoning isn't very good. I suspect it's got the benefits of scale but lacks that human added element, understandable considering they claim to be building",
+      "score": 0.99953806,
+      "source": "tavily"
+    },
+    {
+      "title": "Meta debuts the Muse Spark model in a 'ground-up overhaul' of its AI",
+      "url": "https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/",
+      "content": "Meta released an AI model on Wednesday called Muse Spark, which marks its “first step” toward an “overhaul of [its] AI efforts.”\n\nMuse Spark is the inaugural model to come out of Meta Superintelligence Labs, which was created last year because CEO Mark Zuckerberg was reportedly unhappy with the progress of Meta and its Llama models and how they lagged behind OpenAI’s ChatGPT and Anthropic’s Claude. Meta recruited former Scale AI co-founder and CEO Alexandr Wang to lead Meta Superintelligence Labs and invested $14.3 billion in the data labeling company for a 49% stake.\n\nNow, it’s time for Zuckerberg to see if his reconfigured AI team can woo users. [...] Muse Spark, which is now available on the web and the Meta AI app, is expected to improve over time. The company plans to roll out a “Contemplating” mode, which allows it to tackle more complex problems. Meta’s model uses multiple AI agents at once to work on the same problem, which it says will generate faster results for its Contemplating mode.\n\n“To spend more test-time reasoning without drastically increasing latency, we can scale the number of parallel agents that collaborate to solve hard problems,” the company wrote.\n\nMeta’s competitors have historically placed these more capable models behind a paywall. It’s unclear if Meta will follow the same strategy. [...] Meta’s push into health — and even the more basic function of logging into Muse Spark — could raise privacy concerns. Muse Spark users will need to log in with an existing Meta account such as Facebook or Instagram in order to use it. Meta doesn’t explicitly say that personal information from a Facebook or Instagram account will be used by the AI. But it is likely considering that Meta generally trains on public user data and the company has positioned Muse Spark as a personal superintelligence product.\n\nMeta also said that Muse Spark performs especially well with visual STEM questions which can lead to “interactive experiences like creating fun minigames or troubleshooting your home appliances.”",
+      "score": 0.99944717,
+      "source": "tavily"
+    },
+    {
+      "title": "Meta debuts Muse Spark, first AI model under Alexandr Wang",
+      "url": "https://www.axios.com/2026/04/08/meta-muse-alexandr-wang",
+      "content": "Why it matters:The model — code-named Avocado and built over the past nine months by a team led by Alexandr Wang — is a major upgrade over its Llama 4 models, Meta tells Axios.\n\nDriving the news: Muse Spark will power queries in the Meta AI app and Meta.ai website immediately, with plans to expand across Facebook, Instagram and WhatsApp.\n\n   The model accepts voice, text and image inputs, but produces text-only output.\n   As Axios first reported, Meta plans to release a version of Muse Spark under an open-source license.\n\nZoom in:The model uses a fast mode for casual queries and several reasoning modes. [...] Yes, but: Consumers should be aware that Meta's privacy policy sets few limits on how the company can use any data shared with its AI system.\n\nThe big picture: Meta sees the release of Muse Spark as just one step toward its broader vision of personal superintelligence.\n\n   However, Meta's rivals are also leaping forward. Anthropic this week detailed Mythos, a model it says is so powerful that its initial release is being limited to a handful of tech companies to focus on cybersecurity defense.\n   OpenAI is also putting the finishing touches on a new model, code-named Spud, that is also believed to represent a significant leap forward. [...] A \"shopping mode\" highlights how Meta hopes to differentiate itself. It combines large language models with data on user interests and behavior.\n   Over time, the model will also power \"features that cite recommendations and content people share across Instagram, Facebook, and Threads,\" Meta said in a blog post.\n\nZoom out: A Meta executive told Axios that Muse Spark doesn't mark a new state of the art, but is competitive with the latest models from leading labs at certain tasks, including multimodal understanding and processing health information.\n\n   In other areas, including coding, the company acknowledges that there is a gap between Muse Spark and the models already available.\n\n   All flavors of the model are free to use, though Meta may impose rate limits.",
+      "score": 0.9992084,
+      "source": "tavily"
+    },
+    {
+      "title": "Muse Spark - The Rundown AI",
+      "url": "https://www.rundown.ai/tools/muse-spark",
+      "content": "University Login\n\nThe Rundown AI /  Tools /  Consumer /  Muse Spark\n\n# Muse Spark\n\nTry Muse Spark\n\nMeta MSL's natively multimodal reasoning model with a multi-agent Contemplating mode\n\n‍\n\n Category\n\n  Consumer\n Visit\n\n  \n\nJoin The Rundown University\n\nThrough our vast network of over 100 partnerships with major AI companies, we also offer University members free access or major discounts to the many popular AI tools along with AI certified courses, daily guides on AI tools and many more.\n\nJoin AI UniversityLearn more\n\n## Guides on AI Tools similar to Muse Spark\n\nCreate personalized AI images of yourself with Meta AI\n\nDr. Alvaro Cintas\n\nAnalyze and Optimize Your Health Data\n\nDr. Alvaro Cintas\n\nTurn your health data into personalized insights\n\nDr. Alvaro Cintas\n\n## Similar Tools\n\nView all",
+      "score": 0.9933072,
+      "source": "tavily"
+    },
+    {
+      "title": "Muse Spark API Provider Benchmarking & Analysis",
+      "url": "https://artificialanalysis.ai/models/muse-spark/providers",
+      "content": "Artificial Analysis\nArtificial Analysis\nMuse Spark logo\n\n# Muse Spark API Provider Benchmarking & Analysis\n\nProprietary model\n\nReleased April 2026\n\nAnalysis of API providers for Muse Spark across performance metrics including latency (time to first token), output speed (output tokens per second), price and others. API providers benchmarked include .\n\n### Fastest\n\nOutput speed\n\nTotal 0 providers\n\n### Lowest Latency\n\nTime to first answer token\n\nTotal 0 providers\n\n### Lowest Price\n\nBlended price (per 1M tokens)\n\nTotal 0 providers\n\nNo API providers are currently available for Muse Spark.\n\nBenchmarks of providers are not available for this model.  \nPlease see the models page for Muse Spark for details of the model and its intelligence compared to other models.\n\n#### Navigation [...] ### Price\n\nPrice per token, represented as USD per million Tokens. Price is a blend of Input & Output token prices (3:1 ratio).\n\n### Median\n\nFigures represent median (P50) measurement over the past 72 hours to reflect sustained changes in performance.\n\n## Speed\n\nMeasured by Output Speed (tokens per second)\n\n## Output Speed: Muse Spark Providers\n\n### Output Speed\n\nTokens per second received while the model is generating tokens (ie. after first chunk has been received from the API for models which support streaming).\n\n### Median\n\nFigures represent median (P50) measurement over the past 72 hours to reflect sustained changes in performance.\n\n## Latency vs. Output Speed: Muse Spark Providers\n\n### Output Speed [...] ## Latency\n\nMeasured by Time (seconds) to First Token\n\n## Time to First Answer Token: Muse Spark Providers\n\n### Time To First Answer Token\n\nTime to first answer token received, in seconds, after API request sent. For reasoning models, this includes the 'thinking' time of the model before providing an answer. For models which do not support streaming, this represents time to receive the completion.\n\n### Median\n\nFigures represent median (P50) measurement over the past 72 hours to reflect sustained changes in performance.\n\n## End-to-End Response Time\n\nSeconds to output 500 Tokens, calculated based on time to first token, 'thinking' time for reasoning models, and output speed\n\n## End-to-End Response Time: Muse Spark Providers\n\n### End-to-End Response Time",
+      "score": 0.99155444,
+      "source": "tavily"
+    },
+    {
+      "title": "Muse Spark: Everything you need to know - artificialanalysis.ai",
+      "url": "https://artificialanalysis.ai/articles/muse-spark-everything-you-need-to-know",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Meta unveils Muse Spark, its first AI model since hiring ... - Fortune",
+      "url": "https://fortune.com/2026/04/08/meta-unveils-muse-spark-mark-zuckerberg-ai-push/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Meta&#x27;s Superintelligence Lab unveils its first public model, Muse Spark ...",
+      "url": "https://arstechnica.com/ai/2026/04/metas-superintelligence-lab-unveils-its-first-public-model-muse-spark/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Meta debuts new AI model, attempting to catch up to Google, OpenAI - CNBC",
+      "url": "https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Meta Introduces Muse Spark AI: Complete Feature Breakdown 2026",
+      "url": "https://deeperinsights.com/news/meta-introduces-muse-spark-ai/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Meta Unveils New A.I. Model, Its First From the Superintelligence Lab ...",
+      "url": "https://www.nytimes.com/2026/04/08/technology/meta-muse-spark-ai-model.html",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Meta's Muse Spark is its first frontier model and its first without open weights",
+      "url": "https://the-decoder.com/metas-muse-spark-is-its-first-frontier-model-and-its-first-without-open-weights/",
+      "content": "",
+      "published": "Wed, 08 Apr 2026 18:00:03 +0000",
+      "source": "The Decoder",
+      "type": "rss"
+    },
+    {
+      "title": "[AINews] Meta Superintelligence Labs announces Muse Spark, first frontier model on their completely new stack",
+      "url": "https://www.latent.space/p/ainews-meta-superintelligence-labs",
+      "content": "",
+      "published": "Wed, 08 Apr 2026 23:23:36 GMT",
+      "source": "Latent Space",
+      "type": "rss"
+    },
+    {
+      "title": "Meta AI app climbs to No. 5 on the App Store after Muse Spark launch",
+      "url": "https://techcrunch.com/2026/04/09/meta-ai-app-climbs-to-no-5-on-the-app-store-after-muse-spark-launch/",
+      "content": "",
+      "published": "Thu, 09 Apr 2026 19:10:07 +0000",
+      "source": "TechCrunch - AI",
+      "type": "rss"
+    },
+    {
+      "title": "Meta Superintelligence Lab Releases Muse Spark: A Multimodal Reasoning Model With Thought Compression and Parallel Agents",
+      "url": "https://www.marktechpost.com/2026/04/09/meta-superintelligence-lab-releases-muse-spark-a-multimodal-reasoning-model-with-thought-compression-and-parallel-agents/",
+      "content": "",
+      "published": "Thu, 09 Apr 2026 23:06:29 +0000",
+      "source": "MarkTechPost",
+      "type": "rss"
+    }
+  ],
+  "by_category": {
+    "blog": [
+      {
+        "title": "Introducing Muse Spark: Scaling Towards Personal Superintelligence",
+        "url": "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+        "content": "Applications\n\nMuse Spark is the first step toward a personal superintelligence that understands your world. From analyzing your immediate environment to supporting your wellness, the advanced reasoning capabilities of Muse Spark enable powerful, highly personal use cases.\n\nMultimodal. Muse Spark is built from the ground up to integrate visual information across domains and tools. It achieves strong performance on visual STEM questions, entity recognition, and localization. These capabilities come together to enable interactive experiences like creating fun minigames or troubleshooting your home appliances with dynamic annotations. [...] To deliver the most intelligence per token, our RL training maximizes correctness subject to a penalty on thinking time. On a subset of evaluations such as AIME, this causes a phase transition. After an initial period where the model improves by thinking longer, the length penalty causes thought compression — Muse Spark compresses its reasoning to solve problems using significantly fewer tokens. After compressing, the model again extends its solutions to achieve stronger performance. [...] Reinforcement Learning. After pretraining, reinforcement learning (RL) leverages compute to scalably amplify model capabilities. Even though large-scale RL is notoriously prone to instability, our new stack delivers smooth, predictable gains.\n\nThe plots below show the benefits of scaling RL compute (measured in steps) for Muse Spark. On the left, we see log-linear growth in pass@1 and pass@16 (at least one success across 16 attempts) on the training data. This indicates that RL is improving model reliability without compromising reasoning diversity. On the right, accuracy growth on a held-out evaluation set establishes that the gains from RL predictably generalize: Muse Spark smoothly improves on tasks that were not seen in training.",
+        "score": 0.99992454,
+        "source": "tavily"
+      },
+      {
+        "title": "Muse Spark: Features, Benchmarks, and How to Use It - DataCamp",
+        "url": "https://www.datacamp.com/blog/muse-spark",
+        "content": "## Conclusion\n\nThe jump from Llama 4 Maverick's 18 to Muse Spark's 52 on the Artificial Analysis Intelligence Index is not subtle. For a team that rebuilt from scratch in nine months, the health and multimodal results are a real first step, and they hold under independent testing.\n\nSure, the gaps are obvious. Coding and agentic tasks against GPT-5.4 are not close; abstract visual reasoning is a clear weak spot, and there is still no public API. If you need a model you can build against today, Muse Spark is not that yet. [...] ## What Is Muse Spark?\n\nMuse Spark is a natively multimodal reasoning model that handles text, images, audio, and tool use in a single architecture. It supports visual chain-of-thought, meaning the model can work through image-based problems step-by-step rather than just producing a single answer. Multi-agent orchestration is also part of the setup, which we will get to.\n\nEarlier Llama models returned answers based on pattern matching from training. Muse Spark works through problems before responding. That is the actual shift.\n\n### Who is behind it? [...] ## Testing Muse Spark\n\nWith those benchmark scores in mind, let’s put Muse Spark to the test. I will examine the model in multi-step reasoning, image understanding, and code debugging.\n\n### Test 1: Fibonacci–binary logic chain (cascading reasoning stability)\n\nIn my first test, I will target the advanced reasoning capabilities of Muse Spark in a multi-step exercise. The model needs to:\n\n Identify the correct Fibonacci term\n Convert it accurately to binary\n Count bits precisely\n Generate primes in a computed range\n Perform a large summation\n\nThe prompt used was:",
+        "score": 0.9997408,
+        "source": "tavily"
+      }
+    ],
+    "discussion": [
+      {
+        "title": "Muse Spark: Scaling towards personal superintelligence",
+        "url": "https://news.ycombinator.com/item?id=47692043",
+        "content": "unfortunately very, very bad (e.g. search is awful). Can't wait to try this in some real external services where we can see how it performs for real. Definitely getting ordinary high-quality results, overall. But hard to test agentic behavior and hard to test prose quality, even, when just working off of the default chat interface. One thing that stands out is that _for_ the quality it feels very, very fast. Perhaps it's just only very lightly loaded right now, but irrespective it's lovely to feel. I'm quite impressed with the tone overall. It definitely feels much more like Opus than it does, like, GPT or Grok in the sense that the style is conversational, natural and enjoyable. reply Image 240) This seems pretty good. reply Image 241) > Muse Spark is available today at meta.ai and the [...] Image 326 Guidelines | FAQ | Lists | API | Security | Legal | Apply to YC | Contact Search: [...] 241) > Muse Spark is available today at meta.ai and the Meta AI app. We’re opening a private API preview to select users. reply Image 242) So no Open-weight .. why one would choose Muse Spark instead of Anthropic, OpenAI, or Google models all featuring from good to amazing harness? reply Image 243) Can't login. No error message in the UI. But the URL changes to \" reply Image 244) same. closed tab and will forget to ever use it now reply Image 245) I switched to Chrome (from Firefox) and tried again. Now it's \" :facepalm: reply Image 246) Perhaps I'm wrong, but definitely seems to be SOTA. Although looking at it's ARC-AGI-2 score it's reasoning isn't very good. I suspect it's got the benefits of scale but lacks that human added element, understandable considering they claim to be building",
+        "score": 0.99953806,
+        "source": "tavily"
+      }
+    ],
+    "news": [
+      {
+        "title": "Meta's Muse Spark model brings reasoning capabilities ... - Engadget",
+        "url": "https://www.engadget.com/ai/metas-muse-spark-model-brings-reasoning-capabilities-to-the-meta-ai-app-161456684.html",
+        "content": "A GIF demonstrating Muse Spark's multi-agent capabilities.\n\nMuse Spark can also coordinate multiple AI subagents to tackle a request. Meta suggests users will see this capability in action when they ask for help with tasks like family trip planning. In such a scenario, one agent might compile an itinerary, while another finds kid-friendly activities everyone can enjoy. At the same time, Meta has built Spark to be natively multimodal, meaning the model can process images, video and audio. Like Google Lens, this gives you the option to snap a photo with your phone and ask Meta AI questions about what you see. [...] To that point, many of Spark's capabilities are table stakes for a new model in 2026. For instance, it offers both \"Instant\" and \"Thinking\" modes. With the latter engaged, the model will take an extra few moments to reason through a prompt. Other consumer-facing AI systems have had this kind of flexibility for a while. Anthropic, for example, was one of the first AI labs to offer a \"hybrid reasoning model\" when it released Claude Sonnet 3.7 at the start of last year. That said, Meta plans to add an even more powerful \"Contemplating\" mode down the road.\n\nA GIF demonstrating Muse Spark's multi-agent capabilities. [...] Of course, it wouldn't be a 2026 AI release if Muse Spark didn't include a built-in shopping assistant. Like ChatGPT, Spark can compare different items for you, listing the pros and cons of each, with links to make it easy to buy the product that appeals to you.\n\nMuse Spark is available today in the Meta AI app and meta.ai website everywhere where the company offers those services. Meta will begin rolling out the new features the model powers starting in the US. In the coming weeks, the company plans to bring Muse Spark to more countries and places where people can access Meta AI, including Facebook, Instagram and WhatsApp.",
+        "score": 0.99972624,
+        "source": "tavily"
+      },
+      {
+        "title": "Introducing Muse Spark: Meta's Most Powerful Model Yet",
+        "url": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
+        "content": "## A New Model: Muse Spark\n\nOver the last nine months, Meta Superintelligence Labs rebuilt our AI stack from the ground up, moving faster than any development cycle we have run before. Muse Spark is the first model in our new Muse series — a deliberate and scientific approach to model scaling where each generation validates and builds on the last before we go bigger. This initial model is small and fast by design, yet capable enough to reason through complex questions in science, math, and health. It is a powerful foundation, and the next generation is already in development. Muse Spark now powers the Meta AI assistant in the Meta AI app and meta.ai, built to support complex reasoning and multimodal tasks.\n\n## What’s Changed With Meta AI [...] Meta AI logo animation\n\n## Takeaways\n\nToday we are announcing Muse Spark, the first in a new series of large language models built by Meta Superintelligence Labs. We are on our way to personal superintelligence: an assistant that can help anyone, anywhere with the things that matter most to them.\n\n## A New Model: Muse Spark [...] Two phone screens showing a chat with Meta AI estimating calorie count of food shown in a photo\n\nTwo phone screens showing a chat with Meta AI estimating calorie count of food shown in a photo\n\nMultimodal perception is especially valuable for health. With Muse Spark, Meta AI is now able to help you navigate health questions with more detailed responses, including some questions involving images and charts. Health is one of the top reasons people turn to AI, so we worked with a team of physicians to develop the model’s ability to provide helpful information on common health questions and concerns.",
+        "score": 0.999608,
+        "source": "tavily"
+      },
+      {
+        "title": "MuseSpark Frontend",
+        "url": "https://www.musespark.ai/",
+        "content": "## Frequently Asked Questions\n\nMuseSpark brings image, video, audio, 3D, avatar, and text workflows into one workspace, so you can move from first idea to production-ready assets without stitching together separate tools.\n\nStart in Model Space when you want to compare base models and control how content is generated. Start in AI Tools when you want ready-made workflows for jobs like editing, translation, effects, or marketing assets.\n\nChoose based on output type, visual style, speed, and cost. A practical flow is to compare candidates in Model Space, review real examples in Inspiration, then lock in the model that matches your quality and turnaround needs. [...] Yes. MuseSpark offers API access for supported capabilities, making it easier to connect generation workflows with internal tools, automation, or customer-facing products.\n\n## Ready to Unlock True Model Potential?\n\nStart for Free [...] No. You can start with simple prompts and built-in workflows, then add references, aspect ratio, duration, or style controls only when you need finer output control.\n\nIn many cases, yes, but commercial usage depends on the model or tool you select and on whether you have rights to the source assets you upload. Check the relevant model or tool details before shipping client or brand work.\n\nSpeed depends on the model, queue state, resolution, and output length. Image jobs are usually fastest, while longer video or audio generations take more time, especially at higher quality settings.\n\nCredits are consumed according to the model or tool you run and the settings you choose. You can review available plans on the Pricing page and track actual usage from your account after each run.",
+        "score": 0.9995453,
+        "source": "tavily"
+      },
+      {
+        "title": "Meta debuts the Muse Spark model in a 'ground-up overhaul' of its AI",
+        "url": "https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/",
+        "content": "Meta released an AI model on Wednesday called Muse Spark, which marks its “first step” toward an “overhaul of [its] AI efforts.”\n\nMuse Spark is the inaugural model to come out of Meta Superintelligence Labs, which was created last year because CEO Mark Zuckerberg was reportedly unhappy with the progress of Meta and its Llama models and how they lagged behind OpenAI’s ChatGPT and Anthropic’s Claude. Meta recruited former Scale AI co-founder and CEO Alexandr Wang to lead Meta Superintelligence Labs and invested $14.3 billion in the data labeling company for a 49% stake.\n\nNow, it’s time for Zuckerberg to see if his reconfigured AI team can woo users. [...] Muse Spark, which is now available on the web and the Meta AI app, is expected to improve over time. The company plans to roll out a “Contemplating” mode, which allows it to tackle more complex problems. Meta’s model uses multiple AI agents at once to work on the same problem, which it says will generate faster results for its Contemplating mode.\n\n“To spend more test-time reasoning without drastically increasing latency, we can scale the number of parallel agents that collaborate to solve hard problems,” the company wrote.\n\nMeta’s competitors have historically placed these more capable models behind a paywall. It’s unclear if Meta will follow the same strategy. [...] Meta’s push into health — and even the more basic function of logging into Muse Spark — could raise privacy concerns. Muse Spark users will need to log in with an existing Meta account such as Facebook or Instagram in order to use it. Meta doesn’t explicitly say that personal information from a Facebook or Instagram account will be used by the AI. But it is likely considering that Meta generally trains on public user data and the company has positioned Muse Spark as a personal superintelligence product.\n\nMeta also said that Muse Spark performs especially well with visual STEM questions which can lead to “interactive experiences like creating fun minigames or troubleshooting your home appliances.”",
+        "score": 0.99944717,
+        "source": "tavily"
+      },
+      {
+        "title": "Meta debuts Muse Spark, first AI model under Alexandr Wang",
+        "url": "https://www.axios.com/2026/04/08/meta-muse-alexandr-wang",
+        "content": "Why it matters:The model — code-named Avocado and built over the past nine months by a team led by Alexandr Wang — is a major upgrade over its Llama 4 models, Meta tells Axios.\n\nDriving the news: Muse Spark will power queries in the Meta AI app and Meta.ai website immediately, with plans to expand across Facebook, Instagram and WhatsApp.\n\n   The model accepts voice, text and image inputs, but produces text-only output.\n   As Axios first reported, Meta plans to release a version of Muse Spark under an open-source license.\n\nZoom in:The model uses a fast mode for casual queries and several reasoning modes. [...] Yes, but: Consumers should be aware that Meta's privacy policy sets few limits on how the company can use any data shared with its AI system.\n\nThe big picture: Meta sees the release of Muse Spark as just one step toward its broader vision of personal superintelligence.\n\n   However, Meta's rivals are also leaping forward. Anthropic this week detailed Mythos, a model it says is so powerful that its initial release is being limited to a handful of tech companies to focus on cybersecurity defense.\n   OpenAI is also putting the finishing touches on a new model, code-named Spud, that is also believed to represent a significant leap forward. [...] A \"shopping mode\" highlights how Meta hopes to differentiate itself. It combines large language models with data on user interests and behavior.\n   Over time, the model will also power \"features that cite recommendations and content people share across Instagram, Facebook, and Threads,\" Meta said in a blog post.\n\nZoom out: A Meta executive told Axios that Muse Spark doesn't mark a new state of the art, but is competitive with the latest models from leading labs at certain tasks, including multimodal understanding and processing health information.\n\n   In other areas, including coding, the company acknowledges that there is a gap between Muse Spark and the models already available.\n\n   All flavors of the model are free to use, though Meta may impose rate limits.",
+        "score": 0.9992084,
+        "source": "tavily"
+      },
+      {
+        "title": "Muse Spark - The Rundown AI",
+        "url": "https://www.rundown.ai/tools/muse-spark",
+        "content": "University Login\n\nThe Rundown AI /  Tools /  Consumer /  Muse Spark\n\n# Muse Spark\n\nTry Muse Spark\n\nMeta MSL's natively multimodal reasoning model with a multi-agent Contemplating mode\n\n‍\n\n Category\n\n  Consumer\n Visit\n\n  \n\nJoin The Rundown University\n\nThrough our vast network of over 100 partnerships with major AI companies, we also offer University members free access or major discounts to the many popular AI tools along with AI certified courses, daily guides on AI tools and many more.\n\nJoin AI UniversityLearn more\n\n## Guides on AI Tools similar to Muse Spark\n\nCreate personalized AI images of yourself with Meta AI\n\nDr. Alvaro Cintas\n\nAnalyze and Optimize Your Health Data\n\nDr. Alvaro Cintas\n\nTurn your health data into personalized insights\n\nDr. Alvaro Cintas\n\n## Similar Tools\n\nView all",
+        "score": 0.9933072,
+        "source": "tavily"
+      },
+      {
+        "title": "Muse Spark API Provider Benchmarking & Analysis",
+        "url": "https://artificialanalysis.ai/models/muse-spark/providers",
+        "content": "Artificial Analysis\nArtificial Analysis\nMuse Spark logo\n\n# Muse Spark API Provider Benchmarking & Analysis\n\nProprietary model\n\nReleased April 2026\n\nAnalysis of API providers for Muse Spark across performance metrics including latency (time to first token), output speed (output tokens per second), price and others. API providers benchmarked include .\n\n### Fastest\n\nOutput speed\n\nTotal 0 providers\n\n### Lowest Latency\n\nTime to first answer token\n\nTotal 0 providers\n\n### Lowest Price\n\nBlended price (per 1M tokens)\n\nTotal 0 providers\n\nNo API providers are currently available for Muse Spark.\n\nBenchmarks of providers are not available for this model.  \nPlease see the models page for Muse Spark for details of the model and its intelligence compared to other models.\n\n#### Navigation [...] ### Price\n\nPrice per token, represented as USD per million Tokens. Price is a blend of Input & Output token prices (3:1 ratio).\n\n### Median\n\nFigures represent median (P50) measurement over the past 72 hours to reflect sustained changes in performance.\n\n## Speed\n\nMeasured by Output Speed (tokens per second)\n\n## Output Speed: Muse Spark Providers\n\n### Output Speed\n\nTokens per second received while the model is generating tokens (ie. after first chunk has been received from the API for models which support streaming).\n\n### Median\n\nFigures represent median (P50) measurement over the past 72 hours to reflect sustained changes in performance.\n\n## Latency vs. Output Speed: Muse Spark Providers\n\n### Output Speed [...] ## Latency\n\nMeasured by Time (seconds) to First Token\n\n## Time to First Answer Token: Muse Spark Providers\n\n### Time To First Answer Token\n\nTime to first answer token received, in seconds, after API request sent. For reasoning models, this includes the 'thinking' time of the model before providing an answer. For models which do not support streaming, this represents time to receive the completion.\n\n### Median\n\nFigures represent median (P50) measurement over the past 72 hours to reflect sustained changes in performance.\n\n## End-to-End Response Time\n\nSeconds to output 500 Tokens, calculated based on time to first token, 'thinking' time for reasoning models, and output speed\n\n## End-to-End Response Time: Muse Spark Providers\n\n### End-to-End Response Time",
+        "score": 0.99155444,
+        "source": "tavily"
+      },
+      {
+        "title": "Muse Spark: Everything you need to know - artificialanalysis.ai",
+        "url": "https://artificialanalysis.ai/articles/muse-spark-everything-you-need-to-know",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Meta unveils Muse Spark, its first AI model since hiring ... - Fortune",
+        "url": "https://fortune.com/2026/04/08/meta-unveils-muse-spark-mark-zuckerberg-ai-push/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Meta&#x27;s Superintelligence Lab unveils its first public model, Muse Spark ...",
+        "url": "https://arstechnica.com/ai/2026/04/metas-superintelligence-lab-unveils-its-first-public-model-muse-spark/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Meta debuts new AI model, attempting to catch up to Google, OpenAI - CNBC",
+        "url": "https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Meta Introduces Muse Spark AI: Complete Feature Breakdown 2026",
+        "url": "https://deeperinsights.com/news/meta-introduces-muse-spark-ai/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Meta Unveils New A.I. Model, Its First From the Superintelligence Lab ...",
+        "url": "https://www.nytimes.com/2026/04/08/technology/meta-muse-spark-ai-model.html",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Meta's Muse Spark is its first frontier model and its first without open weights",
+        "url": "https://the-decoder.com/metas-muse-spark-is-its-first-frontier-model-and-its-first-without-open-weights/",
+        "content": "",
+        "published": "Wed, 08 Apr 2026 18:00:03 +0000",
+        "source": "The Decoder",
+        "type": "rss"
+      },
+      {
+        "title": "[AINews] Meta Superintelligence Labs announces Muse Spark, first frontier model on their completely new stack",
+        "url": "https://www.latent.space/p/ainews-meta-superintelligence-labs",
+        "content": "",
+        "published": "Wed, 08 Apr 2026 23:23:36 GMT",
+        "source": "Latent Space",
+        "type": "rss"
+      },
+      {
+        "title": "Meta AI app climbs to No. 5 on the App Store after Muse Spark launch",
+        "url": "https://techcrunch.com/2026/04/09/meta-ai-app-climbs-to-no-5-on-the-app-store-after-muse-spark-launch/",
+        "content": "",
+        "published": "Thu, 09 Apr 2026 19:10:07 +0000",
+        "source": "TechCrunch - AI",
+        "type": "rss"
+      },
+      {
+        "title": "Meta Superintelligence Lab Releases Muse Spark: A Multimodal Reasoning Model With Thought Compression and Parallel Agents",
+        "url": "https://www.marktechpost.com/2026/04/09/meta-superintelligence-lab-releases-muse-spark-a-multimodal-reasoning-model-with-thought-compression-and-parallel-agents/",
+        "content": "",
+        "published": "Thu, 09 Apr 2026 23:06:29 +0000",
+        "source": "MarkTechPost",
+        "type": "rss"
+      }
+    ]
+  },
+  "total": 20
+}

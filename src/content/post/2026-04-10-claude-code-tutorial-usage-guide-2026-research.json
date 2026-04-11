@@ -1,0 +1,281 @@
+{
+  "merged": [
+    {
+      "title": "Claude Code Tutorial for Beginners 2026: From Installation to ...",
+      "url": "https://dev.to/ayyazzafar/claude-code-tutorial-for-beginners-2026-from-installation-to-building-your-first-project-1lma",
+      "content": "DEV Community\n\n## DEV Community\n\nAyyaz Zafar\n\nPosted on Jan 28\n\n# Claude Code Tutorial for Beginners 2026: From Installation to Building Your First Project\n\nIf you've been copy-pasting code to ChatGPT, constantly switching between your editor and browser, and losing context every time — there is a better way.\n\nClaude Code is Anthropic's official AI coding assistant that runs directly in your terminal. It understands your entire codebase, makes changes across multiple files, and even handles Git operations for you.\n\nIn my latest video tutorial, I walk you through everything you need to get started — from installation to building your first project.\n\n## What is Claude Code? [...] Building a CLI Tool from Scratch  \nI demonstrate building a complete temperature converter CLI tool that supports Celsius, Fahrenheit, and Kelvin — including error handling.\n\n## Quick Tips\n\n`claude --continue`\n`claude -p \"your prompt\"`\n`CLAUDE.md`\n\n## Watch the Full Tutorial\n\nThis article only scratches the surface. Watch the full video for live demonstrations and step-by-step guidance:\n\nWatch: Claude Code Tutorial for Beginners 2026 on YouTube\n\nIf you found this helpful, consider subscribing for more AI developer tool tutorials:\n\nSubscribe to AyyazTech on YouTubeThanks for reading! Drop a comment if you have questions about Claude Code.\n\n## Top comments (0)\n\npic\n\nTemplates let you quickly answer FAQs or store snippets for re-use. [...] ## Installation\n\nThe recommended way to install Claude Code is using the native installer. On macOS or Linux, open your terminal and run the install command from `claude.ai/install.sh`. Windows users can use the equivalent PowerShell command. You can also use Homebrew on Mac or winget on Windows, but the native installer is recommended by Anthropic because it auto-updates in the background.\n\n`claude.ai/install.sh`\n\nAfter installation, verify it by running:\n\n`claude --version`\n\n## First Login and Authentication\n\nOnce installed, simply type `claude` in your terminal. On first launch, you will choose a text style, then log in. You can authenticate with a Claude Pro/Max subscription, an Anthropic Console API account, or a third-party platform like Amazon Bedrock.\n\n`claude`",
+      "score": 0.829285,
+      "source": "tavily"
+    },
+    {
+      "title": "Claude Code Tutorial: Complete Beginner&#x27;s Guide (2026)",
+      "url": "https://skillsplayground.com/guides/claude-code-tutorial/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Claude Code 2026: Complete Tutorial &amp; Getting Started Guide",
+      "url": "https://otomasi.ai/en/blog/claude-code-tutorial-2026",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Claude Code Tutorial for Beginners - Complete 2026 Guide to AI Coding",
+      "url": "https://codewithmukesh.com/blog/claude-code-for-beginners/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Claude Code Tutorial for Beginners: Complete Getting Started Guide (2026)",
+      "url": "https://www.nxcode.io/resources/news/claude-code-tutorial-beginners-guide-2026",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Claude Code Tutorial: How to Use It for Any Project (2026)",
+      "url": "https://www.lazytechtalk.com/guides/claude-code-tutorial-complete-guide-2026",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "How to Use Claude Code in 2026: The Ultimate Tutorial &amp; Guide",
+      "url": "https://similarlabs.com/blog/claude-code-tutorial-guide",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Claude Code Tutorial 2026: Beginner to Pro Guide",
+      "url": "https://www.nocode.mba/articles/claude-code-tutorial",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Claude Code: Complete Guide From Beginner to Power User 2026",
+      "url": "https://www.theneuron.ai/explainer-articles/claude-code-guide-how-to-use-it%20/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Claude Code: The Definitive Guide with 45+ Articles, Tutorials and ...",
+      "url": "https://pasqualepillitteri.it/en/news/749/claude-code-definitive-guide-all-articles-tutorials",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "The Claude Code Handbook: A Professional Introduction to Building ...",
+      "url": "https://www.freecodecamp.org/news/claude-code-handbook/",
+      "content": "This account authenticates you across all Anthropic products, including Claude Code.\n\n### Step 2: Select a Subscription Plan\n\nClaude Code requires a paid subscription. The available tiers as of 2026:\n\n#### Claude Pro: $20 per month\n\nThe Pro plan provides access to Claude's models with a daily usage limit. When you reach that limit, you wait until the following day to continue.\n\nFor someone beginning with Claude Code building small projects, learning the system, running sessions of moderate intensity, the Pro plan is sufficient. It isn't designed for sustained professional use, but it's an appropriate entry point.\n\n#### Claude Max: \\(100 or \\)200 per month [...] ### Claude Code Security\n\nAnthropic has released Claude Code Security, a capability in preview as of 2026 that scans codebases for known vulnerability patterns and generates proposed corrections.\n\nThis represents the direction of security tooling: integrated, automated, and AI-assisted. For production systems, treat it as an additional layer, not a replacement for expert review.\n\n### The Continued Role of Writing Code\n\nExperience across the Claude Code community consistently confirms: developers who write some code themselves, rather than delegating all implementation, maintain significantly better understanding of their systems. [...] As of early 2026, the scale of this shift is measurable and substantial, and its significance extends beyond productivity metrics. The ability to build software is becoming accessible to a broader range of people – not because the underlying complexity has been eliminated, but because much of the mechanical translation between intent and implementation can now be delegated to an AI agent.\n\nWhat this unlocks, in human terms, is closer to what the printing press unlocked for written communication: a dramatic expansion of who can participate.",
+      "score": 0.7837407,
+      "source": "tavily"
+    },
+    {
+      "title": "Claude Code Tutorial for Beginners (2026) - YouTube",
+      "url": "https://www.youtube.com/watch?v=d8sf6igH9Fg",
+      "content": "Claude Code Tutorial for Beginners (2026) In this video, we show you everything you need to know about using Claude for coding in 2026.",
+      "score": 0.7703443,
+      "source": "tavily"
+    },
+    {
+      "title": "Getting Started with Claude Code: A Researcher's Setup Guide",
+      "url": "https://paulgp.substack.com/p/getting-started-with-claude-code",
+      "content": "# A Causal Affair\n\n# Getting Started with Claude Code: A Researcher’s Setup Guide\n\n### Video 1 in a series on Claude Code\n\nPaul Goldsmith-Pinkham\n\nMar 29, 2026\n\nPart 1 of a series on AI coding tools for empirical research, accompanying my Markus Academy video series. This series follows an earlier Markus Academy mini-series with Ben Golub in December 2025, which focused on using LLMs for theoretical economics work with Cursor and his software Refine.ink.  \n  \nThese blog posts are companion pieces to go with the videos I recorded with Markus. [...] #### Discussion about this post\n\nPawel Jozefiak\n\n4h\n\nThe IRB data warning is one I keep seeing people skip over and it matters. Research workflows have a specific trust problem - you're often working with data that's one mistake away from a compliance issue, and Claude Code's default behavior is to read everything in the project directory.\n\nThe context window degradation point is also underappreciated (most people just keep going until outputs get weird). Good that you're building the Markus Academy series around this - researchers need the setup guide more than developers do tbh, the stakes for getting it wrong are higher.\n\nShare\n\n4h\n\nSuper useful thanks!\n\nReplyShare\n\n1 more comment...\n\nNo posts\n\n### Ready for more?\n\n© 2026 Paul Goldsmith-Pinkham · Privacy ∙ Terms ∙ Collection notice [...] ## The Basic Interaction Loop\n\nHere’s what using Claude Code actually looks like. You navigate to your project directory, start a session, and have a conversation:\n\n```\n> What files are in this project? Summarize the structure.\n```\n\nClaude reads the directory and gives you a plain-English overview. Already useful when you’re picking up a coauthor’s code.\n\n```\n> Read clean_data.py and explain what it does, step by step.\n```\n\nIt opens the file, walks through the logic, and flags potential issues.\n\n```\n> Load data/employment.csv, show the first few rows, and compute summary statistics.\n```\n\nClaude writes a script, runs it, and shows you the output—all in the terminal.",
+      "score": 0.7555112,
+      "source": "tavily"
+    },
+    {
+      "title": "FULL Claude Tutorial for Beginners in 2026! (Become a PRO!)",
+      "url": "https://www.youtube.com/watch?v=rRrBbyv3ChM",
+      "content": "... use claude, touching on incognito mode and other claude ai features. #claude. ... FULL Claude Projects Guide For Beginners in 2026! (Become a PRO).",
+      "score": 0.70823324,
+      "source": "tavily"
+    },
+    {
+      "title": "CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026)",
+      "url": "https://www.youtube.com/watch?v=QoQBzR1NIqI",
+      "content": "CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026) · Comments.",
+      "score": 0.650934,
+      "source": "tavily"
+    },
+    {
+      "title": "Quickstart - Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/quickstart",
+      "content": "Copy page\n\nWelcome to Claude Code!\n\nCopy page\n\nThis quickstart guide will have you using AI-powered coding assistance in a few minutes. By the end, you’ll understand how to use Claude Code for common development tasks.\n## ​\n\nBefore you begin\n\nMake sure you have:\n   A terminal or command prompt open\n       If you’ve never used the terminal before, check out the terminal guide\n\n   A code project to work with\n   A Claude subscription (Pro, Max, Team, or Enterprise), Claude Console account, or access through a supported cloud provider\n\nThis guide covers the terminal CLI. Claude Code is also available on the web, as a desktop app, in VS Code and JetBrains IDEs, in Slack, and in CI/CD with GitHub Actions and GitLab. See all interfaces.\n\n## ​\n\nStep 1: Install Claude Code [...] ## ​\n\nStep 6: Use Git with Claude Code\n\nClaude Code makes Git operations conversational:\n\n```\nwhat files have I changed?\n```\n\n```\ncommit my changes with a descriptive message\n```\n\nYou can also prompt for more complex Git operations:\n\n```\ncreate a new branch called feature/quickstart\n```\n\n```\nshow me the last 5 commits\n```\n\n```\nhelp me resolve merge conflicts\n```\n\n## ​\n\nStep 7: Fix a bug or add a feature\n\nClaude is proficient at debugging and feature implementation.Describe what you want in natural language:\n\n```\nadd input validation to the user registration form\n```\n\nOr fix existing issues:\n\n```\nthere's a bug where users can submit empty forms - fix it\n```\n\nClaude Code will:\n   Locate the relevant code\n   Understand the context\n   Implement a solution\n   Run tests if available\n\n## ​ [...] Here are the most important commands for daily use:\n\n| Command | What it does | Example |\n --- \n| `claude` | Start interactive mode | `claude` |\n| `claude \"task\"` | Run a one-time task | `claude \"fix the build error\"` |\n| `claude -p \"query\"` | Run one-off query, then exit | `claude -p \"explain this function\"` |\n| `claude -c` | Continue most recent conversation in current directory | `claude -c` |\n| `claude -r` | Resume a previous conversation | `claude -r` |\n| `/clear` | Clear conversation history | `/clear` |\n| `/help` | Show available commands | `/help` |\n| `exit` or Ctrl+D | Exit Claude Code | `exit` |\n\nSee the CLI reference for a complete list of commands.\n## ​\n\nPro tips for beginners\n\nFor more, see best practices and common workflows.\n\nBe specific with your requests",
+      "score": 0.56661874,
+      "source": "tavily"
+    },
+    {
+      "title": "45 Claude Code Tips From basics to advanced - GitHub",
+      "url": "https://github.com/ykdojo/claude-code-tips",
+      "content": "Readme\n\n### License\n\nView license\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\nActivity\n\n### Stars\n\n7.3k stars\n\n### Watchers\n\n52 watching\n\n### Forks\n\n510 forks\n\nReport repository\n\n## Releases 29\n\nv0.26.7 Latest Mar 27, 2026\n\n+ 28 releases\n\n## Packages 0\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n## Contributors\n\n    \n    \n    \n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n## Languages\n\n   JavaScript 77.5%\n   Shell 21.6%\n   HTML 0.9%\n\n## Footer\n\n[]( © 2026 GitHub,Inc. \n\n### Footer navigation\n\n   Terms\n   Privacy\n   Security\n   Status\n   Community\n   Docs\n   Contact\n    Manage cookies \n    Do not share my personal information \n\n You can’t perform that action at this time. [...] Plugins are a way to package skills, slash commands, agents, hooks, and MCP servers together. But a plugin doesn't have to use all of them. Anthropic's official `frontend-design` plugin is essentially just a skill and nothing else. It could be distributed as a standalone skill, but the plugin format makes it easier to install.\n\nFor example, I built a plugin called `dx` that bundles slash commands and a skill from this repo together. You can see how it works in the Install the dx plugin section.\n\n## Tip 26: Interactive PR reviews\n\n, but with Claude Code you can have a conversation.\n\n## Tip 27: Claude Code as a research tool\n\n, doing sentiment or market analysis on Reddit, exploring your codebase, or exploring public information to find something - it's able to do that. [...] SETTINGS (~/.claude/settings.json):\n  3. Status line - shows model, git branch, uncommitted files, token usage at bottom of screen\n  4. Disable auto-updates - prevents Claude Code from auto-updating (useful for system prompt patches)\n  5. Lazy-load MCP tools - only loads MCP tool definitions when needed, saves context\n  6. Read(~/.claude) permission - allows clone/half-clone commands to read conversation history\n  7. Read(//tmp/) permission - allows reading temporary files without prompts\n  8. Disable attribution - removes Co-Authored-By from commits and attribution from PRs\n\nSHELL CONFIG (~/.zshrc or ~/.bashrc):\n  9. Aliases: c=claude, ch=claude --chrome, cs=claude --dangerously-skip-permissions\n 10. Fork shortcut: --fs expands to --fork-session (e.g., claude -c --fs)",
+      "score": 0.5313802,
+      "source": "tavily"
+    },
+    {
+      "title": "How to Use Claude Code: A Guide to Slash Commands, Agents ...",
+      "url": "https://www.producttalk.org/how-to-use-claude-code-features/?srsltid=AfmBOoolVpg_kWwFF3RIHam6BSFZtZQCz5DECKztqc13O7YMuTWR7RT2",
+      "content": "PreToolUse: Runs before tool calls (can block them)\n PermissionRequest: Runs when a permission dialog is shown (can allow or deny)\n PostToolUse: Runs after tool calls complete\n UserPromptSubmit: Runs when the user submits a prompt, before Claude processes it\n Notification: Runs when Claude Code sends notifications\n Stop: Runs when Claude Code finishes responding\n SubagentStop: Runs when subagent tasks complete\n PreCompact: Runs before Claude Code is about to run a compact operation\n SessionStart: Runs when Claude Code starts a new session or resumes an existing session\n SessionEnd: Runs when Claude Code session ends [...] Today, we'll dive into the building blocks available to us in Claude Code. We'll learn when to use each one, how to use them in combinations to harness Claude's power, and we'll also discuss some of the limitations of these tools—despite the hype.\n\n🎖️ This Product Talk Article is brought to you by New Year, New Habit: The 5-Day Customer Interview Challenge. Become a more confident interviewer in less than a week. You'll conduct one practice interview a day, get personalized and detailed feedback so you know exactly what to improve, and we'll be giving out daily prizes to the most improved. Join the challenge today. [...] Once you install a marketplace, you can use /plugin to access the Discover tab and explore the plug-ins that are part of that marketplace.\n\nThen from within the /plugin interface you can tab to Discover to see what plug-ins they've made available.\n\nAnd if you are familiar with GitHub, you can explore their public repos here.\n\nThis is a great way to use workflows that other people have created. However, remember, plug-ins can include code (both in skills and in hooks). You should never install and let Claude run code on your computer that you aren't familiar with if you haven't reviewed it first. Revisit our safety article if you need a refresher on how you can do this.\n\n## When To Use Each Building Block",
+      "score": 0.52290934,
+      "source": "tavily"
+    },
+    {
+      "title": "Claude Code overview - Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/overview",
+      "content": "Run Claude Code in your browser with no local setup. Kick off long-running tasks and check back when they’re done, work on repos you don’t have locally, or run multiple tasks in parallel. Available on desktop browsers and the Claude iOS app.Start coding at claude.ai/code.Get started on the web →\n\nA plugin for IntelliJ IDEA, PyCharm, WebStorm, and other JetBrains IDEs with interactive diff viewing and selection context sharing.Install the Claude Code plugin from the JetBrains Marketplace and restart your IDE.Get started with JetBrains →\n\n## ​\n\nWhat you can do\n\nHere are some of the ways you can use Claude Code:\n\nAutomate the work you keep putting off [...] ## ​\n\nNext steps\n\nOnce you’ve installed Claude Code, these guides help you go deeper.\n   Quickstart: walk through your first real task, from exploring a codebase to committing a fix\n   Store instructions and memories: give Claude persistent instructions with CLAUDE.md files and auto memory\n   Common workflows and best practices: patterns for getting the most out of Claude Code\n   Settings: customize Claude Code for your workflow\n   Troubleshooting: solutions for common issues\n   code.claude.com: demos, pricing, and product details\n\nWas this page helpful?\n\nYes No\n\nQuickstart\n\nCtrl+I\n\nClaude Code Docs home pageImage 4: light logoImage 5: dark logo\n\nxlinkedin\n\nCompany\n\nAnthropicCareersEconomic FuturesResearchNewsTrust centerTransparency\n\nHelp and security\n\nAvailabilityStatusSupport center [...] Work from anywhere\n\nSessions aren’t tied to a single surface. Move work between environments as your context changes:\n   Step away from your desk and keep working from your phone or any browser with Remote Control\n   Message Dispatch a task from your phone and open the Desktop session it creates\n   Kick off a long-running task on the web or iOS app, then pull it into your terminal with `claude --teleport`\n   Hand off a terminal session to the Desktop app with `/desktop` for visual diff review\n   Route tasks from team chat: mention `@Claude` in Slack with a bug report and get a pull request back\n\n## ​\n\nUse Claude Code everywhere",
+      "score": 0.48630774,
+      "source": "tavily"
+    }
+  ],
+  "by_category": {
+    "official": [
+      {
+        "title": "Claude Code Tutorial: Complete Beginner&#x27;s Guide (2026)",
+        "url": "https://skillsplayground.com/guides/claude-code-tutorial/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Claude Code Tutorial for Beginners: Complete Getting Started Guide (2026)",
+        "url": "https://www.nxcode.io/resources/news/claude-code-tutorial-beginners-guide-2026",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Claude Code Tutorial: How to Use It for Any Project (2026)",
+        "url": "https://www.lazytechtalk.com/guides/claude-code-tutorial-complete-guide-2026",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Claude Code Tutorial 2026: Beginner to Pro Guide",
+        "url": "https://www.nocode.mba/articles/claude-code-tutorial",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Claude Code: Complete Guide From Beginner to Power User 2026",
+        "url": "https://www.theneuron.ai/explainer-articles/claude-code-guide-how-to-use-it%20/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Claude Code: The Definitive Guide with 45+ Articles, Tutorials and ...",
+        "url": "https://pasqualepillitteri.it/en/news/749/claude-code-definitive-guide-all-articles-tutorials",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Quickstart - Claude Code Docs",
+        "url": "https://code.claude.com/docs/en/quickstart",
+        "content": "Copy page\n\nWelcome to Claude Code!\n\nCopy page\n\nThis quickstart guide will have you using AI-powered coding assistance in a few minutes. By the end, you’ll understand how to use Claude Code for common development tasks.\n## ​\n\nBefore you begin\n\nMake sure you have:\n   A terminal or command prompt open\n       If you’ve never used the terminal before, check out the terminal guide\n\n   A code project to work with\n   A Claude subscription (Pro, Max, Team, or Enterprise), Claude Console account, or access through a supported cloud provider\n\nThis guide covers the terminal CLI. Claude Code is also available on the web, as a desktop app, in VS Code and JetBrains IDEs, in Slack, and in CI/CD with GitHub Actions and GitLab. See all interfaces.\n\n## ​\n\nStep 1: Install Claude Code [...] ## ​\n\nStep 6: Use Git with Claude Code\n\nClaude Code makes Git operations conversational:\n\n```\nwhat files have I changed?\n```\n\n```\ncommit my changes with a descriptive message\n```\n\nYou can also prompt for more complex Git operations:\n\n```\ncreate a new branch called feature/quickstart\n```\n\n```\nshow me the last 5 commits\n```\n\n```\nhelp me resolve merge conflicts\n```\n\n## ​\n\nStep 7: Fix a bug or add a feature\n\nClaude is proficient at debugging and feature implementation.Describe what you want in natural language:\n\n```\nadd input validation to the user registration form\n```\n\nOr fix existing issues:\n\n```\nthere's a bug where users can submit empty forms - fix it\n```\n\nClaude Code will:\n   Locate the relevant code\n   Understand the context\n   Implement a solution\n   Run tests if available\n\n## ​ [...] Here are the most important commands for daily use:\n\n| Command | What it does | Example |\n --- \n| `claude` | Start interactive mode | `claude` |\n| `claude \"task\"` | Run a one-time task | `claude \"fix the build error\"` |\n| `claude -p \"query\"` | Run one-off query, then exit | `claude -p \"explain this function\"` |\n| `claude -c` | Continue most recent conversation in current directory | `claude -c` |\n| `claude -r` | Resume a previous conversation | `claude -r` |\n| `/clear` | Clear conversation history | `/clear` |\n| `/help` | Show available commands | `/help` |\n| `exit` or Ctrl+D | Exit Claude Code | `exit` |\n\nSee the CLI reference for a complete list of commands.\n## ​\n\nPro tips for beginners\n\nFor more, see best practices and common workflows.\n\nBe specific with your requests",
+        "score": 0.56661874,
+        "source": "tavily"
+      },
+      {
+        "title": "How to Use Claude Code: A Guide to Slash Commands, Agents ...",
+        "url": "https://www.producttalk.org/how-to-use-claude-code-features/?srsltid=AfmBOoolVpg_kWwFF3RIHam6BSFZtZQCz5DECKztqc13O7YMuTWR7RT2",
+        "content": "PreToolUse: Runs before tool calls (can block them)\n PermissionRequest: Runs when a permission dialog is shown (can allow or deny)\n PostToolUse: Runs after tool calls complete\n UserPromptSubmit: Runs when the user submits a prompt, before Claude processes it\n Notification: Runs when Claude Code sends notifications\n Stop: Runs when Claude Code finishes responding\n SubagentStop: Runs when subagent tasks complete\n PreCompact: Runs before Claude Code is about to run a compact operation\n SessionStart: Runs when Claude Code starts a new session or resumes an existing session\n SessionEnd: Runs when Claude Code session ends [...] Today, we'll dive into the building blocks available to us in Claude Code. We'll learn when to use each one, how to use them in combinations to harness Claude's power, and we'll also discuss some of the limitations of these tools—despite the hype.\n\n🎖️ This Product Talk Article is brought to you by New Year, New Habit: The 5-Day Customer Interview Challenge. Become a more confident interviewer in less than a week. You'll conduct one practice interview a day, get personalized and detailed feedback so you know exactly what to improve, and we'll be giving out daily prizes to the most improved. Join the challenge today. [...] Once you install a marketplace, you can use /plugin to access the Discover tab and explore the plug-ins that are part of that marketplace.\n\nThen from within the /plugin interface you can tab to Discover to see what plug-ins they've made available.\n\nAnd if you are familiar with GitHub, you can explore their public repos here.\n\nThis is a great way to use workflows that other people have created. However, remember, plug-ins can include code (both in skills and in hooks). You should never install and let Claude run code on your computer that you aren't familiar with if you haven't reviewed it first. Revisit our safety article if you need a refresher on how you can do this.\n\n## When To Use Each Building Block",
+        "score": 0.52290934,
+        "source": "tavily"
+      },
+      {
+        "title": "Claude Code overview - Claude Code Docs",
+        "url": "https://code.claude.com/docs/en/overview",
+        "content": "Run Claude Code in your browser with no local setup. Kick off long-running tasks and check back when they’re done, work on repos you don’t have locally, or run multiple tasks in parallel. Available on desktop browsers and the Claude iOS app.Start coding at claude.ai/code.Get started on the web →\n\nA plugin for IntelliJ IDEA, PyCharm, WebStorm, and other JetBrains IDEs with interactive diff viewing and selection context sharing.Install the Claude Code plugin from the JetBrains Marketplace and restart your IDE.Get started with JetBrains →\n\n## ​\n\nWhat you can do\n\nHere are some of the ways you can use Claude Code:\n\nAutomate the work you keep putting off [...] ## ​\n\nNext steps\n\nOnce you’ve installed Claude Code, these guides help you go deeper.\n   Quickstart: walk through your first real task, from exploring a codebase to committing a fix\n   Store instructions and memories: give Claude persistent instructions with CLAUDE.md files and auto memory\n   Common workflows and best practices: patterns for getting the most out of Claude Code\n   Settings: customize Claude Code for your workflow\n   Troubleshooting: solutions for common issues\n   code.claude.com: demos, pricing, and product details\n\nWas this page helpful?\n\nYes No\n\nQuickstart\n\nCtrl+I\n\nClaude Code Docs home pageImage 4: light logoImage 5: dark logo\n\nxlinkedin\n\nCompany\n\nAnthropicCareersEconomic FuturesResearchNewsTrust centerTransparency\n\nHelp and security\n\nAvailabilityStatusSupport center [...] Work from anywhere\n\nSessions aren’t tied to a single surface. Move work between environments as your context changes:\n   Step away from your desk and keep working from your phone or any browser with Remote Control\n   Message Dispatch a task from your phone and open the Desktop session it creates\n   Kick off a long-running task on the web or iOS app, then pull it into your terminal with `claude --teleport`\n   Hand off a terminal session to the Desktop app with `/desktop` for visual diff review\n   Route tasks from team chat: mention `@Claude` in Slack with a bug report and get a pull request back\n\n## ​\n\nUse Claude Code everywhere",
+        "score": 0.48630774,
+        "source": "tavily"
+      }
+    ],
+    "blog": [
+      {
+        "title": "Claude Code Tutorial for Beginners 2026: From Installation to ...",
+        "url": "https://dev.to/ayyazzafar/claude-code-tutorial-for-beginners-2026-from-installation-to-building-your-first-project-1lma",
+        "content": "DEV Community\n\n## DEV Community\n\nAyyaz Zafar\n\nPosted on Jan 28\n\n# Claude Code Tutorial for Beginners 2026: From Installation to Building Your First Project\n\nIf you've been copy-pasting code to ChatGPT, constantly switching between your editor and browser, and losing context every time — there is a better way.\n\nClaude Code is Anthropic's official AI coding assistant that runs directly in your terminal. It understands your entire codebase, makes changes across multiple files, and even handles Git operations for you.\n\nIn my latest video tutorial, I walk you through everything you need to get started — from installation to building your first project.\n\n## What is Claude Code? [...] Building a CLI Tool from Scratch  \nI demonstrate building a complete temperature converter CLI tool that supports Celsius, Fahrenheit, and Kelvin — including error handling.\n\n## Quick Tips\n\n`claude --continue`\n`claude -p \"your prompt\"`\n`CLAUDE.md`\n\n## Watch the Full Tutorial\n\nThis article only scratches the surface. Watch the full video for live demonstrations and step-by-step guidance:\n\nWatch: Claude Code Tutorial for Beginners 2026 on YouTube\n\nIf you found this helpful, consider subscribing for more AI developer tool tutorials:\n\nSubscribe to AyyazTech on YouTubeThanks for reading! Drop a comment if you have questions about Claude Code.\n\n## Top comments (0)\n\npic\n\nTemplates let you quickly answer FAQs or store snippets for re-use. [...] ## Installation\n\nThe recommended way to install Claude Code is using the native installer. On macOS or Linux, open your terminal and run the install command from `claude.ai/install.sh`. Windows users can use the equivalent PowerShell command. You can also use Homebrew on Mac or winget on Windows, but the native installer is recommended by Anthropic because it auto-updates in the background.\n\n`claude.ai/install.sh`\n\nAfter installation, verify it by running:\n\n`claude --version`\n\n## First Login and Authentication\n\nOnce installed, simply type `claude` in your terminal. On first launch, you will choose a text style, then log in. You can authenticate with a Claude Pro/Max subscription, an Anthropic Console API account, or a third-party platform like Amazon Bedrock.\n\n`claude`",
+        "score": 0.829285,
+        "source": "tavily"
+      },
+      {
+        "title": "Claude Code 2026: Complete Tutorial &amp; Getting Started Guide",
+        "url": "https://otomasi.ai/en/blog/claude-code-tutorial-2026",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Claude Code Tutorial for Beginners - Complete 2026 Guide to AI Coding",
+        "url": "https://codewithmukesh.com/blog/claude-code-for-beginners/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "How to Use Claude Code in 2026: The Ultimate Tutorial &amp; Guide",
+        "url": "https://similarlabs.com/blog/claude-code-tutorial-guide",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Getting Started with Claude Code: A Researcher's Setup Guide",
+        "url": "https://paulgp.substack.com/p/getting-started-with-claude-code",
+        "content": "# A Causal Affair\n\n# Getting Started with Claude Code: A Researcher’s Setup Guide\n\n### Video 1 in a series on Claude Code\n\nPaul Goldsmith-Pinkham\n\nMar 29, 2026\n\nPart 1 of a series on AI coding tools for empirical research, accompanying my Markus Academy video series. This series follows an earlier Markus Academy mini-series with Ben Golub in December 2025, which focused on using LLMs for theoretical economics work with Cursor and his software Refine.ink.  \n  \nThese blog posts are companion pieces to go with the videos I recorded with Markus. [...] #### Discussion about this post\n\nPawel Jozefiak\n\n4h\n\nThe IRB data warning is one I keep seeing people skip over and it matters. Research workflows have a specific trust problem - you're often working with data that's one mistake away from a compliance issue, and Claude Code's default behavior is to read everything in the project directory.\n\nThe context window degradation point is also underappreciated (most people just keep going until outputs get weird). Good that you're building the Markus Academy series around this - researchers need the setup guide more than developers do tbh, the stakes for getting it wrong are higher.\n\nShare\n\n4h\n\nSuper useful thanks!\n\nReplyShare\n\n1 more comment...\n\nNo posts\n\n### Ready for more?\n\n© 2026 Paul Goldsmith-Pinkham · Privacy ∙ Terms ∙ Collection notice [...] ## The Basic Interaction Loop\n\nHere’s what using Claude Code actually looks like. You navigate to your project directory, start a session, and have a conversation:\n\n```\n> What files are in this project? Summarize the structure.\n```\n\nClaude reads the directory and gives you a plain-English overview. Already useful when you’re picking up a coauthor’s code.\n\n```\n> Read clean_data.py and explain what it does, step by step.\n```\n\nIt opens the file, walks through the logic, and flags potential issues.\n\n```\n> Load data/employment.csv, show the first few rows, and compute summary statistics.\n```\n\nClaude writes a script, runs it, and shows you the output—all in the terminal.",
+        "score": 0.7555112,
+        "source": "tavily"
+      }
+    ],
+    "github": [
+      {
+        "title": "45 Claude Code Tips From basics to advanced - GitHub",
+        "url": "https://github.com/ykdojo/claude-code-tips",
+        "content": "Readme\n\n### License\n\nView license\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\nActivity\n\n### Stars\n\n7.3k stars\n\n### Watchers\n\n52 watching\n\n### Forks\n\n510 forks\n\nReport repository\n\n## Releases 29\n\nv0.26.7 Latest Mar 27, 2026\n\n+ 28 releases\n\n## Packages 0\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n## Contributors\n\n    \n    \n    \n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n## Languages\n\n   JavaScript 77.5%\n   Shell 21.6%\n   HTML 0.9%\n\n## Footer\n\n[]( © 2026 GitHub,Inc. \n\n### Footer navigation\n\n   Terms\n   Privacy\n   Security\n   Status\n   Community\n   Docs\n   Contact\n    Manage cookies \n    Do not share my personal information \n\n You can’t perform that action at this time. [...] Plugins are a way to package skills, slash commands, agents, hooks, and MCP servers together. But a plugin doesn't have to use all of them. Anthropic's official `frontend-design` plugin is essentially just a skill and nothing else. It could be distributed as a standalone skill, but the plugin format makes it easier to install.\n\nFor example, I built a plugin called `dx` that bundles slash commands and a skill from this repo together. You can see how it works in the Install the dx plugin section.\n\n## Tip 26: Interactive PR reviews\n\n, but with Claude Code you can have a conversation.\n\n## Tip 27: Claude Code as a research tool\n\n, doing sentiment or market analysis on Reddit, exploring your codebase, or exploring public information to find something - it's able to do that. [...] SETTINGS (~/.claude/settings.json):\n  3. Status line - shows model, git branch, uncommitted files, token usage at bottom of screen\n  4. Disable auto-updates - prevents Claude Code from auto-updating (useful for system prompt patches)\n  5. Lazy-load MCP tools - only loads MCP tool definitions when needed, saves context\n  6. Read(~/.claude) permission - allows clone/half-clone commands to read conversation history\n  7. Read(//tmp/) permission - allows reading temporary files without prompts\n  8. Disable attribution - removes Co-Authored-By from commits and attribution from PRs\n\nSHELL CONFIG (~/.zshrc or ~/.bashrc):\n  9. Aliases: c=claude, ch=claude --chrome, cs=claude --dangerously-skip-permissions\n 10. Fork shortcut: --fs expands to --fork-session (e.g., claude -c --fs)",
+        "score": 0.5313802,
+        "source": "tavily"
+      }
+    ],
+    "news": [
+      {
+        "title": "The Claude Code Handbook: A Professional Introduction to Building ...",
+        "url": "https://www.freecodecamp.org/news/claude-code-handbook/",
+        "content": "This account authenticates you across all Anthropic products, including Claude Code.\n\n### Step 2: Select a Subscription Plan\n\nClaude Code requires a paid subscription. The available tiers as of 2026:\n\n#### Claude Pro: $20 per month\n\nThe Pro plan provides access to Claude's models with a daily usage limit. When you reach that limit, you wait until the following day to continue.\n\nFor someone beginning with Claude Code building small projects, learning the system, running sessions of moderate intensity, the Pro plan is sufficient. It isn't designed for sustained professional use, but it's an appropriate entry point.\n\n#### Claude Max: \\(100 or \\)200 per month [...] ### Claude Code Security\n\nAnthropic has released Claude Code Security, a capability in preview as of 2026 that scans codebases for known vulnerability patterns and generates proposed corrections.\n\nThis represents the direction of security tooling: integrated, automated, and AI-assisted. For production systems, treat it as an additional layer, not a replacement for expert review.\n\n### The Continued Role of Writing Code\n\nExperience across the Claude Code community consistently confirms: developers who write some code themselves, rather than delegating all implementation, maintain significantly better understanding of their systems. [...] As of early 2026, the scale of this shift is measurable and substantial, and its significance extends beyond productivity metrics. The ability to build software is becoming accessible to a broader range of people – not because the underlying complexity has been eliminated, but because much of the mechanical translation between intent and implementation can now be delegated to an AI agent.\n\nWhat this unlocks, in human terms, is closer to what the printing press unlocked for written communication: a dramatic expansion of who can participate.",
+        "score": 0.7837407,
+        "source": "tavily"
+      },
+      {
+        "title": "Claude Code Tutorial for Beginners (2026) - YouTube",
+        "url": "https://www.youtube.com/watch?v=d8sf6igH9Fg",
+        "content": "Claude Code Tutorial for Beginners (2026) In this video, we show you everything you need to know about using Claude for coding in 2026.",
+        "score": 0.7703443,
+        "source": "tavily"
+      },
+      {
+        "title": "FULL Claude Tutorial for Beginners in 2026! (Become a PRO!)",
+        "url": "https://www.youtube.com/watch?v=rRrBbyv3ChM",
+        "content": "... use claude, touching on incognito mode and other claude ai features. #claude. ... FULL Claude Projects Guide For Beginners in 2026! (Become a PRO).",
+        "score": 0.70823324,
+        "source": "tavily"
+      },
+      {
+        "title": "CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026)",
+        "url": "https://www.youtube.com/watch?v=QoQBzR1NIqI",
+        "content": "CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026) · Comments.",
+        "score": 0.650934,
+        "source": "tavily"
+      }
+    ]
+  },
+  "total": 19
+}

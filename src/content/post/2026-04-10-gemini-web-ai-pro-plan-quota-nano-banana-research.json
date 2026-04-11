@@ -1,0 +1,267 @@
+{
+  "merged": [
+    {
+      "title": "Nano Banana Pro Free vs Pro Limits: Complete Quota Comparison & Decision Guide (2026) | LaoZhang AI Blog",
+      "url": "https://blog.laozhang.ai/en/posts/gemini-nano-banana-pro-free-vs-pro-limits",
+      "content": "As of February 2026, Nano Banana Pro's free tier allows just 2 images per day at 1024x1024 resolution with visible watermarks, while the Google AI Pro subscription at $19.99 per month unlocks approximately 100 images per day at up to 2K resolution with no watermark. The Google AI Ultra plan at $249.99 per month pushes this to 1,000 images per day at full 4K (4096x4096) resolution. But the raw numbers only tell part of the story — your actual experience depends on dynamic quota adjustments, the resolution you choose, and whether you're using Gemini Apps or the API. This guide provides the complete breakdown with verified official data, per-image cost calculations, and a decision framework that no other comparison offers.\n\nNano Banana vs Nano Banana Pro: What's Actually Different? [...] What happens when I hit my daily quota limit?\n\nWhen you reach your daily Nano Banana Pro image limit, Gemini Apps will display a message indicating that you've exhausted your allocation for the day. You won't be able to generate additional Nano Banana Pro images until the quota resets. However, you can still use other Gemini features (text chat, code generation, document analysis) — only the image generation quota is exhausted. On the Free tier, you may still be able to generate images using the standard Nano Banana model (Flash Image) even after your 2 Pro images are used up, though at lower quality. There is no option to purchase additional quota or \"top up\" your daily allocation mid-cycle — upgrading to a higher tier is the only way to increase your daily limit. [...] What happens when I hit my daily quota limit?\n\nWhen you reach your daily Nano Banana Pro image limit, Gemini Apps will display a message indicating that you've exhausted your allocation for the day. You won't be able to generate additional Nano Banana Pro images until the quota resets. However, you can still use other Gemini features (text chat, code generation, document analysis) — only the image generation quota is exhausted. On the Free tier, you may still be able to generate images using the standard Nano Banana model (Flash Image) even after your 2 Pro images are used up, though at lower quality. There is no option to purchase additional quota or \"top up\" your daily allocation mid-cycle — upgrading to a higher tier is the only way to increase your daily limit.",
+      "score": 0.86331123,
+      "source": "tavily"
+    },
+    {
+      "title": "How Much Does Nano Banana 2 Cost? Full Pricing, API and Subscription Guide",
+      "url": "https://www.glbgpt.com/hub/how-much-does-nano-banana-2-cost-full-pricing-api-and-subscription-guide/",
+      "content": "At these price points, Nano Banana 2 not only undercuts its Pro predecessor but also ranks #1 across multiple text-to-image benchmarks, outperforming major competitors in overall preference, visual quality, and infographic accuracy. It delivers top-tier performance at one of the most competitive price-to-performance ratios in the AI image generation market.\n\nIf you prefer a subscription model, Nano Banana 2 is included in the Gemini AI Plus plan ($19.99/mo) with a quota of roughly 50 daily credits, while the Ultra plan ($124.99/mo) provides high-volume access up to 1,000 images per day. Whether you are a developer seeking API scalability or a designer needing 4K consistency, Nano Banana 2 offers the most competitive “Pro-at-Flash-speed” pricing in the current AI landscape. [...] ### a comparison table of Nano Banana 2 access plans, pricing, and quotas\n\n| Access Method | Resolution | Price / Monthly Fee | Daily Quota | Best For |\n ---  --- \n| Standard API | 512px – 4K | $0.045 – $0.151 | Unlimited (Pay-as-go) | Developers / Apps |\n| Batch API | 512px – 4K | $0.022 – $0.075 | Unlimited (Asynchronous) | Bulk Rendering |\n| Gemini AI Plus | Up to 2K | $19.99 / mo | ~50 Images | Casual Designers |\n| Gemini Ultra | Up to 4K | $124.99 / mo | ~1,000 Images | Enterprise Users |\n| GlobalGPT | Up to 4K | from $5.75 / mo | High / Flexible | Power Users / Freelancers |\n\n## Nano Banana 2 Technical Specifications and Core Capabilities [...] If your use case doesn’t require real-time results, I strongly recommend switching to batch mode. All resolution tiers receive a 50% discount. The cost of generating a 4K image drops from $0.151 to just $0.076, which is nearly the same as the standard 0.5K image price.\n\n## Gemini App Subscription Plans\n\nIf you prefer a visual interface over API coding, you will likely use the official Gemini App. However, access to Nano Banana 2 is heavily gated behind Google’s monthly subscription tiers.\n\n### Free Tier vs. AI Plus vs. Pro vs. Ultra Quota Limits\n\nClick here to view the official Nano Banana 2 subscription pricing.",
+      "score": 0.85421735,
+      "source": "tavily"
+    },
+    {
+      "title": "Nano Banana 2 Limits: The Ultimate 2026 Guide to Gemini 3.1 Flash Image Daily Quotas",
+      "url": "https://www.glbgpt.com/hub/nano-banana-2-limits-the-ultimate-guide-to-gemini-3-1-flash-image-daily-quotas/",
+      "content": "GlobalGPT\n\n# Nano Banana 2 Limits: The Ultimate 2026 Guide to Gemini 3.1 Flash Image Daily Quotas\n\nNano Banana 2 Limits: The Ultimate 2026 Guide to Gemini 3.1 Flash Image Daily Quotas\n\nNano Banana 2 limits are the daily generation quotas for Google’s Gemini 3.1 Flash Image model. Free users are restricted to 20 images per 24 hours, while AI Pro and Ultra subscribers are capped at 50-1,000. Frequent queuing delays and these rigid caps often interrupt high-volume professional workflows.\n\nHitting these daily limits or waiting in long queues stops your creative progress. GlobalGPT integrates over 100 top-tier models, including GPT-5.2 and Nano Banana 2, into a single platform to eliminate these bottlenecks. [...] Q1: What are the daily usage limits for Nano Banana 2?\n\nFree users can generate up to 20 images every 24 hours, while AI Pro and Ultra subscribers have a higher cap of 100-1,000 images per day. Note that these limits are dynamic and may decrease during peak hours to ensure system stability for all users.\n\nQ2: Why do I get a “Usage Limit Reached” error even with a Pro subscription?\n\nThis error often occurs during high-demand periods when Google applies “dynamic throttling” to preserve server resources. Additionally, complex tasks like “Thinking” or “Deep Reasoning” have much smaller hidden quotas—sometimes as low as 3–5 prompts per day.\n\nQ3: Can Nano Banana 2 generate NSFW or restricted content? [...] Choosing GlobalGPT provides an all-in-one solution for 4K visual generation without regional locks or watermarks. Our Pro Plan ($10.8) offers access to advanced models like Sora 2 Pro and Veo 3.1, making it more efficient and cost-effective than managing multiple separate subscriptions.\n\nnano banana 2 on globalgpt\nnano banana 2 on globalgpt\n\n## Nano Banana 2 limits: How many images can you generate daily in 2026?\n\nNano Banana 2 has strict daily limits depending on whether you pay for a subscription or use the free version. Google sets these quotas to manage how much energy and computer power the AI uses at once.",
+      "score": 0.8430832,
+      "source": "tavily"
+    },
+    {
+      "title": "Nano Banana Pro Pricing Guide: Plans, Tiers, Hidden Costs, and Free Options Explained",
+      "url": "https://magichour.ai/blog/nano-banana-pro-pricing",
+      "content": "## Summary Table: Nano Banana Pro Pricing at a Glance\n\n|  |  |  |  |  |\n ---  --- \n| User Tier |  |  | Billing Model | Estimated Cost |\n| Casual Users | Gemini App | 1 MP | 3 free generations | Free |\n| Pro Subscribers | Gemini Pro | Up to 4K | Monthly subscription | Fixed monthly fee |\n| Ultra Subscribers | Gemini Ultra or Flow | Full 4K | High priority + quota | Subscription fee |\n| Developers | Google AI Studio or Vertex AI | Up to 4K | Per generation | About $0.15 per 4K |\n| Enterprise Teams | Vertex AI | Up to 4K | Usage based | Variable |\n| Third Party Access | Integrated platforms like GlobalGPT | Up to 4K | Low monthly fee | About $5.3 per month | [...] ## Nano Banana Pro Pricing in Detail by User Tier\n\nThis section expands every tier in depth, showing how cost scales.\n\n1. Free Tier Users\n\nFree access to Nano Banana Pro is limited and designed for testing, not full production.\n\n Platform: Gemini App or limited partner interfaces\n Resolution: capped at 1 MP\n Quota: exactly 3 generations\n After quota: system defaults to the standard Nano Banana model\n Watermarking: visible watermark + invisible SynthID\n Speed: lowest processing priority\n\nThe free tier is primarily for quick demos. It is not suitable for professional or commercial use because of both resolution and watermark constraints. It can, however, help you test prompts and get a feel for the model’s reasoning abilities.\n\n2. Pro Subscribers [...] This table helps creators map their actual workload to realistic monthly expenses.\n\n## Free Trial and Low Cost Options for Nano Banana Pro\n\nNano Banana Pro technically does not have a standalone free trial, but you can test it through several avenues.\n\n1. Gemini App Trial Quota\n\n Up to 3 images\n 1 MP resolution\n Immediate downgrade to basic Nano Banana after quota\n\nThis is enough for experimentation, not production.\n\n2. AI Studio Credits\n\nSome users receive trial credits that can be applied to Nano Banana Pro requests. Since each 4K image is about $0.15, a modest credit balance can produce many images.\n\n3. Low Cost Third Party Platforms",
+      "score": 0.84027237,
+      "source": "tavily"
+    },
+    {
+      "title": "Nano Banana AI: Free vs Paid Plans Explained - Analytics Insight",
+      "url": "https://www.analyticsinsight.net/artificial-intelligence/nano-banana-ai-daily-image-generation-limits-for-free-pro-and-ultra-plans-with-google-gemini",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Nano Banana Pro Limits - Daily Image Caps Across Free, Pro &amp; Ultra Plans",
+      "url": "https://www.glbgpt.com/hub/nano-banana-pro-limits/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Nano Banana Pro Free Limits in Gemini App: Complete 2025 Guide [Daily ...",
+      "url": "https://www.aifreeapi.com/en/posts/nano-banana-pro-gemini-free-limits",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Google Nano Banana Free Vs Pro: Daily Quotas, Resolution Caps, Pricing ...",
+      "url": "https://www.datastudios.org/post/google-nano-banana-free-vs-pro-daily-quotas-resolution-caps-pricing-tiers-and-partner-bundles",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Google Gemini Nano Banana AI Limit- Free vs Pro vs Ultra - Know how ...",
+      "url": "https://news24online.com/tech/google-gemini-nano-banana-ai-daily-limit-free-vs-pro-ultra-how-many-images-can-you-generate-full-guide/633496/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Nano Banana Pro Pricing &amp; Quota Guide 2026: Complete ... - yingtu.ai",
+      "url": "https://yingtu.ai/en/blog/nano-banana-pro-pricing-quota-guide-2026",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Nano Banana AI: Daily Limits on Google Gemini Explained",
+      "url": "https://www.exhibit.tech/ai-robotics/google-gemini-nano-banana-ai-daily-limits-features-and-free-access/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "Gemini Nano Banana Pro Free Tier Limits Get TIGHTER Starting ... - Reddit",
+      "url": "https://www.reddit.com/r/ai_apps_developement/comments/1pitc0y/gemini_nano_banana_pro_free_tier_limits_get/",
+      "content": "",
+      "score": 0.8,
+      "source": "duckduckgo"
+    },
+    {
+      "title": "I Signed Up for Google Gemini Pro. These 5 Features Make It Worth the Cost | PCMag",
+      "url": "https://www.pcmag.com/how-to/i-signed-up-for-google-gemini-pro-5-features-make-it-worth-cost",
+      "content": "## 3. Greater Image Creation With Nano Banana\n\nGemini uses a text-to-image generator known as Nano Banana. With this built-in model, you’re able to generate and edit high-quality photos, drawings, and diagrams. An advanced version known as Nano Banana Pro is even more robust and effective at conjuring up the right images.\n\nThe free flavor of Gemini restricts you to 100 images per day with Nano Banana and three images per day with Nano Banana Pro. For the standard Nano Banana, the AI Plus and Pro plans both expand the number to 1,000 images per day. For Nano Banana Pro, Plus users get 50 images per day, while Pro subscribers score 100 each day.\n\nNewsletter Icon\n\nNewsletter Icon\n\nGet Our Best Stories!\n\n### Get the Most Out of Your Technology\n\nTips, Tricks, and How-To Newsletter Image [...] (Credit: PCMag / Google)\n\n## 2. Greater Access to Deep Research\n\nIdeal for tackling more complex topics, Deep Research responds to your questions or requests by consulting a variety of websites and sources and then presenting you with a detailed report for your review. With a free plan, you can use Deep Research only five times per month. With an AI subscription, Plus users can tap into it as many as 12 times a day and Pro users as many as 20 times per day. To try Deep Research, select the Tools icon at the website or in the mobile app, choose Deep Research, and then submit your request at the prompt.\n\nGreater Access to Deep Research\n\n(Credit: PCMag / Google)\n\n## 3. Greater Image Creation With Nano Banana [...] ### Recommended by Our Editors\n\ngoogle ai overview\n\nI Tricked Google Into Removing AI Overviews. Here's How I Did It\n\ngoogle gemini logo\n\nHow to Get the Most From Google Gemini: 15 Tips You'll Actually Use\n\nCurious About Gemini’s Nano Banana AI Image Model, But Not Sure Where to Start? I Peel Back All the Complexity\n\nNano Banana Pro Unpeeled: See What I Made With Google's Newest AI Image Generator\n\nIf you’re curious, sign in to your Gemini AI subscription. You should receive a pop-up window asking if you want to supercharge Gemini with Personal Intelligence. Click the Get Started button. The next window shows you which apps are available to add. Click Choose apps, then check each service you wish to connect and choose Confirm.\n\nSet up Personal Intelligence\n\n(Credit: PCMag / Google)",
+      "score": 0.767429,
+      "source": "tavily"
+    },
+    {
+      "title": "Is Nano Banana free to use, and what are the pricing options?",
+      "url": "https://milvus.io/ai-quick-reference/is-nano-banana-free-to-use-and-what-are-the-pricing-options",
+      "content": "For heavier use, Google offers Gemini Advanced, available through a Google One AI Premium subscription. As of 2025, this plan costs $19.99 per month in the U.S. and includes access to higher-end models, faster processing, and larger quotas. Paid subscribers benefit from higher-resolution outputs and the ability to make more image edits without hitting daily limits. If you’re using the Gemini API for programmatic access, billing works differently: you are charged based on the number of requests and the complexity of the generation (text-to-image, image-to-image, or multi-image blending). Pricing for API usage is typically metered on a per-request basis, with specific rates published in Google’s API documentation. [...] Milvus\nZilliz\nMilvus\nZilliz\n\nIs Nano Banana free to use, and what are the pricing options?\n\n# Is Nano Banana free to use, and what are the pricing options?\n\nYes, Nano Banana — the codename for Google’s Gemini 2.5 Flash Image model — can be used for free, but with some limits. If you access it through the Gemini app (web or mobile), both free and paid users have access to the updated image editing features. Free-tier users can try edits and generations each day, but they may face limits on the number of requests, output quality, and processing speed. All generated images include both a visible watermark and Google’s invisible SynthID digital watermark to clearly mark them as AI-generated. This is true regardless of whether you are using the free or paid tier.",
+      "score": 0.72629017,
+      "source": "tavily"
+    },
+    {
+      "title": "Plans & Pricing of Nano Banana",
+      "url": "https://nanobanana.io/pricing",
+      "content": "$63.9$127.9/month\n\n$1534.8 $766.8/year\n\nup to 150% bonus\n\n 120,000 credits/year(~6,000 Images)\n 120,000 credits upfront\n Supports team management with up to 30 seats\n Nano Banana AI Image Generation\n Nano Banana Pro AI Image Generation\n Seedream AI Image Generation\n Access All Advanced Image & Video Models\n Permanent data storage\n Faster generation speed\n Priority support\n Download watermark-free videos and images\n Commercial Use License\n\n## Frequently Asked Questions\n\nFrequently Asked Questions About Our Services and Pricing.If you have any other questions or requests, please contact (/cdn-cgi/l/email-protection) and we will get back to you as soon as possible. [...] Nano Banana LogoNano Banana\n\n# Plans & Pricing of Nano Banana\n\n## Choose the plan that works best for you. All plans include access to our core features\n\nLIMITED OFFER\n\nNano Banana 2 Flash Sale\n\nLimited-Time 50% OFF\n\n00\n\nHours\n\n:\n\n00\n\nMinutes\n\n:\n\n00\n\nSeconds\n\nCancel anytime\n\n## Basic\n\nPerfect for hobbyists and beginners\n\n$9.9$19.9/month\n\n$238.8 $118.8/year\n\n 12,000 credits/year(~600 Images)\n 12,000 credits upfront\n Nano Banana AI Image Generation\n Nano Banana Pro AI Image Generation\n Seedream AI Image Generation\n Access All Advanced Image & Video Models\n Permanent data storage\n Faster generation speed\n Priority support\n Download watermark-free videos and images\n Commercial Use License\n\nMost Popular\n\n## Pro\n\nFor creators and professionals\n\n$23.9$47.9/month\n\n$574.8 $286.8/year [...] $23.9$47.9/month\n\n$574.8 $286.8/year\n\nup to 50% bonus\n\n 30,000 credits/year(~1,500 Images)\n 30,000 credits upfront\n Supports team management with up to 5 seats\n Nano Banana AI Image Generation\n Nano Banana Pro AI Image Generation\n Seedream AI Image Generation\n Access All Advanced Image & Video Models\n Permanent data storage\n Faster generation speed\n Priority support\n Download watermark-free videos and images\n Commercial Use License\n\n## Enterprise\n\nFor teams and businesses\n\n$63.9$127.9/month\n\n$1534.8 $766.8/year\n\nup to 150% bonus",
+      "score": 0.69573146,
+      "source": "tavily"
+    },
+    {
+      "title": "Google AI Plans with Cloud Storage",
+      "url": "https://one.google.com/intl/en/about/google-ai-plans/",
+      "content": "Explore more visual possibilities with more access to Nano Banana Pro image generation in the Gemini app and Search and direct professional-quality scenes with more access to Veo 3.1 in Flow.4\n\nCreate more custom soundtracks for any moment with more access to our music generation model Lyria 3 in the Gemini app.\n\nCreate insightful, multi-page reports in less time with the Gemini app.\n\nPush your learning further with more access to NotebookLM.\n\nProtect important files and memories with 200 GB of cloud storage across Gmail, Drive, and Photos.\n\nShare your plan with up to five others with family sharing.\n\n### Google AI Pro1\n\nMove from idea to execution faster on complex projects with higher access to Gemini 3.1 Pro and Deep Research in the Gemini app. [...] Turn photos into captivating videos with higher limits to video generation in the Gemini app using Veo 3.1 Fast.4 Plus, more Remix generations and Veo 34 photo-to-video generations (US only) in Google Photos.\n\nExplore more visual possibilities with higher limits to Nano Banana Pro image generation in the Gemini app and Search5 and direct professional-quality scenes with higher access to Veo 3.1 in Flow.4\n\nCreate more custom soundtracks for any moment with higher access to our music generation model Lyria 3 in the Gemini app.\n\nCreate insightful, multi-page reports in less time with the Gemini app and Search.5\n\nPush your learning further with higher limits in NotebookLM.\n\nGo from idea to working code faster with higher limits to Jules,6 our asynchronous coding agent. [...] | Features | New  Google AI Plus  /mo | Google AI Pro  /mo | Google AI Ultra  /mo |\n ---  --- |\n|  |  |  |  |\n| Storage | | | |\n ---  --- |\n| Storage for Gmail, Google Drive, Google Photos | 200 GB | 2 TB | 30 TB |\n| Family sharing with up to 5 people |  |  |  |\n| Device backup |  |  |  |\n| Storage manager |  |  |  |\n| View more  View less |\n|  |  |  |  |\n| Google AI | | | |\n| Gemini | | | |\n| Access to our most capable models | More | Higher | Highest |\n| Custom AI experts |  |  |  |\n| Gemini Live |  |  |  |\n| Image generation and editing with Nano Banana Pro | More | Higher | Highest |\n| Deep Research | More | Higher | Highest |\n| File upload | More | Higher | Highest |\n| Video generation model access | Veo 3.1 Fast4 | Veo 3.1 Fast4 | Veo 3.14 |",
+      "score": 0.6745014,
+      "source": "tavily"
+    },
+    {
+      "title": "Use Google AI Pro benefits - Google One Help",
+      "url": "https://support.google.com/googleone/answer/14534406?hl=en",
+      "content": "Increased AI Agent Quotas:AI Pro members receive higher usage limits for Gemini 3 Pro and other Vertex AI Model Garden models (e.g. Claude 4.5 Sonnet, gpt-oss-120b) within the Antigravity platform. AI Pro members also receive priority access to new, experimental models as capacity permits. [...] When you subscribe to Google AI Pro, you have access to:\n\n   Gemini Code Assist: Get higher quotas on Google's generative AI to build code faster and more efficiently in your integrated development environment (IDE).\n   Google Cloud credits: This includes a $10 Google Cloud credits each month.\n   Firebase: This includes 30 Firebase Studio workspaces.\n   Other Google Developer Program benefits:This includes developer communities, forums, and other benefits.\n\nLearn more about Google Developer Program premium membership benefits.\n\nEligibility\n\nImportant: You can't share the Google Developer Program premium benefit with the members of your family group.\n\nTo use Google Developer Program premium, you must have an active Google AI Pro membership linked to your Google Developer profile. [...] ProducerAI\n   5 TB Storage\n   1,000 monthly AI credits\n\nTip: Family plan members on a Google AI Pro membership plan can enjoy AI benefits and features at no extra cost. Learn how to start or stop sharing with your family.\n\n## Use Gemini capabilities in Google Earth with higher limits (US only)\n\nImportant:This feature is still experimental, so it may give unexpected or inaccurate results.\n\nWith Google AI Pro, you can access the Gemini capabilities in Google Earth with higher limits, so you can chat with Gemini in order to accelerate geospatial analysis. For example, you can:\n\n   Identify potential sites for new amenities\n   Visualize boundaries\n   Display points of interest\n\nAvailability:",
+      "score": 0.4059909,
+      "source": "tavily"
+    },
+    {
+      "title": "Google AI Pro & Ultra — get access to Gemini 3.1 Pro & more",
+      "url": "https://gemini.google/subscriptions/",
+      "content": "Our Google AI Pro plan is available for users aged over 18 and includes:\n\nGemini in Gmail, Docs and more\n\n5 TB of storage\n\nand other benefits\n\nYou also need a personal Google Account that you manage on your own.\n\nHow to upgrade\n\nYes, but there might be some feature differences between the Gemini mobile app and Gemini web app. How to upgrade\n\nIf you want to manage your Google AI subscription in the mobile app, tap your profile picture to access the Settings menu. [...] Cancel Google AI Pro subscription at any time before your trial expires. No refunds for partial billing periods, except as required by applicable law. By subscribing, you agree to the terms for Google One, Google and offers. See how Google handles data. Google AI Pro and Gemini for Gmail, Docs and more are only available for users aged 18+. Gemini for Gmail, Docs and more is available in selected languages. Rate limits may apply.\n\nGoogle AI Plus is available in more than 160 countries – see the full list of countries.\n\nGoogle AI Pro is available in more than 150 countries and territories – see the full list of countries.\n\nGoogle AI Ultra is available in more than 150 countries – see the full list of countries.\n\nAI credits (daily and monthly) are shared across Flow and Whisk. [...] Image of storage usage in Google One\nNotebookLM Pro icon\n\n### NotebookLM\n\nUnlock highest usage limits and premium features with NotebookLM to help you surface critical insights faster from the information that you provide.\n\nImage showing various data sources that can be used in NotebookLM Plus\n\n## Get started with a one‑month free trial of Google AI Pro\n\n## Frequently asked questions\n\nLevel up your Gemini app experience by upgrading to the Pro plan. Unlock new and powerful features to tackle complex tasks and projects.\n\nGet more access to our most capable models, like 3.1 Pro, and powerful features, like Deep Research and a 1 million token context window. Also, unlock a limited trial of Veo 3.1 Fast, our video generation model that prioritises speed and efficiency.",
+      "score": 0.38020703,
+      "source": "tavily"
+    }
+  ],
+  "by_category": {
+    "official": [
+      {
+        "title": "How Much Does Nano Banana 2 Cost? Full Pricing, API and Subscription Guide",
+        "url": "https://www.glbgpt.com/hub/how-much-does-nano-banana-2-cost-full-pricing-api-and-subscription-guide/",
+        "content": "At these price points, Nano Banana 2 not only undercuts its Pro predecessor but also ranks #1 across multiple text-to-image benchmarks, outperforming major competitors in overall preference, visual quality, and infographic accuracy. It delivers top-tier performance at one of the most competitive price-to-performance ratios in the AI image generation market.\n\nIf you prefer a subscription model, Nano Banana 2 is included in the Gemini AI Plus plan ($19.99/mo) with a quota of roughly 50 daily credits, while the Ultra plan ($124.99/mo) provides high-volume access up to 1,000 images per day. Whether you are a developer seeking API scalability or a designer needing 4K consistency, Nano Banana 2 offers the most competitive “Pro-at-Flash-speed” pricing in the current AI landscape. [...] ### a comparison table of Nano Banana 2 access plans, pricing, and quotas\n\n| Access Method | Resolution | Price / Monthly Fee | Daily Quota | Best For |\n ---  --- \n| Standard API | 512px – 4K | $0.045 – $0.151 | Unlimited (Pay-as-go) | Developers / Apps |\n| Batch API | 512px – 4K | $0.022 – $0.075 | Unlimited (Asynchronous) | Bulk Rendering |\n| Gemini AI Plus | Up to 2K | $19.99 / mo | ~50 Images | Casual Designers |\n| Gemini Ultra | Up to 4K | $124.99 / mo | ~1,000 Images | Enterprise Users |\n| GlobalGPT | Up to 4K | from $5.75 / mo | High / Flexible | Power Users / Freelancers |\n\n## Nano Banana 2 Technical Specifications and Core Capabilities [...] If your use case doesn’t require real-time results, I strongly recommend switching to batch mode. All resolution tiers receive a 50% discount. The cost of generating a 4K image drops from $0.151 to just $0.076, which is nearly the same as the standard 0.5K image price.\n\n## Gemini App Subscription Plans\n\nIf you prefer a visual interface over API coding, you will likely use the official Gemini App. However, access to Nano Banana 2 is heavily gated behind Google’s monthly subscription tiers.\n\n### Free Tier vs. AI Plus vs. Pro vs. Ultra Quota Limits\n\nClick here to view the official Nano Banana 2 subscription pricing.",
+        "score": 0.85421735,
+        "source": "tavily"
+      },
+      {
+        "title": "Nano Banana 2 Limits: The Ultimate 2026 Guide to Gemini 3.1 Flash Image Daily Quotas",
+        "url": "https://www.glbgpt.com/hub/nano-banana-2-limits-the-ultimate-guide-to-gemini-3-1-flash-image-daily-quotas/",
+        "content": "GlobalGPT\n\n# Nano Banana 2 Limits: The Ultimate 2026 Guide to Gemini 3.1 Flash Image Daily Quotas\n\nNano Banana 2 Limits: The Ultimate 2026 Guide to Gemini 3.1 Flash Image Daily Quotas\n\nNano Banana 2 limits are the daily generation quotas for Google’s Gemini 3.1 Flash Image model. Free users are restricted to 20 images per 24 hours, while AI Pro and Ultra subscribers are capped at 50-1,000. Frequent queuing delays and these rigid caps often interrupt high-volume professional workflows.\n\nHitting these daily limits or waiting in long queues stops your creative progress. GlobalGPT integrates over 100 top-tier models, including GPT-5.2 and Nano Banana 2, into a single platform to eliminate these bottlenecks. [...] Q1: What are the daily usage limits for Nano Banana 2?\n\nFree users can generate up to 20 images every 24 hours, while AI Pro and Ultra subscribers have a higher cap of 100-1,000 images per day. Note that these limits are dynamic and may decrease during peak hours to ensure system stability for all users.\n\nQ2: Why do I get a “Usage Limit Reached” error even with a Pro subscription?\n\nThis error often occurs during high-demand periods when Google applies “dynamic throttling” to preserve server resources. Additionally, complex tasks like “Thinking” or “Deep Reasoning” have much smaller hidden quotas—sometimes as low as 3–5 prompts per day.\n\nQ3: Can Nano Banana 2 generate NSFW or restricted content? [...] Choosing GlobalGPT provides an all-in-one solution for 4K visual generation without regional locks or watermarks. Our Pro Plan ($10.8) offers access to advanced models like Sora 2 Pro and Veo 3.1, making it more efficient and cost-effective than managing multiple separate subscriptions.\n\nnano banana 2 on globalgpt\nnano banana 2 on globalgpt\n\n## Nano Banana 2 limits: How many images can you generate daily in 2026?\n\nNano Banana 2 has strict daily limits depending on whether you pay for a subscription or use the free version. Google sets these quotas to manage how much energy and computer power the AI uses at once.",
+        "score": 0.8430832,
+        "source": "tavily"
+      },
+      {
+        "title": "Nano Banana Pro Free Limits in Gemini App: Complete 2025 Guide [Daily ...",
+        "url": "https://www.aifreeapi.com/en/posts/nano-banana-pro-gemini-free-limits",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Google Gemini Nano Banana AI Limit- Free vs Pro vs Ultra - Know how ...",
+        "url": "https://news24online.com/tech/google-gemini-nano-banana-ai-daily-limit-free-vs-pro-ultra-how-many-images-can-you-generate-full-guide/633496/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      }
+    ],
+    "blog": [
+      {
+        "title": "Nano Banana Pro Free vs Pro Limits: Complete Quota Comparison & Decision Guide (2026) | LaoZhang AI Blog",
+        "url": "https://blog.laozhang.ai/en/posts/gemini-nano-banana-pro-free-vs-pro-limits",
+        "content": "As of February 2026, Nano Banana Pro's free tier allows just 2 images per day at 1024x1024 resolution with visible watermarks, while the Google AI Pro subscription at $19.99 per month unlocks approximately 100 images per day at up to 2K resolution with no watermark. The Google AI Ultra plan at $249.99 per month pushes this to 1,000 images per day at full 4K (4096x4096) resolution. But the raw numbers only tell part of the story — your actual experience depends on dynamic quota adjustments, the resolution you choose, and whether you're using Gemini Apps or the API. This guide provides the complete breakdown with verified official data, per-image cost calculations, and a decision framework that no other comparison offers.\n\nNano Banana vs Nano Banana Pro: What's Actually Different? [...] What happens when I hit my daily quota limit?\n\nWhen you reach your daily Nano Banana Pro image limit, Gemini Apps will display a message indicating that you've exhausted your allocation for the day. You won't be able to generate additional Nano Banana Pro images until the quota resets. However, you can still use other Gemini features (text chat, code generation, document analysis) — only the image generation quota is exhausted. On the Free tier, you may still be able to generate images using the standard Nano Banana model (Flash Image) even after your 2 Pro images are used up, though at lower quality. There is no option to purchase additional quota or \"top up\" your daily allocation mid-cycle — upgrading to a higher tier is the only way to increase your daily limit. [...] What happens when I hit my daily quota limit?\n\nWhen you reach your daily Nano Banana Pro image limit, Gemini Apps will display a message indicating that you've exhausted your allocation for the day. You won't be able to generate additional Nano Banana Pro images until the quota resets. However, you can still use other Gemini features (text chat, code generation, document analysis) — only the image generation quota is exhausted. On the Free tier, you may still be able to generate images using the standard Nano Banana model (Flash Image) even after your 2 Pro images are used up, though at lower quality. There is no option to purchase additional quota or \"top up\" your daily allocation mid-cycle — upgrading to a higher tier is the only way to increase your daily limit.",
+        "score": 0.86331123,
+        "source": "tavily"
+      },
+      {
+        "title": "Nano Banana Pro Pricing Guide: Plans, Tiers, Hidden Costs, and Free Options Explained",
+        "url": "https://magichour.ai/blog/nano-banana-pro-pricing",
+        "content": "## Summary Table: Nano Banana Pro Pricing at a Glance\n\n|  |  |  |  |  |\n ---  --- \n| User Tier |  |  | Billing Model | Estimated Cost |\n| Casual Users | Gemini App | 1 MP | 3 free generations | Free |\n| Pro Subscribers | Gemini Pro | Up to 4K | Monthly subscription | Fixed monthly fee |\n| Ultra Subscribers | Gemini Ultra or Flow | Full 4K | High priority + quota | Subscription fee |\n| Developers | Google AI Studio or Vertex AI | Up to 4K | Per generation | About $0.15 per 4K |\n| Enterprise Teams | Vertex AI | Up to 4K | Usage based | Variable |\n| Third Party Access | Integrated platforms like GlobalGPT | Up to 4K | Low monthly fee | About $5.3 per month | [...] ## Nano Banana Pro Pricing in Detail by User Tier\n\nThis section expands every tier in depth, showing how cost scales.\n\n1. Free Tier Users\n\nFree access to Nano Banana Pro is limited and designed for testing, not full production.\n\n Platform: Gemini App or limited partner interfaces\n Resolution: capped at 1 MP\n Quota: exactly 3 generations\n After quota: system defaults to the standard Nano Banana model\n Watermarking: visible watermark + invisible SynthID\n Speed: lowest processing priority\n\nThe free tier is primarily for quick demos. It is not suitable for professional or commercial use because of both resolution and watermark constraints. It can, however, help you test prompts and get a feel for the model’s reasoning abilities.\n\n2. Pro Subscribers [...] This table helps creators map their actual workload to realistic monthly expenses.\n\n## Free Trial and Low Cost Options for Nano Banana Pro\n\nNano Banana Pro technically does not have a standalone free trial, but you can test it through several avenues.\n\n1. Gemini App Trial Quota\n\n Up to 3 images\n 1 MP resolution\n Immediate downgrade to basic Nano Banana after quota\n\nThis is enough for experimentation, not production.\n\n2. AI Studio Credits\n\nSome users receive trial credits that can be applied to Nano Banana Pro requests. Since each 4K image is about $0.15, a modest credit balance can produce many images.\n\n3. Low Cost Third Party Platforms",
+        "score": 0.84027237,
+        "source": "tavily"
+      },
+      {
+        "title": "Nano Banana Pro Pricing &amp; Quota Guide 2026: Complete ... - yingtu.ai",
+        "url": "https://yingtu.ai/en/blog/nano-banana-pro-pricing-quota-guide-2026",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      }
+    ],
+    "discussion": [
+      {
+        "title": "Gemini Nano Banana Pro Free Tier Limits Get TIGHTER Starting ... - Reddit",
+        "url": "https://www.reddit.com/r/ai_apps_developement/comments/1pitc0y/gemini_nano_banana_pro_free_tier_limits_get/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      }
+    ],
+    "news": [
+      {
+        "title": "Nano Banana AI: Free vs Paid Plans Explained - Analytics Insight",
+        "url": "https://www.analyticsinsight.net/artificial-intelligence/nano-banana-ai-daily-image-generation-limits-for-free-pro-and-ultra-plans-with-google-gemini",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Nano Banana Pro Limits - Daily Image Caps Across Free, Pro &amp; Ultra Plans",
+        "url": "https://www.glbgpt.com/hub/nano-banana-pro-limits/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Google Nano Banana Free Vs Pro: Daily Quotas, Resolution Caps, Pricing ...",
+        "url": "https://www.datastudios.org/post/google-nano-banana-free-vs-pro-daily-quotas-resolution-caps-pricing-tiers-and-partner-bundles",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "Nano Banana AI: Daily Limits on Google Gemini Explained",
+        "url": "https://www.exhibit.tech/ai-robotics/google-gemini-nano-banana-ai-daily-limits-features-and-free-access/",
+        "content": "",
+        "score": 0.8,
+        "source": "duckduckgo"
+      },
+      {
+        "title": "I Signed Up for Google Gemini Pro. These 5 Features Make It Worth the Cost | PCMag",
+        "url": "https://www.pcmag.com/how-to/i-signed-up-for-google-gemini-pro-5-features-make-it-worth-cost",
+        "content": "## 3. Greater Image Creation With Nano Banana\n\nGemini uses a text-to-image generator known as Nano Banana. With this built-in model, you’re able to generate and edit high-quality photos, drawings, and diagrams. An advanced version known as Nano Banana Pro is even more robust and effective at conjuring up the right images.\n\nThe free flavor of Gemini restricts you to 100 images per day with Nano Banana and three images per day with Nano Banana Pro. For the standard Nano Banana, the AI Plus and Pro plans both expand the number to 1,000 images per day. For Nano Banana Pro, Plus users get 50 images per day, while Pro subscribers score 100 each day.\n\nNewsletter Icon\n\nNewsletter Icon\n\nGet Our Best Stories!\n\n### Get the Most Out of Your Technology\n\nTips, Tricks, and How-To Newsletter Image [...] (Credit: PCMag / Google)\n\n## 2. Greater Access to Deep Research\n\nIdeal for tackling more complex topics, Deep Research responds to your questions or requests by consulting a variety of websites and sources and then presenting you with a detailed report for your review. With a free plan, you can use Deep Research only five times per month. With an AI subscription, Plus users can tap into it as many as 12 times a day and Pro users as many as 20 times per day. To try Deep Research, select the Tools icon at the website or in the mobile app, choose Deep Research, and then submit your request at the prompt.\n\nGreater Access to Deep Research\n\n(Credit: PCMag / Google)\n\n## 3. Greater Image Creation With Nano Banana [...] ### Recommended by Our Editors\n\ngoogle ai overview\n\nI Tricked Google Into Removing AI Overviews. Here's How I Did It\n\ngoogle gemini logo\n\nHow to Get the Most From Google Gemini: 15 Tips You'll Actually Use\n\nCurious About Gemini’s Nano Banana AI Image Model, But Not Sure Where to Start? I Peel Back All the Complexity\n\nNano Banana Pro Unpeeled: See What I Made With Google's Newest AI Image Generator\n\nIf you’re curious, sign in to your Gemini AI subscription. You should receive a pop-up window asking if you want to supercharge Gemini with Personal Intelligence. Click the Get Started button. The next window shows you which apps are available to add. Click Choose apps, then check each service you wish to connect and choose Confirm.\n\nSet up Personal Intelligence\n\n(Credit: PCMag / Google)",
+        "score": 0.767429,
+        "source": "tavily"
+      },
+      {
+        "title": "Is Nano Banana free to use, and what are the pricing options?",
+        "url": "https://milvus.io/ai-quick-reference/is-nano-banana-free-to-use-and-what-are-the-pricing-options",
+        "content": "For heavier use, Google offers Gemini Advanced, available through a Google One AI Premium subscription. As of 2025, this plan costs $19.99 per month in the U.S. and includes access to higher-end models, faster processing, and larger quotas. Paid subscribers benefit from higher-resolution outputs and the ability to make more image edits without hitting daily limits. If you’re using the Gemini API for programmatic access, billing works differently: you are charged based on the number of requests and the complexity of the generation (text-to-image, image-to-image, or multi-image blending). Pricing for API usage is typically metered on a per-request basis, with specific rates published in Google’s API documentation. [...] Milvus\nZilliz\nMilvus\nZilliz\n\nIs Nano Banana free to use, and what are the pricing options?\n\n# Is Nano Banana free to use, and what are the pricing options?\n\nYes, Nano Banana — the codename for Google’s Gemini 2.5 Flash Image model — can be used for free, but with some limits. If you access it through the Gemini app (web or mobile), both free and paid users have access to the updated image editing features. Free-tier users can try edits and generations each day, but they may face limits on the number of requests, output quality, and processing speed. All generated images include both a visible watermark and Google’s invisible SynthID digital watermark to clearly mark them as AI-generated. This is true regardless of whether you are using the free or paid tier.",
+        "score": 0.72629017,
+        "source": "tavily"
+      },
+      {
+        "title": "Plans & Pricing of Nano Banana",
+        "url": "https://nanobanana.io/pricing",
+        "content": "$63.9$127.9/month\n\n$1534.8 $766.8/year\n\nup to 150% bonus\n\n 120,000 credits/year(~6,000 Images)\n 120,000 credits upfront\n Supports team management with up to 30 seats\n Nano Banana AI Image Generation\n Nano Banana Pro AI Image Generation\n Seedream AI Image Generation\n Access All Advanced Image & Video Models\n Permanent data storage\n Faster generation speed\n Priority support\n Download watermark-free videos and images\n Commercial Use License\n\n## Frequently Asked Questions\n\nFrequently Asked Questions About Our Services and Pricing.If you have any other questions or requests, please contact (/cdn-cgi/l/email-protection) and we will get back to you as soon as possible. [...] Nano Banana LogoNano Banana\n\n# Plans & Pricing of Nano Banana\n\n## Choose the plan that works best for you. All plans include access to our core features\n\nLIMITED OFFER\n\nNano Banana 2 Flash Sale\n\nLimited-Time 50% OFF\n\n00\n\nHours\n\n:\n\n00\n\nMinutes\n\n:\n\n00\n\nSeconds\n\nCancel anytime\n\n## Basic\n\nPerfect for hobbyists and beginners\n\n$9.9$19.9/month\n\n$238.8 $118.8/year\n\n 12,000 credits/year(~600 Images)\n 12,000 credits upfront\n Nano Banana AI Image Generation\n Nano Banana Pro AI Image Generation\n Seedream AI Image Generation\n Access All Advanced Image & Video Models\n Permanent data storage\n Faster generation speed\n Priority support\n Download watermark-free videos and images\n Commercial Use License\n\nMost Popular\n\n## Pro\n\nFor creators and professionals\n\n$23.9$47.9/month\n\n$574.8 $286.8/year [...] $23.9$47.9/month\n\n$574.8 $286.8/year\n\nup to 50% bonus\n\n 30,000 credits/year(~1,500 Images)\n 30,000 credits upfront\n Supports team management with up to 5 seats\n Nano Banana AI Image Generation\n Nano Banana Pro AI Image Generation\n Seedream AI Image Generation\n Access All Advanced Image & Video Models\n Permanent data storage\n Faster generation speed\n Priority support\n Download watermark-free videos and images\n Commercial Use License\n\n## Enterprise\n\nFor teams and businesses\n\n$63.9$127.9/month\n\n$1534.8 $766.8/year\n\nup to 150% bonus",
+        "score": 0.69573146,
+        "source": "tavily"
+      },
+      {
+        "title": "Google AI Plans with Cloud Storage",
+        "url": "https://one.google.com/intl/en/about/google-ai-plans/",
+        "content": "Explore more visual possibilities with more access to Nano Banana Pro image generation in the Gemini app and Search and direct professional-quality scenes with more access to Veo 3.1 in Flow.4\n\nCreate more custom soundtracks for any moment with more access to our music generation model Lyria 3 in the Gemini app.\n\nCreate insightful, multi-page reports in less time with the Gemini app.\n\nPush your learning further with more access to NotebookLM.\n\nProtect important files and memories with 200 GB of cloud storage across Gmail, Drive, and Photos.\n\nShare your plan with up to five others with family sharing.\n\n### Google AI Pro1\n\nMove from idea to execution faster on complex projects with higher access to Gemini 3.1 Pro and Deep Research in the Gemini app. [...] Turn photos into captivating videos with higher limits to video generation in the Gemini app using Veo 3.1 Fast.4 Plus, more Remix generations and Veo 34 photo-to-video generations (US only) in Google Photos.\n\nExplore more visual possibilities with higher limits to Nano Banana Pro image generation in the Gemini app and Search5 and direct professional-quality scenes with higher access to Veo 3.1 in Flow.4\n\nCreate more custom soundtracks for any moment with higher access to our music generation model Lyria 3 in the Gemini app.\n\nCreate insightful, multi-page reports in less time with the Gemini app and Search.5\n\nPush your learning further with higher limits in NotebookLM.\n\nGo from idea to working code faster with higher limits to Jules,6 our asynchronous coding agent. [...] | Features | New  Google AI Plus  /mo | Google AI Pro  /mo | Google AI Ultra  /mo |\n ---  --- |\n|  |  |  |  |\n| Storage | | | |\n ---  --- |\n| Storage for Gmail, Google Drive, Google Photos | 200 GB | 2 TB | 30 TB |\n| Family sharing with up to 5 people |  |  |  |\n| Device backup |  |  |  |\n| Storage manager |  |  |  |\n| View more  View less |\n|  |  |  |  |\n| Google AI | | | |\n| Gemini | | | |\n| Access to our most capable models | More | Higher | Highest |\n| Custom AI experts |  |  |  |\n| Gemini Live |  |  |  |\n| Image generation and editing with Nano Banana Pro | More | Higher | Highest |\n| Deep Research | More | Higher | Highest |\n| File upload | More | Higher | Highest |\n| Video generation model access | Veo 3.1 Fast4 | Veo 3.1 Fast4 | Veo 3.14 |",
+        "score": 0.6745014,
+        "source": "tavily"
+      },
+      {
+        "title": "Use Google AI Pro benefits - Google One Help",
+        "url": "https://support.google.com/googleone/answer/14534406?hl=en",
+        "content": "Increased AI Agent Quotas:AI Pro members receive higher usage limits for Gemini 3 Pro and other Vertex AI Model Garden models (e.g. Claude 4.5 Sonnet, gpt-oss-120b) within the Antigravity platform. AI Pro members also receive priority access to new, experimental models as capacity permits. [...] When you subscribe to Google AI Pro, you have access to:\n\n   Gemini Code Assist: Get higher quotas on Google's generative AI to build code faster and more efficiently in your integrated development environment (IDE).\n   Google Cloud credits: This includes a $10 Google Cloud credits each month.\n   Firebase: This includes 30 Firebase Studio workspaces.\n   Other Google Developer Program benefits:This includes developer communities, forums, and other benefits.\n\nLearn more about Google Developer Program premium membership benefits.\n\nEligibility\n\nImportant: You can't share the Google Developer Program premium benefit with the members of your family group.\n\nTo use Google Developer Program premium, you must have an active Google AI Pro membership linked to your Google Developer profile. [...] ProducerAI\n   5 TB Storage\n   1,000 monthly AI credits\n\nTip: Family plan members on a Google AI Pro membership plan can enjoy AI benefits and features at no extra cost. Learn how to start or stop sharing with your family.\n\n## Use Gemini capabilities in Google Earth with higher limits (US only)\n\nImportant:This feature is still experimental, so it may give unexpected or inaccurate results.\n\nWith Google AI Pro, you can access the Gemini capabilities in Google Earth with higher limits, so you can chat with Gemini in order to accelerate geospatial analysis. For example, you can:\n\n   Identify potential sites for new amenities\n   Visualize boundaries\n   Display points of interest\n\nAvailability:",
+        "score": 0.4059909,
+        "source": "tavily"
+      },
+      {
+        "title": "Google AI Pro & Ultra — get access to Gemini 3.1 Pro & more",
+        "url": "https://gemini.google/subscriptions/",
+        "content": "Our Google AI Pro plan is available for users aged over 18 and includes:\n\nGemini in Gmail, Docs and more\n\n5 TB of storage\n\nand other benefits\n\nYou also need a personal Google Account that you manage on your own.\n\nHow to upgrade\n\nYes, but there might be some feature differences between the Gemini mobile app and Gemini web app. How to upgrade\n\nIf you want to manage your Google AI subscription in the mobile app, tap your profile picture to access the Settings menu. [...] Cancel Google AI Pro subscription at any time before your trial expires. No refunds for partial billing periods, except as required by applicable law. By subscribing, you agree to the terms for Google One, Google and offers. See how Google handles data. Google AI Pro and Gemini for Gmail, Docs and more are only available for users aged 18+. Gemini for Gmail, Docs and more is available in selected languages. Rate limits may apply.\n\nGoogle AI Plus is available in more than 160 countries – see the full list of countries.\n\nGoogle AI Pro is available in more than 150 countries and territories – see the full list of countries.\n\nGoogle AI Ultra is available in more than 150 countries – see the full list of countries.\n\nAI credits (daily and monthly) are shared across Flow and Whisk. [...] Image of storage usage in Google One\nNotebookLM Pro icon\n\n### NotebookLM\n\nUnlock highest usage limits and premium features with NotebookLM to help you surface critical insights faster from the information that you provide.\n\nImage showing various data sources that can be used in NotebookLM Plus\n\n## Get started with a one‑month free trial of Google AI Pro\n\n## Frequently asked questions\n\nLevel up your Gemini app experience by upgrading to the Pro plan. Unlock new and powerful features to tackle complex tasks and projects.\n\nGet more access to our most capable models, like 3.1 Pro, and powerful features, like Deep Research and a 1 million token context window. Also, unlock a limited trial of Veo 3.1 Fast, our video generation model that prioritises speed and efficiency.",
+        "score": 0.38020703,
+        "source": "tavily"
+      }
+    ]
+  },
+  "total": 18
+}
