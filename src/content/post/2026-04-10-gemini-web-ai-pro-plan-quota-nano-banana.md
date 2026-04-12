@@ -1,6 +1,6 @@
 ---
 title: "Google AI Pro × Nano Banana 配額完整解析：免費到 Pro 方案一文搞懂"
-description: "深入解析 Google Nano Banana（Gemini 圖片生成模型）的各方案配額：免費版每天幾張、\19.99美元 AI Pro 方案差異在哪裡、Ultra 方案值不值。"
+description: "深入解析 Google Nano Banana（Gemini 圖片生成模型）的各方案配額：免費版每天幾張、$19.99美元 AI Pro 方案差異在哪裡、Ultra 方案值不值。"
 publishDate: 2026-04-10
 tags: [AI, Google, Gemini, Nano Banana, 圖片生成, 定價]
 draft: false
