@@ -1,6 +1,6 @@
 ---
-title: "ChatGPT Pro \$100 上線：Codex 5 倍用量開箱實測與方案比較"
-description: "OpenAI 推出 ChatGPT Pro \$100 新方案，填補 \$20 與 \$200 之間的缺口，專為重度 Codex 開發者設計。本文完整解析方案差異、用量限制與適用場景。"
+title: "ChatGPT Pro $100 上線：Codex 5 倍用量開箱實測與方案比較"
+description: "OpenAI 推出 ChatGPT Pro $100 新方案，填補 $20 與 $200 之間的缺口，專為重度 Codex 開發者設計。本文完整解析方案差異、用量限制與適用場景。"
 publishDate: 2026-04-12
 tags:
   - ChatGPT
