@@ -23,3 +23,6 @@ pnpm-debug.log*
 *.pem
 .cache
 .astro
+
+# research artifacts produced by writing skills (web_fetch / web_search dumps)
+src/content/post/*-research.json
