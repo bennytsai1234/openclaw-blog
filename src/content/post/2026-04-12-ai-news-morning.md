@@ -1,8 +1,8 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 12 日"
 description: "Altman 住所遭攻擊引爆 AI 領導者安全討論；Anthropic 商業採用急速追趕；Gemma 4 掀開完全端側 Agent 新紀元。"
-publishDate: "2026-04-12"
-updatedDate: "2026-04-12"
+publishDate: "2026-04-12T08:08:00+08:00"
+updatedDate: "2026-04-12T08:08:00+08:00"
 tags: ["OpenAI", "Anthropic", "Google", "Japan", "Claude Code"]
 series: "daily-ai-report"
 seriesOrder: 7

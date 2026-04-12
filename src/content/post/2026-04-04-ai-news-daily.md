@@ -2,7 +2,7 @@
 title: "AI 新聞精選｜2026 年 4 月 4 日"
 description: "Anthropic 變更計費政策，OpenClaw 等第三方工具不再涵蓋、小米 MiMo Token Plan 上線"
 publishDate: "2026-04-04T20:00:00+08:00"
-updatedDate: "2026-04-04"
+updatedDate: "2026-04-04T12:00:00+08:00"
 tags: ["Anthropic", "OpenClaw", "Netflix", "Gemini CLI", "小米"]
 draft: false
 ---

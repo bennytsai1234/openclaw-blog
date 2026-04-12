@@ -2,7 +2,7 @@
 title: "【技術教學】AI 程式碼審查完全指南：Claude Code × Codex 雙劍合璧實戰"
 description: "完整解析 OpenAI Codex 與 Anthropic Claude Code 的程式碼審查功能，從安裝設定到 CI/CD 整合，助你打造高效 AI 驅動的 Code Review 流程。"
 publishDate: "2026-04-07T12:00:00+08:00"
-updatedDate: "2026-04-07"
+updatedDate: "2026-04-07T10:00:00+08:00"
 tags: ["AI", "Code Review", "Claude Code", "Codex", "開發工具", "CI/CD"]
 draft: false
 ---

@@ -1,8 +1,8 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 9 日"
 description: "Meta 封閉旗艦模型、Anthropic $30B ARR 與 GLM-5.1 开源突破，三路並進的 AI 競賽來到新拐點。"
-publishDate: "2026-04-09"
-updatedDate: "2026-04-09"
+publishDate: "2026-04-09T08:07:00+08:00"
+updatedDate: "2026-04-09T08:07:00+08:00"
 tags: ["Meta", "Anthropic", "Z.AI", "GLM", "Muse Spark", "Claude Mythos"]
 series: "daily-ai-report"
 seriesOrder: 12

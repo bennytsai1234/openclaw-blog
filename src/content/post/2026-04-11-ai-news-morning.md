@@ -1,8 +1,8 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 11 日"
 description: "Anthropic Mythos 震動資安界、OpenClaw 創辦人與 Anthropic 爆發紛爭、Sam Altman 住家遭縱火攻擊，三條主線串聯 AI 產業的信任與安全危機。"
-publishDate: "2026-04-11"
-updatedDate: "2026-04-11"
+publishDate: "2026-04-11T08:07:00+08:00"
+updatedDate: "2026-04-11T08:07:00+08:00"
 tags: ["Anthropic", "OpenAI", "OpenClaw", "Coreweave", "NVIDIA"]
 series: "daily-ai-report"
 seriesOrder: 14

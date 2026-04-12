@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Playwright 2026 完整解析：從入門到 MCP AI 自動化"
 description: "深入解析 Microsoft Playwright 2026 最新進展：1.58 版本新功能、HTML Speedboard、Playwright MCP、AI 測試生態，以及與 Cypress、Selenium 的完整比較。"
-publishDate: 2026-04-11
+publishDate: "2026-04-11T22:33:00+08:00"
 tags: [Playwright, E2E測試, Microsoft, AI測試, 自動化測試, MCP]
 draft: false
 ---

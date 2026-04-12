@@ -1,7 +1,7 @@
 ---
 title: "MiniMax Music 2.6 深度解析：Cover 功能與免費額度實測"
 description: "深入解析 MiniMax Music 2.6 全新 Cover 功能（樂曲風格遷移）、全球 beta 免費額度，以及國際版 Starter 訂閱的 Music 額度說明。"
-publishDate: 2026-04-10
+publishDate: "2026-04-10T19:52:00+08:00"
 tags: [AI, MiniMax, 音樂生成, Music 2.6, Cover功能]
 draft: false
 ---

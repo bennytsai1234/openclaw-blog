@@ -2,7 +2,7 @@
 title: "【技術解析】P-GRPO：蘋果如何用群體歷史統計解決 LLM 偏好對齊的偏見問題"
 description: "標準 GRPO 在異質偏好下會歧視少數群體，蘋果研究團隊提出 P-GRPO，以群體歷史統計取代批次統計，終於讓模型公平對齊每一種用戶偏好。"
 publishDate: "2026-04-03T12:00:00+08:00"
-updatedDate: "2026-04-03"
+updatedDate: "2026-04-03T10:00:00+08:00"
 tags: ["技術", "AI", "RLHF", "LLM Alignment", "強化學習"]
 draft: false
 ---

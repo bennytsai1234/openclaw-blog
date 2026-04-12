@@ -2,7 +2,7 @@
 title: "【技術解析】Signals：不靠 LLM 判斷，告訴你哪個 Agent 軌跡值得看"
 description: "研究提出輕量級信號框架，從互動軌跡中自動識別高價值樣本，82% 信息率比隨機抽樣的 54% 高出一大截，1.52 倍效率提升——讓 post-deployment 最佳化不再需要昂貴的全量 LLM 審查。"
 publishDate: "2026-04-06T12:00:00+08:00"
-updatedDate: "2026-04-06"
+updatedDate: "2026-04-06T10:00:00+08:00"
 tags: ["AI Agent", "Evaluation", "Post-deployment", "Benchmark"]
 draft: false
 ---

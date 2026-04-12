@@ -2,7 +2,7 @@
 title: "【技術解析】Gemma 4：31B 稠密 vs 26B MoE 深度解析"
 description: "Google Gemma 4 系列展現了引人注目的架構取捨：31B 稠密模型在同類開源權重模型中提供最高品質，而 26B MoE 變體則以僅八分之一的單 Token 計算成本，保留約 97% 的品質。"
 publishDate: "2026-04-03T12:00:00+08:00"
-updatedDate: "2026-04-03"
+updatedDate: "2026-04-03T10:00:00+08:00"
 tags: ["技術", "AI", "Google", "Gemma", "MoE", "LLM"]
 draft: false
 ---

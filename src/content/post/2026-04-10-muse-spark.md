@@ -1,7 +1,7 @@
 ---
 title: "Muse Spark 深度解析：Meta 超智能實驗室的首張牌"
 description: "深入解析 Meta Superintelligence Labs 首發模型 Muse Spark：思維壓縮、多智能體協作、原生多模態 reasoning，9 個月從零打造的 AI 旗艦。"
-publishDate: 2026-04-10
+publishDate: "2026-04-10T12:42:00+08:00"
 tags: [AI, Meta, 多模態, Reasoning, Alexandr Wang]
 draft: false
 ---

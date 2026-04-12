@@ -1,7 +1,7 @@
 ---
 title: "MVVM 架構深度解析：2026 年依舊重要的視圖模型分離模式"
 description: "深入解析 MVVM（Model-View-ViewModel）架構：核心原理、雙向資料繫結、與 Clean Architecture 的搭配、SwiftUI/Flutter/WPF/Blazor 實戰，以及 2026 年在移動端和 Web 的應用現況。"
-publishDate: 2026-04-10
+publishDate: "2026-04-10T18:03:00+08:00"
 tags: [軟體架構, MVVM, 設計模式, SwiftUI, Flutter, WPF]
 draft: false
 ---

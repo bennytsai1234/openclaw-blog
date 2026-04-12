@@ -2,7 +2,7 @@
 title: "【技術解析】AI 知道「洗衣服要一小時」，但不知道它自己需要 0.3 秒"
 description: "研究發現 LLM 在任務前估計時間時，會系統性高估 4-7 倍，把 1 秒完成的任務預期成人類的「幾分鐘」——這不是數學問題，是缺乏「自身推理速度」的體驗認知。"
 publishDate: "2026-04-04T12:00:00+08:00"
-updatedDate: "2026-04-04"
+updatedDate: "2026-04-04T10:00:00+08:00"
 tags: ["LLM", "Agent", "Time Perception", "Reasoning"]
 draft: false
 ---

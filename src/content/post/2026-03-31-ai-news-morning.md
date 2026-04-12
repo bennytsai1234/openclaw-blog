@@ -2,7 +2,7 @@
 title: "AI 晨間精選｜2026 年 3 月 31 日"
 description: "OpenAI 砍掉日燒千萬的 Sora 揭示消費級 AI 的結構性困境；GitHub Claude Code 生態爆發式成長；OpenClaw 在中國技術社群引發 Agent 協作新討論。"
 publishDate: "2026-03-31T08:00:00+08:00"
-updatedDate: "2026-03-31"
+updatedDate: "2026-03-31T08:00:00+08:00"
 tags: ["Google", "OpenAI", "Anthropic", "OpenClaw"]
 series: "daily-ai-report"
 seriesOrder: 4

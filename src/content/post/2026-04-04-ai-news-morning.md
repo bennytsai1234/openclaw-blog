@@ -2,7 +2,7 @@
 title: "AI 晨間精選｜2026 年 4 月 4 日"
 description: "Anthropic 4 億美元收購生物科技公司並成立 PAC、DeepSeek V4 將全面使用華為晶片"
 publishDate: "2026-04-04T08:00:00+08:00"
-updatedDate: "2026-04-04"
+updatedDate: "2026-04-04T08:00:00+08:00"
 tags: ["Anthropic", "DeepSeek", "OpenClaw", "Microsoft", "Security"]
 series: "daily-ai-report"
 seriesOrder: 8

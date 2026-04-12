@@ -1,8 +1,8 @@
 ---
 title: "【技術解析】SELFDOUBT：從推理蹤跡讀出不確定性——O(1) 成本戰勝昂貴的 Semantic Entropy"
 description: "一篇論文從推理模型的思考蹤跡中提取「對冲-驗證比率」（HVR），在零額外成本下做到 96.1% 正確率的高精度閾門，並以 O(1) 單次推理代價在 AUROC 上顯著打敗需要 10 倍計算量的 Semantic Entropy。"
-publishDate: "2026-04-11"
-updatedDate: "2026-04-11"
+publishDate: "2026-04-11T10:13:00+08:00"
+updatedDate: "2026-04-11T10:13:00+08:00"
 tags: ["AI", "LLM", "不確定性量化", "推理模型", "_reasoning models", "NLP"]
 draft: false
 coverImage:

@@ -1,8 +1,8 @@
 ---
 title: "【技術解析】Qualixar OS：為 AI Agent 打造應用層作業系統"
 description: "第一個應用層 OS 級 AI Agent 編排平台，試圖以 Linux 當年的抽象思維，解決 Multi-Agent 框架碎片化的根本問題。"
-publishDate: "2026-04-11"
-updatedDate: "2026-04-11"
+publishDate: "2026-04-11T09:37:00+08:00"
+updatedDate: "2026-04-11T09:37:00+08:00"
 tags: ["AI", "Agent", "系統架構", "開發"]
 draft: false
 coverImage:

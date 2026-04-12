@@ -1,7 +1,7 @@
 ---
 title: "Hermes Agent vs OpenClaw 深度解析"
 description: "2026 年最受矚目的兩大開源 AI Agent 框架完整比較，涵蓋核心功能、架構設計、安全風險、遷移指南與工程師視角的選型建議。"
-publishDate: "2026-04-09"
+publishDate: "2026-04-09T16:51:00+08:00"
 tags: ["AI", "技術解析", "深度研究", "Hermes Agent", "OpenClaw"]
 draft: false
 ---

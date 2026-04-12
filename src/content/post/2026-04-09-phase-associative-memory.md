@@ -1,8 +1,8 @@
 ---
 title: "【技術解析】Phase-Associative Memory：讓語言模型在複數空間裡做序列記憶"
 description: "一篇論文提出用複數希爾伯特空間取代實數向量，做序列關聯記憶，在 100M 參數下 perplexity 僅落後 transformer 約 10%，但推理成本為 O(1)。"
-publishDate: "2026-04-09"
-updatedDate: "2026-04-09"
+publishDate: "2026-04-09T10:10:00+08:00"
+updatedDate: "2026-04-09T10:10:00+08:00"
 tags: ["AI", "NLP", "序列模型", "複數神經網路"]
 draft: false
 coverImage:

@@ -2,7 +2,7 @@
 title: "AI 新聞精選｜2026 年 3 月 28 日"
 description: "Anthropic 贏得法院禁令阻擋川普政府、Claude Mythos 內部文件外流、SoftBank 百億美元貸款押注 OpenAI 年內 IPO、Google 推 Gemini 搬家工具掀起用戶爭奪戰。"
 publishDate: "2026-03-28T20:00:00+08:00"
-updatedDate: "2026-03-28"
+updatedDate: "2026-03-28T08:00:00+08:00"
 tags: ["Google", "OpenAI", "Anthropic"]
 series: "daily-ai-report"
 seriesOrder: 3

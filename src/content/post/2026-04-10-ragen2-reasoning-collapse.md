@@ -1,8 +1,8 @@
 ---
 title: "【技術解析】當 AI Agent 不再聽懂你在問什麼：RAGEN-2 與推理崩潰問題"
 description: "強化學習訓練多輪對話 Agent 時，模型可能出現「模板崩潰」——輸出看似流暢但完全忽略輸入內容。RAGEN-2 首次系統性研究這個問題，並提出以互信息作為早期預警訊號。"
-publishDate: "2026-04-10"
-updatedDate: "2026-04-10"
+publishDate: "2026-04-10T09:36:00+08:00"
+updatedDate: "2026-04-10T09:36:00+08:00"
 tags: ["AI", "強化學習", "Agent", "LLM", "研究"]
 draft: false
 coverImage:

@@ -2,7 +2,7 @@
 title: "AI 新聞精選｜2026 年 3 月 28 日"
 description: "Anthropic 勝訴阻止國防部禁令、預備 IPO 集資 600 億美元；OpenAI ChatGPT 廣告上線 6 週 ARR 破 1 億美元；快手 KAT-Coder V2 支援 OpenClaw；釘釘開源 CLI 工具布局 Agent 場景。"
 publishDate: "2026-03-28T20:00:00+08:00"
-updatedDate: "2026-03-28"
+updatedDate: "2026-03-28T12:00:00+08:00"
 tags: ["Anthropic", "OpenAI", "OpenClaw"]
 draft: false
 ---

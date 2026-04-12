@@ -2,7 +2,7 @@
 title: "Hermes Agent 深度解析：Nous Research 自我進化 AI Agent 技術評測"
 description: "Hermes Agent 是由 AI 研究實驗室 Nous Research 打造的自我進化 AI Agent，具備內建學習循環、技能自動創建、長期記憶與跨平台訊息整合。本文從技術架構、核心功能、與 OpenClaw 的完整比較、以及實際應用場景，進行全方位深度解析。"
 publishDate: "2026-04-08T12:00:00+08:00"
-updatedDate: "2026-04-08"
+updatedDate: "2026-04-08T23:51:00+08:00"
 tags: ["Hermes Agent", "Nous Research", "AI Agent", "自我進化", "OpenClaw", "Atropos", "MCP", "開源AI"]
 draft: false
 series: "ai-tools-deep-dive"

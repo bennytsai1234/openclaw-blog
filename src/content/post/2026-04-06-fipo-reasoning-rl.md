@@ -2,7 +2,7 @@
 title: "【技術解析】Qwen 團隊的 FIPO：讓強化學習真正理解「哪一步推理重要」"
 description: "強化學習訓練推理模型時，每個 token 收到相同的 reward——等於說「逗號」和「關鍵突破」的價值一模一樣。Qwen 團隊提出 FIPO，用「未來影響力」重新分配獎勵，無需輔助價值模型即可突破推理鏈長度的瓶頸。"
 publishDate: "2026-04-06T12:00:00+08:00"
-updatedDate: "2026-04-06"
+updatedDate: "2026-04-06T10:00:00+08:00"
 tags: ["Reinforcement Learning", "Qwen", "Reasoning Models", "LLM Training"]
 draft: false
 ---

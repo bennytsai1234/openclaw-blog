@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 完整使用教學：從安裝到專業開發實戰（2026）"
 description: "2026 年最新 Claude Code 完整教學，涵蓋安裝設定、 Slash Commands、Hooks、Incognito 模式、多平臺支援與實戰技巧，適合從零開始到進階使用者。"
-publishDate: 2026-04-10
+publishDate: "2026-04-10T17:18:00+08:00"
 tags: [Claude, Anthropic, AI 程式設計, 開發工具, Claude Code]
 draft: false
 ---

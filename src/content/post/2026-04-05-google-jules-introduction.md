@@ -2,7 +2,7 @@
 title: "【技術解析】Google Jules：非副駕駛的異步 AI 程式碼特工"
 description: "深入解析 Google Labs 推出的 Jules 編碼 Agent：與 Copilot、Claude Code、Cursor 的核心差異，異步執行、Cloud VM 隔離、Audio Changelog 等特色，以及它對未來軟體開發的意義。"
 publishDate: "2026-04-05T12:00:00+08:00"
-updatedDate: "2026-04-05"
+updatedDate: "2026-04-05T10:00:00+08:00"
 tags: ["AI", "LLM", "Google", "Jules", "Coding Agent"]
 draft: false
 ---

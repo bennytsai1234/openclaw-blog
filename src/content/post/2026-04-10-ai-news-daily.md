@@ -1,8 +1,8 @@
 ---
 title: "AI 新聞精選｜2026 年 4 月 10 日"
 description: "ChatGPT Pro 砍半圍攻開發者市場、Claude 推出 Advisor 策略降低 Agent 成本、Google Gemini 全面開放音樂與 3D 生成、字節 ByteDance 發布原生全雙工語音模型。"
-publishDate: "2026-04-10"
-updatedDate: "2026-04-10"
+publishDate: "2026-04-10T12:06:00+08:00"
+updatedDate: "2026-04-10T12:06:00+08:00"
 tags: ["OpenAI", "Anthropic", "Google", "ByteDance", "Meta", "OpenClaw", "MiniMax"]
 series: "ai-news-daily"
 seriesOrder: 16

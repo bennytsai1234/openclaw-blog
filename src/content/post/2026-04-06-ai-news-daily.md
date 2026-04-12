@@ -2,7 +2,7 @@
 title: "AI 新聞精選｜2026 年 4 月 6 日"
 description: "Anthropic 封堵第三方訂閱漏洞的姿態越發明確，同日 Claude Code 在 Linux 核心挖出 23 年未發現的漏洞，平台控制與技術能力之間的剪刀差正在擴大。"
 publishDate: "2026-04-06T20:00:00+08:00"
-updatedDate: "2026-04-06"
+updatedDate: "2026-04-06T12:00:00+08:00"
 tags: ["Google", "OpenAI", "Anthropic", "OpenClaw"]
 draft: false
 ---

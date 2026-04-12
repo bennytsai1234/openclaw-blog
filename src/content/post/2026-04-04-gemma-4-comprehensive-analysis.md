@@ -2,7 +2,7 @@
 title: "【技術解析】Google Gemma 4：四尺寸全員出動，31B 密集模型稱霸開源 Arena"
 description: "深入解析 Google DeepMind Gemma 4 全系列：四種尺寸的規格定位、PLE 與 Shared KV Cache 架構揭秘、多模態能力邊界、Agent 工具調用，以及 26B MoE 以 3.8B 激活參數打敗 20 倍引數量級對手的硬核分析。"
 publishDate: "2026-04-04T12:00:00+08:00"
-updatedDate: "2026-04-04"
+updatedDate: "2026-04-04T10:00:00+08:00"
 tags: ["AI", "LLM", "Google", "Gemma 4", "MoE", "開源模型", "邊緣 AI"]
 draft: false
 ---

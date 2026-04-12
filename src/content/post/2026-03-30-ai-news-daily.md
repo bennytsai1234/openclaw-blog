@@ -2,7 +2,7 @@
 title: "AI 新聞精選｜2026 年 3 月 30 日"
 description: "OpenClaw 2026.3.28 版本發布 Plugin approval hooks 與 xAI 整合、OpenAI 疑似籌備 Codex 獨立訂閱方案，開發者生態走向專門化。"
 publishDate: "2026-03-30T20:00:00+08:00"
-updatedDate: "2026-03-30"
+updatedDate: "2026-03-30T12:00:00+08:00"
 tags: ["OpenAI", "OpenClaw"]
 draft: false
 ---

@@ -2,7 +2,7 @@
 title: "AI 新聞精選｜2026 年 3 月 29 日"
 description: "Google 超 50 億美元支持 Anthropic 得州資料中心建設、OpenAI Codex 用例庫上線、fnOS 原生支援 OpenClaw 安裝。"
 publishDate: "2026-03-29T20:00:00+08:00"
-updatedDate: "2026-03-29"
+updatedDate: "2026-03-29T12:00:00+08:00"
 tags: ["Google", "OpenAI", "Anthropic", "OpenClaw"]
 draft: false
 ---

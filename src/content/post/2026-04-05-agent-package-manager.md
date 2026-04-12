@@ -2,7 +2,7 @@
 title: "【技術解析】微軟推出 APM：AI Agent 的套件管理員 — 從此不用再手動管理 Prompt 和工具配置"
 description: "微軟發布開源工具 APM（Agent Package Manager），為 AI Agent 提供統一的依賴管理和發現機制，讓不同 Agent 框架之間的技能共享變成可能。"
 publishDate: "2026-04-05T12:00:00+08:00"
-updatedDate: "2026-04-05"
+updatedDate: "2026-04-05T10:00:00+08:00"
 tags: ["AI Agent", "Developer Tools", "Microsoft", "Open Source"]
 draft: false
 ---

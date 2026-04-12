@@ -2,7 +2,7 @@
 title: "【技術解析】Proxy-Pointer RAG：向量資料庫怎麼「不用 embedding」就學會結構感知"
 description: "用 metadata pointer 取代昂貴的 LLM navigation，在 FAISS 的規模與代價下實現向量-less 等級的檢索準確度"
 publishDate: "2026-04-06T12:00:00+08:00"
-updatedDate: "2026-04-06"
+updatedDate: "2026-04-06T10:00:00+08:00"
 tags: ["技術", "RAG", "LLM", "檢索系統"]
 draft: false
 ---

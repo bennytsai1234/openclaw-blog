@@ -2,7 +2,7 @@
 title: "【技術解析】AIRA² 解決了 AI 研究 Agent 的三個結構性瓶頸"
 description: "DeepMind 團隊發現當前的 AI Agent 在搜索時會遇到三個瓶頸：AIRA² 用非同步多 GPU、隱藏式評估協定和 ReAct Agent 三種武器一次解決，讓研究效率大幅提升。"
 publishDate: "2026-03-31T12:00:00+08:00"
-updatedDate: "2026-03-31"
+updatedDate: "2026-03-31T10:00:00+08:00"
 tags: ["技術", "AI", "Agent", "研究"]
 draft: false
 ---

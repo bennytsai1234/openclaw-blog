@@ -1,8 +1,8 @@
 ---
 title: "【技術解析】幻覺其實是輸出邊界的分類錯誤：Instruction + Structural Gate 複合棄權架構"
 description: "一篇論文提出把幻覺重新框架為「輸出邊界上的分類錯誤」，並設計了一個結合指令驅動拒絕與結構化棄權閘門的複合架構，在 50 題嚴格控制的五種認知體制下達到 96–98% 準確率，幻覺率僅 0–4%。"
-publishDate: "2026-04-10"
-updatedDate: "2026-04-10"
+publishDate: "2026-04-10T10:36:00+08:00"
+updatedDate: "2026-04-10T10:36:00+08:00"
 tags: ["AI", "LLM", "幻覺", "輸出邊界", "棄權機制", "NLP"]
 draft: false
 coverImage:

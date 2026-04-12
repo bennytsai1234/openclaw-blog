@@ -1,8 +1,8 @@
 ---
 title: "【技術解析】為什麼你的 AI Agent 老是「失憶」？Context Engineering 一次性說清楚"
 description: "多數 LLM demo 看似神奇，但一進生產環境就開始胡言亂語——問題不在模型不夠強，而在於「上下文」沒有被系統性設計過。"
-publishDate: "2026-04-11"
-updatedDate: "2026-04-11"
+publishDate: "2026-04-11T10:05:00+08:00"
+updatedDate: "2026-04-11T10:05:00+08:00"
 tags: ["技術", "AI", "Agent", "Context Engineering"]
 draft: false
 coverImage:

@@ -2,7 +2,7 @@
 title: "Claude Code 質量回歸研究：Thinking Token 削減如何破壞複雜工程工作流"
 description: "一份基於 6,852 個 Claude Code Session、17,871 個 Thinking Block、234,760 次工具呼叫的量化分析，揭示 2026 年 2-3 月 Thinking Redaction  rollout 如何導致複雜工程任務質量明顯下降。"
 publishDate: "2026-04-08T12:00:00+08:00"
-updatedDate: "2026-04-08"
+updatedDate: "2026-04-08T23:51:00+08:00"
 tags: ["Claude Code", "Anthropic", "Thinking Token", "AI 工程", "質量回歸", "Claude Opus"]
 draft: false
 series: "ai-tools-deep-dive"

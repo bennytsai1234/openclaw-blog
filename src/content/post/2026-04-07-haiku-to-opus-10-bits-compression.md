@@ -2,7 +2,7 @@
 title: "【技術解析】用 10 bits 就能壓縮一個 Opus：LLM 文字壓縮的下一步"
 description: "Harvard 與 Anthropic 研究者聯手，展示 LLM 不只能生成文字，還能成為史上最強的文字壓縮器——lossless 到 lossy，壓縮率比 GZIP 好 100 倍。"
 publishDate: "2026-04-07T12:00:00+08:00"
-updatedDate: "2026-04-07"
+updatedDate: "2026-04-07T10:00:00+08:00"
 tags: ["AI", "壓縮", "機器學習", "LLM"]
 draft: false
 ---

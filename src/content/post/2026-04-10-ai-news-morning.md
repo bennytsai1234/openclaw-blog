@@ -1,8 +1,8 @@
 ---
 title: "AI 晨間精選｜2026 年 4 月 10 日"
 description: "OpenAI Pro 砍價一半搶開法者市場、Anthropic Mythos 因太危險不公開、Meta Muse Spark 正式亮相，AI 產業版圖持續震盪。"
-publishDate: "2026-04-10"
-updatedDate: "2026-04-10"
+publishDate: "2026-04-10T08:07:00+08:00"
+updatedDate: "2026-04-10T08:07:00+08:00"
 tags: ["OpenAI", "Anthropic", "Meta", "AWS", "AI Agent"]
 series: "daily-ai-report"
 seriesOrder: 13

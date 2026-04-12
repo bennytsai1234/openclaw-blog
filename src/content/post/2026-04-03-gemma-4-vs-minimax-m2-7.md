@@ -2,7 +2,7 @@
 title: "【技術解析】Google Gemma 4 vs MiniMax M2.7：2026 Q1 旗艦模型深度對比"
 description: "從架構、基準測試、API 定價、Agent 能力到開源生態，全面比較 Google Gemma 4 與 MiniMax M2.7 兩大旗艦模型的實力差距。"
 publishDate: "2026-04-03T12:00:00+08:00"
-updatedDate: "2026-04-03"
+updatedDate: "2026-04-03T10:00:00+08:00"
 tags: ["技術", "AI", "Google", "Gemma", "MiniMax", "LLM", "MoE"]
 draft: false
 ---

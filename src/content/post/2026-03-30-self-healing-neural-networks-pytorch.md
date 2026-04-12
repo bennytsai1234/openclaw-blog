@@ -2,7 +2,7 @@
 title: "【技術解析】PyTorch 自癒神經網路：模型漂移不需要重新訓練"
 description: "ReflexiveLayer 如何在骨幹權重完全凍結的條件下，用非同步適配器在線修復模型準確率，恢復高達 27.8 個百分點。"
 publishDate: "2026-03-30T12:00:00+08:00"
-updatedDate: "2026-03-30"
+updatedDate: "2026-03-30T10:00:00+08:00"
 tags: ["技術", "AI", "MLOps"]
 draft: false
 ---

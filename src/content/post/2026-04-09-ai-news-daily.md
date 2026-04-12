@@ -1,8 +1,8 @@
 ---
 title: "AI 新聞下午茶｜2026 年 4 月 9 日"
 description: "Claude Managed Agents 重新定義企業 AI 部署經濟、OpenClaw 雙版本修補穩定性、HappyHorse-1.0 視頻生成盲測登頂。"
-publishDate: "2026-04-09"
-updatedDate: "2026-04-09"
+publishDate: "2026-04-09T12:07:00+08:00"
+updatedDate: "2026-04-09T12:07:00+08:00"
 tags: ["Anthropic", "Claude", "OpenClaw", "Google", "Gemini", "HappyHorse"]
 series: "daily-ai-report"
 seriesOrder: 13

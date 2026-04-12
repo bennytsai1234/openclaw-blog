@@ -1,8 +1,8 @@
 ---
 title: "AI 新聞精選｜2026 年 4 月 11 日"
 description: "MiniMax Music 2.6 上線Cover功能、DeepSeek V4月下旬登場、美國財政部緊急會見銀行討論Anthropic Mythos資安風險——本週AI產業迎來產品落地、監管壓力與基礎設施策略的三角拉扯。"
-publishDate: "2026-04-11"
-updatedDate: "2026-04-11"
+publishDate: "2026-04-11T12:06:00+08:00"
+updatedDate: "2026-04-11T12:06:00+08:00"
 tags: ["MiniMax", "Anthropic", "OpenAI", "DeepSeek", "Google", "Qwen", "Claude", "CoreWeave", "OpenClaw"]
 draft: false
 coverImage:

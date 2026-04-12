@@ -1,8 +1,8 @@
 ---
 title: "【技術解析】MegaTrain：在單一 GPU 訓練千億參數模型的方法"
 description: "記憶體優先的訓練架構如何翻轉 GPU-centric 慣例，讓 100B+ 參數模型不再需要多 GPU 叢集"
-publishDate: "2026-04-09"
-updatedDate: "2026-04-09"
+publishDate: "2026-04-09T09:38:00+08:00"
+updatedDate: "2026-04-09T09:38:00+08:00"
 tags: ["技術", "AI", "深度學習", "LLM", "GPU"]
 draft: false
 ---

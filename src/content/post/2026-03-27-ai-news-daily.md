@@ -2,7 +2,7 @@
 title: "AI 新聞精選｜2026 年 3 月 27 日"
 description: "Google 發布 Gemini 3.1 Flash Live 支援 90 種語言，Codex 推出插件系統，Claude Code 雲端 auto-fix 上線，Apple 被曝正蒸餾 Gemini 強化自研端側模型。"
 publishDate: "2026-03-27T20:00:00+08:00"
-updatedDate: "2026-03-27"
+updatedDate: "2026-03-27T12:00:00+08:00"
 tags: ["Google", "OpenAI", "Anthropic"]
 series: "daily-ai-report"
 seriesOrder: 2

@@ -2,7 +2,7 @@
 title: "AI 晨間精選｜2026 年 3 月 30 日"
 description: "Sora 關停揭示 AI 消費應用泡沫、Claude Mythos 內部文件外洩衝撃資安界、AIO Sandbox 開啟 Agent 執行環境新典範。"
 publishDate: "2026-03-30T08:00:00+08:00"
-updatedDate: "2026-03-30"
+updatedDate: "2026-03-30T08:00:00+08:00"
 tags: ["OpenAI", "Anthropic", "OpenClaw"]
 series: "daily-ai-report"
 seriesOrder: 3
