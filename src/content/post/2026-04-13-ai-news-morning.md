@@ -7,6 +7,9 @@ tags: ["MiniMax", "Arcee AI", "OpenAI", "Anthropic", "SWE-Pro", "Trinity-Large-T
 series: "daily-ai-report"
 seriesOrder: 33
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-04-13-ai-news-morning.png"
+  alt: "AI 晨間精選｜2026-04-13"
 ---
 
 ## 今日觀察
