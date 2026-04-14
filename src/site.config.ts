@@ -29,6 +29,10 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "文章",
 	},
 	{
+		path: "/daily/",
+		title: "日報",
+	},
+	{
 		path: "/category/",
 		title: "分類",
 	},

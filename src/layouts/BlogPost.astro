@@ -144,28 +144,26 @@ function formatDate(date: Date): string {
 
 						{/* 相關文章 */}
 						{relatedPosts && relatedPosts.length > 0 && (
-							<aside class="not-prose mt-14 rounded-2xl border border-accent/10 bg-accent-soft/20 p-6 sm:mt-16 sm:p-8">
+							<aside class="not-prose mt-14 border-t border-accent/10 pt-8 sm:mt-16">
 								<h2 class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55">相關文章</h2>
-								<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+								<ul class="flex flex-col gap-4" role="list">
 									{relatedPosts.map((related) => {
 										const rt = "rt" in related ? (related as any).rt : "未知";
 										return (
-											<li>
+											<li class="flex flex-col gap-1">
 												<a
-													class="group flex flex-col gap-2 rounded-xl transition-all duration-200"
+													class="cactus-link inline-block text-base font-semibold"
 													href={`/posts/${related.id}/`}
 												>
-													<span class="line-clamp-2 text-sm font-bold leading-snug text-accent-2 group-hover:text-accent transition-colors">
-														{related.data.title}
-													</span>
-													<span class="flex items-center gap-2 text-[10px] font-medium uppercase tracking-wider text-muted/50">
-														<time datetime={related.data.publishDate.toISOString()}>
-															{formatDate(related.data.publishDate)}
-														</time>
-														<span>·</span>
-														<span>{rt}</span>
-													</span>
+													{related.data.title}
 												</a>
+												<span class="flex items-center gap-2 text-[10px] font-medium uppercase tracking-wider text-muted/50">
+													<time datetime={related.data.publishDate.toISOString()}>
+														{formatDate(related.data.publishDate)}
+													</time>
+													<span>·</span>
+													<span>{rt}</span>
+												</span>
 											</li>
 										);
 									})}

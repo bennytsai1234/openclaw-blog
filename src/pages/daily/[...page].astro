@@ -1,0 +1,121 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+import { Icon } from "astro-icon/components";
+import getReadingTime from "reading-time";
+import Pagination from "@/components/Paginator.astro";
+import { getAllPosts, groupPostsByYear } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+
+export const getStaticPaths = (async ({ paginate }) => {
+	const MAX_POSTS_PER_PAGE = 10;
+	const allPosts = await getAllPosts();
+	// 篩選標題包含「精選」的日報文章
+	const dailyPosts = allPosts.filter((p) => p.data.title.includes("精選")).sort(collectionDateSort);
+
+	return paginate(dailyPosts, {
+		pageSize: MAX_POSTS_PER_PAGE,
+	});
+}) satisfies GetStaticPaths;
+
+interface Props {
+	page: Page<CollectionEntry<"post">>;
+}
+
+const { page } = Astro.props;
+
+const meta = {
+	description: "AI 日報與晨間精選，快速掌握每日 AI 產業動態",
+	title: "AI 日報",
+};
+
+const paginationProps = {
+	...(page.url.prev && {
+		prevUrl: {
+			text: "← Previous Page",
+			url: page.url.prev,
+		},
+	}),
+	...(page.url.next && {
+		nextUrl: {
+			text: "Next Page →",
+			url: page.url.next,
+		},
+	}),
+};
+
+const groupedByYear = groupPostsByYear(page.data);
+const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
+---
+
+<PageLayout meta={meta}>
+	<div class="mb-7 flex items-center gap-3 sm:mb-8">
+		<div class="flex-1">
+			<h1 class="title text-accent mb-2 text-3xl">AI 日報</h1>
+			<p class="text-muted text-sm">共 {page.total} 篇精選日報</p>
+		</div>
+		<a class="text-accent transition-colors hover:text-accent-hover" href="/rss.xml" rel="noopener noreferrer" target="_blank">
+			<span class="sr-only">RSS feed</span>
+			<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name="mdi:rss" />
+		</a>
+	</div>
+
+	<div>
+			{
+				descYearKeys.map((yearKey) => (
+					<section class="mb-14 sm:mb-16">
+						<h2
+							id={`year-${yearKey}`}
+							class="mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55"
+						>
+							{yearKey}
+						</h2>
+						<ul class="space-y-4 sm:space-y-5 text-start">
+							{groupedByYear[yearKey]?.map((p) => (
+								<li
+									class="post-item rounded-xl border border-transparent bg-[--color-surface] p-4 transition-all duration-200 hover:border-accent/15 hover:bg-[--color-surface]/85 sm:p-5"
+								>
+									<div class="flex flex-col gap-2.5 sm:flex-row sm:items-start sm:gap-4">
+										<div class="flex shrink-0 items-center gap-3 sm:flex-col sm:items-start sm:gap-1">
+											<time
+												class="text-accent text-sm font-semibold"
+												datetime={p.data.publishDate.toISOString()}
+											>
+												{new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(p.data.publishDate)}
+											</time>
+											<span class="text-muted text-sm tabular-nums">
+												{Math.ceil(getReadingTime(p.body ?? "").minutes)} min
+											</span>
+										</div>
+										<div class="min-w-0 flex-1">
+											<h3 class="mb-1.5 text-base font-semibold leading-6">
+												<a class="cactus-link" href={`/posts/${p.id}/`}>
+													{p.data.title}
+												</a>
+											</h3>
+											{p.data.description && (
+												<p class="text-muted mb-2.5 line-clamp-2 text-sm leading-6">
+													{p.data.description}
+												</p>
+											)}
+											{p.data.tags.length > 0 && (
+												<div class="flex flex-wrap gap-1.5">
+													{p.data.tags.map((tag) => (
+														<span class="rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
+															&#35;{tag}
+														</span>
+													))}
+												</div>
+											)}
+										</div>
+									</div>
+								</li>
+							))}
+						</ul>
+					</section>
+				))
+			}
+			<Pagination {...paginationProps} />
+	</div>
+</PageLayout>
