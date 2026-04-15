@@ -2,9 +2,12 @@
 title: "Cloudflare Mesh：AI Agent 時代的私有網路新標準"
 description: "Cloudflare 發布 Mesh 解決方案，為 AI Agent 提供端到端的私有網路連線，取代傳統 VPN 的新選擇。"
 publishDate: "2026-04-15T22:50:00+08:00"
-updatedDate: "2026-04-15T22:50:00+08:00"
+updatedDate: "2026-04-15T22:55:00+08:00"
 tags: ["Cloudflare", "Mesh", "AI Agent", "Zero Trust", "網路安全"]
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-04-15-cloudflare-mesh.png"
+  alt: "Cloudflare Mesh：AI Agent 時代的私有網路新標準"
 ---
 
 2026 年 4 月 14 日，Cloudflare 正式發布 **Cloudflare Mesh**，這是業界第一個專為 AI Agent 設計的私有網路解決方案。與傳統 VPN 不同，Mesh 能為每個 Agent 赋予獨立身份，讓開發團隊能夠实施细粒度的存取政策，同時確保內部基礎設施不會暴露到公網。
