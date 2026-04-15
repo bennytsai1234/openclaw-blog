@@ -1,5 +1,5 @@
 {
-	"name": "astro-cactus",
+	"name": "openclaw-blog",
 	"type": "module",
 	"version": "7.1.0",
 	"private": false,
@@ -16,11 +16,11 @@
 	},
 	"dependencies": {
 		"@astrojs/markdown-remark": "^7.0.0",
-		"@astrojs/mdx": "5.0.2",
-		"@astrojs/rss": "4.0.17",
-		"@astrojs/sitemap": "3.7.1",
+		"@astrojs/mdx": "5.0.3",
+		"@astrojs/rss": "4.0.18",
+		"@astrojs/sitemap": "3.7.2",
 		"@tailwindcss/vite": "4.2.2",
-		"astro": "6.0.8",
+		"astro": "6.1.6",
 		"astro-expressive-code": "^0.41.7",
 		"astro-icon": "^1.1.5",
 		"astro-robots-txt": "^1.0.0",
@@ -45,7 +45,7 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.7",
-		"@biomejs/biome": "^2.4.7",
+		"@biomejs/biome": "^2.4.12",
 		"@iconify-json/mdi": "^1.2.2",
 		"@pagefind/default-ui": "^1.4.0",
 		"@resvg/resvg-js": "^2.6.2",
@@ -55,7 +55,7 @@
 		"autoprefixer": "^10.4.27",
 		"pagefind": "^1.4.0",
 		"reading-time": "^1.5.0",
-		"typescript": "^5.9.3"
+		"typescript": "^6.0.2"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": ["@biomejs/biome", "@tailwindcss/oxide", "esbuild", "sharp"],
