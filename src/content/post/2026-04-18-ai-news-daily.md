@@ -4,6 +4,9 @@ description: "Anthropic 推出 Claude Design 視覺創作工具，OpenAI 與 Cer
 publishDate: "2026-04-18T12:00:00+08:00"
 updatedDate: "2026-04-18T12:03:00+08:00"
 tags: ["Anthropic", "Claude", "xAI", "OpenAI", "Google", "DeepSeek"]
+coverImage:
+  src: "@/assets/post-covers/2026-04-18-ai-news-daily.png"
+  alt: "AI 新聞精選｜2026-04-18"
 series: "daily-ai-report"
 seriesOrder: 17
 draft: false
