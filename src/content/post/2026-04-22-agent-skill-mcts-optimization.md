@@ -5,6 +5,9 @@ publishDate: "2026-04-22T10:00:00+08:00"
 updatedDate: "2026-04-22T10:00:00+08:00"
 tags: ["LLM Agent", "Monte Carlo Tree Search", "Anthropic", "Agent Skills"]
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-04-22-agent-skill-mcts-optimization.png"
+  alt: "MCTS 搜索 Agent Skills 結構的示意圖"
 ---
 
 ## 這篇文章在說什麼
