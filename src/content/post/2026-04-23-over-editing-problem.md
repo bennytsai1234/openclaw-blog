@@ -5,6 +5,9 @@ publishDate: "2026-04-23T10:00:00+08:00"
 updatedDate: "2026-04-23T10:00:00+08:00"
 tags: ["LLM", "coding-agent", "software-engineering", "research"]
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-04-23-over-editing-problem.png"
+  alt: "模型在幫你修程式，但順便把剩下的也改掉了"
 ---
 
 假設你今天遇到一個很簡單的 bug：某個函式裡 `range(len(x) - 1)` 應該是 `range(len(x))`，就這一個 off-by-one 錯誤。你把程式丟給 AI 幫你修，它處理完之後拿回來看——功能確實是對的，測試也全過了。但整個函式被整個重寫了：多了 `None` 檢查、`np.asarray` 轉換、finite-value mask、新增輔助函式、變數名稱被改過、連繪圖邏輯都換了一套。
