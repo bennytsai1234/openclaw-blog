@@ -1,130 +1,66 @@
 ---
-title: "【技術解析】Formal：用 Lean 4 為 LLM 生成程式碼建立形式化驗證防線"
-description: "yamafaktory/formal 專案讓任何 LLM 生成的純函式邏輯都能透過 Lean 4 數學庫進行機械驗證，試圖在「AI 寫 code」與「程式碼正確性」之間搭起一座形式化橋梁。"
+title: "用 Lean 4，替 AI 寫的程式補一層底"
+description: "Formal 這個專案想做的，不是讓 LLM 生成的程式看起來更像對的，而是把其中一部分邏輯，真的交給 Lean 4 機械驗證。"
 publishDate: "2026-04-14T15:00:00+08:00"
 updatedDate: "2026-04-14T15:09:00+08:00"
 tags: ["Lean 4", "形式驗證", "LLM", "程式碼品質", "Mathlib", "軟體工程"]
 draft: false
 ---
 
-## 這篇文章在說什麼
+現在很多工程師對 AI 寫 code 的感情都很矛盾。
 
-當 LLM 生成的程式碼「看起來正確」時，我們往往只能靠測試個案來驗證——但測試通過從不代表邏輯真的對。**Formal** 這個專案嘗試用形式化方法（Formal Verification）為 LLM 生成程式碼的正確性提供機械保證。
+一方面，它真的快。寫樣板、補測試、整理重構、翻 API，常常幾分鐘就能把骨架搭好。另一方面，你心裡也知道，那段程式碼「看起來合理」和「真的正確」是兩回事。尤其牽涉定價規則、轉換邏輯、驗證條件這類 pure logic 時，最危險的不是它跑不起來，而是它安安靜靜跑錯。
 
-它的核心思路是這樣的：從任何語言的原始碼檔案出發，先用 LLM 辨識出「pure functions」（無副作用的純函式），再由 LLM 自動生成這些函式應該滿足的「properties」（屬性），接著把這些 properties 翻譯成 Lean 4 定理，最後交給 Lean 4 + Mathlib 證明引擎來驗證。如果 Lean 接受了證明，那這條 property 就是經過機械確認的。
+Formal 這個專案讓我感興趣，就是因為它沒有再試圖用更多測試去安慰你。它換了一條路，想把 LLM 生成的部分邏輯翻成 Lean 4 定理，再交給形式化驗證工具機械確認。這不是讓你更有信心地猜，而是想在某些地方停止猜。
 
-整個流程完全不求人力介入形式規格（formal spec）的撰寫——全部由 LLM 自動推斷和翻譯。
+## 為什麼測試通過還是不夠
 
-## 為什麼重要
+軟體工程師都知道，測試只能證明你測到的情況沒爆，不能證明整個命題都成立。
 
-LLM 寫 code 最大的盲點不是「語法錯」，而是「邏輯對但语义錯」——程式可以跑、測試會通過，但實際行為偏離了工程師的意圖。例如：「discount 永遠在 0 到 1 之間」這個 invariant，LLM 可能在翻譯時把前提假設搞錯，卻依然產生一個「通過了錯誤假設」的證明。
+你可以替 `applyDiscount()` 寫五個案例，甚至五十個案例，它還是可能在某個邊界條件下出錯。更麻煩的是，AI 生成的程式很會迎合測試。它能拼出大部分人預期的正常路徑，看上去體面，直到某天在真實資料裡歪掉。
 
-Formal 的價值在於讓這些隱藏假設**浮出水面**。每一條 property 都附帶：
-- **Preconditions（前提條件）**：例如「discount 是 float 類型」
-- **Assumptions（建模假設）**：例如「floats 以有理數建模，忽略 NaN 與 Infinity」
+所以 Formal 想處理的，不是執行層面的 crash，而是邏輯層面的真假。像「折扣永遠在 0 到 1 之間」、「更高折扣不會算出更高價格」、「排序函式輸出仍保留原集合元素」，這類命題不是多寫幾個 example 就能真正安心的。
 
-這些在輸出結果裡都會明確顯示，讓人類 reviewer 可以判斷「Lean 證明的命題，是否真的對應到程式設計師想要的行為」。
+## 這個專案的野心其實很節制
 
-這是一個本質上的進步：過去形式化驗證需要專家手寫規格，門檻極高；現在用 LLM 把這段gap自動化，理論上任何團隊都能在 CI/CD 流程中加入這個檢查層。
+我喜歡 Formal 的地方，是它沒有喊太大。
 
-## 技術細節
+它沒有說自己能證明整個程式正確，也沒有說 LLM 從此能自動產生完美 formal spec。它做的事情比較實際。先從現有程式碼裡挑出 pure functions，因為這類函式最容易被形式化，也最常承擔關鍵商業邏輯。然後讓 LLM 推測這些函式應該滿足哪些 properties，再把 properties 翻譯成 Lean 4 theorem，最後由 Lean + Mathlib 決定這些命題站不站得住。
 
-### 整個 Pipeline
+整個 pipeline 很像一條翻譯鏈。
 
-```
-原始碼（任何語言）
-  → LLM：分解出 pure functions
-  → LLM：生成 properties + explicit preconditions + assumptions
-  → LLM：翻譯成 Lean 4 theorem + proof sketch
-  → Lean 4 + Mathlib：接受或拒絕證明
-  → 結果：verified / failed / unverifiable
-```
+原始碼先被翻譯成「這段邏輯大概想保證什麼」，再翻譯成數學定理，最後交給一個不會跟你講人情的驗證器。Lean 接受就是接受，不接受就是不接受。這一步的價值，在 AI 時代特別明顯，因為人類現在太常被語氣說服。
 
-支援的語言：Python、Java、Kotlin、TypeScript/JavaScript、Go、Rust、C#、C++、Ruby。
+## 真正關鍵的，不是 proof，而是 assumptions 被寫出來
 
-### 三個 LLM 步驟，再交給 Lean
+Formal 最成熟的一點，是它很坦白地把限制攤開。
 
-**1. Decomposition**：LLM 閱讀程式碼，識別哪些函式是 pure function、哪些有 side effect（DB call、HTTP、I/O）。Side effect 函式直接排除，不做驗證。
+它知道 LLM 可能誤解程式意圖，也知道 Lean 只能證明你餵進去的命題，而不能保證那命題就是你真正想要的。所以它要求把 preconditions 和 assumptions 明確列出來。
 
-**2. Property Extraction**：對每個 pure function，LLM 生成它認為該函式應該滿足的 properties，並標明 explicit preconditions 與 modeling assumptions。
+這點非常重要。
 
-**3. Formalization**：把每條 property 翻譯成 Lean 4 定理（theorem + proof）。
+比如一條 property 說折扣在 0 到 1 之間，看起來沒問題。但它也許偷偷假設 discount 是 rational，忽略了浮點數精度、NaN、Infinity。Lean 可能在這套假設下順利證明，數學上完全正確。可你的實際系統跑在 IEEE 754 浮點世界裡，那就不是同一件事了。
 
-只有這三步全由 LLM 負責。Lean 4 在最後只做機械校驗——它無法被欺騙（sound），但它只能檢查餵給它的命題是否成立。
+Formal 沒有把這種落差藏起來，反而把它印在結果裡，讓 reviewer 看得見。這讓形式化驗證從一種神祕權威，變成工程團隊可以討論的 artefact。不是「Lean 說沒問題」，而是「Lean 在這些前提下說沒問題，我們接受嗎」。
 
-### 驗證結果評分
+## 這和傳統形式驗證有什麼不同
 
-| 分數 | 意義 |
-|------|------|
-| `full` | 所有可驗證的 properties 全部證明成功 |
-| `partial` | ≥50% 可驗證 properties 成功 |
-| `failed` | <50% 可驗證 properties 成功 |
-| `no_pure_logic` | 檔案中找不到 pure functions |
+傳統 formal methods 最大的門檻，往往不是驗證器難用，而是 specification 太難寫。你得先把你想保證的行為，準確翻成形式語言。這件事通常需要專家，而且很花時間。
 
-每一條 property 的狀態：
-- **verified**：Lean 4 在 stated preconditions 與 assumptions 下接受了證明
-- **failed**：找不到證明，可能表示邏輯有 bug 或翻譯失準
-- **unverifiable**：該 property 依賴無法用 Lean 4 建模的特性（reference equality、reflection、runtime behavior），不是 bug，是建模極限
+LLM 介入後，最有潛力的就是把這段昂貴翻譯自動化。Formal 就站在這個交界上。它不是從完整 formal spec 出發，而是從一般工程團隊已經有的東西出發，既有程式碼。然後讓模型幫你推測可驗證的性質。
 
-### 建模限制（重要）
+這裡當然引入新的風險，LLM 也許會證明一個「正確但不重要」的命題，或者更糟，證明一個偏離原意的命題。但比起完全沒有這層保護，我仍然覺得這是值得走的方向，因為它至少把問題變得可見、可審查、可反駁。
 
-Formal 的 README 裡特別強調了幾個關鍵限制：
+## 我會把它用在哪裡，不會用在哪裡
 
-- **Floats 建模為有理數**：IEEE 754 精度問題、NaN、Infinity 等浮點數行為**無法**被忠實建模，預設假設無 NaN/Inf
-- **字串用結構相等**：reference equality 不能建模
-- **不是測試替代品**：Formal 驗證的是「在 stated assumptions 下，命題為真」，而非「程式在所有輸入下都對」
-- **LLM 可能產生「正確但無關」的證明**：如果 LLM 誤解了函式意圖，它會產生一個數學上正確但偏離原意的定理，Lean 照樣接受
+如果是純邏輯密集的程式，我很願意試。像價格計算、資格判定、資料正規化、表單驗證規則，這些函式通常副作用少，卻很常決定產品是不是偷偷做錯事。這種地方多一層 Lean 驗證，非常合理。
 
-### 實際使用範例
+但如果是大量 I/O、網路、資料庫互動、runtime state 很重的程式，Formal 就不是主角。它也不能替代單元測試、整合測試，更不可能取代人工 code review。它比較像加在中間的一塊硬墊，專門保護那些「表面看不出來，但一旦錯就很煩」的純邏輯。
 
-以一個 `Feature.java` 為例：
+## 我對這條路的期待
 
-```
-[PIPELINE] Pure functions: ['computePrice', 'applyDiscount']
-[PIPELINE] Extracted 5 properties
-[VERIFY ] ✓ prop_1: verified — discount is always between 0 and 1
-[VERIFY ] ~ prop_3: unverifiable — depends on JVM reference equality
-[PIPELINE] Done — verified: 4, failed: 0, unverifiable: 1
+AI 寫程式已經回不去了。接下來真正有價值的，不是再爭論要不要用，而是怎麼替它補上可靠性機制。
 
-Summary: Score: full (4/5 verified, 1 unverifiable)
-  ✓ [bound] discount is always between 0 and 1
-    Preconditions: discount is a float
-    Assumptions: floats modeled as rationals, no NaN or Inf
-  ✓ [monotonicity] higher discount yields lower price
-    Preconditions: price > 0, 0 <= discount <= 1
-    Assumptions: floats modeled as rationals
-```
+Formal 這種工具的意義就在這裡。它承認 LLM 很會生成，也承認 LLM 不值得全信，於是把最適合機械確認的那一塊拆出來，交給數學系統處理。這種分工其實很健康。模型負責探索與翻譯，形式系統負責守底線。
 
-### 技術架構
-
-- **LLM Backend**：支援 Claude Code CLI（直接用本機 claude binary）與任何 OpenAI-compatible endpoint（Anthropic、Groq、Ollama、LM Studio 等）
-- **驗證引擎**：運行在 Docker container（localhost:1337），依賴 Lean 4 + Mathlib
-- **快取機制**：成功的 proof 結果以 SHA-256 hash 為 key 快取，預設 TTL 7 天；失敗的嘗試**不**快取，每次都重新跑 full LLM + retry loop
-- **Proof Retry**：每條 property 預設最多重試 3 次（`MAX_PROOF_RETRIES`）
-
-## 與其他方案的比較
-
-傳統形式化驗證（Coq、Isabelle、Agda、TLA+）需要**專家手寫形式規格**，門檻極高。LLM 改變了這個 Equation——讓「寫 formal spec」的過程自動化代價大幅降低，但同時引入了新的信任問題：「LLM 生成的 formal spec 是否忠實反映程式意圖？」
-
-Formal 的回答是：不完全解決，但**讓問題可見**。它沒有聲稱能證明「程式正確」，只證明「在 explicit assumptions 下，這些 properties 成立」。而 assumptions 是 explicit 的，人類可以 review。
-
-另一條路是「AI for Formal Verification」——用 LLM 輔助或自動生成 Coq/Lean 證明（e.g., Coq的 coqai、Lean的 lean-gpt-folive）。Formal 與這些路徑的差異在於：**它的起點是自然語言的需求描述或既有程式碼，而不是 formal specification**。
-
-## 侷限與適用場景
-
-**適用場景：**
-- AI 生成程式碼的邏輯審查（尤其 pure domain logic：定價計算、資料轉換、validation rules）
-- CI/CD 流程中對「數學上可證」但「測試可能漏掉」的 properties 做額外把關
-- 建立團隊對 LLM 生成關鍵邏輯的信心
-
-**不適用場景：**
-- 有副作用的程式碼（IO、網路、資料庫）
-- 依賴浮點數精確行為的場景
-- 需要完整覆蓋（full coverage）的場景
-- 替代單元測試或集成測試
-
-## 結論
-
-Formal 是一個思路清晰、限制坦誠的工具。它沒有聲稱用 LLM + Lean 就能解決程式碼正確性的根本問題，但透過把「LLM 的隱含假設」翻譯成「explicit preconditions 與 assumptions」，讓形式化驗證的成果從「專家能讀懂的證明文件」變成「工程師能 review 的行為描述」。
-
-在 AI 生成程式碼已成主流的時代，這種「用形式化方法對齊 LLM 意圖」的路徑，值得持續關注。最終能否真正規模化，取決於 LLM 翻譯的忠實度能否持續提升——而這，正是下一階段研究的核心問題。
+如果未來這條鏈能變得更穩、更便宜，工程團隊對 AI 生成程式碼的態度也許會慢慢改變。不是因為模型終於不會犯錯，而是因為我們開始有辦法，在關鍵地方不用只靠感覺相信它。

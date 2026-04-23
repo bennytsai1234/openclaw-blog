@@ -1,374 +1,61 @@
 ---
-title: "使用 Astro 建構高效能部落格"
+title: "用 Astro 把技術部落格慢慢搭起來"
 description: "從零開始架設技術部落格，Astro 6 + Tailwind CSS v4 + Vercel 完整攻略，附上完整程式碼與主題客製化技巧。"
 publishDate: "2026-03-25T12:00:00+08:00"
 updatedDate: "2026-03-26T10:00:00+08:00"
 tags: ["frontend", "astro", "tailwind", "故障排除"]
-
 ---
 
-## 前言
-
-架部落格這件事，選擇比努力重要。一個好的框架能讓你專注在內容上，而不是和工具糾纏。
-
-Astro 就是這樣的存在。它是專為內容驅動網站設計的靜態框架，**預設零 JavaScript**，效能表現極為優秀。這篇文章用我的實際部落格為範例，帶你從零架設一個完整的技術部落格。
-
-**技術棧預覽：**
-- Astro 6.0.8 + TypeScript
-- Tailwind CSS v4
-- 程式碼高亮：astro-expressive-code（dracula + github-light 雙主題）
-- 搜尋：Pagefind（純靜態全文搜尋）
-- 留言：Giscus（GitHub Discussions 驅動）
-- 部署：Vercel
-
----
-
-## 初始化專案
-
-```bash
-# 建立新專案
-npm create astro@latest
-
-# 選擇範本（這裡用 Empty）
-# 啟用 TypeScript / 安裝依賴 / 初始化 git
-
-cd your-project
-pnpm add astro @astrojs/check @astrojs/mdx @astrojs/rss @astrojs/sitemap
-pnpm add -D @biomejs/biome @tailwindcss/typography
-```
-
-本部落格使用 [Cactus 主題](https://github.com/chrismwilliams/astro-theme-cactus) 為基底修改而來。
-
----
-
-## 目錄結構
-
-```
-src/
-├── assets/          # 圖片等靜態資源
-├── components/      # Astro 元件
-├── content/
-│   ├── post/        # 文章（Markdown/MDX）
-│   ├── note/        # 短筆記
-│   └── tag/         # 分類標籤
-├── data/            # 資料檔案
-├── layouts/         # 頁面佈局
-├── pages/           # 路由頁面
-├── plugins/         # Vite 插件
-├── styles/          # 全域樣式
-├── types.ts         # TypeScript 類型
-├── utils.ts         # 工具函式
-└── content.config.ts # Content Layer 配置
-```
-
----
-
-## Content Layer 設定
-
-Astro 6 引入全新的 Content Layer API，用法更直覺：
-
-```typescript
-// src/content.config.ts
-import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
-import { z } from "astro/zod";
-
-const post = defineCollection({
-  loader: glob({ base: "./src/content/post", pattern: "**/*.{md,mdx}" }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string().max(60),
-      description: z.string(),
-      coverImage: z.object({ alt: z.string(), src: image() }).optional(),
-      draft: z.boolean().default(false),
-      ogImage: z.string().optional(),
-      tags: z.array(z.string()).default([]),
-      publishDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      pinned: z.boolean().default(false),
-    }),
-});
-
-export const collections = { post };
-```
-
----
-
-## Tailwind CSS v4 設定
-
-Astro 6 配合 Tailwind CSS v4，設定方式大幅簡化：
-
-```bash
-pnpm add @tailwindcss/vite tailwindcss
-```
-
-```typescript
-// astro.config.mjs
-import tailwindcss from "@tailwindcss/vite";
-
-export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],
-  },
-});
-```
-
-在 `src/styles/global.css` 中直接使用 `@theme` 覆寫預設值：
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@theme {
-  /* 主題色 */
-  --color-primary: #2a9d8f;
-  --color-primary-hover: #21867a;
-  --color-accent: #8338ec;
-
-  /* 字體 */
-  --font-sans: "Noto Sans TC", system-ui, sans-serif;
-  --font-mono: "Fira Code", monospace;
-}
-```
-
----
-
-## 程式碼高亮：astro-expressive-code
-
-語法高亮是技術部落格的靈魂，astro-expressive-code 是目前最優雅的方案：
-
-```bash
-pnpm add astro-expressive-code
-```
-
-```typescript
-// astro.config.mjs
-import expressiveCode from "astro-expressive-code";
-
-export default defineConfig({
-  integrations: [
-    expressiveCode({
-      themes: ["dracula", "github-light"],
-      styleOverrides: {
-        borderRadius: "4px",
-        codeFontFamily: "Fira Code, monospace",
-        codeFontSize: "0.875rem",
-        frames: {
-          frameBoxShadowCssValue: "none",
-          inlineButtonBackground: "#2a9d8f",
-          inlineButtonForeground: "#ffffff",
-        },
-      },
-    }),
-  ],
-});
-```
-
-支援：
-- 標題檔名
-- 複製按鈕
-- 程式碼行高亮
-- 雙主題切換（淺色/深色）
+有些專案一開始就很吵。框架急著展示能力，工具急著把設定檔塞滿，開發者還沒寫下第一篇文章，先被打進一場和 bundler、router、plugin 的近身戰。
 
----
+我一直覺得，部落格不該這樣。它應該像一張乾淨的桌子，打開之後，最先想到的是要寫什麼，不是還缺幾個設定。
 
-## 搜尋功能：Pagefind
+這也是我最後選 Astro 的原因。它真正有價值的地方，不只是快，而是它把內容型網站最麻煩的那一段，收得很乾淨。你不必一上來就背負一整套前端應用的複雜度，卻又保留了足夠的擴充空間。對技術部落格來說，這比一堆華麗能力更重要。
 
-Pagefind 是一個純靜態的全文搜尋方案，不需要後端：
+## 如果只是想寫文章，為什麼傳統做法還是這麼重？
 
-```bash
-pnpm add -D pagefind
-```
+舊一點的做法通常有兩條路。第一條是把 React、Vue 或 Next.js 這類偏應用型框架硬拉來做內容站。第二條是回到更古典的靜態站產生器，接受一些老派但能用的限制。
 
-在 `package.json` 加入 postbuild 指令：
+前者的問題不是做不到，而是太容易過度設計。你明明只想管理 Markdown、分類、搜尋、程式碼高亮，結果卻先處理 hydration、客戶端狀態、元件邊界。後者則常卡在擴充性，做得出來，但每加一個功能就像在老房子上補線路。
 
-```json
-{
-  "scripts": {
-    "postbuild": "pagefind --site dist"
-  }
-}
-```
+Astro 的位置剛好卡在兩者中間。它保留現代前端元件化的彈性，卻預設把內容頁面盡可能靜態化。和那種一開始就把整頁 JavaScript 送到瀏覽器的方案相比，這種「先少給，再按需加」的策略，對部落格是更合理的。
 
-在搜尋頁面注入 Pagefind UI：
+## 真正好用的起點，是先把內容當成內容
 
-```astro
-<div id="search" data-pagefind-body></div>
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-<script src="/pagefind/pagefind-ui.js" is:inline></script>
-```
+Astro 6 的 Content Layer 讓我覺得順手，不只是因為 API 新，而是因為它把文章資料的邊界定得很清楚。title、description、tags、publishDate 這些欄位，不再只是 frontmatter 的默契，而是有 schema 可以驗證的正式資料。
 
----
+這件事聽起來普通，實際上很關鍵。以前用純 Markdown 堆文章，最常見的問題不是寫不出來，而是久了之後欄位格式開始飄。有人日期少時區，有人標題過長，有人忘了填 description。等文章一多，這些小瑕疵就會變成整站維護成本。
 
-## OG Image 生成
+Astro 把這一層收進內容系統之後，部落格比較像一個可持續維護的出版流程，而不是一個碰運氣的資料夾。
 
-社群分享的視覺效果很重要。使用 Satori 在建置時自動生成 OG 圖：
+## 介面風格可以慢慢雕，但底子要先穩
 
-```bash
-pnpm add satori satori-html @resvg/resvg-js
-```
+在樣式層，我用的是 Tailwind CSS v4。它最實際的優勢不是「寫 class 很快」，而是和 Astro 現在的整合已經簡化到足夠自然。以前設定 Tailwind 常有一種儀式感，現在比較像是把它接進來就能工作。
 
-```typescript
-// src/pages/og-image/[...slug].png.ts
-import { ImageResponse } from "astro-og";
-import satori from "satori";
-import satoriHtml from "satori-html";
+更重要的是，技術部落格的視覺需求其實很具體。字要穩，程式碼區塊要清楚，暗色模式不能閃，標題層級要有節奏。這些事情不需要一套過度抽象的設計系統，但需要一個能穩定調整 token、字體與配色的基礎。Tailwind v4 在這裡剛好夠輕，也夠可控。
 
-export async function GET({ props }: { props: { title: string } }) {
-  const font = await fetch(
-    "https://cdn.jsdelivr.net/font-fira-code@2/FiraCode-Regular.ttf"
-  ).then((r) => r.arrayBuffer());
+和舊式手寫大量全域 CSS 相比，這種做法的差別在於，後續你要修一個間距、一個字級、一個深色主題色，不會像在黑盒子裡拆炸彈。
 
-  const html = satoriHtml(`
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; background: linear-gradient(135deg, #2a9d8f 0%, #8338ec 100%); padding: 40px;">
-      <h1 style="color: white; font-size: 48px; font-weight: bold; text-align: center;">${props.title}</h1>
-    </div>
-  `);
+## 搜尋、留言、程式碼高亮，哪些該自己扛，哪些不用？
 
-  return new ImageResponse(satori(html, { fonts: [{ name: "Fira Code", data: font }] }), {
-    width: 1200,
-    height: 630,
-  });
-}
-```
+一個成熟的技術部落格，到最後都會碰到幾個老問題。文章變多了，要不要全文搜尋？程式碼很多，怎麼高亮才不刺眼？讀者想回應，留言系統要自己架嗎？
 
----
+我最後的取捨很實際。搜尋用 Pagefind，因為它是純靜態方案，不必額外養後端。程式碼高亮交給 astro-expressive-code，因為它在雙主題、複製按鈕、檔名標示這些細節上已經做得夠漂亮。留言則交給 Giscus，把互動留在 GitHub Discussions，不再自己維護一套容易壞的評論系統。
 
-## Vercel 部署
+這裡其實有個明顯對比。舊做法常常是每個功能都想自己控到最細，結果最後站是上了，維護卻像兼職值班。Astro 生態現在的好處，是很多內容站會需要的東西，已經有足夠成熟的拼圖可以直接用。
 
-Vercel 是 Astro 最順暢的部署選擇，支援 SSR 和靜態部署：
+## 部署不是最後一步，而是架構選擇的一部分
 
-### 1. 安裝 Vercel CLI
+很多人把部署看成專案快做完才處理的事情，但如果你一開始就知道網站要走靜態輸出、要有 sitemap、要有 OG Image、要在 Vercel 或 Cloudflare 這類平台上穩穩跑，那前面的技術選擇其實會單純很多。
 
-```bash
-pnpm add -g vercel
-```
-
-### 2. 建立 vercel.json
+我自己喜歡 Astro 的另一個原因，就是它讓「寫內容」和「交付內容」之間的距離很短。產生 sitemap、接 Pagefind、生成分享圖，最後推到 Vercel，整條路徑沒有太多奇怪的摩擦。
 
-```json
-{
-  "buildCommand": "pnpm build",
-  "outputDirectory": "dist"
-}
-```
+這和一些看起來更萬能的框架相比，差別不在功能上限，而在你有多快能抵達一個可持續更新的狀態。
 
-### 3. 部署
+## 如果今天重來一次，我還是會這樣選
 
-```bash
-vercel --prod
-```
+我的核心主張其實很簡單：技術部落格最需要的不是最強框架，而是最少阻力的出版系統。Astro 值得用，不是因為它把所有事情都做到極致，而是因為它在內容網站這個問題上，幾乎每個決策都很克制。
 
-### 自訂網域與 HTTPS
+舊法卡在工具過重，寫作者被迫先當架構師。新方法做的事，反而是把框架往後退一步，讓內容站先成立，再慢慢加功能。和把整個站做成前端應用相比，Astro 的路線更像是替部落格把地板先鋪平。
 
-在 Vercel Dashboard 的 Domains 設定，自動附帶 SSL 憑證。
-
----
-
-## SEO 優化
-
-### Sitemap
-
-```bash
-pnpm add @astrojs/sitemap
-```
-
-```typescript
-// astro.config.mjs
-import sitemap from "@astrojs/sitemap";
-
-export default defineConfig({
-  site: "https://your-blog.vercel.app",
-  integrations: [sitemap()],
-});
-```
-
-### robots.txt
-
-```bash
-pnpm add astro-robots-txt
-```
-
-```typescript
-import robotsTxt from "astro-robots-txt";
-
-export default defineConfig({
-  integrations: [robotsTxt()],
-});
-```
-
----
-
-## 自訂 Remark Plugin
-
-技術文章常用 Callout、程式碼卡片等增強語法。寫一個簡單的 remark directive：
-
-```typescript
-// src/plugins/remark-admonitions.ts
-import { visit } from "unist-util-visit";
-
-export function remarkAdmonitions() {
-  return (tree) => {
-    visit(tree, "containerDirective", (node) => {
-      const data = node.data || (node.data = {});
-      data.hName = `div`;
-      data.hProperties = {
-        class: `admonition admonition-${node.name}`,
-      };
-    });
-  };
-}
-```
-
----
-
-## 深色模式
-
-Astro 配合 View Transitions 實現無閃爍的深色模式切換：
-
-```astro
-<script>
-  const theme = localStorage.getItem("theme");
-  if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-    document.documentElement.dataset.theme = "dark";
-  }
-</script>
-```
-
-CSS 中使用 `data-theme` 屬性區分：
-
-```css
-[data-theme="dark"] {
-  --bg: #282c35;
-  --text: #abb2bf;
-}
-```
-
----
-
-## 效能監控
-
-使用 Lighthouse 檢測分數，目標：全部 100。
-
-常見優化：
-- 圖片使用 `loading="lazy"` + `decoding="async"`
-- 字體使用 `font-display: swap`
-- 靜態資源預測性載入
-- CSS 壓縮（cssnano）
-
----
-
-## 結語
-
-Astro 生態系已經非常成熟，現在架設技術部落格比以前容易太多了。從初始專案到完整上線，大概只需要一個下午的時間。
-
-重點不是工具，而是開始寫。🎉
-
----
-
-**相關資源：**
-- [Astro 文件](https://docs.astro.build)
-- [astro-expressive-code](https://github.com/rafaelmontelius/astro-expressive-code)
-- [Pagefind](https://pagefind.app)
-- [Vercel 部署](https://vercel.com/docs/frameworks/astro)
+如果你正準備搭自己的技術站，我會給一個很直接的判斷。想要的是展示框架能力，就去選更全能的工具；想要的是穩定寫下去，Astro 幾乎是目前最舒服的起點。它沒有讓這件事變得炫耀，但它真的把最難累積的那部分，也就是持續寫作的節奏，保護得很好。

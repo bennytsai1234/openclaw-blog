@@ -1,5 +1,5 @@
 ---
-title: "【技術解析】Scion：Google Cloud 的並發 Agent 隔離執行架構"
+title: "Scion 想解的，其實是多 Agent 的秩序"
 description: "深入解析 Google Cloud 實驗性專案 Scion 的 Manager-Worker 架構，理解其如何用容器隔離、身份鑑別與多 Runtime 支援來解決並發 LLM Agent 的協調難題。"
 publishDate: "2026-03-29T12:00:00+08:00"
 updatedDate: "2026-03-29T10:00:00+08:00"
@@ -7,68 +7,42 @@ tags: ["技術", "AI", "開發"]
 draft: false
 ---
 
-## 這篇文章在說什麼
+讓一個 Agent 做事，現在已經不算難題了。真正開始麻煩的，是你想同時放出三個、五個、十個 Agent，而且每個都要能獨立工作、不互相踩檔、拿到正確憑證、在出問題時還能被追蹤與回收。
 
-當你需要同時讓多個 AI Agent 執行任務，最麻煩的從來不是「讓 Agent 做事」，而是「如何讓多個 Agent 在不互相干擾的情況下並行工作，同時又讓你隨時能監控、恢復、與它們溝通」。
+多 Agent 系統表面上看起來像是把單一 Agent 乘以 N，實際上完全不是。數量一多，問題的性質就變了。你不再只是關心模型能不能完成任務，而是整個執行環境能不能維持秩序。
 
-Google Cloud 近日發布了一個名為 Scion 的實驗性開源專案，正是一套為這個問題而生的多 Agent 協調平台。它的核心設計是：每個 Agent 跑在一個隔離的容器裡，擁有獨立的身分（identity）、憑證（credentials）和工作區（workspace），支援本地 Docker、Podman、Apple Container Runtime 和 Kubernetes 四種容器執行環境，並透過 Git Worktree 機制確保不同 Agent 之間不會產生檔案衝突。
+Google Cloud 的 Scion 有意思，就有意思在它沒有先誇模型有多聰明，而是先處理這個比較難看、也更接近真實工程現場的問題。它想解的不是「如何生成答案」，而是「如何讓很多個會生成答案的東西，在同一套系統裡不彼此傷害」。
 
----
+## 多 Agent 最先爆炸的，通常不是推理，而是工作區
 
-## 為什麼重要
+很多人第一次玩並行 Agent，會很自然地讓它們一起碰同一份 repo。結果通常也很自然，衝突、覆寫、誰改了什麼搞不清楚，最後你花最多時間不是看產出，而是收拾現場。
 
-多 Agent 並行系統的真正挑戰，從來不在於「能不能跑」，而在於「隔離做到什麼程度」。
+這就是為什麼 Scion 把 Git Worktree 與容器隔離放在核心位置。每個 Agent 有自己的工作區，自己的執行環境，甚至自己的身份。這聽起來像常識，但其實是多 Agent 能不能落地的分水嶺。
 
-當多個 Agent 同時存取同一個程式碼庫，如果它們都直接在同一個 Git 分支上工作，merge conflict 是必然的。解決這個問題的行業慣例是讓每個 Agent 跑在自己的 Git Worktree 裡——這就是 Scion 的預設工作區設計。
+舊做法常常只是「多開幾個 CLI 視窗」，方便是方便，可一旦要長時間運行或交給團隊使用，問題立刻浮上來。誰在用哪組 credentials？哪個 Agent 改了哪個 branch？為什麼其中一個容器死掉後，整體狀態沒人知道？這些都不是模型問題，卻會先把系統拖垮。
 
-但更深的問題是憑證隔離：Claude Code 需要 Anthropic API Key，Gemini CLI 需要 Google 憑證，Codex 需要 OpenAI 的驗證方式——當多個 Agent 在同一個主機上並行運行，如何確保每個 Agent 只接觸自己有權限的憑證，而不是把整組環境變數廣播給所有人？Scion 的 Harness 介面為每種 LLM 適配器封裝了獨立的身份發現邏輯，讓同一個主機上的多個 Agent 可以各自乾淨地拿到自己的憑證，而不需要在系統層面共享 secret。
+## Scion 的價值，不在功能多，而在邊界畫得夠清楚
 
----
+Scion 把整套系統拆成 Hub、Runtime Broker、Agent 容器等角色，表面上像典型 manager-worker 架構，但真正值得注意的是它對概念邊界的堅持。Grove 是專案空間，Template 是藍圖，Harness 是 LLM 適配器，Runtime 是容器生命週期抽象。
 
-## 技術細節
+這樣拆的好處，不只是文件比較好寫，而是你終於能明確回答一個常見問題，當某個 Agent 出錯，到底該怪誰？是模板設定錯了、憑證注入有問題、runtime 掛了，還是 harness 根本不相容？
 
-**Manager-Worker 雙層架構**
+具體比較一下就知道差異。沒有抽象分層的多 Agent 工具，常常把容器設定、模型指令、憑證發現、工作目錄綁成一團，剛開始上手很快，之後每加一種 runtime 或一種模型都像拆牆。Scion 的新方法則是先把這些責任拆開，讓系統成長時不必整包重來。
 
-Scion 在 Hosted 模式下採用三層元件：Hub（協調中心）、Runtime Broker（容器執行協調者）和 Agent 容器本身。Hub 負責狀態管理與任務分發，Runtime Broker 負責啟動和監控容器，Agent 則是最終執行任務的單元。Solo 模式下，Hub 和 Broker 的職責由本機 CLI 直接承擔，實現零設定的本地體驗。
+## 真正難的是憑證隔離，而這件事常被低估
 
-**五大核心抽象**
+工作區衝突還算看得見，憑證問題則往往是靜悄悄的風險。Claude Code、Gemini CLI、Codex，各自依賴不同的金鑰、驗證檔與環境變數。如果多個 Agent 共用同一個主機，又沒有清楚的身份界線，那麼最省事的做法通常也是最危險的做法，把所有 secret 一口氣灌給所有程序。
 
-Scion 的設計哲學是「所有概念都有明確邊界」：
+Scion 在這裡選擇的方向很務實。每個 harness 負責自己的憑證發現與注入邏輯，讓 Agent 只看到它該看到的那一份。這比單純「支援多模型」更重要，因為真正能讓系統進入生產環境的，不是模型清單，而是權限邊界。
 
-- **Grove**：最頂層的專案workspace，在 Solo 模式下就是 `.scion` 目錄，在 Hosted 模式下是資料庫中以 Git Remote URL 為唯一識別碼的記錄。所有 Agent 的狀態都掛在 Grove 底下。
+這點我非常認同。多 Agent 若沒有身份隔離，本質上只是一群共享風險的子程序，不是一個可管理的平台。
 
-- **Agent**：隔離的容器，運行一個 LLM Harness。容器內有兩組掛載：`/home/<user>` 存放 Harness 設定和憑證，`/workspace` 是實際工作目錄，通常是獨立的 Git Worktree。
+## 所以 Scion 代表了什麼？
 
-- **Template**：Agent 的藍圖，定義要複製到容器內的目錄結構、使用的 Harness 類型、環境變數、容器映像檔和資源需求。Templates 支援繼承鏈，base 設定可以被上層覆蓋。
+我認為它代表的是一種正在成形的共識，未來的 AI 開發環境不會只有一個助手，而是很多個可尋址、可暫停、可恢復、可替換 runtime 的工作單元。Agent 不再只是聊天框裡的一次性回應者，而更像有工作區、有生命週期、有資源限制的數位工人。
 
-- **Harness**：封裝 LLM 特定行為的介面卡。目前支援：Claude Code（Anthropic API Key）、Gemini CLI（Google API Key / OAuth / Vertex）、OpenCode（OpenCode 驗證檔）、Codex（Codex 驗證檔）、Generic（通用 CLI）。每個 Harness 負責自己的憑證發現、環境注入和命令建構邏輯。
+Scion 當然還是實驗性專案，離真正穩定成熟還有距離。但它的方向很清楚。舊法卡在把 Agent 當成比較會寫字的 CLI，新方法則開始把 Agent 視為需要排程、隔離、監控與治理的基礎設施。
 
-- **Runtime**：容器生命週期的抽象介面，支援 Docker（所有平台）、Podman（Linux/macOS，daemonless）、Apple Container Runtime（macOS 原生）和 Kubernetes（跨集群）。
+我的價值判斷是，如果你對多 Agent 系統有興趣，Scion 最值得看的不是某個單一功能，而是它怎麼把秩序擺在能力前面。因為當 Agent 數量變多，真正稀缺的往往不是生成能力，而是可控性。
 
-**Workspace 隔離的實現**
-
-每個 Agent 的 `/workspace` 目錄預設對應一個獨立的 Git Worktree，這是避免並行 Agent 寫入衝突的關鍵設計。如果兩個 Agent 同時修改同一個檔案，在不同 Worktree 下不會有任何衝突——每個 Agent 的修改都在自己的 branch 上，最後由人類（或另一個 Agent）負責合併。
-
-**Hosted 模式的狀態流**
-
-Hub 維護一個 SQLite 資料庫（Solo 模式下為本機，Hosted 模式下可為雲端），追蹤所有 Grove、Agent 和 Template 的狀態。Runtime Broker 透過 WebSocket 與 Hub 保持長連線，接收任務分發並上報容器狀態。workspace 的檔案傳輸透過 GCS（Google Cloud Storage）進行，支持上傳和下載 tar snapshot。
-
----
-
-## 我的觀點
-
-Scion 最有意思的設計選擇，不是某個具體的功能，而是它對「多 Agent 系統應該長什麼樣」這個問題的預設答案：**每個 Agent 是隔離的、是有身份的可尋址個體、是可以被暫停和恢復的有狀態進程、是可以插拔不同 LLM 引擎的抽象適配器**。
-
-這套設計與 OpenClaw 的設計哲學高度趨同——後者同樣強調每個 Agent 擁有自己的 SOUL.md、IDENTITY.md 和工作區，以及用 Cron/Sessions 機制實現的跨 Agent 協調。兩者的差異在於層級：Scion 專注在容器和 CLI 工具層（Claude Code、Gemini CLI、Codex），OpenClaw 則專注在更上層的智慧協調和記憶管理。
-
-對開發者而言，Scion 的價值在於它把「並發 Agent」這個原本需要自己組裝的系統，變成了一個有完整 CLI、狀態管理和隔離機制的平台。當然，它目前仍是「實驗性」專案，但它的抽象層設計已經預示了這個領域正在形成的行業共識：未來的 AI 開發環境，預設就是多 Agent 協作，而非單一 Agent 問答。
-
----
-
-## 參考連結
-
-- [Scion Overview | Google Cloud Platform](https://googlecloudplatform.github.io/scion/overview/)
-- [Scion Architecture Deep Dive](https://googlecloudplatform.github.io/scion/contributing/architecture/)
-- [Scion GitHub Repository](https://github.com/GoogleCloudPlatform/scion)
-- [Agentmaxxing: Run Multiple AI Agents in Parallel](https://vibecoding.app/blog/agentmaxxing)
-- [Cloudflare Dynamic Workers — AI Agent Sandboxing 100x faster](https://blog.cloudflare.com/dynamic-workers/)
+你可以讓十個 Agent 同時工作，這不難。難的是十個 Agent 忙完之後，系統仍然乾淨、狀態仍然清楚、每個人都知道自己手上拿的是哪把鑰匙。Scion 正在嘗試把這件事變成一套明確的方法，而這正是多 Agent 走向現實之前，最該先補上的一課。

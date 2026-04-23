@@ -1,46 +1,62 @@
 ---
-title: "【技術解析】TriAttention：不用看 current query 也能預測 KV cache 重要性的壓縮法"
-description: "MIT、NVIDIA、Zhejiang University 聯手提出 TriAttention，利用 RoPE 位置編碼旋轉前的 Q/K 向量集中特性，以三角函數級數預測 KV cache 重要性，在 AIME25 實現與 Full Attention 同等準確率同時提升 2.5 倍吞吐量。"
+title: "TriAttention，想救的其實不是記憶體"
+description: "TriAttention 表面上是在壓縮 KV cache，真正有意思的地方，是它試著提前猜出未來哪些上下文不能丟。"
 publishDate: "2026-04-13T10:00:00+08:00"
 updatedDate: "2026-04-13T10:00:00+08:00"
 tags: ["KV Cache", "LLM", "RoPE", "LLM Inference"]
 draft: false
 ---
 
-## 這篇文章在說什麼
+做長推理模型的人，遲早都會遇到一個很不浪漫的現實，模型不是先被智力卡住，而是先被記憶體卡住。
 
-當 DeepSeek-R1 或 Qwen3 這類模型在處理複雜數學推論時，會生成數萬個 token，而每一個 token 都必須把 Key 與 Value 向量存在所謂的 KV cache 裡。cache 隨著鏈長線性膨脹，在消費級硬體上很快就讓 GPU 記憶體爆掉。
+你想讓模型慢慢想，讓它生成幾萬個 token，保留中間狀態，別太快截斷。可每往前走一步，KV cache 就再長一點。這些 key 和 value 不是裝飾，它們是模型回頭找線索時要翻的舊筆記。問題是，筆記一多，GPU 先受不了。
 
-MIT、NVIDIA 與 Zhejiang University 的研究團隊提出 **TriAttention**，核心想法是：與其每次都拿最近的 query 去看哪些 key 重要，不如直接利用 RoPE 位置編碼旋轉前的 Q/K 向量本身的幾何特性，數學導出一套「任何 query 對任何 key 的注意力分數」公式。這讓 TriAttention 能在不需要任何 live query 觀察的情況下對 KV cache 評分、淘汰，在 AIME25 數學推論基準做到與 Full Attention 同等準確率，同時吞吐量提升 2.5 倍，或 KV 記憶體節省 10.7 倍。
+TriAttention 這篇論文表面上是在談壓縮，實際上它碰到的是一個更麻煩的問題：你到底該丟掉哪些記憶，才能不把未來真正重要的東西一起丟掉？
 
-## 為什麼重要
+## 為什麼現在的方法不夠讓人放心
 
-現有的 KV cache 壓縮方法（SnapKV、H2O、R-KV）都是用最近幾個 post-RoPE query 的注意力分數來判斷哪些 key 重要，但 RoPE 會隨位置旋轉 query 向量，所以可用來評估的 query 視窗非常窄（約 25 個 token），再往前的 query 方向已經被旋轉到「過期」了。這導致一種根本性的盲點：某些在未來推理鏈中會變得關鍵的 token，因為在窄視窗內關注度低而被提前淘汰，模型後來需要召回時已經不在 cache 裡了。
+過去很多 KV cache 壓縮方法，做法都很直觀。既然 attention 會告訴我們哪些 token 最近被關注，那就用最近幾個 query 的注意力分數來替 cache 排名，保留重要的，淘汰不重要的。
 
-TriAttention 的突破點在於把分析往前推到 RoPE 旋轉之前的 **pre-RoPE 空間**。研究團隊發現，pre-RoPE 的 Q 與 K 向量在各個 attention head 上都會穩定地聚集在某個固定中心點附近（測量方式用 Mean Resultant Length R，Qwen3-8B 上約 90% 的 head R > 0.95）。這個特性與輸入內容無關，是模型權重的內在屬性，在不同 domain（數學、程式、對話）測量皆一致。重點是：這些中心點不隨位置改變，所以一旦從校準資料算出來，就可以在任何位置、任何輸入上直接用數學公式預測 attention pattern，不需要任何 live query。
+這套想法聽起來很合理，也確實有效過一陣子。但它有一個深層問題，最近重要，不等於未來重要。
 
-## 技術細節
+尤其是用了 RoPE 的模型，query 會隨位置旋轉。這代表你現在看到的注意力形狀，很大程度只對附近那一小段位置有參考價值。更早以前的 query 方向已經變了，拿來估計未來，很容易失真。於是壓縮器會形成一種短視。它只會保住眼前熱門的 token，卻看不見那些暫時沉默、稍後可能突然關鍵的狀態。
 
-把 Q/K 集中特性帶入 RoPE attention 公式後，attention logit 簡化成一條只跟 Q-K 位置距離 Δ 有关、與絕對位置無關的三角函數級數：
+對一般聊天也許還好，但對數學推理、程式推理、遞迴式任務，這種失誤很致命。因為關鍵線索常常不是剛剛那句，而是很早之前某個中間變數、某條假設、某段沒那麼顯眼的推導。
 
-```
-logit(Δ) ≈ Σ_f ‖q̄_f‖ ‖k̄_f‖ cos(ω_f Δ + φ̄_f)
-```
+## TriAttention 換了一個看法
 
-這個公式的物理意義是：給定一個 key，只要知道它跟未來 query 的相對距離，就能預測它會獲得多少注意力，因為 Q/K 中心點已經確定了每個 head 的「偏好在什麼距離」。TriAttention 据此計算 Strig 分數，結合 Norm-Based Score（Snorm）處理少數 Q/K 集中度較低的 head，每 128 個生成 token 對整個 cache 打一次分，保留 top-B 其餘淘汰。
+這篇論文最漂亮的地方，是它沒有繼續追著最新 query 跑，而是往前退一步，去看 pre-RoPE 的空間。
 
-在 Qwen3-8B 的 AIME25（32K token 生成）實測：TriAttention 達到 32.9% 準確率，R-KV 只有 17.5%；相同 KV budget 2,048 tokens 下，Full Attention 是 57.1%、TriAttention 42.1%、R-KV 25.4%。LongBench 16 項一般 NLP 任務中 TriAttention 平均 48.1 分，領先次優 baseline 2.5 分。Throughput 部分，MATH500 達到每秒 1,405 tokens（Full Attention 僅 223 tokens），AIME25 則是 563.5 vs 222.8。
+研究團隊發現，在 RoPE 旋轉之前，不同 attention head 裡的 Q 與 K 向量其實常常集中在某個穩定方向附近。這個現象不是特定輸入才有，而像是模型權重內建的一種幾何偏好。既然中心方向相對穩定，就有機會把未來 attention 的趨勢用數學形式提前估出來。
 
-研究團隊也測了新的 **Recursive State Query** 基準：用深度優先搜索模擬遞迴任務，模型必須在長推理鏈中維持中間狀態，之後再召回。實驗顯示 R-KV 在 depth 16 時準確率從 depth 14 的約 61% 暴跌到 31%，代表關鍵的中間推理狀態被錯誤淘汰；TriAttention 在 moderate 記憶體壓力下表現與 Full Attention 相近，驗證了方法對長期記憶保留的有效性。
+這件事很關鍵。因為一旦你能在不依賴當前 live query 的情況下，預測某個 key 對未來會不會重要，你就不再只是做「事後整理」，而是在做「預先保留」。
 
-## 我的觀點
+論文把這個推導寫成和相對距離有關的三角函數級數。直白一點說，就是模型對不同距離的 token，本來就有一些可離線校準的偏好，而 TriAttention 想把這種偏好拿來當刪除依據。
 
-這篇論文真正打動我的不是最終的 benchmark 數字，而是那個 pre-RoPE Q/K 集中的觀察。這個發現本身是很乾淨的數學直覺：RoPE 旋轉讓位置編碼與 query 方向耦合，導致 post-RoPE 分析只能在很短視窗內有效；但 pre-RoPE 的幾何結構是位置無關的穩態，所以可以離線計算。這個切入角度繞過了過去方法的根本限制，而不是在同一条路上微調。
+## 它厲害的地方，不只是省空間
 
-另一個值得注意的是對 consumer GPU 的影響：研究團隊提到 32B 推理模型可以在單張 24GB RTX 4090 上運行——這個組合在 Full Attention 模式下會 OOM。這讓 local inference 的硬體門檻實質性降低，對開源模型的部署場景有直接幫助。當然，benchmark 數字是否能在真實長文本對話而不是 math competition 上完全复現，還有待社群驗證；目前看 LongBench 結果還不錯，但我會保持觀望。
+如果 TriAttention 只是把 throughput 提高、記憶體降下來，那它會是一篇不錯的系統論文。但它更值得注意的，是它對「長程召回」這件事比較上心。
 
-## 參考連結
+論文裡有個 Recursive State Query 基準，很能說明問題。這種任務會逼模型在很長的推理鏈中保留中間狀態，晚一點再回頭用。如果壓縮策略只看眼前熱度，那些中間狀態很容易被誤刪。等模型之後真的需要，cache 已經空了。
 
-- [TriAttention 論文 arXiv](https://arxiv.org/abs/2604.04921v1)
-- [TriAttention GitHub repo](https://github.com/WeianMao/triattention)
-- [TriAttention 官方專頁](https://weianmao.github.io/tri-attention-project-page/)
+R-KV 這類方法在這種基準上就會出現明顯掉分。TriAttention 表現比較穩，意思不是它完美，而是它比較有能力守住那些短期不顯眼、長期卻重要的 token。
+
+這也是我認為它最有價值的地方。它想處理的不是單純 OOM 問題，而是推理過程裡那種「線索先沉下去，之後才浮上來」的結構。
+
+## 那些數字背後，代表什麼意義
+
+論文在 AIME25、MATH500、LongBench 等任務上都給了不錯結果。吞吐量顯著提高，記憶體需求大幅下降，在一些設定下還能維持接近 full attention 的準確率。這些數字本身已經很亮眼。
+
+但我更在意另一個訊號，研究者提到 32B 模型有機會在單張 24GB 4090 這種級別的顯卡上跑起來。這件事對本地部署的人很實際。很多推理技巧最後停在 paper 上，就是因為它雖然快，卻不夠穩或不夠通用。TriAttention 如果真的能把大模型長推理的記憶體門檻往下拉，那影響會不只在學術 benchmark。
+
+當然，這裡還是得保留一點冷靜。AIME25 和數學推理很適合測長程依賴，但不一定完全代表真實產品環境。日常對話、多輪 agent 任務、程式碼庫操作，模式未必一樣。LongBench 雖然補了一些一般任務，但還需要更多社群驗證。
+
+## 我對這篇論文的直覺判斷
+
+我喜歡 TriAttention，不是因為它又找到一個更聰明的裁剪技巧，而是因為它對症下藥。
+
+許多 cache 壓縮方法都在回答「現在什麼重要」，這篇論文則試著回答「未來可能會想起什麼」。前者比較像清理桌面，後者比較像幫長篇推理留伏筆。這個角度一換，問題層次就不一樣了。
+
+如果未來有更多方法沿著 pre-RoPE 的幾何結構挖下去，我不會意外。因為這表示大家開始接受一件事，長上下文推理的瓶頸不只是算力，而是如何在有限記憶裡留下真正該留下的東西。
+
+說到底，TriAttention 想救的從來不只是顯存。它想救的是模型那條還沒走完、卻不能忘記前文的思路。

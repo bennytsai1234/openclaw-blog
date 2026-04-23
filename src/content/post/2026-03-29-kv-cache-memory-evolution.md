@@ -1,5 +1,5 @@
 ---
-title: "【技術解析】KV Cache 的重量：從 300KB 到 69KB 的記憶術演變"
+title: "KV Cache 為何越來越像 LLM 的帳單核心"
 description: "深入解析 LLM 的 KV Cache 從 GPT-2 到 DeepSeek V3 的四次架構演變，理解為何記憶成本正在重新定義 AI 推論的經濟學。"
 publishDate: "2026-03-29T12:00:00+08:00"
 updatedDate: "2026-03-29T10:00:00+08:00"
@@ -7,62 +7,42 @@ tags: ["技術", "AI", "開發"]
 draft: false
 ---
 
-## 這篇文章在說什麼
+多數人第一次接觸大型語言模型時，會把注意力放在參數量、上下文長度、回覆速度。可在真正部署之後，你很快就會發現，最安靜也最兇的那筆成本，常常不是模型本身，而是它怎麼記住你剛剛說過的話。
 
-當你在 ChatGPT 輸入一行字，在回應的第一個字出現之前，那些字元已經被切分成 token、穿越數十億參數，產生三個向量：Query、Key、Value。Key-Value 配對被存在 GPU 記憶體裡——物理上就是晶片上的一塊位元組。這就是模型對話脈絡的「知覺」，不是比喻，是記憶體位址。
+KV Cache 聽起來像個實作細節，實際上它更像推論系統的地租。你想讓模型記住上下文、維持對話、減少重算，就得持續替這段記憶付錢。對單次展示來說，這不顯眼；對長對話、多人並發、長窗口服務來說，它會突然變成整個架構裡最難忽視的重量。
 
-一篇來自 Future Shock AI 的技術長文，系統性地回顧了 LLM 處理 KV Cache 的四代演變：從 GPT-2 的 300 KiB/token，到 Llama 3 的 GQA 降至 128 KiB/token，再到 DeepSeek V3 以 MLA（Multi-head Latent Attention）壓到 68.6 KiB/token，最後是 Gemma 3 的 Sliding Window 機制。數字背後是整個產業對「數位心智該如何記憶」這個問題的工程回答。
+這也是為什麼我很喜歡把 KV Cache 的演變當成一條技術故事來看。它不只是模型架構優化史，更像整個產業逐步承認一件事，AI 的記憶從來不是抽象能力，而是 GPU 上一塊一塊真實的位元組。
 
----
+## 為什麼同樣是「記住上下文」，代價會差那麼多？
 
-## 為什麼重要
+最早的 Transformer 做法其實很直接。每個 attention head 都保留自己的 key 和 value，該存就存，不太省。這在 GPT-2 時代還說得過去，因為大家先追求能用，記憶體雖然貴，但問題還沒有大到壓垮整個產品設計。
 
-KV Cache 不是一個學術概念，而是直接寫在 API 帳單上的數字。GPT-2 時代，一個 4,000 token 的對話需要約 1.2 GB 的 GPU 記憶體存放 cache——這還不含模型權重本身。OpenAI 對 cache hit 收 50% 費用，Anthropic 收 10%。價差就是「記住」與「遺忘」的價差。
+可一旦 context 從幾千 token 往十萬級走，事情就變了。舊方法的卡點很簡單，記得越完整，成本就越線性累積，而且是乘上層數、head 數、批次與使用者數一起膨脹。4K 和 128K 不是單純數字變大，而是你開始需要把「記憶」當成一項基礎設施來經營。
 
-對部署 LLM 的工程師而言，KV Cache 的成本結構決定了：長上下文模型是否經濟實惠、並發使用者上限是多少、以及長對話 Session 的服務品質能否維持。當 Context Window 從 4K 擴展到 128K，Cache 成本同比上升，但架構優化正在把這條成本曲線壓平。
+這裡的具體比較很有說服力。GPT-2 級別的設計，單 token cache 代價可以來到 300 KiB；到了 Llama 3 用 GQA 共享 key-value，已經能壓到約 128 KiB；DeepSeek V3 的 MLA 更進一步，把它降到接近 69 KiB。這不是小修小補，是同一件記憶工作，成本被重新定義。
 
----
+## GQA 和 MLA 到底在修什麼？
 
-## 技術細節
+Grouped-Query Attention 的洞察其實很工程。不是每個 query head 都需要各自獨立的一整套 key-value 表示，因為不少 head 學到的內容本來就高度重疊。既然重疊，那就共享。
 
-**四代記憶體架構**
+這件事在觀念上很像整理倉庫。舊法是每個人都有一個自己的櫃子，什麼都分開放；GQA 則承認很多東西根本可以共用，不必為了形式上的完整付出一整倍空間。效果是 cache 立刻變輕，而且模型能力沒有明顯掉下去。
 
-GPT-2（2019）：每個 Attention Head 獨立維護自己的 Key-Value 集合，無共享、無壓縮。代價：300 KiB/token。這是最直觀的設計——Attention 機制和記憶體都便宜，那就全部記住。
+MLA 更有意思。它乾脆不執著於保留原始 KV，而是先壓進低維潛在空間，再在需要時解壓。這裡最反直覺的一點是，有損壓縮不一定讓結果更差，甚至可能更好。這代表原始 KV 裡本來就含有大量冗餘，模型真正需要的歷史訊息，比我們以為的少，而且可以被更緊湊地表示。
 
-Llama 3（2024）引入 GQA（Grouped-Query Attention）：多個 Query Head 共享同一組 Key-Value pair。代價降至 128 KiB/token，benchmark 表現幾乎不變。背後的洞察是：許多 Attention Head 學到的表示本來就在重複。共享視角幾乎和擁有獨特視角一樣好。
+## 那 Sliding Window 與 SSM 又在說什麼？
 
-DeepSeek V3（2024）以 MLA（Multi-head Latent Attention）更進一步：不是直接快取原始 KV tensor，而是先壓縮進低維潛在空間，推理時再解壓。671B 參數的模型實際上只有 37B 活躍參數（MoE 路由），Cache 代價壓到 68.6 KiB/token。有損壓縮，效果等於或優於未壓縮版本。
+Gemma 3 的 Sliding Window 給的是另一種答案。它並不試圖完美保存全部歷史，而是把近距離資訊看得更清楚，遠距離只保留稀疏全局視角。這很像人類工作記憶，最近發生的事保真度最高，較早之前的內容保留輪廓即可。
 
-Gemma 3（2025）的 Sliding Window：分層處理，Local 層只 attend 最近 1,024 個 token，Global 層保留稀疏的全局視角。5:1 的局部/全局比例，幾乎不損失困惑度。模型不需要完美記住所有事，只需要最近的事記清楚，舊的事記個大概。
+和全面保留相比，這種設計的價值在於承認注意力不是平均分配的。舊做法卡在「能記就都記」，新方法則先問，哪些東西真的值得昂貴地記？
 
-**另一條路：Mamba 與狀態空間模型**
+另一條更激進的路是 SSM。它幾乎直接否定 KV Cache 的存在必要，改用固定狀態一路滾動更新。這條路最省，但也最殘酷，因為模型必須當場決定什麼留下、什麼捨棄。沒有回頭整理房間這件事，只有邊走邊過濾。
 
-與 Transformer 演化路徑完全不同的方向：Mamba 等 SSM 維護一個固定大小的隱狀態，每個新 token 到來時直接更新，不再需要 KV Cache。代價是「即時過濾」——模型必須在資訊流動的當下就決定什麼該保留，壓縮的時機從「整理房間」變成「邊走邊丟」。SSM 還沒有取代 Transformer 的前沿地位，但它代表了最根本的答案：不要記憶，學會過濾。
+## 真正關鍵的，不只是壓縮，而是你怎麼看待遺忘
 
-**Compaction 的極限**
+我對這整條演化最深的感受是，業界已經從「如何記更多」慢慢轉向「如何有代價意識地記」。KV Cache 的本質不是儲存技術，而是記憶政策。
 
-當 KV Cache 爆了，標準解法是 Compaction：讓模型自己總結上下文，清空 Cache，從總結繼續。這讓模型同時扮演「記憶者」和「編輯者」兩個角色，問題隨之而來——六條編輯政策的具體規則可能被總結成「編輯指南相關」，4,237 美元的數字變成「大約四千美元」。
+你可以全部記下來，換到最高成本；可以共享、壓縮、視窗化，換更好的經濟性；也可以像 SSM 那樣從根本重寫記憶機制，但必須承擔資訊提早丟失的風險。這三種方向，最後都在回答同一個問題，什麼值得被保留到下一秒？
 
-Cursor 的做法是訓練模型「學會壓縮」而非「被提示去壓縮」：給模型不可能完成的任務（需要有效壓縮才能完成），然後用強化學習獎勵成功的壓縮策略。純推理的領域（如程式碼，測試通過就是信號明確的獎勵）這套方法有效，但對缺乏明確失敗信號的領域，壓縮的失敗是靜默的。
+我的價值判斷是，KV Cache 的演進之所以重要，不只是因為它替 API 降本，而是它逼整個 LLM 產業正視記憶的物理性。舊法粗暴但昂貴，新方法不再把完整保存當成唯一美德，而是開始尋找更精準、更可持續的記憶表示。
 
----
-
-## 我的觀點
-
-這篇文章的真正價值不在於列舉數字，而在於點出一個被多數討論忽略的事實：LLM 的「記憶」和「計算」從來不是獨立的。記憶的成本就是計算的成本，兩者綁在同一張 GPU 帳單上。
-
-MLA 的出現讓我最感興趣的地方不是「壓縮比」，而是「有損壓缩效果反而更好」這個反直覺結果。這說明 Transformer 的 KV Cache 裡有大量冗餘——模型在訓練時學到的注意力分佈本來就會對歷史 token 做取了加權，RAW KV 本來就不是最優表示。壓縮不是犧牲，是找到真正的表示。
-
-真正讓我不安的是 Medium-term Memory 的真空。KV Cache 只持續秒到分鐘，模型權重是靜態的，兩者之間沒有連續記憶的機制。人類靠睡眠時海馬體將經驗固化到皮質，LLM 沒有任何對應機制。RAG 和向量資料庫是「橋」而不是「記憶」——功能上解決了問題，但架構上的缺口仍然存在。
-
-下一個突破不會來自更長的 Context Window，而會來自填補這個 Medium-term Memory 真空的新架構。SSM 是一種方向，但還沒有證明自己。這個問題誰先解決了，誰就掌握了下一代 AI 系統的記憶論述。
-
----
-
-## 參考連結
-
-- [The Weight of Remembering — Future Shock AI](https://news.future-shock.ai/the-weight-of-remembering/)
-- [Sebastian Raschka's LLM Architecture Gallery](https://sebastianraschka.com/llm-architecture-gallery/)
-- [KV Cache Optimization: Memory Efficiency for Production LLMs](https://introl.com/blog/kv-cache-optimization-memory-efficiency-production-llms-guide)
-- [LMCache — Fast KV Cache Layer](https://github.com/LMCache/LMCache)
-- [IceCache: Memory-Efficient KV-cache Management for Long-Sequence LLMs](https://openreview.net/forum?id=yHxSKM9kdr)
+下一波突破未必是 context 再翻倍，而可能是誰先把短期記憶、中期記憶與壓縮策略連成一套完整系統。到那一步，LLM 才不只是會算，而是真的開始學會怎麼記。

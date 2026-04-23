@@ -1,75 +1,59 @@
 ---
-title: "【技術解析】Knowledge Packs：顛覆 RAG 的零代價知識注入技術"
-description: "透過預先計算 KV cache，取代把知識塞進 prompt 的老方法，實現零 token 損耗的知識交付，並順帶解鎖行為 steering 的新能力。"
+title: "Knowledge Packs，RAG 真的要變了嗎"
+description: "把知識先寫進 KV cache，再在推理時直接注入。這篇研究不只想省 token，還順手碰到了模型行為控制的另一扇門。"
 publishDate: "2026-04-08T12:00:00+08:00"
 updatedDate: "2026-04-08T23:51:00+08:00"
 tags: ["AI", "LLM", "RAG", "KV Cache", "技術解析"]
 draft: false
 ---
 
-## 這篇文章在說什麼
+每個做過 RAG 的人，大概都遇過同一種疲勞。你明明只是想讓模型多知道一點外部事實，結果 prompt 越塞越長，token 越燒越快，最後不是成本爆掉，就是 context window 被吃光。尤其在 agent 連續工作幾輪之後，那些檢索回來的片段會像紙箱一樣堆在走道上，還沒走遠就開始卡住。
 
-RAG（Retrieval-Augmented Generation）長期以來是給大語言模型注入外部知識的標準做法——把檢索到的文字直接塞進 prompt，模型就能「知道」那些它訓練資料截止日期之後的事。但這有個代價：每次檢索都要消耗大量 prompt token，在多步 agent 累積事實的場景下，這筆開銷線性成長，五次檢索就能燒掉 700+ token，嚴重侵蝕 context window 的空間。
+這篇談 **Knowledge Packs** 的論文，切的就是這個老問題。它沒有去改模型，也沒有重新訓練，而是問了一個很工程師的問題：既然模型看到文字之後，本來就會把資訊轉成 KV cache，那能不能別每次都把文字重新塞進 prompt，而是直接把那份 cache 拿來用？
 
-這篇論文提出了 **Knowledge Packs**——把知識事先寫进 KV cache，query 時直接 inject，完全不佔 token。概念很簡單：decoder-only transformer 對事實文本做一次 forward pass，把输出的 past_key_values 快取下來；query 時把這些 cache 當成 prefix 傳給模型，模型產生的輸出與把同樣文字塞在 prompt 開頭的結果**完全相同**（byte-identical）。論文在 Qwen3-8B 與 Llama-3.1-8B 上跑了 700 題，零分歧。
+答案是可以，而且結果乾淨得有點驚人。
 
-除了知識交付，作者還發現了一個意外的 bonus：既然可以操作 KV cache，就等於有了模型內部狀態的寫入權限。Value（不是 Key）可以做對比相減，產生出**任何文字序列都無法抵達的 KV 狀態**，進而 steer 模型行為——比如讓它寫出更嚴謹、更有防禦性思維的程式碼。
+## 問題不在檢索，問題在每次都要重唸一遍
 
-## 為什麼重要
+傳統 RAG 的路徑很直白。先檢索，再把文件片段貼進 prompt，接著讓模型回答。這套方法好用，因為它跟模型內部機制無關，幾乎任何模型都能套。但它的缺點也很明確，知識是靠 token 搬運的。文件越長，搬運成本越高。多輪任務裡，模型甚至會一再重讀同一份內容。
 
-**第一個原因很實際：省 token。**
+Knowledge Packs 的想法是把「讀文件」和「回答問題」拆開。先對事實文本做一次 forward pass，把得到的 past key values 存起來。等真的要問問題時，不再附上那些原文，而是把 cache 當作 prefix 注入模型。對 decoder-only transformer 來說，只要格式一致，這和把相同文字放在 prompt 前面是等價的。
 
-在多步 agent 場景裡，累積檢索事實是剛需。RAG 每步約消耗 140–150 token，五步下來就多付 700 token；Knowledge Packs 的查詢代價固定在 31–35 token（只有問題本身），節省幅度達 95%。在 32K context 限制下，RAG 靠累積事實大約碰到 200 筆就觸頂，Knowledge Packs 完全沒有這個天花板。
+論文在 Qwen3-8B 和 Llama-3.1-8B 上測了 700 個問題，得到的是 byte-identical 的輸出。不是差不多，是完全一樣。這點很重要，因為它代表這不是近似技巧，而是一種無損替換。
 
-**第二個原因是工程上的優雅。**
+## 為什麼這件事現在值得在意
 
-從 KV cache 重建知識不需要任何訓練、不改模型權重、沒有蒸餾損耗，準確率與 RAG 完全相同。這等於是 lossless 的效能優化，無痛替換。
+第一個原因很實際，就是錢。
 
-**第三個原因是它打開了一扇新門：value-space steering。**
+在多步 agent 任務裡，RAG 的成本是累積的。每次檢索回來一點事實，token 就再多一截。論文裡的例子很典型，做五次檢索之後，RAG 額外消耗七百多個 token，但如果用 Knowledge Packs，查詢端只保留問題本身，成本幾乎固定。這不只是在省 API 費，也是在替長上下文應用撿回空間。
 
-過去 activation steering 需要在 inference 時動態干預 hidden states，代價不菲。Knowledge Packs 把 steering vector 直接寫進預先計算好的 cache，一次建好、無限使用，而且知識傳遞與行為 steering 可以同時運行（α ≤ 0.7 時兩者不打架）。
+第二個原因更有意思。作者發現，既然你已經能把 KV cache 當作一種可操作的中間表示，那你其實不只是「傳知識」，還開始碰到「改行為」。這篇論文後半段談的 value steering，比省 token 更像是意外開出的支線劇情。
 
-## 技術細節
+## 這裡最容易踩雷的地方是 chat template
 
-### KV–Prefix Equivalence 的數學基礎
+如果只看概念，Knowledge Packs 很像一句話就能講完。但實作上最脆弱的地方不是數學，而是格式。
 
-核心觀察：對 causal attention 架構來說，token position $i$ 只能 attend 到 $j \leq i$。因此在 $F$（事實文本）上獨立做一次 forward pass 得到的 KV cache，與在 $F \circ q$（事實文本 + 查詢）的 joint pass 中，$F$ 對應的 KV entries 完全一致。寫成論文中的形式：
+作者特別強調，事實文本不能隨便丟進模型做 KV cache。你得用模型原本的 chat template 去包。少了 system header、特殊 token 或模板邊界，準確率就會掉。Qwen3 和 Llama 兩邊都觀察到這件事，而且幅度不小。
 
-$$\text{KV}(F) \oplus \text{generate}(q \mid \text{KV}(F)) \equiv \text{generate}(F \circ q)$$
+這個發現順手點破了一個常見誤解。過去有些工作說 KV 方法比 RAG 更準，未必是方法本身真的比較強，也可能只是兩邊餵給模型的格式根本不一致。
 
-這個等價成立的前提有兩個：第一，架構必須是 decoder-only causal masking（非 cross-attention 或 bidirectional）；第二，**必須用模型的 chat template 格式化事實文本**。
+## 如果知識可以注入，那行為可不可以也被注入
 
-### Chat template 是關鍵 but fragile
+論文最讓人停下來想的一段，是對 values 動手腳的實驗。
 
-這是論文裡最容易被忽略、也最有價值的發現之一：直接拿原始文字建 KV cache，在 Qwen3-8B 上會造成 6pp 的準確率下降，Llama-3.1-8B 更慘，達到 7.4pp。原因是 instruction-tuned 模型把特殊 token（如 Qwen 的 `<|im_start|>system`、Llama 的 `<|begin_of_text|>`）當成一種「模式切換訊號」，沒有的話同樣的文字會被處理成不同的分佈。
+作者沒有碰 keys，因為在用了 RoPE 的情況下，key 的位置相位很敏感，亂改會讓模型崩掉。他們改的是 values。做法是先準備對比樣本，例如「比較防禦性的程式風格」和「比較草率的程式風格」，分別建成 cache，再取兩者的 value 差值。這個差值可以被疊加回另一份基礎 cache，像是在模型中途加上一點偏向。
 
-另一個坑是 template split：分別呼叫 `apply_chat_template` 處理 system 與 user 部分，會在 Llama-3.1 上重複注入 `<|begin_of_text|>` 與空 system header，再扣 1.5pp。正確做法是一次性生成完整 template 再於邊界處切開。
+結果很有意思。模型的回答風格真的會變，而且最有效的位置集中在中間層。這很像在說，模型裡有些層主要負責表面語義，有些層比較像在承接策略或行為傾向。這個判斷現在還不能說是定論，但它讓 KV cache 從「效能技巧」一下子變成「可解釋性入口」。
 
-論文認為，過去某些宣稱「KV 勝過 RAG」的研究，很可能是因為兩種方法的格式化不一致，而不是 KV 本質更強。
+## 我怎麼看這篇研究
 
-### Banked Routing 擴展至 5000+ facts
+我覺得它的第一層價值，是給工程現場一個很乾淨的答案。很多論文喜歡用新模組、新訓練、新資料把問題壓過去，但這篇不是。它只是回頭看 transformer 已經在做的事，然後問能不能別重工。這種解法很樸素，也很有力量。
 
-單一 cache 有 context window 長度限制。為此，作者用 BGE-large embeddings 對事實做 k-means 分群（約 N/20 個 bank），query 時先 cosine  routing 到最近的 bank，再在 bank 內 ranking 取 top facts 並即時重新計算 KV（lazy recompute，代價約 6ms）。5000 個事實只佔 4.2 MB，routing 準確率 100%。
+第二層價值，反而在它沒打算主打的地方。當作者開始操作 values，那就不只是 cache 優化了，而是開始碰模型內部狀態的可編輯性。
 
-### Value Steering 的力學
+限制也很明顯。Knowledge Packs 跟模型綁得很深，不像 RAG 那樣有可攜性。你為 Qwen 做的 cache，不能直接拿去給 Llama。
 
-RoPE（Rotary Position Embedding）會 rotate keys 但不動 values，所以**key 上做算術會破壞 coherence（準確率掉到 27%）**，但 value 上做沒問題。
-
-Steering 的構造方式：準備對比 pairs（如「防禦性程式碼 vs. 草率寫法」），各別建 KV cache，取差異向量 $\Delta V = V_{good} - V_{bad}$，加到 base cache 的 values 上：
-
-$$V_{steered}^{(l)} = V_{base}^{(l)} + \alpha \cdot (V_{good}^{(l)} - V_{bad}^{(l)})$$
-
-實驗發現效果集中在 **mid-layer values（33–66% 的層數）**，與 baseline 相比 steering 分數顯著提升，且不同 steering 方向的 cosine similarity 約為 0（近正交），可以疊加而不互相干擾。
-
-## 我的觀點
-
-這篇論文的核心貢獻其實有兩層。
-
-第一層是**工程上的勝利**：它提供了一個完全免費的 RAG 替代方案，而且背後有乾淨的數學證明撐腰。對於在高流量場景（API 按 token 計費、long-conversation 應用、多步 agent）工作的人來說，95% 的 token 節省幅度是實實在在的成本優化。缺點是 KV cache 與模型架構綁定，Qwen 的 cache 不能給 Llama 用——這讓它的泛用性受限於 RAG。
-
-第二層更有意思：**value-space steering 證明了我們對模型內部狀態的理解還遠遠不夠**。作者展示了一個 KV 狀態可以被疊加出「任何文字序列都無法抵達」的 steering effect，而且這個 effect 只在特定 layer 層（33–66%）生效。這暗示模型的不同層級確實承載了不同類型的資訊——浅層處理表面語義，深層處理高層語義，而「行為風格」這種東西恰好落在中層。如果這個發現可復現，它對 interpretability 和 model editing 都有深遠的影響。
-
-最後一個小觀察：作者在 appendix 裡跑了 5000 facts 的實驗仍然 100% 準確率，但用的是 synthetic facts，現實世界的知識庫會更 messy。這是合理的 limitation，不影響論文結論，但應用者需要注意。
+不過就算如此，我還是會把它看成近年很值得注意的一步。因為它提醒了一件很簡單的事，我們有時以為自己在解知識問題，其實只是卡在資料搬運問題。Knowledge Packs 沒有把世界變新，它只是把那段搬運路徑縮到幾乎看不見。
 
 ## 參考連結
 

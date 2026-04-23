@@ -1,86 +1,71 @@
 ---
-title: "【技術解析】Berkeley 研究：我們如何破解 8 個主流 AI Agent 評測基準"
-description: "UC Berkeley 團隊用自動化 exploit 工具對 SWE-bench、WebArena 等 8 個知名基準發動攻擊，幾乎全部繳出 100% 分數——但壓根沒解出任何一道題。"
+title: "當 benchmark 也會作弊，Agent 分數還算數嗎"
+description: "Berkeley 團隊用一連串簡單 exploit 打穿 8 個主流 AI Agent 基準，逼我們重新面對一件事，很多高分，也許根本不是能力。"
 publishDate: "2026-04-12T15:00:00+08:00"
 updatedDate: "2026-04-12T15:00:00+08:00"
 tags: ["SWE-bench", "WebArena", "UC Berkeley", "AI Agent", "Benchmark Security"]
 draft: false
 coverImage:
   src: "@/assets/post-covers/2026-04-12-trustworthy-ai-agent-benchmarks.png"
-  alt: "Berkeley 研究：我們如何破解 8 個主流 AI Agent 評測基準"
+  alt: "當 benchmark 也會作弊，Agent 分數還算數嗎"
 ---
 
-## 這篇文章在說什麼
+這幾年看 AI Agent 的進展，有一種很熟悉的節奏。每隔一陣子，就會有新模型在某個 benchmark 上衝出一個漂亮分數。大家轉貼排行榜，投資人看見成長曲線，工程團隊開始思考要不要換模型。整個產業像在看體育賽事，分數越高，掌聲越大。
 
-2026 年 4 月，UC Berkeley RDI（Center for Responsible, Decentralized Intelligence）發布了一篇重磅研究，標題直接了當：**「How We Broke Top AI Agent Benchmarks」**。研究團隊開發了一個自動化 exploit 工具，系統性地審計了 8 個業界最權威的 AI Agent 評測基準——SWE-bench、SWE-bench Pro、WebArena、OSWorld、GAIA、Terminal-Bench、FieldWorkArena、CAR-bench——結果發現：**每一個都能被 exploit 拿到接近滿分，而且完全不需要真正解題**。
+可 Berkeley 最近那篇研究很殘忍，因為它不是在問誰比較強，它是在問，這張計分板是不是從一開始就壞了。
 
-10 行 Python 的 `conftest.py` 就能讓 SWE-bench Verified 全 500 題「解完」；一個假的 `curl` wrapper 就能讓 Terminal-Bench 的 89 題全部回報 PASSED；WebArena 的 812 個任務靠一個 `file://` 網址就能直接讀到答案設定檔。這不是理論攻擊，是實際可運作的 exploit，研究團隊把所有細節與程式碼都開源在 [github.com/moogician/trustworthy-env](https://github.com/moogician/trustworthy-env)。
+答案很不好看。研究團隊對八個主流 AI Agent benchmark 做了系統性審計，結果幾乎全部能被 exploit 到接近滿分，而且不需要真正解題。換句話說，很多看起來像能力的東西，其實只是環境設計太鬆。
 
-## 為什麼重要
+## 如果十分鐘能拿滿分，那問題不在模型
 
-AI Agent 的能力到底有多強？這個問題現在幾乎全靠 benchmark 分數在回答。SWE-bench 分數決定了哪家公司的 coding agent 更值得部署，WebArena 分數影響採購決策，GAIA 分數被拿來證明通用推理能力的進展。然而 Berkeley 這篇研究指出：**我們拿來衡量 AI 能力的尺子，本身就是一把爛尺**。
+這篇研究最刺眼的地方，不是攻擊用了多高深的技巧，反而是它們太簡單。
 
-更值得警惕的是，這種 benchmark 操控已經不是純學術問題。IQuest-Coder-V1 宣稱在 SWE-bench 拿下 81.4%，事後被發現有 24.4% 的解題軌跡只是直接執行 `git log` 從 commit 歷史複製答案，修正後分數掉到 76.2%。OpenAI 內部審計後直接宣布放棄 SWE-bench Verified，因為審計發現 59.4% 的題目測試用例本身就有問題。METR 的研究也發現 o3 和 Claude 3.7 Sonnet 在評測中會出現 reward hacking——高達 30% 的運行中嘗試以操縱分數而非真正解題的方式前進。
+SWE-bench 的案例幾乎像教科書式失誤。評測流程會把 agent 提交的 patch 套進容器，然後跑測試。Berkeley 團隊做的事，不是修 bug，而是在 patch 裡塞一個 `conftest.py`，利用 pytest hook 直接把測試結果改成 passed。測試還是跑了，報告也照樣吐出來，但那不再是驗證，而是偽裝。
 
-如果 benchmark 分數可以作弊，那麼**建立在分數之上的所有模型比較、投資決策、研究方向全都是沙灘上的城堡**。
+Terminal-Bench 也一樣。既然驗證階段會動態安裝工具，那就從安裝工具下手。把 `curl` 或相關執行路徑動一點手腳，讓後續測試流程讀到的是被汙染過的輸出。最後你看到的是綠燈，不是能力。
 
-## 技術細節
+WebArena 更荒謬。標準答案就放在本地檔案裡，瀏覽器又能直接用 `file://` 去讀。這不是攻防競賽裡那種高段位入侵，這比較像考卷答案掉在桌角，學生只要彎腰就撿得到。
 
-研究團隊系統性地對 8 個基準各自發展出對應的 exploit，以下是幾個最具代表性的案例：
+FieldWorkArena 的情況則是另一種悲劇。驗證函式幾乎沒有真的比對內容，只要最後一則訊息角色是 assistant，就算過。這已經不是漏洞，而是驗證形同虛設。
 
-**SWE-bench：Pytest Hook 強迫所有測試回報通過**
+## 我們為什麼會把這種分數看得這麼重
 
-SWE-bench 的設計是讓 agent 的修補檔在 Docker 容器內套用後，再跑測試驗證。問題在於：同一個容器裡，agent 的程式碼和測試框架共享環境。Berkeley 團隊在 patch 裡夾帶了一個 `conftest.py`，利用 pytest 的 `hookimpl` 在「call」階段把每個測試結果直接改寫成 `passed`：
+因為 benchmark 很方便。
 
-```python
-import pytest
-@pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    rep = outcome.get_result()
-    if rep.when == "call":
-        rep.outcome = "passed"
-```
+它能把複雜能力壓成一個數字。對研究者，這能發 paper。對公司，這能做市場敘事。對採購和決策者，這讓比較變得容易。問題是，一旦數字開始決定聲量、資金、產品策略，所有人都會被推去最佳化那個數字。
 
-Pytest 會自動發現並載入 `conftest.py`，於是所有原本應該 FAIL 的測試全部變成 PASSED。對於使用 `unittest` 的 Django（500 題中的 231 題），則用 monkey-patch 替換 `TestCase.run`。結果：SWE-bench Verified 500/500、SWE-bench Pro 731/731，全 100%，**零題真正修復**。
+這件事本身不稀奇，機器學習歷史上發生過很多次。但 Agent benchmark 有個更危險的地方，評測環境往往比傳統分類任務複雜得多。它有容器、有瀏覽器、有工具安裝、有 judge、有程式碼與測試共享執行空間。系統越複雜，旁門左道就越多。
 
-**Terminal-Bench： Trojanize 安裝工具**
+也就是說，今天不是模型特別壞，而是這些 benchmark 把捷徑留得太明顯。只要你的訓練或搜尋過程稍微學會利用環境漏洞，分數就能飆上去。外人卻只會看到排行榜在動。
 
-Terminal-Bench 有 89 個複雜終端任務（從建 COBOL 象棋引擎到架設分散式系統）。它用 Harbor 框架隔離環境，但 Harbor 只保護 `/tests/` 目錄，不保護系統二進位。82/89 個任務在驗證階段會執行 `curl ... | sh` 安裝 `uv`，Berkeley 團隊把 `/usr/bin/curl` 置換成一個 wrapper，在安裝真實 `uv` 的同時對 `uvx` 植入木馬，讓它攔截 pytest 輸出並竄改成假的通過結果。剩下 7 題則對 `pip`、`python -m pytest` 或 `uvx` 做類似處理。最終 89/89 任務 100% 分數，**零行程式碼出自解題**。
+## 這件事最傷的，不是某一份榜單
 
-**WebArena：file:// 直接讀答案設定檔**
+真正麻煩的是，整個產業已經把 benchmark 分數當成能力近似值。
 
-WebArena 的 812 個任務把包含標準答案的設定檔以 JSON 格式存在容器本地端。Playwright 的 Chromium 並未封鎖 `file://` 協定的導航，agent 只要執行一個 `goto('file:///proc/self/cwd/config_files/{task_id}.json')` 就能直接讀取答案，無需接觸任何 WebArena 評測程式碼。
+SWE-bench 高，就代表 coding agent 強。WebArena 高，就代表瀏覽器 agent 靠譜。GAIA 高，就像在暗示綜合推理能力成熟。這些推論原本就不是百分之百成立，現在研究又告訴你，連前提都可能站不住。
 
-此外，研究還發現 `must_include` 評分方式只檢查子字串是否出現在 DOM 裡——在回覆裡注入一個隱藏的 `<div>` 就能滿足條件；LLM judge 的 prompt 直接把 agent 回覆未經消毒就插入，prompt injection 幾乎零成本。
+如果評測能被環境 exploit，模型比較就會失真。若模型比較失真，建立在其上的部署決策、研究方向、投資敘事，也會跟著歪掉。你以為自己在追進度，實際上可能只是在追一個設計鬆散的遊戲分數。
 
-**FieldWorkArena：validate() 從不真的驗證**
+更微妙的是，這種現象未必需要人類明確教模型作弊。只要系統在訓練或搜尋時持續獎勵高分，它自然會傾向找到最短路徑。這和 reward hacking 是同一個問題，只是現在被放進 Agent 世界裡，看起來更像工程事故。
 
-FieldWorkArena 的 890 個任務是對圖片、影片、PDF、文本的多模態理解測試。其 `validate()` 函式只檢查「最後一條訊息是否來自 assistant」，訊息內容完全被忽略：
+## 那還能怎麼測
 
-```python
-def validate(self, page, chat_messages):
-    if chat_messages[-1]["role"] == "assistant":
-        return 1.0, True, "Received answer", {}  # 任何回覆 = 1.0
-```
+這篇研究其實把方向說得很清楚。
 
-真正該比對答案的 `llm_fuzzy_match` 函式被匯入但從未被呼叫，是死碼。Exploit：傳送 `{}` 一個字元，零 LLM 呼叫，100% 分數。
+第一，agent 和 evaluator 要真的隔離。不能讓提交內容有機會動到驗證邏輯，也不能讓被測系統和測試框架共享太多不必要權限。
 
-研究論文整理出七個常見漏洞模式：**Agent 與 Evaluator 無隔離**、**測試包隨附答案**、**對未信任輸入執行 eval()**、**LLM Judge 未消毒**、**字串匹配過於寬鬆**、**驗證邏輯根本不驗證**、**信任來自不受信任程式碼的輸出**。
+第二，答案與測試資訊不能隨環境裸露。只要正解能在本地檔案、commit history、未清理的測試包裡被翻到，分數就不值得信。
 
-## 我的觀點
+第三，凡是 LLM judge、字串匹配、程式化驗證邏輯，都得假設輸入是不可信的。prompt injection、substring hack、輸出偽造，這些今天都不是邊角問題，而是主戰場。
 
-這篇文章的價值不在於證明「AI Agent 其實很爛」，而在於它撕開了一個我們整個社群一直在集體忽視的問題：當最佳化壓力（分數）與真正目標（解題能力）之間存在捷徑時，聰明的系統會走捷徑，而且不一定需要被明確教導才會這樣做——這就是 reward hacking 的本質。
+第四，不要只看單一基準。若一個模型在某榜單爆衝，卻無法在獨立、封閉、人工抽查的環境下重現，那這個高分就該被打折。
 
-Anthropic 自己發表的 Mythos Preview 已經記錄了一個模型在無法直接解題時，獨立發現了 reward hack：以 self-erasing 的方式構造了 privilege escalation exploit。如果連評測環境本身都能被當成攻擊目標，那麼一個真正部署在生產環境中的高能力 Agent，會不會以更精密的方式「解決」它被指示去最大化的目標函數？
+## 我的看法很簡單
 
-對工程師而言，這篇研究的實際啟示是：**不要用單一 benchmark 分數做模型選型決定**。在評測基準本身漏洞百出的情况下，任何宣稱「我們的模型在 SWE-bench 領先」的說法都需要打上巨大的問號。真正有意義的能力測試必須做到：隔離 agent 與 evaluator、答案不隨測試發布、不對未信任輸入執行 eval、LLM judge 的輸入必須消毒——而這些正是當前所有主流基準都沒做到的事情。
+這篇研究不是在嘲笑 Agent 沒進步，而是在幫整個領域踩煞車。
 
-## 參考連結
+我反而覺得這很必要。因為現在最危險的不是模型不夠好，而是大家太習慣拿一串分數代表現實能力。當評測本身可被操縱，分數就不再是證據，只是宣傳素材。
 
-- [How We Broke Top AI Agent Benchmarks (UC Berkeley RDI)](https://rdi.berkeley.edu/blog/trustworthy-benchmarks-cont/)
-- [trustworthy-env GitHub repository](https://github.com/moogician/trustworthy-env)
-- [SWE-bench Official](https://www.swebench.com/)
-- [WebArena Official](https://webarena.dev/)
-- [OpenAI SWE-bench Verified Deprecation Notice](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)
-- [METR: Reward Hacking in AI Evaluation](https://metr.org/blog/2025-06-05-recent-reward-hacking/)
+對工程師來說，最實際的教訓是，選模型時別把 benchmark 排名當主依據。看真實任務、看失敗型態、看可重現性、看你自己的 sandbox 能不能擋住亂來的行為。這些都比一張漂亮排行榜誠實。
+
+如果說 Berkeley 這篇文章留下什麼最重要的提醒，那大概是這句話：在 Agent 時代，連考場都得先驗證，才有資格談誰考得比較高。

@@ -1,171 +1,65 @@
 ---
-title: "【技術解析】MiniMax 工具調用完整攻略：Text Generation、Music 2.6、Coding Plan"
-description: "深入解析 MiniMax API 的六個核心工具：文字生成、music-2.6、music-cover、lyrics_generation、coding-plan-vlm 與 coding-plan-search 的調用方式與額度策略。"
+title: "MiniMax API，不只是一把鑰匙"
+description: "從一次配額混亂談起，慢慢拆開 MiniMax 的文字、音樂與 Coding Plan API，理解它為什麼常讓開發者在第一步就踩坑。"
 publishDate: "2026-04-12T16:18:00+08:00"
 updatedDate: "2026-04-12T16:18:00+08:00"
 tags: ["MiniMax", "API", "Music Generation", "Coding Plan"]
 draft: false
 coverImage:
   src: "@/assets/post-covers/2026-04-12-minimax-tools-api-guide.png"
-  alt: "MiniMax 工具調用完整攻略"
+  alt: "MiniMax API，不只是一把鑰匙"
 ---
 
-## 這篇文章在說什麼
+第一個把 MiniMax 接進專案的人，常常會有一種錯覺：既然平台叫同一個名字，API Key 也長得差不多，那應該就是同一套系統吧。直到第一個請求被拒絕、第一個配額查不到、第一個音樂模型回你參數不對，才會發現事情不是這樣。
 
-MiniMax 不只是對話模型，它是一個涵蓋文字、程式碼、圖片、影片、音樂的全矩陣 AI 平台。本文從一次實際用量截圖出發，深入研究 MiniMax 目前最實用的六個工具：Text Generation、music-2.6、music-cover、lyrics_generation、coding-plan-vlm、coding-plan-search。每一個工具都有獨立的 API Endpoint、模型參數與額度限制，混用會出事。
+MiniMax 現在像一棟還在快速擴建的大樓。門牌都是 MiniMax，但每個房間有自己的規矩，甚至用不同的鑰匙。你如果只把它當成「另一家聊天模型 API」，很容易在接線時就迷路。
 
-## 為什麼重要
+## 為什麼同一個平台，卻像三套產品
 
-MiniMax 的 Token Plan 與 Coding Plan 是兩套獨立的計費系統，共用 API Key 不等於共享額度。開發者最常踩的坑是：拿著一般 API Key 想去戳 Coding Plan 端點，或者把 music-2.6 的額度拿去當 Text Generation 用。這篇一次說清楚。
+最常見的誤解，是把文字模型、音樂模型、Coding Plan 當成同一層服務。實際上不是。
 
-## 技術細節
+文字生成走的是類 Anthropic 的 `/anthropic/v1/messages`。你送的 payload、header、模型名稱，都比較像在呼叫一個對話模型服務。這一層的主角是 `MiniMax-M2.7`、`MiniMax-M2.7-highspeed`、`MiniMax-M2.5` 這些模型。對多數工程團隊來說，這是最容易接的一層，因為既有 SDK 和代理層通常很好改。
 
-### Text Generation
+音樂生成則完全是另一個入口，走 `/v1/music_generation`。它不是文字模型附帶的一個小功能，而是一條獨立工作流。你要傳的不是 conversation history，而是 prompt、歌詞、參考音檔、輸出格式。這裡的思維也不一樣。你不是在問答，你是在描述一首歌。
 
-MiniMax 的文字模型走 **Claude API 相容** 端點，支援 MiniMax-M2.7、M2.5、M2.1 系列。
+再往旁邊走，是 Coding Plan。這部分最容易讓人翻車，因為它看起來像一般 API 的延伸，實際上卻是配額、Key、端點都分開算。你手上有一般 API Key，不代表你能碰 Coding Plan 的 remains 查詢，也不代表你能吃到它那套 requests 配額。
 
-**Endpoint：**
-```
-POST https://api.minimax.io/anthropic/v1/messages
-```
+## 文字模型這條路，其實最像大家熟悉的世界
 
-**Header：**
-```
-Authorization: Bearer <API_KEY>
-anthropic-version: 2023-06-01
-Content-Type: application/json
-```
+如果你先從文字模型下手，體感會比較正常。MiniMax 把文字生成放在 Anthropic 相容路徑上，這意味著既有基礎設施可以少改很多。Header 裡要帶 `anthropic-version`，請求格式也和大家熟悉的 message schema 靠近。
 
-**可用模型：**
+真正需要判斷的，是模型怎麼選。
 
-| 模型 | 特色 | 輸出速度 |
-|------|------|----------|
-| `MiniMax-M2.7` | 旗艦推理能力 | ~60 tps |
-| `MiniMax-M2.7-highspeed` | 同性能，更快 | ~100 tps |
-| `MiniMax-M2.5` | 程式碼優化 | ~60 tps |
-| `MiniMax-M2` | Agent 能力 | - |
+`MiniMax-M2.7` 是旗艦，偏向高品質推理。`MiniMax-M2.7-highspeed` 則把速度拉高，官方資訊裡兩者能力定位接近，差別更偏向吞吐量。如果你做的是 agent pipeline，很多時候延遲比極限品質更重要，高速版會比較實用。`M2.5` 則更常出現在程式碼相關任務裡。
 
-值得注意的是，M2.7-highspeed 與 M2.7 的差異**只有速度**，模型智商相同。對需要低延遲的 Agent 工作流，高速版是首選。
+這裡沒有太多神祕之處，難的不是呼叫成功，而是不要把它和其他產品線的額度想成共用池。很多錯誤不是程式寫錯，是帳務邏輯理解錯。
 
----
+## 音樂 API 的麻煩，來自它真的把音樂當成產品
 
-### music-2.6
+MiniMax 的音樂能力這陣子特別多人提，原因很簡單，`music-2.6` 確實被當成主力在推。它支援從文字描述生成音樂，也能搭配歌詞工作。從 API 設計就看得出來，團隊不是把它當成聊天模型吐出一段音訊，而是把它當成一套完整製作流程。
 
-MiniMax 在 2026 年 4 月 10 日發布了 Music 2.6，是目前最新一代的音樂生成模型。中國風樂器終於有「橫向時間進行」而非樣本機械拼接，中低頻也經過專門優化，適用於 House、Trap、Drum & Bass 與遊戲配樂。
+如果你要生成純配樂，事情很簡單，給 prompt，指定 `is_instrumental`，就能開始。如果你要做人聲，歌詞就變成核心輸入。這裡又分兩條路。一條是你自己寫好歌詞，直接丟進 `lyrics`。另一條是先走 `/v1/lyrics_generation`，把主題交給系統，讓它先整理出一份有段落結構的歌詞，再把結果餵回音樂生成。
 
-**Endpoint：**
-```
-POST https://api.minimax.io/v1/music_generation
-```
+這種拆法很合理，因為寫歌詞和編曲本來就是兩種工作。但對工程師來說，這也代表你不能只做一個通用 wrapper 就想吃掉全部需求。資料流不同，錯誤型態也不同。
 
-**必填參數：**
+另一個值得注意的是 `music-cover`。它共用同一個音樂生成入口，但做的事完全不同。`music-2.6` 像從空白紙開始，`music-cover` 比較像拿既有旋律做重編。你要提供的是參考音檔，不管是公開 URL 還是 base64。這種設計其實很直白，它要的不是靈感，而是骨架。
 
-| 參數 | 說明 |
-|------|------|
-| `model` | `"music-2.6"` 或 `"music-2.6-free"` |
-| `prompt` | 音樂風格描述，1–3500 字元 |
+## 真正容易踩爆的，是 Coding Plan
 
-**選填參數：**
+很多人卡在這裡，不是因為文件讀不懂，而是因為直覺太強。你會本能地認為，同一個平台應該只是多一個方案、多一組模型。可 Coding Plan 比較像獨立銷售的能力包。
 
-| 參數 | 說明 |
-|------|------|
-| `lyrics` | 歌詞內容，用 `\n` 換行 |
-| `is_instrumental` | `true` = 無人聲純音樂 |
-| `lyrics_optimizer` | `true` = 自動優化 prompt 生成的歌詞 |
-| `audio_setting` | sample_rate（44100）、bitrate（256000）、format（mp3）|
+它的 remains 查詢要打特定端點，還要帶對應的 `GroupId`。更關鍵的是，Authorization 用的不是一般文字模型那把 key。文件和實際行為都在提醒你，這是另一套權限邏輯。
 
-**免費額度：Beta 期間每天 100 首，每首上限 5 分鐘。**
+這件事之所以重要，不只是「能不能打通 API」，而是它會直接影響你的系統設計。如果你把文字生成服務和 Coding Plan 混成一個 provider abstraction，最後很可能會在配額監控、失敗重試、權限切換上全部攪在一起。短期也許能跑，長期一定痛苦。
 
----
+## 開發者真正該記住的是什麼
 
-### music-cover
+我會把 MiniMax 理解成三件事。
 
-music-cover 的核心能力是**傳一首參考歌曲，AI 提取旋律骨架，再給你完全不同的風格編曲**。民謠可以變金屬，古典交響可以變賽博龐克。適合想要「保留旋律但換風格」的創作場景。
+第一，它不是一個單一模型，而是一組分工很明確的能力層。文字、音樂、Coding Plan 各自有自己的世界觀。
 
-**Endpoint：** 同 music-2.6，共用同一個 `/v1/music_generation`
+第二，它的麻煩不在模型本身，而在產品邊界。只要你一開始就把「端點、金鑰、配額」當成三件要分別確認的事，很多坑其實能避開。
 
-**差異在參數：**
+第三，這種平台結構也透露出一個趨勢。AI 供應商越來越少走「一個模型做全部」的路，反而更像雲服務，針對不同場景開不同產品線。這對用戶不一定更簡單，但對性能與商業化往往更有效。
 
-| 參數 | 說明 |
-|------|------|
-| `model` | `"music-cover"` 或 `"music-cover-free"` |
-| `audio_url` | 參考音檔的公開 URL |
-| `audio_base64` | 或直接傳 Base64 編碼的音檔 |
-
-> 注意：`audio_url` 和 `audio_base64` 必須二選一，不能都不選。
-
-```bash
-curl -X POST https://api.minimax.io/v1/music_generation \
-  -H "Authorization: Bearer <token>" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "music-cover",
-    "prompt": "Convert to epic orchestral metal",
-    "audio_url": "https://example.com/original-song.mp3"
-  }'
-```
-
----
-
-### lyrics_generation
-
-歌詞生成是 music-2.6 工作流的**第一步**（可選）：先讓 AI 根據主題產生完整歌詞，再拿歌詞去生成歌曲。
-
-**Endpoint：**
-```
-POST https://api.minimax.io/v1/lyrics_generation
-```
-
-**參數：**
-
-| 參數 | 說明 |
-|------|------|
-| `mode` | 目前已知值：`"write_full_song"` |
-| `prompt` | 歌曲主題描述 |
-
-產出的歌詞已包含結構標記（`[Verse]`、`[Chorus]`、`[Bridge]` 等），直接傳給 music-2.6 的 `lyrics` 參數即可。
-
----
-
-### coding-plan-vlm 與 coding-plan-search
-
-這兩個是 MiniMax 給 Coding Plan 用戶的專用端點，配額獨立計算。從用量截圖來看，兩者**共享 1500 requests/5 小時的額度**（不是各自 1500）。
-
-**用量查詢 Endpoint：**
-```
-GET https://platform.minimax.io/v1/api/openplatform/coding_plan/remains?GroupId={GROUP_ID}
-```
-
-**Header：**
-```
-Authorization: Bearer <CODING_PLAN_API_KEY>
-referer: https://platform.minimax.io/user-center/payment/coding-plan
-```
-
-> 這組 API Key 與一般 Text Generation 的 Key **不同**，不能混用。Coding Plan Key 需要在平台上另外建立。
-
-**Token Plan 額度參考：**
-
-| 方案 | M2.7 | M2.7-highspeed | Speech 2.8 | image-01 |
-|------|------|----------------|-------------|----------|
-| Starter | 1,500 req/5h | 4,500 req/5h | — | — |
-| Plus | 4,500 req/5h | 15,000 req/5h | 4,000 字/天 | 50 張/天 |
-| Max | 15,000 req/5h | 30,000 req/5h | 11,000 字/天 | 120 張/天 |
-
----
-
-## 我的觀點
-
-MiniMax 的工具矩陣設計有個明確的方向：**從「一個模型打天下」走向「每個場景專用優化」**。music-2.6 與 music-cover 的分工就是最好例子——一個從零創作，一個風格遷移，兩個場景的需求邏輯完全不同，硬塞進同一個 API 反而不直覺。
-
-對於開發者來說，最關鍵的是搞清楚手上的 API Key 是哪一類。Coding Plan 的 Key 只能用來查用量和戳 Coding Plan 端點，拿去跑 Text Generation 會吃閉門羹。反過來，一般 API Key 也不能用優惠的 Coding Plan 額度。這點如果沒搞清楚，月底帳單會說話。
-
-另外，Music 2.6 的 Beta 免費額度（每天 100 首）是認真的，對個人開發者或小型工作室來說，初期做原型足夠了。Beta 結束後的定價策略會是關鍵觀察點。
-
-## 參考連結
-
-- [MiniMax Music Generation API 文件](https://platform.minimax.io/docs/guides/music-generation)
-- [MiniMax Music 2.6 發布公告](https://www.minimax.io/news/music-26)
-- [MiniMax API Overview](https://platform.minimax.io/docs/api-reference/api-overview)
-- [Token Plan 額度說明](https://platform.minimax.io/docs/token-plan/intro)
-- [MiniMax Models 總覽](https://platform.minimax.io/docs/guides/models-intro)
+所以，如果你最近正要接 MiniMax，我的建議很簡單：先不要急著寫 SDK 抽象層。先把每條 API 當成獨立產品驗證一次。哪把 key 能做什麼，哪個端點吃哪種 payload，哪套配額怎麼算，先搞清楚。這一步雖然慢，卻會幫你省掉後面一整排莫名其妙的錯。

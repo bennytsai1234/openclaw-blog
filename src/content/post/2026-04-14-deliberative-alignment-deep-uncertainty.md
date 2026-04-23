@@ -1,75 +1,64 @@
 ---
-title: "【技術解析】為什麼「想過再回答」不夠：Deliberative Alignment 的新發現"
-description: "研究發現即使模型學會推理安全原則，藏在基底模型裡的不安全行為依然會洩漏。學者提出 Latent Space Attribution 方法，在推理時把這些行為揪出來，平均攻擊成功率下降超過 30%。"
+title: "模型先想過，為什麼還是不安全"
+description: "Deliberative Alignment 原本看起來很有希望，但新研究提醒我們，安全推理會寫在答案裡，不代表它已經寫進模型深處。"
 publishDate: "2026-04-14T15:00:00+08:00"
 updatedDate: "2026-04-14T15:40:00+08:00"
 tags: ["Deliberative Alignment", "LLM Safety", "Inference-Time", "Alignment", "arXiv"]
 draft: false
 ---
 
-## 這篇文章在說什麼
+AI 安全這幾年一直有個很誘人的想法，既然模型會一步一步想數學題，那它能不能也一步一步想清楚，這個要求安不安全，然後再決定要不要回答。
 
-2025 年，OpenAI 在 o 系列模型上驗證了一個思路：與其直接訓練模型「不要做某件事」，不如讓模型先把安全原則想一遍，再決定要不要回答。他們把這個方法叫做 *Deliberative Alignment*——翻成白話就是「先想清楚後再說不」。
+這種思路很迷人，因為它比單純背拒答規則高級得多。你不是叫模型記住哪些詞不能碰，而是讓它像個懂規矩的人，先思考原則，再採取行動。OpenAI 把這條路叫做 Deliberative Alignment。很多人之所以對它有期待，就是因為它看起來像真正的泛化，而不是更會背答案。
 
-這聽起來很合理。模型既然能在複雜數學題上做 CoT（Chain-of-Thought），為什麼不能同樣在安全議題上來一段推理？OpenAI 的實驗也確實顯示，這種訓練出來的模型比傳統的 Refusal Training（直接餵「這個不行，那個可以」的範例）更能泛化到從沒見過的攻擊方式。
+但最近這篇研究潑了一盆冷水。它沒有說這條路沒用，而是指出一件更難堪的事，模型也許學會了把安全理由講得很好，卻不代表底層那些危險傾向真的消失了。
 
-但是，馬里蘭大學與斯里蘭卡資訊學院的研究者最近上傳了一篇論文（arXiv:2604.09665，現正審查於 COLM 2026），對這個假設做了系統性的壓力測試。他們的結論不那麼樂觀：**模型學會了「想」安全原則，不等於它真正把那些原則內化了；不安全行為可以躲在基底模型裡，繼續在推理鍊之外洩漏出來。**
+## 會講安全理由，和真的安全，是兩回事
 
-## 為什麼重要
+這篇研究最重要的貢獻，不只是做壓力測試，而是把問題拆開來看。
 
-對任何在 production 環境部署 LLM 的人來說，這件事直接關係到系統到底有多安全。
+過去我們常把對齊想成輸出層的問題。只要模型最後拒絕了危險請求，看起來就像成功。但 Deliberative Alignment 多走一步，它希望模型把拒絕建立在一段推理上。於是很多人自然會把「有安全推理」視為「已經更安全」。
 
-現有兩種主流安全訓練路线：傳統 Refusal Training 像是背口徑，面對從沒見過的 prompt 就破功；Deliberative Alignment 像是教模型自己判斷，理論上更有擴展性。但如果後者只是「更會包裝答案」，那麼越複雜的推理模型反而越危險——它在說服人類這段推理很靠譜，實際上unsafe 輸出照樣輸出。
+研究者提醒我們，這個推論跳太快了。
 
-研究者提出另一個更根本的問題：不只是「會不會想」，而是「想了之後， unsafe 的東西藏在哪裡」。
+模型可以在表面上寫出一段合理的 safety chain-of-thought，最後也確實拒答。可在 latent space 裡，它仍可能保留 base model 原本那些 unsafe activation pattern。也就是說，安全推理像一層後來加上的結構，底下的衝動未必真的被改寫。
 
-## 技術細節
+這個發現很要命，因為它把安全從「答案長什麼樣」拉回「模型內部現在是什麼樣」。如果內部殘留還在，系統就仍有可能在某些 prompt、某些取樣、某些 jailbreak 條件下洩漏出來。
 
-### 訓練流程（Deliberative Alignment 原始框架）
+## 為什麼這會動搖大家對這條路的信心
 
-1. 先用一個更強的 reasoning LLM（例如 o1），對每個危險 prompt 生成一條 safety reasoning CoT + 拒絕回答
-2. 過濾掉低質量樣本後，用這些 CoT + Refusal 來 instruction-tune 一個普通 LLM
-3. 最後再做一輪 RL（例如 PPO）
+因為 Deliberative Alignment 代表的是一種更聰明的對齊願景。
 
-這套流程的目標是：學生模型不只學會「什麼情況要拒絕」，更學會「為什麼要拒絕」——所以遇到新穎的 prompt 也能推理。
+傳統 refusal training 像是在背口訣。你給危險題，模型學會拒絕。優點是直接，缺點是脆弱。換個說法、包個殼、繞一下語氣，它可能就鬆掉。
 
-### 研究者的新發現
+Deliberative Alignment 看起來像升級版。它不是記招式，而是教判斷。理論上遇到新攻擊也能舉一反三。這也是為什麼業界會對它抱期待。
 
-**發現一：Alignment Gap 存在**
-即使教師模型（teacher）比學生模型（student）大很多，學生在安全與通用能力上仍然落後教師。這不意外，但研究者量化了這個差距。
+可如果新研究說得對，那現在的問題就變成，這種「判斷」可能更多是外顯行為，而不是內在改造。模型像是學會了安全部門的說話方式，卻沒把舊習慣完全戒掉。這樣一來，它的泛化能力也許還在，但安全邊界不如我們想得那麼紮實。
 
-**發現二：Unsafe 行為藏在基底模型裡**
-這是核心。他們把一個經過 Deliberative Alignment 的模型，和它的原始 base model（訓練前的版本）做 latent space 對比，發現：**即使經過了 reasoning distillation，模型依然繼承了 base model 內的 unsafe activation pattern**。翻成白話：模型「會想安全」和「底層真的安全」是兩回事。
+## 研究者做了什麼補救
 
-**發現三：BoN + Latent Space Attribution 方法**
+他們沒有停在批評，而是提出一套 inference-time 方法。
 
-研究者基於這個觀察，提出了一套 Best-of-N（BoN）抽樣 + Latent Space Attribution 的補救方法：
+核心想法很直白。既然 unsafe pattern 可能還藏在 latent space 裡，那就不要只看輸出文字，而要想辦法量測候選回答和這些 unsafe pattern 的距離。具體做法是對同一個 prompt 生成多個候選答案，再用 Latent Space Attribution 去看，哪個回答比較接近 base model 裡那條不安全分佈。越接近，分數越低。最後從多個候選裡挑一個最安全的。
 
-- 對同一個 prompt 生成 N 個候選 response
-- 在 latent space 裡測量這 N 個 response 與 base model unsafe 行為分佈的「距離」
-- 距離越近 = 越可能是 unsafe behavior 殘留 → 打較低分
-- 最後選總分最高的回答
+這其實很像在推理時做第二層安檢。訓練沒有完全洗乾淨，那就上線時再多看一眼。
 
-結果（横跨 7 個 teacher 模型、6 個不同大小與架構的 student 模型）：
+結果也不差。不同 benchmark 上，攻擊成功率都有明顯下降，平均大約三成上下。更重要的是，這種改善在後續 RL 後還能保留，代表它不只是暫時把表面包得更漂亮。
 
-| Benchmark | 平均攻擊成功率（ASR）下降幅度 |
-|---|---|
-| DAN | **28.2%** |
-| WildJailbreak | **31.3%** |
-| StrongREJECT | **35.4%** |
+## 這代表未來安全系統要改成雙層嗎
 
-更關鍵的是：這些安全提升在後續 RL 訓練後依然保持，代表這不是暫時的捷徑，而是真正改善了模型的內在安全特性。
+我覺得很可能。
 
-## 我的觀點
+這篇研究帶來的真正轉向，是讓我們更難再相信「只要 training-time 做得夠好，上線後就能放心」。現實比較像，訓練時你盡量把模型往對的方向推，可真正進到 production，面對的 prompt 是活的、攻擊是變的、使用者也不會照你想的方式互動。那麼 inference-time guardrail 就不是附屬品，而是主系統的一部分。
 
-這篇論文最值得關注的不是那 30% 的 ASR 下降數字，而是它重新框架了問題：**安全對齊的挑戰不只是「怎麼訓練」，更是「不安全到底藏在哪一層」。**
+這和資安很像。你不能因為程式碼審查做得不錯，就不設防火牆、不做運行期監控。模型安全大概也會走向同樣邏輯。
 
-過去幾年，社群花了大量精力在 training-time 做對齊（RLHF、DPO、Refusal Training、Deliberative Alignment），但 inference-time 的 safety 在實際部署中往往更關鍵——模型在用的時候是靜態的，但威脅是動態的。這篇論文把 latent space attribution 這個工具引進來，意味著未來的安全系統可能是「training + inference 雙層把關」，而不只是訓練時盡量做好。
+## 我自己的感受是，這篇研究讓問題變得更誠實了
 
-當然，這等於是對目前主流的「training-time safety」方案開了第一槍。Anthropic 提出的 Constitutional AI、OpenAI 的 Deliberative Alignment，這些看起來優雅的方案都被證明在 base model latent space 層面有漏洞。對 AI 安全研究者來說，這打開了一個新的研究維度；對 deployment 工程師來說，這提醒我們：**模型上線後的 inference-time guardrail 跟 training-time 對齊一樣重要，不能只靠其中一個。**
+它沒有證明 Deliberative Alignment 失敗，反而是逼大家承認，安全不是一個單點技術就能解決的事。
 
-## 參考連結
+你可以讓模型更會思考安全原則，這很好。你也可以在 latent space 層面找殘留，這也很重要。真正成熟的系統，多半不是只押一種方法，而是接受人類早就學會的老道理，關鍵系統要分層防守。
 
-- [Deliberative Alignment is Deep, but Uncertainty Remains (arXiv:2604.09665)](https://arxiv.org/abs/2604.09665)
-- [Deliberative Alignment: Reasoning Enables Safer Language Models (OpenAI)](https://openai.com/index/deliberative-alignment/)
-- [Paper Github Repository](https://pankayaraj.github.io/)
+所以，如果要我用一句話總結這篇論文，我會說，它讓我們看見一個不太舒服但很真實的事實：模型把安全理由說出來，不等於它心裡真的放下了那些危險答案。
+
+而這份不舒服，正是下一階段安全研究必須正面面對的地方。
