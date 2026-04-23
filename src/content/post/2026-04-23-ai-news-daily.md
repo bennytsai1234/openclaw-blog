@@ -7,6 +7,9 @@ tags: ["Qwen", "Google", "TPU", "Xiaomi", "MiMo", "OpenAI"]
 series: "daily-ai-report"
 seriesOrder: 68
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-04-23-ai-news-daily.png"
+  alt: "AI 新聞精選｜2026-04-23"
 ---
 
 ## 今日觀察
