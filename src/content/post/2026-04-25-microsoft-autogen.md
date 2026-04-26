@@ -9,7 +9,7 @@ draft: false
 
 ## 這篇文章在說什麼
 
-Microsoft AutoGen 是微軟在 2023 年 8 月推出的開源多代理（Multi-Agent）AI 程式設計框架。它讓開發者能夠创建多个 AI Agent 之間的协作流程，這些 Agent 可以自主運作，也可以與人類協同工作。這個專案在 GitHub 上累積了超過 57,000 顆星，堪稱是近年來最具影響力的 AI Agent 開源框架之一。
+Microsoft AutoGen 是微軟在 2023 年 8 月推出的開源多代理（Multi-Agent）AI 程式設計框架。它讓開發者能夠建立多個 AI Agent 之間的協作流程，這些 Agent 可以自主運作，也可以與人類協同工作。這個專案在 GitHub 上累積了超過 57,000 顆星，堪稱是近年來最具影響力的 AI Agent 開源框架之一。
 
 不過，現在的 AutoGen 已經進入「維護模式」（Maintenance Mode），不再會有新功能，只會有 bug 修復和安全補丁。微軟建議新用戶轉向 Microsoft Agent Framework（MAF），這是他們的企業級後續方案。
 
