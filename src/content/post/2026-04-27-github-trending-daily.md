@@ -41,7 +41,7 @@ Beads 是 AI 編碼 Agent 的持久化記憶層，把混亂的 markdown plan 替
 它解決的問題是：Agent 面對長時任務，中間步驟一多就忘記上下文，導致做出跟前面矛盾的决定。Beads 的做法是把每個任務當成圖節點，用 `blocks`、`related`、`parent-child` 等關係建立連結，Agent 查 `bd ready` 只看到沒有 open blocker 的任務，視角永遠清晰。
 
 特色功能：
-- **記憶衰減（Memory Decay）**：自動把很久以前已完成的任務做語義壓縮，節省 context window。
+- **語義壓縮（Memory Decay）**：自動把很久以前已完成的任務做摘要濃縮，節省 context window。
 - **雜湊 ID**：`bd-a3f8` 這樣的 ID 杜絕多 Agent、多 branch 合併時的衝突。
 - **Git-Free Mode**：可用 `BEADS_DIR` 指定位置，完全不依賴 `.git/` 目錄，適合 CI/CD 環境。
 - **Contributor vs Maintainer 分流**：貢獻者（fork）在本地規劃，维护者（有寫入權限）自動分流到不同 repo。
