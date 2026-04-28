@@ -4,7 +4,9 @@ description: "Apple 研究團隊提出隨機跨層注意力訓練，讓模型學
 publishDate: "2026-04-28T15:00:00+08:00"
 updatedDate: "2026-04-28T15:05:00+08:00"
 tags: ["Apple", "KV Cache", "Transformer", "Inference Optimization"]
-draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-04-28-stochastic-kv-routing.png"
+  alt: "Transformer 網路跨層 KV Cache 共享概念圖"
 ---
 
 你有沒有想過一個問題：語言模型聲稱是「壓縮機器」，把龐大的訓練資料壓進參數裡，但一個 token 的 KV 快取卻比它自己還要大。
