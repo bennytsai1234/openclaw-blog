@@ -2,6 +2,7 @@
 import { WEBMENTION_PINGBACK, WEBMENTION_URL } from "astro:env/client";
 import { siteConfig } from "@/site.config";
 import type { SiteMeta } from "@/types";
+import { displayTitle, displayDescription, displayTagName, displaySiteTitle } from "@/utils/traditionalize";
 import "@/styles/global.css";
 import "katex/dist/katex.min.css";
 
@@ -9,8 +10,13 @@ type Props = SiteMeta;
 
 const { articleDate, description, ogImage, tags, title } = Astro.props;
 
+const displayTitleText = displayTitle(title);
+const displayDesc = displayDescription(description);
+const displayTags = tags?.map(displayTagName);
+const siteTitleStr = displaySiteTitle(siteConfig.title);
+
 const titleSeparator = "•";
-const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
+const siteTitle = `${displayTitleText} ${titleSeparator} ${siteTitleStr}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
 ---
@@ -38,20 +44,20 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 
 {/* Primary Meta Tags */}
 <meta content={siteTitle} name="title" />
-<meta content={description} name="description" />
+<meta content={displayDesc} name="description" />
 <meta content={siteConfig.author} name="author" />
 {
 	tags && tags.length > 0 && (
-		<meta content={tags.join(", ")} name="keywords" />
+		<meta content={displayTags?.join(", ")} name="keywords" />
 	)
 }
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? "article" : "website"} property="og:type" />
-<meta content={title} property="og:title" />
-<meta content={description} property="og:description" />
+<meta content={displayTitleText} property="og:title" />
+<meta content={displayDesc} property="og:description" />
 <meta content={canonicalURL} property="og:url" />
-<meta content={siteConfig.title} property="og:site_name" />
+<meta content={siteTitleStr} property="og:site_name" />
 <meta content={siteConfig.ogLocale} property="og:locale" />
 <meta content={socialImageURL} property="og:image" />
 <meta content="1200" property="og:image:width" />
@@ -69,8 +75,8 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 {/* Twitter */}
 <meta content="summary_large_image" property="twitter:card" />
 <meta content={canonicalURL} property="twitter:url" />
-<meta content={title} property="twitter:title" />
-<meta content={description} property="twitter:description" />
+<meta content={displayTitleText} property="twitter:title" />
+<meta content={displayDesc} property="twitter:description" />
 <meta content={socialImageURL} property="twitter:image" />
 
 {/* Sitemap */}

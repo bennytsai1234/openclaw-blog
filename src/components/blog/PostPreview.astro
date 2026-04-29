@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import type { HTMLTag, Polymorphic } from "astro/types";
 import getReadingTime from "reading-time";
+import { displayTitle, displayDescription, displayTagName } from "@/utils/traditionalize";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 	post: CollectionEntry<"post">;
@@ -18,6 +19,9 @@ const dateStr = new Intl.DateTimeFormat("en-GB", {
 
 const readingMins = Math.ceil(getReadingTime(post.body ?? "").minutes);
 const readingTimeStr = `${readingMins} min`;
+
+const displayTitleText = displayTitle(post.data.title);
+const displayDesc = displayDescription(post.data.description);
 ---
 
 <time
@@ -28,8 +32,8 @@ const readingTimeStr = `${readingMins} min`;
 <Tag class="min-w-0 flex-1 leading-6">
 	{post.data.draft && <span class="text-red-500">(Draft) </span>}
 	<a class="font-semibold transition-colors duration-200 hover:text-accent" href={`/posts/${post.id}/`}>
-		{post.data.title}
+		{displayTitleText}
 	</a>
 </Tag>
 <span class="text-muted shrink-0 pt-0.5 text-sm tabular-nums">{readingTimeStr}</span>
-{withDesc && <q class="line-clamp-3 italic">{post.data.description}</q>}
+{withDesc && <q class="line-clamp-3 italic">{displayDesc}</q>}

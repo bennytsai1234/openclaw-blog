@@ -19,6 +19,7 @@ import remarkMath from "remark-math";
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions"; /* Add admonitions */
 import { remarkGithubCard } from "./src/plugins/remark-github-card";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
+import remarkTraditional from "./src/plugins/remark-traditional"; /* Auto convert Simplified to Traditional */
 import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 
 // https://astro.build/config
@@ -88,6 +89,7 @@ export default defineConfig({
 			remarkDirective,
 			remarkGithubCard,
 			remarkAdmonitions,
+			remarkTraditional, // 自動將正文中的簡體中文轉為繁體
 		],
 		remarkRehype: {
 			footnoteLabelProperties: {

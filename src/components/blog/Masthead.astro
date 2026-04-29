@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { displayTitle, displayDescription, displayTagName } from "@/utils/traditionalize";
 
 interface Props {
 	content: CollectionEntry<"post">;
@@ -17,6 +18,10 @@ const dateStr = new Intl.DateTimeFormat("zh-TW", {
 	month: "2-digit",
 	day: "2-digit",
 }).format(data.publishDate);
+
+const displayTitleText = displayTitle(data.title);
+const displayDesc = displayDescription(data.description);
+const displayTags = data.tags?.map(displayTagName);
 ---
 
 {
@@ -35,11 +40,11 @@ const dateStr = new Intl.DateTimeFormat("zh-TW", {
 }
 {data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
 <h1 class="title mb-4 w-full text-3xl leading-tight sm:text-4xl">
-	{data.title}
+	{displayTitleText}
 </h1>
-{data.description && (
+{displayDesc && (
 	<p class="text-muted mb-5 w-full max-w-[62ch] border-l-2 border-accent/35 pl-4 text-[1.02rem] leading-8 italic">
-		{data.description}
+		{displayDesc}
 	</p>
 )}
 <div class="article-tags flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-accent/10 pb-5 text-sm sm:text-[0.95rem]">
@@ -53,7 +58,7 @@ const dateStr = new Intl.DateTimeFormat("zh-TW", {
 			更新於 {new Intl.DateTimeFormat("zh-TW", { year: "numeric", month: "2-digit", day: "2-digit" }).format(data.updatedDate)}
 		</span>
 	)}
-	{!!data.tags?.length && data.tags.map((tag) => (
+	{!!displayTags?.length && displayTags.map((tag) => (
 		<a data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
 			<span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
 		</a>

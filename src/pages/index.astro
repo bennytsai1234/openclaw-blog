@@ -12,8 +12,8 @@ const allPosts = await getAllPosts();
 const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
 
 // Filter Tech Articles and AI News
-const techPosts = allPostsByDate.filter((p) => !p.data.title.includes("精選"));
-const aiPosts = allPostsByDate.filter((p) => p.data.title.includes("精選"));
+const techPosts = allPostsByDate.filter((p) => !p.data.title.includes("精選") && !p.data.title.includes("精选"));
+const aiPosts = allPostsByDate.filter((p) => p.data.title.includes("精選") || p.data.title.includes("精选"));
 
 const latestTechPosts = techPosts.slice(0, MAX_POSTS);
 const latestAiPosts = aiPosts.slice(0, MAX_POSTS);
