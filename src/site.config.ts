@@ -2,7 +2,7 @@ import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
 import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-	url: "https://openclaw-blog.bennytsai0711.workers.dev/",
+	url: "https://openclaw-blog.pages.dev/",
 	title: "技術筆記",
 	author: "Benny",
 	description:

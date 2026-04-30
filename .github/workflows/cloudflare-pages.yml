@@ -1,5 +1,8 @@
 name: Deploy to Cloudflare Pages
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches:
@@ -26,16 +29,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm run build
         env:
-          NODE_VERSION: 22
+          NODE_VERSION: 24
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy dist --project-name=openclaw-blog

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Converter, CustomConverter } from "../../vendor/opencc-js/dist/esm/cn2t.js";
+import { Converter } from "opencc-js/cn2t";
 
 // 建立簡體 → 繁體轉換器 (台灣)
 const toTW = Converter({ from: "cn", to: "tw" });
