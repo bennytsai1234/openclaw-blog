@@ -210,16 +210,21 @@
 		}
 	}
 
-	/* 行內程式碼 */
+	/* 行內程式碼：改成重點詞高亮，不要 code chip 感 */
 	.article-prose :where(p, li, blockquote, td, th) > code {
-		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
-		color: var(--color-accent-2);
+		background: linear-gradient(
+			to top,
+			color-mix(in srgb, var(--color-accent) 16%, transparent) 0 0.32em,
+			transparent 0.32em 100%
+		);
+		color: color-mix(in srgb, var(--color-accent-2) 88%, var(--color-accent) 12%);
 		border: none;
-		border-radius: 0.45rem;
-		padding: 0.12rem 0.42rem;
-		font-size: 0.9em;
-		font-weight: 500;
+		border-radius: 0;
+		padding: 0;
+		font-size: 0.96em;
+		font-weight: 600;
 		box-shadow: none;
+		text-decoration: none;
 	}
 
 	.article-prose :where(p, li, blockquote, td, th) > code::before,
