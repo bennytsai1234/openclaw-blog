@@ -210,6 +210,23 @@
 		}
 	}
 
+	/* 行內程式碼 */
+	.article-prose :where(p, li, blockquote, td, th) > code {
+		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		color: var(--color-accent-2);
+		border: none;
+		border-radius: 0.45rem;
+		padding: 0.12rem 0.42rem;
+		font-size: 0.9em;
+		font-weight: 500;
+		box-shadow: none;
+	}
+
+	.article-prose :where(p, li, blockquote, td, th) > code::before,
+	.article-prose :where(p, li, blockquote, td, th) > code::after {
+		content: none;
+	}
+
 	/* A. Blockquote 樣式 */
 	.prose blockquote {
 		border-left: 4px solid var(--color-accent);

@@ -73,7 +73,9 @@ function formatDate(date: Date): string {
 		<div
 			class="article-prose prose prose-lg mx-auto max-w-2xl [overflow-wrap:anywhere] prose-headings:font-bold prose-headings:text-accent-2 sm:prose-th:before:content-none"
 		>
-						<slot />
+						<div id="article-content">
+							<slot />
+						</div>
 						
 						<WebMentions />
 

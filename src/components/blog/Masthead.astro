@@ -22,6 +22,13 @@ const dateStr = new Intl.DateTimeFormat("zh-TW", {
 const displayTitleText = displayTitle(data.title);
 const displayDesc = displayDescription(data.description);
 const displayTags = data.tags?.map(displayTagName);
+const showUpdatedDate =
+	!!data.updatedDate &&
+	new Intl.DateTimeFormat("zh-TW", {
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+	}).format(data.updatedDate) !== dateStr;
 ---
 
 {
@@ -53,7 +60,22 @@ const displayTags = data.tags?.map(displayTagName);
 	</time>
 	<span class="text-muted/40">·</span>
 	<span class="text-muted/90 text-[0.95rem]">📖 {readingTime}</span>
-	{data.updatedDate && (
+	<button
+		class="tts-toggle inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent/5 px-3 py-1.5 text-[0.85rem] font-medium text-accent transition hover:bg-accent hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+		id="tts-toggle-btn"
+		type="button"
+	>
+		<span aria-hidden="true" id="tts-toggle-icon">🔊</span>
+		<span id="tts-toggle-label">朗讀本文</span>
+	</button>
+	<button
+		class="tts-stop hidden items-center rounded-full border border-accent/10 px-2.5 py-1.5 text-[0.8rem] text-muted transition hover:border-accent/25 hover:text-accent"
+		id="tts-stop-btn"
+		type="button"
+	>
+		停止
+	</button>
+	{showUpdatedDate && (
 		<span class="rounded-full bg-emerald-100/80 px-2.5 py-1 text-[11px] font-medium text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">
 			更新於 {new Intl.DateTimeFormat("zh-TW", { year: "numeric", month: "2-digit", day: "2-digit" }).format(data.updatedDate)}
 		</span>
@@ -64,6 +86,8 @@ const displayTags = data.tags?.map(displayTagName);
 		</a>
 	))}
 </div>
+
+<p class="mt-3 hidden text-sm text-muted" id="tts-status" aria-live="polite"></p>
 
 <script>
 	// US-015 相對時間
@@ -79,4 +103,95 @@ const displayTags = data.tags?.map(displayTagName);
 			el.innerHTML += ` <span class="text-[0.8rem] text-muted/70 font-normal">（今天）</span>`;
 		}
 	});
+
+	const synth = typeof window !== 'undefined' ? window.speechSynthesis : null;
+	const toggleBtn = document.getElementById('tts-toggle-btn');
+	const stopBtn = document.getElementById('tts-stop-btn');
+	const statusEl = document.getElementById('tts-status');
+	const labelEl = document.getElementById('tts-toggle-label');
+	const iconEl = document.getElementById('tts-toggle-icon');
+	const articleContent = document.getElementById('article-content');
+	let currentUtterance = null;
+	let currentState = 'idle';
+
+	const setState = (state, message = '') => {
+		currentState = state;
+		if (!labelEl || !iconEl || !toggleBtn || !stopBtn || !statusEl) return;
+
+		statusEl.textContent = message;
+		statusEl.classList.toggle('hidden', !message);
+		stopBtn.classList.toggle('hidden', state === 'idle');
+		stopBtn.classList.toggle('inline-flex', state !== 'idle');
+
+		if (state === 'playing') {
+			labelEl.textContent = '暫停朗讀';
+			iconEl.textContent = '⏸️';
+		} else if (state === 'paused') {
+			labelEl.textContent = '繼續朗讀';
+			iconEl.textContent = '▶️';
+		} else {
+			labelEl.textContent = '朗讀本文';
+			iconEl.textContent = '🔊';
+		}
+	};
+
+	const extractReadableText = () => {
+		if (!articleContent) return '';
+		const cloned = articleContent.cloneNode(true);
+		cloned.querySelectorAll('pre, code, table, img, video, audio, iframe, .expressive-code, .remark-code-title').forEach((node) => node.remove());
+		return cloned.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+	};
+
+	if (toggleBtn) {
+		if (!synth || !('SpeechSynthesisUtterance' in window)) {
+			toggleBtn.setAttribute('disabled', 'true');
+			setState('idle', '這個瀏覽器目前不支援朗讀功能');
+		} else {
+			setState('idle');
+
+			toggleBtn.addEventListener('click', () => {
+				if (currentState === 'playing') {
+					synth.pause();
+					setState('paused', '已暫停朗讀');
+					return;
+				}
+
+				if (currentState === 'paused') {
+					synth.resume();
+					setState('playing', '正在朗讀文章');
+					return;
+				}
+
+				const text = extractReadableText();
+				if (!text) {
+					setState('idle', '這篇文章暫時沒有可朗讀的內容');
+					return;
+				}
+
+				synth.cancel();
+				currentUtterance = new SpeechSynthesisUtterance(text);
+				currentUtterance.lang = 'zh-TW';
+				currentUtterance.rate = 1;
+				currentUtterance.pitch = 1;
+				currentUtterance.onend = () => {
+					currentUtterance = null;
+					setState('idle', '朗讀完成');
+				};
+				currentUtterance.onerror = () => {
+					currentUtterance = null;
+					setState('idle', '朗讀失敗，請再試一次');
+				};
+				synth.speak(currentUtterance);
+				setState('playing', '正在朗讀文章');
+			});
+
+			stopBtn?.addEventListener('click', () => {
+				synth.cancel();
+				currentUtterance = null;
+				setState('idle', '已停止朗讀');
+			});
+
+			window.addEventListener('beforeunload', () => synth.cancel(), { once: true });
+		}
+	}
 </script>
