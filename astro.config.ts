@@ -13,6 +13,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import rehypeUnwrapImages from "rehype-unwrap-images";
+import { rehypeInlineTerm } from "./src/plugins/rehype-inline-term";
 import remarkDirective from "remark-directive"; /* Handle ::: directives as nodes */
 // Remark plugins
 import remarkMath from "remark-math";
@@ -73,6 +74,7 @@ export default defineConfig({
 		rehypePlugins: [
 			[rehypeKatex, { strict: false }],
 			rehypeHeadingIds,
+			rehypeInlineTerm,
 			[rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: ["not-prose"] } }],
 			[
 				rehypeExternalLinks,

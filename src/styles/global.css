@@ -210,8 +210,8 @@
 		}
 	}
 
-	/* 行內程式碼：改成重點詞高亮，不要 code chip 感 */
-	.article-prose :where(p, li, blockquote, td, th) > code {
+	/* 行內技術名詞高亮 */
+	.article-prose :where(p, li, blockquote, td, th) > .term-highlight {
 		background: linear-gradient(
 			to top,
 			color-mix(in srgb, var(--color-accent) 16%, transparent) 0 0.32em,
@@ -225,11 +225,6 @@
 		font-weight: 600;
 		box-shadow: none;
 		text-decoration: none;
-	}
-
-	.article-prose :where(p, li, blockquote, td, th) > code::before,
-	.article-prose :where(p, li, blockquote, td, th) > code::after {
-		content: none;
 	}
 
 	/* A. Blockquote 樣式 */
