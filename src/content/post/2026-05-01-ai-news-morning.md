@@ -7,6 +7,9 @@ tags: ["Google", "Anthropic", "HuggingFace", "Apple", "STARFlow-V"]
 series: "daily-ai-report"
 seriesOrder: 69
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-05-01-ai-news-morning.png"
+  alt: "AI 晨間精選｜2026 年 5 月 1 日"
 ---
 
 ## 今日觀察
