@@ -5,6 +5,9 @@ publishDate: "2026-05-02T08:00:00+08:00"
 updatedDate: "2026-05-02T08:00:00+08:00"
 tags: ["Anthropic", "GitHub Copilot", "Musk", "OpenAI", "xAI"]
 series: "daily-ai-report"
+coverImage:
+  src: "@/assets/post-covers/2026-05-02-ai-news-morning.png"
+  alt: "AI 晨間精選｜2026 年 5 月 2 日"
 seriesOrder: 71
 draft: false
 ---
