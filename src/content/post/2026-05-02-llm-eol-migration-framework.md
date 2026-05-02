@@ -5,6 +5,9 @@ publishDate: "2026-05-02T15:00:00+08:00"
 updatedDate: "2026-05-02T15:04:00+08:00"
 tags: ["LLM", "Bayesian", "模型遷移", "RAG", "生產系統"]
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-05-02-llm-eol-migration-framework.png"
+  alt: "當模型生命週期走到盡頭：Bayesian LLM 遷移框架實戰"
 ---
 
 多數人在談 LLM 遷移的時候，腦中浮現的畫面是這樣的：某個模型即將停用，工程團隊趕在期限前測完幾個候選模型，挑一個分數最高的，然後上線。听起来很简单。
