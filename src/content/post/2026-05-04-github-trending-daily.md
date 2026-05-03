@@ -1,52 +1,61 @@
 ---
 title: "【熱門專案】2026-05-04 GitHub 趨勢速讀"
-description: "今日 GitHub 熱門專案精選：DeepSeek-TUI、n8n-mcp、Ruflo"
+description: "今日 GitHub 熱門專案精選：Maigret、Pixelle-Video、browserbase/skills"
 publishDate: "2026-05-04T07:30:00+08:00"
-updatedDate: "2026-05-04T07:38:00+08:00"
-tags: ["DeepSeek", "n8n", "Claude", "MCP", "terminal"]
+updatedDate: "2026-05-04T07:36:00+08:00"
+tags: ["OSINT", "Python", "AI video", "Claude Code", "browser automation", "Streamlit"]
 draft: false
 ---
 
-今天的 GitHub Trending 有一個明顯的主題：**把 AI coding agent 做得更像工程師日常工具**。不再是網頁 IDE 外掛，而是直接把 agent 送進終端機、 workflow 自動化、以及多智慧體協作層。三個專案各有分工，剛好串成一條從底層工具到上層编排的路。
+今日 GitHub Trending 的最大特色是「AI 自動化工作流」與「開發者工具」兩條主線同時升溫。不只有新型 Agent 框架出現，連 OSINT 工具、短片生成這類過去門檻不低的領域，都各自冒出了值得關注的開源實現。
 
-## DeepSeek-TUI：把 DeepSeek V4 的 1M token 直接送進終端機
+## soxoj/maigret — 3000+ 網站用户名追蹤 OSINT 工具
 
-[Hmbown/DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI) 是一個直接在終端機運作的 coding agent，圍繞 DeepSeek V4（`deepseek-v4-pro` / `deepseek-v4-flash`）設計。它不是另一個 VS Code 外掛，而是假設你整個工作流都在 CLI 裡——鍵盤驅動、沒有滑鼠、輸出直接打在终端畫面上。
+Python 寫的開源情報工具，專門靠一個用户名在各平台上搜人。只要一行指令，就能自動在 3000 多個網站發起帳號存在性檢查，並把找到的個人檔案連結、暱稱、信箱等資料全部彙整成報告。
 
-這個專案最核心的價值，在於把 DeepSeek V4 那顆號稱 1M token 上下文視窗的模型，變成工程師可以實際用起來的東西。它內建三種互動模式：**Plan**（只讀不動，適合探索新專案）、**Agent**（互動式，需使用者確認）、**YOLO**（全自動執行，適合跑了不怕翻車的場景）。切換只要鍵盤，Shift+Tab 還能調整思考強度（off → high → max）。
+光是覆蓋廣度就已經很誇張：預設一次檢查 500 個流量最高的站點，`-a` 全開的話則掃描全部 3000+ 個。還能以標籤過濾（国家、類別），以及靠找到的 username 進一步遞迴擴展搜索範圍。輸出格式從 HTML、PDF、XMind 到 JSON/CSV 都有，內建 Web UI 可以用圖形方式檢視結果。
 
-比較少見的是它的工具鏈完整度。讀寫檔案、跑 shell、git 操作、網頁搜尋、子程序啟動，全部標配，而且內建 MCP client——理論上可以直接把這個 TUI 當成 MCP host，掛其他 MCP server 擴充機能。專案也支援 session checkpoint（斷點儲存，之後可以恢復），以及 workspace rollback（用 side-git 快照做無痕還原，不動正式 repo 的 `.git`）。底層用 Rust 寫 CLI，加上 HTTP/SSE runtime，讓它也可以跑 headless agent 流程。
+背後支撐的是一整套定時自動更新的站點資料庫，每次執行時從 GitHub 抓取一次（24 小時內有效），離線時則用內建資料。還支援 Tor 與 I2P 代理，對於要查洋蔥路由站點或繞過反爬機制的情境特別實用。
 
-適合誰：已經習慣 terminal 工作流、想要一個輕量、沒有 Node/Python 環境依賴的單一 binary 就可以啟動的 coding agent 的工程師。
+適合誰：渗透測試人員、威脅情報分析師、數位鑑識工作者，或任何需要快速確認某人在網路上足跡的人。
 
-## n8n-mcp：讓 AI 助手真正讀得懂 n8n 的 1650 個节点
+## AIDC-AI/Pixelle-Video — 全自動 AI 短影片引擎
 
-[czlonkowski/n8n-mcp](https://github.com/czlonkowski/n8n-mcp) 把 Model Context Protocol（MCP）帶進了 n8n 的自動化世界。n8n 是一套工作流程自動化平台，支援大量節點（820 核心節點 + 830 社群節點），但每個節點有自己的屬性、參數文件、行為邏輯。一般的 AI 模型不知道這些細節，給出的建議經常是錯的或者過時的。
+中國團隊做的所見即所得工具，從輸入主題到輸出成片，中間所有步驟——文案生成、配圖繪製、TTS 配音、BGM 合成、影片剪輯——全部自動化。底層串 ComfyUI 做圖像生成，LLM 端則支援通義千問、GPT-4o、DeepSeek 等多種模型。
 
-n8n-mcp 的切入點很直接：建一個 MCP server，把 n8n 節點的文件、屬性結構、可執行操作，全部以 AI 友善的格式暴露出去。覆蓋率數字很漂亮——節點屬性 99%、節點操作 63.6%、文件 87%（含 AI 節點），而且有 156 組真實範例和 2352 個 workflow template 的 metadata。這個覆蓋率不是官方做的，是社群維護者手動文件化加上結構化抽取跑出來的。
+使用方式很簡單：在 Streamlit Web 介面設定好 LLM API 與圖像服務後，選一個模板（支援豎屏 / 橫屏 / 方形），輸入主題，按下去就生出影片。內建聲音克隆功能，只要上傳參考音檔就能用你自己的音色做 TTS。費用也很彈性：本地有 GPU 的話可以完全免費（Ollama + ComfyUI），沒卡片的話用通義千問 API 成本也相當低。
 
-這個 MCP server 對應的 client 包括 Claude Desktop、Claude Code、Windsurf 等。也就是說，你在這些工具裡想要「幫我設計一個 n8n workflow」或者「某個節點參數怎麼填」，AI 可以直接查 n8n-mcp 拿到準確資訊，而不是在網路上找到一份可能已經過時的文件。
+模板架構本身很有趣：static_/ image_/ video_ 三類 HTML 模板決定最終影片的呈現方式，有 HTML/CSS 基礎的人可以自行擴充。對想要快速製作內容素材的開發者或內容創作者來說，是個相當完整的開源方案。
 
-適合誰：已經在用 n8n 做自動化、想要在 workflow 設計過程中引入 AI 輔助的工程師，或者想要讓 AI 幫忙理解複雜 n8n workflow 配置的開發者。
+適合誰：需要批量生成內容的行銷人員、想自動化短片製作的技術團隊，或任何對 AI 影片製作有興趣的開發者。
 
-## Ruflo：讓 Claude Code 長出多智慧體協作的神經系統
+## browserbase/skills — 為 Claude Code 打造的瀏覽器自動化 SDK
 
-[ruvnet/ruflo](https://github.com/ruvnet/ruflo)（前身是 Claude Flow）是給 Claude Code 用的多智慧體编排平台。核心想法是：當你需要同時讓多個 AI agent 協作處理一個複雜任務，Claude Code 預設只會一個一個順序跑，沒有統一的協調機制。Ruflo 補上這塊。
+Browserbase 本身是做雲端瀏覽器基礎設施的公司，這次開源的 skills 是一組專門給 Claude Code（以及支援 MCP 協定的 Agent）使用的插件，共收錄 10 個 Skills：
 
-它的架構分幾層：Router 負責把任務分流、Swarm 負責協調多個 agent、Memory 讓 agent 跨 session 累積學習結果、Federation 則讓不同機器上的 agent 可以安全地交換資訊，不需要把資料送到第三方。底層用 Rust 寫 WASM kernel，policy engine、embeddings、proof system 都在裡面。
+- `browser` — 遠端 Browserbase session 的 CLI 控制，內建反機器人繞過、驗證碼識別、住宅代理
+- `browserbase-cli` — 官方 bb CLI 完整操作（session、project、context、extension、fetch）
+- `functions` — 部署無伺服器瀏覽器自動化到 Browserbase 雲端
+- `site-debugger` — 診斷失敗的瀏覽器自動化，分析機器人檢測機制與 captcha
+- `browser-trace` — 捕捉完整 CDP 追蹤並切片成分頁可搜尋叢集
+- `bb-usage` — 終端即時儀表板，顯示用量統計與成本預測
+- `cookie-sync` — 把本地 Chrome 的 cookie 同步到 Browserbase 持久 context
+- `fetch` / `search` — 無頭瀏覽器模式的 HTML/JSON 抓取與網頁搜尋
+- `ui-test` — AI 對抗性 UI 測試，透過 git diff 分析變更並探索全站抓蟲
 
-32 個 plugin 分工明確：`ruflo-core` 是基礎設施、`ruflo-swarm` 負責多 agent 團隊協作、`ruflo-autopilot` 讓 agent 可以自主循环运行、`ruflo-workflows` 處理多步驟任务模板。其中比較特別的是 federation plugin——支援跨機器的 agent 溝通但不走公共網路，適合企業內網場景。
+最關鍵的進化在於：`browse env local now` 預設啟動乾淨的隔離瀏覽器，不需要再手動管 profile。這讓本地開發的瀏覽器自動化體驗大幅提升。
 
-安裝方式走 Claude Code 原生的 plugin 体系，不需要另外架 server，init之後日常使用方式不改變，Ruflo 在背景自動路由任務、學習成功模式、協調 agent。
+適合誰：需要讓 Claude Code 操作瀏覽器（爬蟲、自動化測試、登入狀態維持）的開發者，或想把 Browserbase 雲端瀏覽能力整合進自家 Agent 的團隊。
 
-適合誰：需要在大型專案裡讓多個 AI agent 分工合作的工程團隊，或者想要把 Claude Code 從單一 agent 模式升級成有協調機制的協作平台的個人開發者。
+## 趨勢小結
 
-## 小結
-
-今天三個專案剛好對應三層不一樣的 AI 工程師需求：底層是模型本身的使用者介面（DeepSeek-TUI 把大模型直接放進 terminal）、中層是現有工具的文件延伸（n8n-mcp 讓 AI 讀得懂自動化平台的每個細節）、上層是多 agent 協作的编排框架（Ruflo 把 Claude Code 變成可以團隊作戰的系統）。如果你在找這三個方向的工具，今天的 Trending 值得細看。
+今天這三個專案的共同主題是「降低門檻」：Maigret 把 OSINT 調查的進入門檻降到只需要一個用户名；Pixelle-Video 把 AI 影片製作的技術門檻降到一行指令；browserbase/skills 把複雜的瀏覽器自動化變成給 Agent 的插件式技能。開源生態正在把過去需要專業背景才能做的事，變成普通開發者也能快速上手的工具。
 
 ## 參考連結
 
-- [Hmbown/DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI)
-- [czlonkowski/n8n-mcp](https://github.com/czlonkowski/n8n-mcp)
-- [ruvnet/ruflo](https://github.com/ruvnet/ruflo)
+- [soxoj/maigret — GitHub](https://github.com/soxoj/maigret)
+- [AIDC-AI/Pixelle-Video — GitHub](https://github.com/AIDC-AI/Pixelle-Video)
+- [browserbase/skills — GitHub](https://github.com/browserbase/skills)
+- [Maigret 官方文檔](https://maigret.readthedocs.io/)
+- [Pixelle-Video 用戶指南](https://aidc-ai.github.io/Pixelle-Video/zh/user-guide/templates/)
+- [Browserbase Stagehand 文件](https://github.com/browserbase/stagehand)
