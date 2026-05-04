@@ -1,76 +1,79 @@
 ---
 title: "AI 新聞精選｜2026 年 5 月 4 日"
-description: "ChatGPT 帳號可直接登入 OpenClaw 复用訂閱，GPT-5.5 發布七日收入翻倍；Google 悄然更新 Gemini 3 Flash 性能看齊 3.1 Pro。"
+description: "OpenClaw 2026.5.2 重寫插件架構、Google 測試 Omni 影片模型，商湯與 DeepSeek 持續深化開發者佈局。"
 publishDate: "2026-05-04T12:00:00+08:00"
-updatedDate: "2026-05-04T06:53:00+08:00"
-tags: ["OpenAI", "OpenClaw", "Google", "Gemini", "Meta"]
+updatedDate: "2026-05-04T12:04:00+08:00"
+tags: ["OpenClaw", "Google", "Gemini", "商湯", "DeepSeek"]
 series: "daily-ai-report"
-seriesOrder: 130
+seriesOrder: 79
 draft: false
-coverImage:
-  src: "@/assets/post-covers/2026-05-04-ai-news-daily.png"
-  alt: "AI 新聞精選｜2026-05-04"
 ---
 
 ## 今日觀察
 
-本週 AI 產業接連迎來三條重磅：OpenAI 宣布 ChatGPT 帳號與 OpenClaw 生態全面打通，GPT-5.5 發布不到一週創下歷來最佳商業表現，而 Google 則在 I/O 前夕悄然抬升了 Gemini 3 Flash 的輸出品質。三條新聞各有不同著眼點——平台整合、商業成績、產品策略——湊在一起剛好說明一件事：2026 年的 AI 競爭，已經從「模型能力」蔓延到「生態黏著度」。
+上週五是 AI 開發工具鍊快速整合的一週。OpenClaw 正式邁入 2026.5.2，插件系統全面轉向 npm-first；Google 的 Omni 模型流出，暗示 Gemini 可能打破延續多年的「影像是 Gemini、影片是 Veo」分工；商湯和 DeepSeek 則同時在 API 層面釋出善意，一個免費公測搶開發者，一個修 bug 修到讓人願意重新接入。這三條主線湊在一起，剛好構成一個共同主題：**2026 年中的 AI 工具鍊正在從「能做什麼」進化到「好不好用」。
 
 ---
 
-## OpenClaw 與 ChatGPT 帳號整合：平台戰爭的新打法
+## 主題一 — OpenClaw 2026.5.2：插件架構全面重寫，npm 時代正式到來
 
-Sam Altman 在 X 平台親自宣布，ChatGPT 用戶現在可以直接以原有帳號登入 OpenClaw，並繼續使用已訂閱的 ChatGPT Plus 權限，無需另外付費。
+2026.5.2 是 OpenClaw 近期幅度最大的結構性更新，核心改動繞著一個目標打轉：**擺脫依賴路徑的歷史包袱，讓插件安裝與執行環境現代化**。
 
-這不是一個技術公告，是一個生態宣言。過去 OpenClaw 的付費牆是採用障礙，開發者想在 CLI 環境裡用 GPT 模型，往往需要同時維護兩套帳號、兩組金鑰。現在一鍵打通之後，OpenClaw 的工具鏈（特別是 Codex）對已擁有 ChatGPT 訂閱的用戶而言等於是零成本接入。對 Sam Altman 來說，這也替 OpenClaw 拉到了一個龐大的既有付費用戶群。
+最大的變化是插件架構全面轉向 npm-first。以往插件系統繞過了 npm 生態，導致依賴衝突、版本錯亂、安裝失敗等問題層出不窮；新版本把 npm 當成預設安裝路徑，解決了長久以來「插件裝了跑不起來」的痛點。同時加入 Beta 通道回退機制——當官方發布 v2026.5.2-beta.1/beta.2 時，外部插件更新會優先試 beta，沒有 beta 版才 fallback 到 stable，這讓想搶先測試的開發者有了正式的升級階梯。
 
-值得注意的是，Altman 的公告並未詳細說明整合的技術邊界——例如 Team / Enterprise 帳號是否也能適用，或者 API 呼叫是否與 ChatGPT 訂閱共用 quota。但社群的第一波回應幾乎一面倒：「Codex 免費試用等於白送了。」接下來幾週要觀察的是，OpenClaw 本身的訂閱策略會不會因此調整。
+效能面，Gateway 啟動延遲和 Agent 熱路徑的優化最值得注意。官方指出此次修改涵蓋 session 列表刷新、任務維護、prompt 準備、插件載入多個環節，降低了重複的 CPU 消耗。對於長期跑在伺服器上的使用者而言，啟動延遲從幾秒鐘降到接近即時，體驗差距明顯。
 
----
+另一個實用更新是「醫生修復」功能（doctor repair）——當插件安裝失敗、依賴缺漏、或設定檔損壞時，OpenClaw 現在可以自動嘗試修復，而不只是跳出錯誤訊息。這是那種「出問題時才感受到價值」的功能。
 
-## GPT-5.5 創下歷來最成功發布：商業數據說了什麼
+這次一併支援 Grok 4.3 為預設 xAI 模型，並集中修補了 Discord、Slack、Telegram、WhatsApp 等訊息通道的邊緣情況。對仍在用 OpenClaw 做多通道整合的團隊，這波修復涵蓋的範圍相當廣。
 
-OpenAI 在同一時間公布了 GPT-5.5 發布後第一週的商業數據，口气罕见地直接：「有史以來最成功的發布。」
+### 對開發者意味著什麼
 
-具體指標有兩個：API 收入增速是過去任何一次發布的兩倍以上；Codex（綁定 GPT-5.5 的 AI 程式碼助手）在不到七天內收入翻倍。這組數字的意義在於，過去 OpenAI 的「新模型發布」往往只帶動開發者社群關注，這次則明顯有企業採購跟進——收入增速的「兩倍」不是來自用戶註冊，而是來自實際付費使用量的攀升。
-
-Codex 的七日翻倍尤其值得注意。這個數字背後對應的是企業對「AI 編碼工具」的需求正在脫離實驗階段，進入規模化採購。過去半年 Agent 程式設計賽道擠滿了競爭者（Cursor、Cognition、SWE-agent 等），GPT-5.5 能讓 Codex 在七天内把收入翻一番，說明 OpenAI 的底層模型仍是多數企業的首選。
+如果你之前因為依賴問題而對插件系統又愛又恨，2026.5.2 是一次正面的重新開始。npm-first 不只是解決安裝問題，同時讓社群插件生態（從 ClawHub 安裝）與 npm 生態正式打通，開發者終於可以用 `npm install` 思維管理 OpenClaw 插件了。強烈建議跑一次 `openclaw doctor` 確認環境狀態，再試著更新一次插件。
 
 ---
 
-## Google 悄然更新 Gemini 3 Flash：I/O 前的小預告
+## 主題二 — Google Omni 流出：I/O 前夕，Gemini 準備統一影像與影片？
 
-Google 的動作更隱性，但技術社群已經注意到：LMSYS Arena 上的「Gemini 3 Flash」型號在輸出品質上出現了實質性提升，多位用戶回報其表現已接近當前 Gemini 3.1 Pro 的水準。
+科技媒體 TestingCatalog 在 I/O 大會前挖到一個截圖：Gemini 的影片生成頁面出現了「Powered by Omni」字樣，搭配代號 Toucan（目前的 Veo 3.1 驅動方案）。
 
-問題在於：模型名稱沒有變。這代表兩種可能：Google 在不更新版本號的情況下置换了底層模型权重，或者在既有的 3 Flash 架構上做了大幅度的後訓練優化。無論哪種，這種「悄悄升級」的做法符合 Google 近年在 I/O 大會前的產品節奏：先在公开 benchmark 平台放出新品質，等開發者社群發現、討論，然後在大會上正式揭曉。
+這則消息最值得注意的訊號不是「Google 做了一個新模型」，而是**它可能改變 Google 維持多年的 split-model 策略**。
 
-如果這次 Arena 上的更新確實對應即將在 Google I/O 亮相的新版 Flash，那麼「3.1 Flash」或「3.5 Flash」的正式命名可能就會在幾週後的舞台上發生。對於已經在生產環境使用 Gemini 3 Flash 的開發者來說，這是一次無痛的模型升級機會；但對於還在觀望的人，或許可以等 I/O 正式公告後再決定遷移時程。
+目前 Gemini 的生成功能是這樣分工的：影片由 Veo 3.1 驅動，影像則由 Gemini 3（Nano Banana Pro）和 Gemini 3.1 Flash Image（Nano Banana 2）處理。兩個模組各自獨立，沒有共享骨幹。如果 Omni 是真正整合的「全能」模型（能同時處理影像和影片），這將是 Google 第一次把頂級多模態能力統一進同一個系統。
+
+對比競爭格局：ByteDance 的 Seedance 2.0 目前在影片生成 benchmark 領先，OpenAI 的 Sora 持續迭代，Runway 和 Pika 也在搶奪創作者市場。Google 選擇在這個時間點讓 Omni 進入 UI 可見字串，暗示產品團隊有意在 I/O 2026（5月19–20日）正式公開，這與 Google 表示 I/O 將有「Gemini 與更廣泛 AI 更新」的口徑一致。
+
+**但要注意**：目前資訊來自洩漏截圖，Omni 是 Veo 包裝、全新模型、或真正的 omni-model 還沒有定論。適合保持關注但不要現在就重寫你的技術選型。
+
+### 為什麼現在重要
+
+如果 Omni 是真正的統一多模態模型，它將簡化目前需要分別串接 Gemini API（影像）和 Veo API（影片）的開發者流程。一個 endpoint、統一定價、相同的能力範圍——這對做內容生成的工具鏈是顯著的降低複雜度。但最終要看 Google 官方怎麼說。
 
 ---
 
-## 奥斯卡明確禁止 AI 創作參選：遲到但必要的界線
+## 主題三 — 商湯 Token Plan 公測：SenseNova 與 DeepSeek 同步免費呼叫
 
-美國電影藝術與科學學院（Academy）發布第 99 屆奥斯卡新規，明確規定：參選演員獎的表演必須由人類在本人同意下實際完成，劇本須由人類創作，AI 生成的內容無論比例多寡均無資格參與評選。
+商湯科技 SenseNova 平台推出 Token Plan 服務，目前進入限量免費公測階段。公測期間的免費額度涵蓋兩個層次：
 
-這條規則的細節比外界預期的更嚴格：學院保留要求製片方提交 AI 使用證明的權利，並非只是呼籲，而是實質的審查機制。過去兩年好萊塢談 AI 替代威脅時，多數討論停留在「編劇工會談判」層面；奥斯卡新規則是主流獎項機構第一次用明確的門檻把底線畫出來。
+**SenseNova 自有模型**（6.7 Flash-Lite 與 U1 Fast）：每 5 小時各 1500 次額度。**DeepSeek-V4-flash**：每 5 小時 150 次額度。雖然 DeepSeek-V4-flash 的額度比 SenseNova 自有模型少，但作為第三方模型出現在公測套餐裡，這件事本身就透露了一個訊號：商湯願意在自家平台上為競爭對手的模型导流。
 
-對影視產業來說，這條規則短期內的實質影響有限——AI 生成內容進入商業電影的比例本就不高，且評選週期落後於創作三年——但象徵意義很大。它確立了一個原則：在專業創作領域，「誰做的」比「做出什麼」更重要。這對正在用 AI 工具輔助劇本開發現的開發者或獨立創作者，也是一個值得關注的訊號：工具本身不被歧視，但作品屬性決定了它的應用場景。
+這個策略有點像手機廠商在系統相簿裡內建對手品牌滤镜——用免費額度把開發者拉進來，再用平台其餘付費服務（Lite/Pro）變現。Lite 與 Pro 等付費方案即將上線，公測期結束後的定價策略會是觀察重點。
+
+產品層面，Token Plan 原生支援 Cowork-Skills 辦公技能體系，並可透過 Hermes Agent 與 OpenClaw 整合。這意味著在 OpenClaw 生態內，已經有直接的方式呼叫商湯模型——對已經在用 OpenClaw 的開發者，設定成本相對低。
 
 ---
 
 ## 其他值得關注
 
-- **Meta 收購人形機器人新創 ARI**：Meta 買下了專注機器人理解與適應人類行為的 Assured Robot Intelligence，團隊將加入 Superintelligence Labs。這是 Meta 連續第二季收購機器人領域新創，顯示其 AI 野心已從純語言模型擴展到實體智慧。
-- **獵豹移動 Easy Router 被指抄襲開源專案**：傅盛推的 AI 閘道器產品 Easy Router 被發現頁面程式碼與開源專案 NewAPI 有 98 處匹配，原作者指其刪除版權資訊且違反開源授權。這事件在中國開發者社群引發討論，散熱速度快但官方尚未正面回應。
+- **DeepSeek API 修復 400 錯誤**：DeepSeek 在官方微信群宣布已解決部分第三方框架呼叫時的 400 錯誤問題，並邀請之前受阻的用戶重新嘗試接入。這不是新功能，但對已整合 DeepSeek API 的開發者而言，修復意味著你的自動化流程可以重新正常運作了。官方同時表示歡迎持續回饋問題，姿態比多數中國模型廠商透明。
+- **Codex Security 插件正式發布**：Codex 團隊推出的安全掃描插件現已可用，內建五個標準化 AppSec 工作流（安全掃描、威脅建模、漏洞發現、驗證、攻擊路徑分析），覆蓋 PR、分支、Repo 層級的自動化安全審查。如果你在寫的是 Code Agent 或開發工具鍊相關產品，這個插件值得評估是否整合進你的開發流程。
 
 ---
 
 ## 參考連結
 
-- [Sam Altman 宣布 ChatGPT 帳號登入 OpenClaw](https://x.com/sama/status/2050357911915028689)
-- [OpenAI 公布 GPT-5.5 最成功發布](https://x.com/OpenAI/status/2050250926888468929)
-- [Codex HyperFrames 官方插件公告](https://x.com/OpenAIDevs/status/2050509679076516064)
-- [Google Gemini 3 Flash Arena 更新討論](https://x.com/marmaduke091/status/2050430054056767994)
-- [奥斯卡第 99 屆新規公告](https://press.oscars.org/news/awards-rules-and-campaign-promotional-regulations-approved-99th-oscarsr)
-- [Meta 收購 ARI 機甲人機器人新創](https://techcrunch.com/2026/05/01/meta-buys-robotics-startup-to-bolster-its-humanoid-ai-ambitions/)
-- [獵豹移動 Easy Router 抄襲爭議](https://linux.do/t/topic/2100692)
+- [OpenClaw v2026.5.2 Release Notes](https://github.com/openclaw/openclaw/releases/tag/v2026.5.2)
+- [OpenClaw v2026.5.2 官方公告](https://x.com/openclaw/status/2050735037230801042)
+- [TestingCatalog — Google Omni 模型報導](https://www.testingcatalog.com/google-is-testing-new-omni-model-for-video-generation-ahead-of-i-o/)
+- [商湯 Token Plan 公測頁面](https://www.sensenova.cn/token-plan)
+- [Codex Security 插件發布推文](https://x.com/reach_vb/status/2051019108028969251)
