@@ -1,63 +1,67 @@
 ---
 title: "【熱門專案】2026-05-05 GitHub 趨勢速讀"
-description: "今日 GitHub 熱門專案精選：CocoIndex、n8n-MCP、DeepSeek TUI、DocuSeal"
+description: "今日 GitHub 熱門專案精選：The Agency、Dexter、qBittorrent、Jellyfin"
 publishDate: "2026-05-05T07:30:00+08:00"
-updatedDate: "2026-05-05T00:30:00+08:00"
-tags: ["CocoIndex", "n8n", "DeepSeek", "DocuSeal", "MCP"]
+updatedDate: "2026-05-05T07:33:00+08:00"
+tags: ["The Agency", "Dexter", "qBittorrent", "Jellyfin", "GitHub Trending"]
 draft: false
 coverImage:
   src: "@/assets/post-covers/2026-05-05-github-trending-daily.png"
   alt: "GitHub 熱門專案｜2026-05-05"
 ---
 
-## 今天的 Trending，不只是 Agent 變多，而是 Agent 開始補齊基礎設施
+## 今天的 Trending 很有意思：一半在補 Agent 團隊編排，一半在證明老牌開源基建還是有人追
 
-今天 GitHub Trending 很明顯不是在比誰又做出一個新聊天殼，而是在比誰能把 AI 代理真正接進工作流、資料管線與實際業務。前排專案裡，最值得看的幾個方向很集中：有人在補 n8n 與 MCP 之間的臨門一腳，有人在處理長週期代理最怕的「資料一更新就全量重跑」，也有人把終端代理做成真正能長時間工作的單檔工具。就連電子簽署這種看起來離 AI 很遠的領域，今天也冒出一個很成熟的開源替代品。
+今天 GitHub Trending 前排很明顯還是被 AI Agent 佔住視線，但如果只看新鮮的 Agent 專案，會漏掉另一條更務實的線：開發者也在回頭收藏那些已經做出產品完成度、部署經驗與跨平台能力的老牌開源系統。前者想解的是「怎麼把 AI 變成一組可分工的助手」，後者想解的是「怎麼把日常基礎軟體重新拿回自己手上」。放在同一天看，反差其實很值得玩味。
 
-## czlonkowski/n8n-mcp — 把 AI 助理直接接上 n8n 的工作流語意
+## msitarzewski/agency-agents — 把「提示詞包」往真正的職能分工再推一步
 
-n8n-mcp 的核心價值，不是單純做一個 MCP server，而是把 n8n 這套龐大的節點生態整理成 AI 真能理解的結構化知識。依照專案 README，它現在覆蓋 1,650 個 n8n 節點、2,352 份工作流模板，測試數超過 5,400 筆，連節點屬性與操作也做了細緻映射。這代表 Claude Code 或 Cursor 類工具，不再只是「大概知道 n8n 能做自動化」，而是能更具體地知道某個節點能接什麼參數、有哪些操作、哪種模板最接近你的需求。
+The Agency 的做法不是再發明一個 Agent runtime，而是直接把「一群專職 AI 角色」整理成可安裝、可搬運、可跨工具使用的 agent library。README 裡列出的 division 很完整，工程、設計、行銷、產品、專案管理到銷售都有對應角色，而且每份 agent 檔案不只寫 persona，還附上工作流程、交付物型態與成功指標。這讓它比一般 prompt collection 更像一個可直接佈署的作業手冊。
 
-從 repo 結構也看得出它不是玩具：根目錄同時有 Docker、測試環境、範例設定與 CI 痕跡，官方站則主打「直接用對話建立、驗證、部署工作流」。我特別在意的是它把 AI 寫 workflow 這件事往安全邊界推了一步，README 明講不要直接改 production workflow，而是先複製再讓 AI 動手。這種提醒很關鍵，因為工作流自動化一旦接到信件、資料庫或金流，錯一次就不是聊天視窗裡按個返回而已。以今天 19,810 星、23 位貢獻者、MIT 授權來看，這已經不是概念展示，而是正往團隊級工具靠攏。
+從 repo 結構也看得出作者有把它往產品化整理：根目錄就能看到 `engineering`、`design`、`marketing`、`sales` 等分類資料夾，還有 `scripts/install.sh` 與 `scripts/convert.sh`，直接把同一批 agents 轉成 Claude Code、Gemini CLI、Cursor、OpenClaw 等不同工具能吃的格式。以今天 92,602 星、約 66 位貢獻者、MIT 授權、單日再衝 828 星來看，這已經不是「分享幾個 prompt」的等級，而是團隊開始把 AI 分工知識模組化收藏。
 
-適合誰：已經用 n8n 做內部自動化、又想把 AI 助理變成 workflow 搭建助手的工程團隊。
+我自己的判斷是，這類專案真正的價值不在角色名單有多長，而在它把 AI 協作的單位從「一個全能聊天視窗」切回「一組邊界清楚的職能」。對正在搭內部 AI 工作流的團隊來說，這個方向比再堆一層 orchestration UI 還實用。
 
-## cocoindex-io/cocoindex — 真正打中長週期 Agent 痛點的增量資料引擎
+適合誰：想快速建立多角色協作流程、又不想自己從零整理 agent persona 與 SOP 的產品團隊。
 
-如果說多數 Agent 專案都在解「怎麼推理」，CocoIndex 解的是更麻煩的事：怎麼讓代理永遠拿到新鮮上下文，而且不要每次資料一變就整批重算。官方把它定位成 incremental engine for long-horizon agents，這個說法沒有誇大。文件裡最清楚的範例，是把 PDF 轉成 Markdown 的流程宣告成 Python pipeline，之後只重跑有變動的檔案；資料刪掉，目標輸出也會跟著清掉。這種 target state 思路，很像把資料工程、索引更新與 RAG 維護合成同一套語意。
+## virattt/dexter — 金融研究 Agent 開始從 demo 邁向可驗證的工作流
 
-技術上它最有意思的地方，是把使用者介面維持在 Python 宣告式 API，但底層又明顯不是只靠腳本硬撐。repo 同時有 Python 與 Rust 結構，官方首頁強調 parallel by default、只處理 delta，文件則寫到可以把 codebase、Slack、PDF、影片等內容持續餵進代理。對正在做企業內部知識檢索或長流程代理的人來說，這比再多一個 prompt framework 還實際，因為真正會讓系統壞掉的通常不是模型答不出來，而是索引老掉。它目前有 7,847 星、65 位貢獻者、Apache-2.0 授權，今天雖然只多了 204 星，但我反而覺得這是偏務實型團隊開始認真收藏的訊號。
+Dexter 的定位很直接：它不是泛用聊天助手，而是專門做深度金融研究的 autonomous agent。README 一開頭就把核心能力講得很清楚——任務規劃、自我檢查、即時金融資料、循環保護——而且不是停在概念層，專案裡真的把 eval、debug 與訊息閘道一起放進來。你在根目錄會同時看到 `src/evals`、`scripts`、`env.example` 與 WhatsApp gateway 相關文件，代表作者在意的不只是「能跑」，還有「怎麼驗證它有沒有亂講」。
 
-適合誰：在做 RAG、知識庫同步、企業代理記憶體，或任何需要持續更新索引的後端工程師。
+它最值得注意的地方，是把金融研究這種高幻覺成本場景拆成比較工程化的流程。依照 README，Dexter 會把複雜問題拆成研究步驟，搭配即時 market data 去取財報、現金流與其他指標，再把工具呼叫記進 `.dexter/scratchpad/` 的 JSONL 檔案裡。這種 scratchpad 設計很重要，因為金融分析最怕的不是模型慢，而是你回頭查不到它到底引用了哪些數字。它目前有 23,172 星、約 19 位貢獻者，今天再多 497 星；雖然 repo 還沒掛清楚的 GitHub license metadata，但 README 寫的是 MIT License。
 
-## Hmbown/DeepSeek-TUI — 終端代理開始從聊天殼進化成可久坐的工作台
+如果說前一波 Agent 熱潮重點是「會不會自己找工具」，Dexter 這種專案比較像下一步：針對單一高價值垂直場景，把資料來源、評測方式與審計痕跡一起包進去。這種路線比較慢，卻也更像真產品。
 
-DeepSeek-TUI 第一眼看起來像又一個終端 Agent，但 README 與文件細節很快就把它跟一票包裝層拉開。它主打 Rust 單一二進位、免 Node/Python runtime，直接內建 MCP client、sandbox、durable task queue，還把 DeepSeek V4 的 1M token context 與 prefix cache 當成主要賣點。也就是說，作者想做的不是「在 terminal 裡聊模型」，而是讓終端本身變成能長時間處理任務的代理工作台。
+適合誰：做投研、量化研究、金融內容分析，或想研究垂直領域 autonomous workflow 的工程師。
 
-我特別看重它兩個設計。第一個是模式分層：Plan、Agent、YOLO 三種互動模式，把探索、需審批與全自動執行拆開，這比很多一上來就喊 autonomous 的工具成熟。第二個是 MCP 與 HTTP/SSE runtime API 都有明確文件，代表它不只想服務單人互動，也在試圖變成可嵌入其他系統的執行核心。從 repo 來看，它已有 3,639 星、8 位貢獻者、MIT 授權，今天更衝出 1,277 星，爆發力很強。我自己的判斷是：這類終端代理真正的競爭點，已經不是誰會 edit file，而是誰更像可靠的作業環境。DeepSeek-TUI 目前至少走在對的方向上。
+## qbittorrent/qBittorrent — 老牌工具重新上榜，提醒大家成熟度本身就是護城河
 
-適合誰：偏好終端工作流、想用本地工具長時間駕馭模型與 MCP 生態的開發者。
+qBittorrent 其實不是新專案，2012 年就開倉，今天還能回到 Trending，靠的不是話題感，而是那種很多新工具短期內補不起來的完成度。官方網站把它定位成 µTorrent 的開源替代品，核心基底是 Qt 與 libtorrent-rasterbar；README 則補上更多工程細節，像是跨平台支援、PGP 簽章、公用 IP-to-country 資料庫，以及獨立的 Web API 變更紀錄。根目錄還保留 `CMakeLists.txt`、`WebAPI_Changelog.md`、`COPYING` 與完整開發規範，整體很明顯是長年維護下來的產品型 repo。
 
-## docusealco/docuseal — 看似離 AI 很遠，卻是今天最像生意的開源產品
+從使用面來看，它最強的地方不是某個單一花招，而是把搜尋、RSS、自動下載規則、Web UI、頻寬排程、IPv6、UPnP/NAT-PMP 這些日常需求全部打磨完整。今天它在 GitHub 有 37,034 星、超過 400 位貢獻者，單日新增 68 星，雖然聲量不如前面的 AI 題目，但我反而覺得這種回潮更有訊號：當開源使用者開始重新收藏老牌基建，往往代表大家對「可靠、能長期跑」的興趣又升上來了。
 
-DocuSeal 是今天名單裡最不「Agent 味」的一個，但我反而很想把它放進來。理由很簡單：當大家都在做 AI 外掛時，它做的是企業每天真的會用到的文件簽署。官方首頁把它定位成 DocuSign 與 PandaDoc 的開源替代品，README 列出 PDF 表單編輯、多簽署者流程、SMTP 郵件、自架儲存到 S3／Google Cloud／Azure 等能力，還直接放了 live demo。這代表它不是只有開源碼，而是把產品完成度一起端上桌。
+適合誰：想自架下載工作流、需要跨平台 BitTorrent 客戶端，或偏好可審計、無廣告工具鏈的進階使用者。
 
-從技術輪廓看，這是一個典型但很務實的全端產品：Ruby on Rails 打底，前端搭配 Vue、Tailwind 與 Hotwire/Turbo，repo 根目錄就是完整應用程式而不是 SDK。更重要的是，它網站宣稱已有 161,700 名使用者完成簽署，GitHub 也累積到 12,959 星、5 位貢獻者、AGPL-3.0 授權，今天再多 316 星。這類專案最有價值的地方，在於它提醒我們：開源的勝負不只看模型整合，還看能不能把一個本來就昂貴、又充滿流程摩擦的 SaaS 類別，做成團隊敢自架的替代品。
+## jellyfin/jellyfin — 自架媒體系統還在持續吸粉，產品完整度遠比新奇更有說服力
 
-適合誰：想自架電子簽署流程、要把簽核整合進既有業務系統，或對垂直 SaaS 開源替代品有興趣的團隊。
+Jellyfin 跟 qBittorrent 一樣不是新面孔，但它能一直留在開源收藏清單裡，靠的是很扎實的系統能力。官方把它定義成自由軟體媒體系統，主打自主管理與串流自己的內容庫，對標的是 Emby 與 Plex 這類封閉式方案。repo README 與官方文件都很完整：你能直接看到 .NET 9 SDK、Docker/Kubernetes/Podman 安裝、外掛、備份、硬體轉碼與監控等章節，這不是單純的 media server 程式碼，而是一整套已經能讓人長期營運的服務堆疊。
+
+從程式碼結構看也很成熟，根目錄有 `Jellyfin.Server`、`Jellyfin.Api`、`Jellyfin.Data`、`Emby.Server.Implementations` 等多個專案模組，顯示它把 API、資料層與伺服器實作拆得很清楚。它目前累積 51,141 星、超過 400 位貢獻者、GPL-2.0 授權，今天再多 35 星。數字不算爆炸，但這類專案真正的吸引力從來不是單日星數，而是你要找一套能長期掌控影片、音樂、照片庫，又不想被雲端平台綁住時，Jellyfin 幾乎總會被提到。
+
+我覺得 Jellyfin 今天還能上榜，某種程度也在提醒一件事：2026 年大家談開源，不只是在追最新的 AI 介面，還是在重新評估哪些服務值得自己掌控。這股自架回潮，未必比 Agent 熱潮小。
+
+適合誰：打算自架家庭媒體伺服器、重視資料主控權，或需要可延伸串流平台的開發者與 homelab 玩家。
 
 ## 趨勢小結
 
-今天這波 GitHub Trending 的共通點，是開發者開始對「能不能真的接進系統」比對「會不會說話」更有興趣。n8n-mcp 在補 AI 與 workflow 的接縫，CocoIndex 在補資料新鮮度，DeepSeek-TUI 在補代理執行環境，DocuSeal 則證明開源產品化依然很有吸引力。我的感覺很直接：2026 年的熱門專案，正在從模型炫技回到工程落地。
+今天這份 GitHub Trending 很像兩條開源路線同時升溫：一條是在想辦法把 AI 分工做細、把垂直工作流做實，另一條則是在替成熟基礎軟體重新定價。The Agency 與 Dexter 代表的是前者，qBittorrent 與 Jellyfin 代表的是後者。我的感覺很簡單：現在最值得收藏的 repo，不一定最炫，卻常常最接近「你下週真的會拿來用」。
 
 ## 參考連結
 
 - [GitHub Trending](https://github.com/trending?since=daily)
-- [czlonkowski/n8n-mcp — GitHub](https://github.com/czlonkowski/n8n-mcp)
-- [n8n-mcp 官方網站](https://www.n8n-mcp.com/)
-- [cocoindex-io/cocoindex — GitHub](https://github.com/cocoindex-io/cocoindex)
-- [CocoIndex Quickstart](https://cocoindex.io/docs/getting_started/quickstart/)
-- [Hmbown/DeepSeek-TUI — GitHub](https://github.com/Hmbown/DeepSeek-TUI)
-- [DeepSeek-TUI MCP 文件](https://github.com/Hmbown/DeepSeek-TUI/blob/main/docs/MCP.md)
-- [docusealco/docuseal — GitHub](https://github.com/docusealco/docuseal)
-- [DocuSeal 官方網站](https://www.docuseal.com/)
+- [msitarzewski/agency-agents — GitHub](https://github.com/msitarzewski/agency-agents)
+- [virattt/dexter — GitHub](https://github.com/virattt/dexter)
+- [qbittorrent/qBittorrent — GitHub](https://github.com/qbittorrent/qBittorrent)
+- [jellyfin/jellyfin — GitHub](https://github.com/jellyfin/jellyfin)
+- [qBittorrent 官方網站](https://www.qbittorrent.org/)
+- [Jellyfin 官方文件](https://jellyfin.org/docs/)
