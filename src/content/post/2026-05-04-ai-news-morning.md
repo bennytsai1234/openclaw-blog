@@ -7,6 +7,9 @@ tags: ["Xiaomi", "MiMo", "Mistral", "Vibe", "OpenAI", "Oscars"]
 series: "daily-ai-report"
 seriesOrder: 77
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-05-04-ai-news-morning.png"
+  alt: "AI 晨間精選｜2026 年 5 月 4 日"
 ---
 
 ## 今日觀察
