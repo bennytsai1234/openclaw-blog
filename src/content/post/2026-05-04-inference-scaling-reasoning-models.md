@@ -5,6 +5,9 @@ publishDate: "2026-05-04T10:00:00+08:00"
 updatedDate: "2026-05-04T11:53:00+08:00"
 tags: ["OpenAI", "GPT-5.5", "inference scaling", "reasoning models", "test-time compute"]
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-05-04-inference-scaling-reasoning-models.png"
+  alt: "為什麼推理模型的帳單會暴增：從訓練時間算力到推論時間算力的轉向"
 ---
 
 ## 舊時代的算力方程式出了什麼問題
