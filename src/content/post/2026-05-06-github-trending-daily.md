@@ -1,81 +1,119 @@
 ---
 title: "【熱門專案】2026-05-06 GitHub 趨勢速讀"
-description: "今日 GitHub 熱門專案精選：context-mode、local-deep-research、Scrapling、TabPFN"
+description: "今日 GitHub 熱門專案精選：Context Mode、CocoIndex、Local Deep Research、TabPFN"
 publishDate: "2026-05-06T07:30:00+08:00"
-updatedDate: "2026-05-06T02:27:00+08:00"
-tags: ["Claude Code", "local LLM", "web scraping", "tabular ML"]
+updatedDate: "2026-05-06T07:30:00+08:00"
+tags: ["Context Mode", "CocoIndex", "Local Deep Research", "TabPFN", "MCP", "AI"]
 draft: false
 coverImage:
   src: "@/assets/post-covers/2026-05-06-github-trending-daily.png"
-  alt: "GitHub 熱門專案速讀｜2026-05-06"
+  alt: "GitHub 熱門專案速讀 2026-05-06"
 ---
 
-今天的 GitHub Trending 有一個明確主題：讓 AI agent 做事更聰明、更本土、更少負擔。四個專案剛好從不同維度切進這個問題。
+今天 GitHub Trending 的主旋律很清楚：**讓 AI 代理（agent）更長壽、更聰明、更能處理漫長任務**。Context Mode 解決 AI 編碼工具的 context 窗口損耗問題，CocoIndex 做出增量索引引擎，Local Deep Research 把研究任務完全本地化，TabPFN 則是在表格資料這個傳統 ML 地盤上，用 Foundation Model 翻轉了遊戲規則。幾條不同的技術線，最終都指向同一個問題——怎麼讓 AI 在長時工作流裡不遺忘、不卡住、不燒光你的 token budget。
 
-## context-mode：讓 AI coding agent 不再爆 context
+## mksglu/context-mode
 
-每一個 MCP tool call 都會把資料傾倒進 context window。Playwright snapshot 吃掉 56 KB。二十個 GitHub issue 吃掉 59 KB。開了半小時之後，40% 的 context 空間就這樣被工具輸出占走了。
+**解決什麼：AI 編碼代理的 context 窗口被工具輸出吃光**
 
-context-mode 從四個方向同時解決這個問題。
+每呼叫一次 MCP 工具，輸出就會灌進 context window。一個 Playwright 快照 56 KB，二十個 GitHub Issue 討論 59 KB，三十分鐘後 40% 的 context 就這樣不見了。當 agent 執行對話壓縮（compaction）騰出空間時，它會忘記剛才在改哪個檔案、哪個任務做到一半、使用者最後問了什麼。
 
-第一，**沙盒隔離**：工具輸出不再直接寫入 context，而是寫进 SQLite，再透過 FTS5 BM25 檢索。只把「當前任務相關」的片段動態拉回 context。315 KB 的工具輸出變成 5.4 KB，壓縮率 98%。
+Context Mode 從四個方向同時下手：
 
-第二，**會話連續性**：每次檔案編輯、git 操作、錯誤、使用者決策都被追蹤存入資料庫。當模型壓縮對話騰出空間時，不需要把全部歷史灌回去，按需檢索就好。
+**Context Saving**：工具輸出先寫進隔離的沙盒（sandbox），不再直接進 context window。一個 315 KB 的紀錄可以壓到 5.4 KB，減少 98%。
 
-第三，**Think in Code**：要求模型把「分析」變成「程式」。與其讓模型讀 50 個檔案去數 function 數量，不如叫它寫一行 script 做完這件事，再把結果 console.log 出來。一個 ctx_execute 取代十次 tool call，省下約 100 倍的 context。
+**Session Continuity**：所有檔案修改、git 操作、任務、錯誤和使用者決策都寫進 SQLite，並用 FTS5 建立全文索引。當對話需要壓縮時，context-mode 不把資料倒回去，而是做 BM25 檢索，只取出與當前任務最相關的內容。這種做法與其把對話歷史重新塞回 prompt，不如建立一個外部知識庫來支撐。
 
-第四，**輸出 compression**：輸出時去掉 articles、filler、pleasantries、hedge words，只保留技術實質。Security warning 和不可逆操作時才完整展開。預計可節省 65–75% 的 output token。
+**Think in Code**：與其讓 agent 讀 50 個檔案去數函式數量，不如叫它寫一個腳本來計算，只把結果 console.log 出來。一個 `ctx_execute` 呼叫替掉十次 tool call，context 消耗節省 100 倍。README 原文直接寫：「Treat the LLM as a code generator, not a data processor.」
 
-目前支援 14 個平台，包括 Claude Code（全自動 plugin）、Gemini CLI、Cursor、Cline、windsurf、OpenCode、Continue.dev，以及多個 MCP-based 環境。Claude Code 安裝只需 `/plugin marketplace add mksglu/context-mode`。
+**Output Compression**：輸出自動刪減所有填充詞（just/really/basically）、客氣話和 hedge 語氣，只保留技術本質。壓縮率約 65–75%，同時保持完整技術準確性。
 
-## local-deep-research：把 AI 研究助理完全安裝在你機器上
+支援 14 個平台，包括 Claude Code（有完整 plugin marketplace 整合）、Gemini CLI、VS Code Copilot、JetBrains Copilot、Cursor 和 OpenCode。SQLite 的 FTS5 為所有平台共享的核心元件，確保跨平台體驗一致。
 
-一個能在 3090 顯示卡上跑到 SimpleQA 準確率約 95% 的本地研究工具。支援所有本地與雲端 LLM（llama.cpp、Ollama、Google、OpenAI），以及 10 個以上的搜尋引擎。
+目前累積 13,008 顆星，今天增加 344 顆。適合所有長期使用 AI 編碼代理、對 context 耗竭有痛的工程師。
 
-核心設計是一套 pipeline：下載來源 → 存入加密資料庫 → 索引並向量化 → 允許使用者跨私人文件與即時網路同時提問。資料庫採用 SQLCipher， AES-256 加密，密鑰不回傳，連 server 管理員都無法讀取你的資料。
+**技術定位**：MCP Server + Hook System + SQLite/FTS5，是今年 context 優化這個子類別裡完成度最高的方案。
 
-新的 LangGraph Agent 策略讓模型自主決定何時搜尋、動態切換搜尋引擎（arXiv、PubMed、Semantic Scholar），並在收集到足夠資訊後才做綜合報告。初步結果顯示這種 agentic 模式比 pipeline 模式的資訊覆蓋範圍明顯更廣。
+## cocoindex-io/cocoindex
 
-供共鏈安全也做得扎實：Docker image 有 Cosign 簽章、SLSA  provenance 與 SBOM，可透過 `cosign verify` 驗證完整性。官方說 SimpleQA 準確率約 95%（使用 GPT-4.1-mini + SearXNG + focused-iteration 策略），與狀態前沿的雲端研究系統相當。
+**解決什麼：讓程式碼庫、文件和知識庫的索引始終保持最新，只處理變動的部分**
 
-三種安裝方式：Docker 完整包（Linux GPU 最推薦）、docker-compose（支援 CPU 模式）、或直接 pip install。Windows/Mac/Linux 皆可。
+傳統 RAG 流程每個週期都要重新處理整個語料庫——新舊檔案全部重新 embedding，不僅費時，當語料庫長大到一定程度，批次處理的延遲和成本會讓即時性需求完全無法滿足。
 
-## Scrapling：版面改了也不用改爬蟲
+CocoIndex 的核心是一個**增量計算引擎**（incremental compute engine）。你用 Python decorator 宣告目標結構，CocoIndex 會自動追蹤來源端的變化，只對 delta 重新計算。
 
-傳統爬蟲最大的痛點：網站改一個 class name，整套爬蟲就掛了。Scrapling 的核心賣點正是這個——**adaptive parsing**，parser 會學習網站結構變化，自動重新定位目標元素。
+```python
+@coco.fn(memo=True)  # cached by hash(input) + hash(code)
+async def index_file(file, table):
+    for chunk in RecursiveSplitter().split(await file.read_text()):
+        table.declare_row(text=chunk.text, embedding=embed(chunk.text))
 
-底層做了三件事。
+@coco.fn
+async def main(src):
+    table = await postgres.mount_table_target(PG, table_name="docs")
+    table.declare_vector_index(column="embedding")
+    await coco.mount_each(index_file, localfs.walk_dir(src).items(), table)
 
-**無頭瀏覽器級 fetch**：內建 StealthyFetcher，可繞過 Cloudflare Turnstile，預設 `adaptive=True`。Fetch 回來的頁面無論結構怎麼改，只要 pass `adaptive=True` 就能找到目標元素。官方號稱能處理從單一 request 到大規模 crawl 的所有情境。
+coco.App(coco.AppConfig(name="docs"), main, src="./docs").update_blocking()
+```
 
-**爬蟲框架**：基於 asyncio 的 Spider 類別，支援 concurrent 爬取、pause/resume、千萬級 URL 的排程。內建自動 proxy rotation，遇到封鎖時自動切 IP，不中斷爬蟲。
+第一次跑是完整回填（backfill），之後再跑就只處理有變動的檔案。引擎底層是 Rust，實作平行 chunking 與零拷貝轉換，一筆壞資料不會拖垮整個流程。
 
-**MCP server**：提供 AI agent 用的 MCP 介面，讓 AI coding agent 可以直接呼叫 Scrapling 做網頁抓取。
+支援的來源包含本地檔案系統、PostgreSQL（可搭配 pgvector 做向量索引）、Slack、PDF、影片等多種 connector。也有針對 AI 編碼代理的專用 skill 檔案，讓代理在呼叫 API 時減少犯錯。授權 Apache 2.0。
 
-文件有 9 種語言翻譯，包含繁體中文。底層基於 Playwright，生態相容性廣，PyPI 安裝 `pip install scrapling` 即可。
+8,371 顆星，今日增加 434 顆。**這個專案的定位很特別**：它不是另一個 RAG 框架，而是一個資料管線的中間件，適用於任何需要對大型語料庫維持即時同步的系統。對建置內部知識庫、做文件 QA、或需要 AI 分析持續更新資料的團隊，會比從頭刻 RAG 省很多力氣。
 
-## TabPFN：表格資料的 Foundation Model
+## LearningCircuit/local-deep-research
 
-表格資料 ML 是 Kaggle 競賽裡最常見的題型，但多數團隊還停留在 XGBoost / LightGBM 的 tuning 地獄。TabPFN 想做的事，是讓工程師像用 text model 一樣簡單地處理表格分類與回歸問題。
+**解決什麼：把 AI 研究任務完全移到本地執行，資料不離開你的機器**
 
-用法極簡：安裝後 `from tabpfn import TabPFNClassifier`，`clf.fit(X_train, y_train)`，直接 predict。不需要 feature scaling，不需要 one-hot encoding，模型自己處理。
+本地端跑深度研究聽起來是個矛盾——多數「本地 LLM」方案不是太慢就是效果太差。Local Deep Research（簡稱 LDR）號稱在 SimpleQA benchmark 達到約 95% 準確率，使用 Qwen3.6-27B 在 RTX 3090 上就能跑。這個數字當然要看具體情境，但相比多數本地方案已經是可以拿出來說嘴的水準。
 
-背後原理是 Transformer architecture 在大量合成資料上訓練，學會了表格資料的通用模式，然後 inference 時直接在新資料上預測，不需要再微調。適合的資料範圍是少於 10 萬樣本、少於 2000 features，超出這個範圍另有 large datasets guide。
+架構上，LDR 是一個包含多個模組的研究代理系統：
 
-需要 GPU（舊卡 8GB VRAM 也能跑），沒有 GPU 的話可以用 TabPFN Client 做雲端推論。Colab notebook 有完整的分類、回歸、迴歸範例。
+- **研究引擎**：把複雜問題拆解成步驟，自動選擇適當的搜尋引擎（20+ 種，包括 arXiv、PubMed、Semantic Scholar、SearXNG、Wikipedia、Brave Search 等），最後合成帶引用來源的報告。
+- **新增的 LangGraph Agent 策略**：讓 LLM 自主決定搜什麼、什麼時候切換到專業引擎、什麼時候該開始合成，是真正意義上的 autonomous agent，不是 pipeline 預先定義好的流程。
+- **加密知識庫**：使用 SQLCipher（AES-256 加密）儲存每次研究 session 下載的來源論文和網頁，支援跨 session 的個人知識累積。
+- **MCP Server**：可作為 MCP server 接入 Claude Desktop 和 Claude Code，讓這些工具直接呼叫本地研究能力。
 
-官方 Extensions repo 提供了 SHAP 解釋、outlier detection、Synthetic data generation、Feature embeddings、many-class 擴展、與 Random Forest 混合等多種工具。
+安全方面有具體承諾：無遙測、無 analytics、不上傳任何資料。Docker 映像檔有 Cosign 簽名、SLSA  provenance 和 SBOM。5,141 顆星，今日增加 200 顆。
 
-## 結語
+**適合誰**：對資料隱私有嚴格要求的研究者、需要在離線環境工作的工程師、或想把研究代理能力整合進自己工具鏈的開發者。缺點是本地模型效果仍高度依賴硬體配置，無 GPU 的機器不建議強求。
 
-今天的四個專案共同反映一個趨勢：工具層正在快速成熟。context-mode 解決 agent 的資源浪費、local-deep-research 把研究能力還給使用者本機、Scrapling 把爬蟲的脆弱性降下來、TabPFN 把表格 ML 的進入門檻抹平。這不是 AI 模型本身的進展，而是應用層基礎建設集體往前滾的訊號。
+## PriorLabs/TabPFN
+
+**解決什麼：用 Foundation Model 的方式做表格資料分類與迴歸，顛覆 gradient boosted tree 的霸主地位**
+
+表格資料（tabular data）長期是 XGBoost 和 LightGBM 的地盤。深度學習在影像、NLP 領域稱霸，但在表格資料上，gradient boosted decision tree（GBDT）幾乎不曾被真正打敗過。TabPFN 想改變這件事。
+
+TabPFN 的全名是 **Tabular Prior-data Fitted Network**。它的核心思路是：不是針對單一 dataset 訓練模型，而是訓練一個能夠**在任何表格資料上直接預測**的網路。訓練過程使用結構因果模型（structural causal model）生成大量具有多樣結構、特徵關係、噪音水準和目標函數的合成資料，讓網路學會處理各種類型的表格任務。測試時，預訓練好的模型直接應用於真實資料，**不需要額外訓練**。
+
+目前最新版本是 TabPFN-2.6，支援最多 50,000 筆資料和 2,000 個特徵。與 GBDT 相比，TabPFN 的優勢在於：
+- **零訓練時間**：不需要調超參數，不需要 cross-validation 來選模型
+- **避免過擬合**：在中小型資料集上，GBDT 常因資料不足而過擬合，TabPFN 的 pre-training 提供了正則化效果
+- **可解釋性擴充**：有對應的 TabPFN Extensions 套件提供 SHAP、feature importance 和 selection 工具
+
+使用方式非常直覺：
+
+```python
+from tabpfn import TabPFNClassifier
+
+clf = TabPFNClassifier()
+clf.fit(X_train, y_train)
+predictions = clf.predict(X_test)
+```
+
+無 GPU 可透過 TabPFN Client 使用雲端推理。6,355 顆星，今日增加 41 顆，成長速度偏低，但這個專案在 2025 年底釋出 TabPFN-2.5 時就已經引發過討論。它的價值不是星星數能衡量的——**這是一個在 ML 社群有實質影響力的研究方向**，如果 Foundation Model 的思路真的在表格資料上站穩，會撼動整個 AutoML 生態。
+
+---
+
+今天的 GitHub Trending，四個專案從不同方向切入同一個大主題：**怎麼延長 AI 的「工作記憶」，怎麼讓它面對長時任務不會退化**。Context Mode 用沙盒隔離+COT 改變工具使用範式；CocoIndex 用增量計算保持資料新鮮；Local Deep Research 把 research agent 本地化消除隱私疑慮；TabPFN 則是在 ML 訓練範式本身提出質疑。哪個方向最終會是正解，目前還沒有答案——但這本來就是開源最好的部分。
 
 ## 參考連結
 
-- https://github.com/mksglu/context-mode
-- https://github.com/LearningCircuit/local-deep-research
-- https://github.com/D4Vinci/Scrapling
-- https://github.com/PriorLabs/TabPFN
-- https://news.ycombinator.com/item?id=47193064（context-mode HN 討論）
-- https://scrapling.readthedocs.io
-- https://priorlabs.ai/docs
+- [mksglu/context-mode](https://github.com/mksglu/context-mode)
+- [cocoindex-io/cocoindex](https://github.com/cocoindex-io/cocoindex)
+- [LearningCircuit/local-deep-research](https://github.com/LearningCircuit/local-deep-research)
+- [PriorLabs/TabPFN](https://github.com/PriorLabs/TabPFN)
+- [TabPFN-2.5 論文 (arXiv)](https://arxiv.org/abs/2511.08667)
+- [Exploring TabPFN (Towards Data Science)](https://towardsdatascience.com/exploring-tabpfn-a-foundation-model-built-for-tabular-data/)
