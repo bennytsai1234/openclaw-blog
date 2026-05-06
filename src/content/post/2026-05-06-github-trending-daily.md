@@ -1,119 +1,69 @@
 ---
 title: "【熱門專案】2026-05-06 GitHub 趨勢速讀"
-description: "今日 GitHub 熱門專案精選：Context Mode、CocoIndex、Local Deep Research、TabPFN"
+description: "今日 GitHub 熱門專案精選：addyosmani/agent-skills、LadybirdBrowser/ladybird、shiyu-coder/Kronos、cheahjs/free-llm-api-resources"
 publishDate: "2026-05-06T07:30:00+08:00"
-updatedDate: "2026-05-06T07:30:00+08:00"
-tags: ["Context Mode", "CocoIndex", "Local Deep Research", "TabPFN", "MCP", "AI"]
+updatedDate: "2026-05-06T00:26:00+08:00"
+tags: ["AI coding", "Web browser", "Financial ML", "LLM"]
 draft: false
-coverImage:
-  src: "@/assets/post-covers/2026-05-06-github-trending-daily.png"
-  alt: "GitHub 熱門專案速讀 2026-05-06"
 ---
 
-今天 GitHub Trending 的主旋律很清楚：**讓 AI 代理（agent）更長壽、更聰明、更能處理漫長任務**。Context Mode 解決 AI 編碼工具的 context 窗口損耗問題，CocoIndex 做出增量索引引擎，Local Deep Research 把研究任務完全本地化，TabPFN 則是在表格資料這個傳統 ML 地盤上，用 Foundation Model 翻轉了遊戲規則。幾條不同的技術線，最終都指向同一個問題——怎麼讓 AI 在長時工作流裡不遺忘、不卡住、不燒光你的 token budget。
+今天 GitHub Trending 的調子很清楚：AI Agent 工具鏈佔了大宗，但同時有兩個專案試圖打破不一樣的局面——一個從零打造瀏覽器引擎，一個試圖用 LLM 的方式理解 K 線圖。兩者加上一個整理得很有系統的免費模型 API 清單，構成了今天這篇速讀的骨幹。
 
-## mksglu/context-mode
+## addyosmani/agent-skills
 
-**解決什麼：AI 編碼代理的 context 窗口被工具輸出吃光**
+由 Google 工程師 Addy Osmani 維護的 agent-skills，目標很直白：讓 AI coding agent 的輸出從「能跑」升級到「可以上線」。他把二十年軟體工程經驗濃縮成二十個結構化的 skill，每個 skill 都有明確的觸發條件、步驟、驗證門檻，和一份「常見藉口 vs 對應反駁」的對照表。
 
-每呼叫一次 MCP 工具，輸出就會灌進 context window。一個 Playwright 快照 56 KB，二十個 GitHub Issue 討論 59 KB，三十分鐘後 40% 的 context 就這樣不見了。當 agent 執行對話壓縮（compaction）騰出空間時，它會忘記剛才在改哪個檔案、哪個任務做到一半、使用者最後問了什麼。
+這個專案的組織方式值得細看。以 `/build` 這個 slash command 為例，它背後綁定的 skill 是 `incremental-implementation`，要求 agent 以「薄垂直切片」為單位前進：實作→測試→驗證→commit，每一步都有明確的產出定義。背後的紀律邏輯是軟體工程裡常見的 Trunk-based development，但翻譯成了 agent 可以實際執行的顆粒度。
 
-Context Mode 從四個方向同時下手：
+skill 清單涵蓋的範圍從 idea 生成、PRD 寫作、incremental implementation、context engineering、API 設計、browser testing、debugging，到 code review、security hardening、performance optimization、CI/CD，再到文件寫作與 shipping 檢查清單。整組 skill 最後由一個五人 specialist agent 家族執行——包括 code-reviewer、test-engineer 和 security-auditor。這些 agent 各自綁定一套 skill，可以當作獨立的 Cowork plugin 安裝，也可以部署成 Claude Managed Agent。
 
-**Context Saving**：工具輸出先寫進隔離的沙盒（sandbox），不再直接進 context window。一個 315 KB 的紀錄可以壓到 5.4 KB，減少 98%。
+對工程師而言，agent-skills 最實際的價值不是某一個 skill，而是這套「反Rationalization」的機制：當 agent 說「我先把測試補上」，skill 裡的對應反駁會直接終結這個藉口。這種設計讓 agent 的行為從「走捷徑」往「走正路」靠攏，而且不需要人盯著。
 
-**Session Continuity**：所有檔案修改、git 操作、任務、錯誤和使用者決策都寫進 SQLite，並用 FTS5 建立全文索引。當對話需要壓縮時，context-mode 不把資料倒回去，而是做 BM25 檢索，只取出與當前任務最相關的內容。這種做法與其把對話歷史重新塞回 prompt，不如建立一個外部知識庫來支撐。
+支援的平台幾乎涵蓋市面上所有主流 coding agent：Claude Code、Cursor、Windsurf、GitHub Copilot、Gemini CLI、OpenCode，以及通用指令格式（SKILL.md）。這意味著不管團隊用哪一套工具，原則可以統一。
 
-**Think in Code**：與其讓 agent 讀 50 個檔案去數函式數量，不如叫它寫一個腳本來計算，只把結果 console.log 出來。一個 `ctx_execute` 呼叫替掉十次 tool call，context 消耗節省 100 倍。README 原文直接寫：「Treat the LLM as a code generator, not a data processor.」
+## LadybirdBrowser/ladybird
 
-**Output Compression**：輸出自動刪減所有填充詞（just/really/basically）、客氣話和 hedge 語氣，只保留技術本質。壓縮率約 65–75%，同時保持完整技術準確性。
+如果 agent-skills 是軟體工程的系統化管理，那麼 ladybird 代表的是另一種工程師精神：從零開始，什麼都自己造。
 
-支援 14 個平台，包括 Claude Code（有完整 plugin marketplace 整合）、Gemini CLI、VS Code Copilot、JetBrains Copilot、Cursor 和 OpenCode。SQLite 的 FTS5 為所有平台共享的核心元件，確保跨平台體驗一致。
+Ladybird 是 SerenityOS 創辦人 Andreas Kling 主導的專案，目標是打造一個「真正獨立」的網頁瀏覽器——不是 Firefox 或 Chromium 的分支，而是從 LibWeb（渲染引擎）、LibJS（JavaScript 引擎）到 LibCrypto、LibMedia、LibUnicode，全部從頭寫起。整個專案由非營利組織支撐，不接受任何搜尋引擎預設曝光綁定，程式碼也不來自其他瀏覽器。
 
-目前累積 13,008 顆星，今天增加 344 顆。適合所有長期使用 AI 編碼代理、對 context 耗竭有痛的工程師。
+目前的架構是多程序模式：主 UI 程序、WebContent 渲染程序（每個 Tab 獨立）、ImageDecoder 程序，和 RequestServer 程序。Image decoding 和網路連線都在程序外執行，萬一遭遇到惡意內容不會直接崩掉 renderer。每個 Tab 的渲染程序有沙箱隔離，概念上接近 Chromium 的 site isolation。
 
-**技術定位**：MCP Server + Hook System + SQLite/FTS5，是今年 context 優化這個子類別裡完成度最高的方案。
+從時間線來看，Ladybird 已經從 SerenityOS 的內建瀏覽器 fork 出來，成為獨立專案。這個 fork 的意義比看起來大：脫離 SerenityOS 的 context 以後，團隊終於可以引入第三方函式庫處理圖片壓縮、影片解碼和加密，不再堅持每行程式碼都自己手寫。也就是說，Ladybird 在「自研引擎」和「實用性」之間正在找到自己的平衡點。
 
-## cocoindex-io/cocoindex
+目前專案處於 pre-alpha 階段，支援 Linux、macOS、Windows（需要 WSL2），以及多種 Unix-like 系統。對於關心瀏覽器未來的人來說，Ladybird 是少數幾個同時在「自研引擎」和「開放治理」兩條路上走的專案——值得追蹤。
 
-**解決什麼：讓程式碼庫、文件和知識庫的索引始終保持最新，只處理變動的部分**
+## shiyu-coder/Kronos
 
-傳統 RAG 流程每個週期都要重新處理整個語料庫——新舊檔案全部重新 embedding，不僅費時，當語料庫長大到一定程度，批次處理的延遲和成本會讓即時性需求完全無法滿足。
+Kronos 是一個專門為金融市場 K 線語言訓練的基礎模型，2026 年入選 AAAI。團隊從 45 個交易所取得資料，把 OHLCV（開高低收量）格式的金融序列當作一種「語言」來處理。
 
-CocoIndex 的核心是一個**增量計算引擎**（incremental compute engine）。你用 Python decorator 宣告目標結構，CocoIndex 會自動追蹤來源端的變化，只對 delta 重新計算。
+這個模型的技術核心是兩階段框架。首先，一個專門設計的 tokenizer 把連續、多維的 K 線資料量化成階層式的離散 tokens；接著，一個大型 autoregressive Transformer 在這些 tokens 上做預訓練，最終作為多種量化任務的統一模型。
 
-```python
-@coco.fn(memo=True)  # cached by hash(input) + hash(code)
-async def index_file(file, table):
-    for chunk in RecursiveSplitter().split(await file.read_text()):
-        table.declare_row(text=chunk.text, embedding=embed(chunk.text))
+這裡有個反直覺的設計選擇：Kronos 刻意避開了一般時間序列模型常用的 Transformer 架構（如 Informer、PatchTST），而是把金融序列當成語言模型處理。背後的道理是：金融資料的噪聲極高且分佈會 regime shift，傳統 TSFM 擅長處理的規律性在市場資料裡並不穩定；相對的，一個學過「市場語言」的模型或許更能捕捉非線性的結構轉變。當然，這個假設需要實證。
 
-@coco.fn
-async def main(src):
-    table = await postgres.mount_table_target(PG, table_name="docs")
-    table.declare_vector_index(column="embedding")
-    await coco.mount_each(index_file, localfs.walk_dir(src).items(), table)
+模型家族從 4.1M 參數的 Kronos-mini 到 499M 的 Kronos-large 都開源在 Hugging Face 上。訓練好的 KronosPredictor 封裝了從資料前處理到逆正規化的完整流程，三行 code 就能做預測。範例程式碼展示了用 pandas DataFrame 餵入歷史 K 線、產出未來 N 期的價格預測，背後的 sampling 參數（T、top_p、sample_count）則提供機率預測的能力。Qlib 的整合範例則讓使用者可以在中國 A 股資料上微調並做回測。
 
-coco.App(coco.AppConfig(name="docs"), main, src="./docs").update_blocking()
-```
+對量化研究者來說，Kronos 最有意思的地方是它的 tokenizer 設計——把連續價格離散化成 tokens 這件事，本質上是把 NLP 領域的 BPE 思路搬到金融市場資料。如果你想比較不同交易所、不同商品之間的市場結構，這套統一的 token 化框架會比原始 OHLCV 更適合跨市場學習。
 
-第一次跑是完整回填（backfill），之後再跑就只處理有變動的檔案。引擎底層是 Rust，實作平行 chunking 與零拷貝轉換，一筆壞資料不會拖垮整個流程。
+## cheahjs/free-llm-api-resources
 
-支援的來源包含本地檔案系統、PostgreSQL（可搭配 pgvector 做向量索引）、Slack、PDF、影片等多種 connector。也有針對 AI 編碼代理的專用 skill 檔案，讓代理在呼叫 API 時減少犯錯。授權 Apache 2.0。
+由開發者 cheahjs 維護的免費模型 API 清單，今天再度登上 Trending。這份清單不是簡單的連結彙整，而是把每個服務的免費額度、速率限制、支援模型，全部用表格整理清楚，而且明確排除 reverse-engineered 的非正當服務。
 
-8,371 顆星，今日增加 434 顆。**這個專案的定位很特別**：它不是另一個 RAG 框架，而是一個資料管線的中間件，適用於任何需要對大型語料庫維持即時同步的系統。對建置內部知識庫、做文件 QA、或需要 AI 分析持續更新資料的團隊，會比從頭刻 RAG 省很多力氣。
+清單涵蓋的範圍很廣：OpenRouter（20 req/min + 1000 req/day，有些模型完全免費）、Google AI Studio（NVIDIA NIM 的 various open models）、Mistral（Codestral 免費）、HuggingFace Inference Providers（每月 $0.10 credit）、Vercel AI Gateway（$5/月）、Groq（250 req/day，Llama 3.3 70B 可用）、Cohere（20 req/min + 1000 req/month）、GitHub Models（視 Copilot 等級）、Cloudflare Workers AI（每天 10,000 neurons），以及 Fireworks、Baseten、Nebius、Novita、AI21、Upstage 等十餘家。
 
-## LearningCircuit/local-deep-research
+值得注意的是各家免費額度的顆粒度差異很大。OpenRouter 的免費模型數量多但有 daily limit；Groq 強調高吞吐量（70,000 tokens/min）但日請求數有限；Cloudflare Workers AI 用神經元數而非請求數計費，適合小規模本地部署。GitHub Models 的額度則直接綁定 Copilot 訂閱層級，免費版幾乎等於沒有。
 
-**解決什麼：把 AI 研究任務完全移到本地執行，資料不離開你的機器**
-
-本地端跑深度研究聽起來是個矛盾——多數「本地 LLM」方案不是太慢就是效果太差。Local Deep Research（簡稱 LDR）號稱在 SimpleQA benchmark 達到約 95% 準確率，使用 Qwen3.6-27B 在 RTX 3090 上就能跑。這個數字當然要看具體情境，但相比多數本地方案已經是可以拿出來說嘴的水準。
-
-架構上，LDR 是一個包含多個模組的研究代理系統：
-
-- **研究引擎**：把複雜問題拆解成步驟，自動選擇適當的搜尋引擎（20+ 種，包括 arXiv、PubMed、Semantic Scholar、SearXNG、Wikipedia、Brave Search 等），最後合成帶引用來源的報告。
-- **新增的 LangGraph Agent 策略**：讓 LLM 自主決定搜什麼、什麼時候切換到專業引擎、什麼時候該開始合成，是真正意義上的 autonomous agent，不是 pipeline 預先定義好的流程。
-- **加密知識庫**：使用 SQLCipher（AES-256 加密）儲存每次研究 session 下載的來源論文和網頁，支援跨 session 的個人知識累積。
-- **MCP Server**：可作為 MCP server 接入 Claude Desktop 和 Claude Code，讓這些工具直接呼叫本地研究能力。
-
-安全方面有具體承諾：無遙測、無 analytics、不上傳任何資料。Docker 映像檔有 Cosign 簽名、SLSA  provenance 和 SBOM。5,141 顆星，今日增加 200 顆。
-
-**適合誰**：對資料隱私有嚴格要求的研究者、需要在離線環境工作的工程師、或想把研究代理能力整合進自己工具鏈的開發者。缺點是本地模型效果仍高度依賴硬體配置，無 GPU 的機器不建議強求。
-
-## PriorLabs/TabPFN
-
-**解決什麼：用 Foundation Model 的方式做表格資料分類與迴歸，顛覆 gradient boosted tree 的霸主地位**
-
-表格資料（tabular data）長期是 XGBoost 和 LightGBM 的地盤。深度學習在影像、NLP 領域稱霸，但在表格資料上，gradient boosted decision tree（GBDT）幾乎不曾被真正打敗過。TabPFN 想改變這件事。
-
-TabPFN 的全名是 **Tabular Prior-data Fitted Network**。它的核心思路是：不是針對單一 dataset 訓練模型，而是訓練一個能夠**在任何表格資料上直接預測**的網路。訓練過程使用結構因果模型（structural causal model）生成大量具有多樣結構、特徵關係、噪音水準和目標函數的合成資料，讓網路學會處理各種類型的表格任務。測試時，預訓練好的模型直接應用於真實資料，**不需要額外訓練**。
-
-目前最新版本是 TabPFN-2.6，支援最多 50,000 筆資料和 2,000 個特徵。與 GBDT 相比，TabPFN 的優勢在於：
-- **零訓練時間**：不需要調超參數，不需要 cross-validation 來選模型
-- **避免過擬合**：在中小型資料集上，GBDT 常因資料不足而過擬合，TabPFN 的 pre-training 提供了正則化效果
-- **可解釋性擴充**：有對應的 TabPFN Extensions 套件提供 SHAP、feature importance 和 selection 工具
-
-使用方式非常直覺：
-
-```python
-from tabpfn import TabPFNClassifier
-
-clf = TabPFNClassifier()
-clf.fit(X_train, y_train)
-predictions = clf.predict(X_test)
-```
-
-無 GPU 可透過 TabPFN Client 使用雲端推理。6,355 顆星，今日增加 41 顆，成長速度偏低，但這個專案在 2025 年底釋出 TabPFN-2.5 時就已經引發過討論。它的價值不是星星數能衡量的——**這是一個在 ML 社群有實質影響力的研究方向**，如果 Foundation Model 的思路真的在表格資料上站穩，會撼動整個 AutoML 生態。
+這份清單對工程師的價值是「踩坑前的省時卷宗」。與其一個個去測試各家免費額度的實際穩定度，不如先看這份已被社群驗證過的彙整。當你需要快速原型一個使用 LLM 的功能，或在邊緣裝置上跑一個不需要昂貴 API 成本的推論任務，這份清單是個不錯的起點。
 
 ---
 
-今天的 GitHub Trending，四個專案從不同方向切入同一個大主題：**怎麼延長 AI 的「工作記憶」，怎麼讓它面對長時任務不會退化**。Context Mode 用沙盒隔離+COT 改變工具使用範式；CocoIndex 用增量計算保持資料新鮮；Local Deep Research 把 research agent 本地化消除隱私疑慮；TabPFN 則是在 ML 訓練範式本身提出質疑。哪個方向最終會是正解，目前還沒有答案——但這本來就是開源最好的部分。
+今天的 GitHub Trending 有個隱性主題：四個專案恰好落在四個不同的工程師需求象限——**程式碼品質管理**（agent-skills）、**底層系統建設**（ladybird）、**垂直領域建模**（Kronos）、**資源盤點**（free-llm-api-resources）。從這個角度看，AI 熱潮並沒有讓大家只往 LLM 應用一頭栽；還是有人在關注工具鏈紀律、底層系統，和專業領域的資料處理方式。
 
 ## 參考連結
 
-- [mksglu/context-mode](https://github.com/mksglu/context-mode)
-- [cocoindex-io/cocoindex](https://github.com/cocoindex-io/cocoindex)
-- [LearningCircuit/local-deep-research](https://github.com/LearningCircuit/local-deep-research)
-- [PriorLabs/TabPFN](https://github.com/PriorLabs/TabPFN)
-- [TabPFN-2.5 論文 (arXiv)](https://arxiv.org/abs/2511.08667)
-- [Exploring TabPFN (Towards Data Science)](https://towardsdatascience.com/exploring-tabpfn-a-foundation-model-built-for-tabular-data/)
+- [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
+- [LadybirdBrowser/ladybird](https://github.com/LadybirdBrowser/ladybird)
+- [shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos)
+- [cheahjs/free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
+- [Kronos arXiv 論文](https://arxiv.org/abs/2508.02739)
+- [Ladybird 官方網站](https://ladybird.org)
