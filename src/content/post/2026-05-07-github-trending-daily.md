@@ -1,68 +1,72 @@
 ---
 title: "【熱門專案】2026-05-07 GitHub 趨勢速讀"
-description: "今日 GitHub 熱門專案精選：InsForge 為 AI 編碼代理打造後端語意層、Ladybird 從零構建獨立瀏覽器引擎、Kronos 以金融K線預訓練基礎模型。"
+description: "今日 GitHub 熱門專案精選：DFlash 加速 LLM 推論、vercel-labs/open-agents 開源雲端 Agent 模板、9router 智慧路由、OpenReel 瀏覽器影片編輯器"
 publishDate: "2026-05-07T07:30:00+08:00"
-updatedDate: "2026-05-07T00:56:00+08:00"
-tags: ["AI coding agent", "web browser", "foundation model", "PostgreSQL"]
+updatedDate: "2026-05-08T00:22:00+08:00"
+tags: ["LLM", "Speculative Decoding", "Vercel", "AI Router", "WebCodecs"]
 draft: false
 coverImage:
   src: "@/assets/post-covers/2026-05-07-github-trending-daily.png"
   alt: "GitHub 熱門專案｜2026-05-07"
 ---
 
-## InsForge：讓 AI 代理能自己架後端的語意層平台
+## DFlash：Block Diffusion 重新定義 Speculative Decoding
 
-Cursor、Claude Code、Windsurf 這類 AI 編碼代理已經可以寫出複雜的前端和業務邏輯，但它們碰上「要把作品部署上線」時，往往還是需要人類開發者幫忙處理資料庫設定、Auth 權限、檔案儲存、API Gateway 等基礎建設。
+Speculative Decoding 是近年 LLM 推論加速的主流做法——用一個小模型快速Draft多個 token，再讓大模型一次驗證。但傳統方法 Draft 模型和 Target 模型必須是同家族，限制了模型組合的彈性。
 
-InsForge 做的事情，就是把這些後端元件包裝成 AI 代理看得懂的語意層（semantic layer）。它基於 PostgreSQL，提供了 auth、storage、compute、model gateway、edge functions 等元件，AI 代理可以直接 fetch 文件、理解可用操作、配置後端參數、還能查詢系統狀態與日誌。概念上類似在 MCP server 之上多墊了一層「背景知識」，讓代理不會在陌生的後端語法前卡住。
+z-lab 團隊在 [arXiv:2602.06036](https://arxiv.org/abs/2602.06036) 發表的 DFlash 打破了這個限制。它訓練一個獨立的 Block Diffusion 模型，專門負責預測未來多個 token 的分佈，再交給任意大語言模型驗證。目前已在 HuggingFace 上開源針對 Qwen3.5-27B、Qwen3-Coder-Next、Gemma-4-26B、DeepSeek-V4-Flash 等熱門模型的 DFlash Draft 版本。
 
-底層技術棧：PostgreSQL 關聯式資料庫 + S3 相容儲存 + OpenAI Compatible API 的 Model Gateway。Edge Functions 跑在 Fly.io 上。整個專案的开源許可是 2-clause BSD，適合想自行托管的團隊。
+實測數據在 gsm8k、math500、humaneval、mbpp 基準上，Qwen3.5-35B-A3B 搭配 DFlash Draft 可在 SGLang 後端達到 2.4x 吞吐量提升。vLLM 0.20.1+ 已內建 DFlash 支援， Gemma4 系列則需要使用 z-lab 維護的 Docker 映像。MLX  後端（Apple Silicon）也有 Community 實現，可在 M5 Pro 上流暢運行。
 
-適合誰：如果你是 AI 編碼工具的重度使用者，或者在构建以代理為核心的 SaaS 產品，InsForge 能幫你省掉大量「人肉設定基礎建設」的時間。
+對在乎推論成本的工程師而言，DFlash 的價值在於不必綁定特定模型家族。一個 Qwen3.5-9B 的 Draft 模型可以搭配任何 Target 模型使用，部署彈性遠大於傳統 Speculative Decoding。HF 上已有 Qwen3.5-4B 到 Qwen3.5-122B-A10B 全系列 Draft 模型，DeepSeek-V4 系列也即將支援。
 
-## Ladybird：從零開始寫瀏覽器引擎的獨立專案
+適合使用場景：需要在自己伺服器部署大模型、對延遲和吞吐量有優化需求的團隊。RTX 3090 级别的消費級 GPU 可運行 Qwen3.6-27B + DFlash，門檻並不高。
 
-大多數人談到瀏覽器，腦中浮現的不是 Chromium 就是 Firefox 或 Safari。但 Ladybird 這個專案，想做的是完全從零開始、只用公開標準文件、不抄襲任何現有引擎的瀏覽器。
+## Vercel open-agents：把 Coding Agent 跑在雲端
 
-Ladybird 最初是 SerenityOS 內建的 HTML 檢視器，後來獨立出來成為一個独立專案。目前是 pre-alpha 狀態，跨 Linux、macOS、Windows（WSL2）運行。架構上採用多程序設計：主 UI process、WebContent renderer（每個 tab 各自獨立）、ImageDecoder、RequestServer 各一個。Image 解碼和網路連線都在主 process 外執行，藉此提升對惡意內容的穩定性。
+Vercel Labs 放出了一個開源模板 [open-agents](https://github.com/vercel-labs/open-agents)，目標很清楚：讓開發者把 Agent 部署到 Vercel 的基礎設施上，不再需要自己的伺服器。
 
-技術底層：從 SerenityOS fork 之後，目前主要用 C++ 開發；專案同時有一個 side project 在把各子系統 port 到 Rust。他們在 2026 年初的 blog 中提到，AI 輔助編碼工具幫助他們重新評估了語言選擇，而此前用 Swift 開發的路線造成了約一年的延誤，現在已放棄。
+架構分三層：Web 層處理認證、對話串流和 UI；Agent 層以 Durable Workflow 形式運行，每次對話啟動一個 Workflow，可跨多個請求持久化執行狀態；Sandbox 層則是隔離的執行環境，擁有獨立的檔案系統、Shell、Git 和開發伺服器，休眠後可快照恢復。
 
-Ladybird 由非營利組織支持，標榜「不從其他瀏覽器取經」且「不綁定預設搜尋引擎」，對擔心瀏覽器生態過度集中的人來說，是一個值得關注的實驗。
+這個分離設計是核心：Agent 不跑在 Sandbox 內部，而是透過檔案讀取、編輯、搜尋、Shell 命令等工具操作 Sandbox。Sandbox 生命週期與 Agent 請求週期完全解耦，可以獨立休眠和恢復。模型和 Provider 的選擇也因此能和 Sandbox 實作分開演進。
 
-適合誰：對瀏覽器引擎、作业系统、或大型 C++ 專案有興趣的開發者；關心網路標準開放性的研究者。
+功能面上，支援自動 Clone Repo、Branch 操作、Auto-commit、Auto-PR 創建，語音輸入可選配 ElevenLabs 轉文字。部署方式很 Vercel：一鍵 Fork + Deploy Button，Neon Postgres 自動開通，環境變數設定完就可以跑。內建 Better Auth 處理 Vercel OAuth + GitHub App 認證，完整流程不需自己串接。
 
-## addyosmani/agent-skills：把資深工程師的工作流封裝成 AI 可執行的 Skills
+適合熟悉 Vercel 生態、想把 Coding Agent 能力整合進自己產品的團隊。不是另一個 Cursor 或 Claude Code，而是可以 Fork 改造成自有品牌 Agent 服務的底層框架。
 
-addy osmani（Google Chrome 團隊資深工程師）把他多年累積的開發流程，整理成一套可被 AI coding agent 執行的技能系統。名為 agent-skills 的這個 repo，其實就是一套工程實踐的結構化知識庫，目標是讓 AI 代理在每個開發階段都能遵循「資深工程師的紀律」。
+## 9router：40+ Provider 的智慧路由，省 20-40% Token
 
-核心設計是 7 個斜線指令（slash commands）：`/spec`（先寫規格）、`/plan`（拆解成小任務）、`/build`（增量實作）、`/test`（測試即證明）、`/review`（提升程式碼健康度）、`/code-simplify`（清晰勝過聰明）、`/ship`（更快等於更安全）。同時，這套 skills 也能在偵測到特定情境時自動觸發——例如當代理在設計 API 時，自動激活 api-and-interface-design skill。
+decolua/9router 是一款本地智慧路由器，把開發者電腦當成所有 AI  coding 工具（Claude Code、Codex、Cursor、Cline、OpenClaw 等）的統一出入口。
 
-支援多個主流 AI 程式碼工具：Claude Code（Marketplace 安裝）、Cursor（放進 .cursor/rules/）、Gemini CLI（Windsurf、OpenCode、GitHub Copilot 也都有各自對應的整合方式。
+它的三層 Fallback 機制最實用：Tier 1 是訂閱服務（Claude Code Pro、Codex Plus），額度用完自動切到 Tier 2 便宜選項（GLM $0.6/1M、MiniMax $0.2/1M），再不行就 Fallback 到 Tier 3 免費選項（Kiro AI、OpenCode Free）。RTK（Result Token Keeper）內建在流程中，自動壓縮 tool_result 內容（git diff、grep、ls 輸出），號稱可節省 20-40% 輸入 token。
 
-適合誰：無論你是自己寫 code 還是讓 AI 幫你寫，這套 skills 都能幫你確保「過程有品質」而不是「出來的東西可以跑就好」。
+目前支援 40+ Provider，包括 GLM、MiniMax、Kimi、OpenRouter、DeepSeek、Groq、xAI、Mistral、Perplexity、Fireworks、Cerebras、NVIDIA NIM 等。格式翻譯（OpenAI ↔ Claude ↔ Gemini ↔ Cursor）由系統自動處理，不需要開發者手動轉換。
 
-## shiyu-coder/Kronos：專為金融K線資料訓練的基礎模型
+Kiro AI 是目前推薦的免費主力：支援 Claude 4.5 + GLM-5 + MiniMax M2.5，完全免費且無需 API Key，用 OAuth 登入即可。OpenCode Free 甚至不需要任何認證。配合 RTK 使用，實際上可以把月費壓到 $0。
 
-Kronos 是第一個開源、以金融 K 線（蠟燭圖）語言為訓練目標的 decoder-only Transformer 家族，於 2025 年 8 月在 arXiv 發表，並已获 AAAI 2026 接受。它不是拿通用 LLM 去 fine-tune，而是從資料處理到 tokenizer 全部重新設計，專門處理金融市場的高噪音、多維度時序資料。
+這個專案的爭議點在於它高度依賴免費 Provider 的穩定性和道德風險——iFlow 2026 年已從免費改成付費，Qwen Code 的免費 OAuth Tier 也被阿里巴巴關閉。免費午餐確實越來越少，但 9router 的自動切換機制至少能在某個 Provider 倒閉時無縫遷移。
 
-技術架構分兩階段：首先用自訂的 tokenizer（Kronos-Tokenizer）把 OHLCV（開盤/最高/最低/收盤/成交量）這些連續多維資料量化成離散 token；再在這些 token 上預訓練大型自迴歸 Transformer。這種做法類似 NLP 領域把文字變成 token 的思路，只是把金融市場的價格走勢當作一種「語言」來學。
+適合不想被單一訂閱服務限制、願意折騰一下省費用的個人開發者或小型團隊。
 
-模型家族規模：Kronos-mini（4.1M 參數，上線於 HuggingFace）、Kronos-small（24.7M）、Kronos-base。上下文長度從 2048 到 512 tokens 不等。訓練資料涵蓋超過 45 個全球交易所。另有 live demo 展示 BTC/USDT 未來 24 小時走勢預測。
+## OpenReel Video：瀏覽器裡的专业剪輯軟體
 
-適合誰：Quantitative researcher、演算法交易團隊、對時序預測模型有興趣的 ML 工程師。
+Augani/openreel-video 把自己定位成「開源 CapCut 替代方案」——一個完全在瀏覽器運行的專業影片編輯器，100% 客戶端處理，不上傳、不收費、MIT 授權。
 
-## 本日趨勢觀察
+底層技術棧很有意思：WebCodecs 處理硬體加速的影片編碼/解碼，WebGPU 做 GPU 加速的合成渲染，Web Audio API 處理多軌混音和效果器。React + TypeScript + Zustand 建 UI，THREE.js 處理 3D 變換和特效。核心代碼分兩塊：apps/web（約 66k 行）負責前端，packages/core（約 59k 行）包含視訊、音訊、圖形、字幕、匯出引擎，全部開源。
 
-今天 GitHub Trending 的幾個專案有個共同方向：從「让AI工具好用」延伸到了「让 AI 真正能處理完整工作流」。InsForge 解決了 AI 部署後端的盲點、agent-skills 把工程紀律灌進代理的行為模式、Kronos 乾脆訓練了一個全新領域的基礎模型。瀏覽器引擎 Ladybird 雖然和 AI 沒有直接關聯，但它在 2026 年初明確把 AI 輔助工具引入開發流程，也呼应了這個主題。開源生態正在快速填補 AI Agent 能真正落地之前的最後幾塊拼圖。
+功能面幾乎涵蓋了非線性剪輯的核心需求：無限多軌時間線、Frame-accurate 剪輯、20+ 轉場、顏色校正（Color Wheel、HSL、Curves、LUT 支援）、關鍵影格動畫、20+ 文字動畫、卡拉 OK 字幕（逐字高亮同步）、音訊混合（EQ、Compressor、Reverb、Delay、Distortion）、節拍偵測自動生成標記、Noise Reduction（3-pass）、4K 匯出（MP4 H.264/H.265、WebM VP8/VP9/AV1、ProRes）。甚至內建了 AI  upscaling（WebGPU 着色器）和螢幕錄製。
+
+這個專案特別值得注意的地方是它的開發模式：CLAUDE AI 參與了大部分程式碼實現（Issue 分類、功能開發、Code Review、文件維護），人類 founder Augustus（@python_xi）負責策略方向和最終審批。是一個 AI+Human 協作開發的开源專案案例。
+
+適合有影片剪輯需求但不願意付 Adobe/DaVinci 訂閱費的開發者，或者對 WebCodecs/WebGPU 實際應用感興趣想研究原始碼的工程師。
 
 ## 參考連結
 
-- [InsForge 官方文件](https://docs.insforge.dev/)
-- [InsForge GitHub](https://github.com/InsForge/InsForge)
-- [Ladybird 官方網站](https://ladybird.org/)
-- [Ladybird GitHub](https://github.com/LadybirdBrowser/ladybird)
-- [addyosmani/agent-skills GitHub](https://github.com/addyosmani/agent-skills)
-- [Kronos arXiv 論文](https://arxiv.org/abs/2508.02739)
-- [Kronos 官方 Demo](https://shiyu-coder.github.io/Kronos-demo/)
-- [Kronos HuggingFace](https://huggingface.co/NeoQuasar)
+- [DFlash GitHub](https://github.com/z-lab/dflash)
+- [DFlash arXiv 論文](https://arxiv.org/abs/2602.06036)
+- [DFlash Blog](https://z-lab.ai/projects/dflash/)
+- [vercel-labs/open-agents GitHub](https://github.com/vercel-labs/open-agents)
+- [decolua/9router GitHub](https://github.com/decolua/9router)
+- [9router 官網](https://9router.com)
+- [Augani/openreel-video GitHub](https://github.com/Augani/openreel-video)
+- [OpenReel Video 官網](https://openreel.video)
