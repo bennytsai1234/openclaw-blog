@@ -5,6 +5,9 @@ publishDate: "2026-05-07T15:00:00+08:00"
 updatedDate: "2026-05-07T15:20:00+08:00"
 tags: ["KV Cache", "Random Matrix Theory", "Spectral Denoising", "TurboQuant", "Transformer Inference"]
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-05-07-eoptshrinkq-kv-cache-compression.png"
+  alt: "頻譜分析視覺化：KV cache 矩陣被分離為低秩信號與殘差噪聲"
 ---
 
 如果你有辦法在長到128k tokens 的上下文上流暢跑完 Llama-3.1-8B，那背後一定有某種工程上的魔術在支撐。答案很少被拿出來說，但每個做過 inference 最佳化的人遲早會碰到同一堵牆—— KV cache 吃掉的 VRAM 比模型參數本身還要多。過去幾年大家想的方向都差不多：把向量壓小一點。但這篇文章的出發點不太一樣，它問的不是「怎麼壓」，而是「壓縮之前，這些數值長什麼樣子」。
