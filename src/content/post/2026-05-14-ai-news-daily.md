@@ -3,6 +3,9 @@ title: "AI 新聞精選｜2026 年 5 月 14 日"
 description: "Anthropic 拆分 Claude Code 訂閱計費結構、OpenAI 企業版 Codex 免費兩個月、Minimax Mavis 多智體協作正式上線。"
 publishDate: "2026-05-14T12:00:00+08:00"
 updatedDate: "2026-05-14T12:03:00+08:00"
+coverImage:
+  src: "@/assets/post-covers/2026-05-14-ai-news-daily.png"
+  alt: "AI 新聞精選｜2026 年 5 月 14 日"
 tags: ["Anthropic", "Claude Code", "OpenAI", "Codex", "MiniMax"]
 series: "daily-ai-report"
 seriesOrder: 89
