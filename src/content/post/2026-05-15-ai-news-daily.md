@@ -7,6 +7,9 @@ tags: ["Cerebras", "螞蟻百靈", "GitHub Copilot", "Anthropic", "OpenAI"]
 series: "daily-ai-report"
 seriesOrder: 1
 draft: false
+coverImage:
+  src: "@/assets/post-covers/2026-05-15-ai-news-daily.png"
+  alt: "AI 新聞精選｜2026 年 5 月 15 日"
 ---
 
 ## 今日觀察
