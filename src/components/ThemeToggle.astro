@@ -53,35 +53,50 @@
 </theme-toggle>
 
 <script>
-	// Note that if you fire the theme-change event outside of this component, it will not be reflected in the button's aria-checked attribute. You will need to add an event listener if you want that.
 	import { rootInDarkMode } from "@/utils/domElement";
 
 	class ThemeToggle extends HTMLElement {
-		constructor() {
-			super();
-			const button = this.querySelector<HTMLButtonElement>("button");
+		#button: HTMLButtonElement | null = null;
+		#abortController: AbortController | null = null;
 
-			if (button) {
-				// set aria role value
-				button.setAttribute("role", "switch");
-				button.setAttribute("aria-checked", String(rootInDarkMode()));
-
-				// button event
-				button.addEventListener("click", () => {
-					// invert theme
-					let themeChangeEvent = new CustomEvent("theme-change", {
-						detail: {
-							theme: rootInDarkMode() ? "light" : "dark",
-						},
-					});
-					// dispatch event -> ThemeProvider.astro
-					document.dispatchEvent(themeChangeEvent);
-
-					// set the aria-checked attribute
-					button.setAttribute("aria-checked", String(rootInDarkMode()));
-				});
-			} else {
+		connectedCallback() {
+			this.#button = this.querySelector<HTMLButtonElement>("button");
+			if (!this.#button) {
 				console.warn("Theme Toggle: No button found");
+				return;
+			}
+
+			this.#abortController = new AbortController();
+			const { signal } = this.#abortController;
+
+			// set aria role value
+			this.#button.setAttribute("role", "switch");
+			this.#button.setAttribute("aria-checked", String(rootInDarkMode()));
+
+			// button event
+			this.#button.addEventListener("click", () => {
+				// invert theme
+				const themeChangeEvent = new CustomEvent("theme-change", {
+					detail: {
+						theme: rootInDarkMode() ? "light" : "dark",
+					},
+				});
+				// dispatch event -> ThemeProvider.astro
+				document.dispatchEvent(themeChangeEvent);
+			}, { signal });
+
+			// listen for theme-change custom event to keep aria-checked in sync
+			document.addEventListener("theme-change", (e: any) => {
+				if (this.#button) {
+					this.#button.setAttribute("aria-checked", String(e.detail.theme === "dark"));
+				}
+			}, { signal });
+		}
+
+		disconnectedCallback() {
+			if (this.#abortController) {
+				this.#abortController.abort();
+				this.#abortController = null;
 			}
 		}
 	}

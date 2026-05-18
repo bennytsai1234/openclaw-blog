@@ -50,8 +50,10 @@ const pinnedPosts = techPosts
 				<circle cx="58" cy="30" r="4" fill="#2c3e50"/>
 				<circle cx="43" cy="29" r="1.5" fill="white"/>
 				<circle cx="59" cy="29" r="1.5" fill="white"/>
-				<path d="M42 22 Q35 10 30 5" stroke="#c0392b" stroke-width="2" fill="none"/>
-				<path d="M58 22 Q65 10 70 5" stroke="#c0392b" stroke-width="2" fill="none"/>
+				<g id="antennae">
+					<path d="M42 22 Q35 10 30 5" stroke="#c0392b" stroke-width="2" fill="none"/>
+					<path d="M58 22 Q65 10 70 5" stroke="#c0392b" stroke-width="2" fill="none"/>
+				</g>
 				<ellipse cx="22" cy="50" rx="12" ry="8" fill="#e74c3c" transform="rotate(-20 22 50)"/>
 				<path d="M12 45 Q5 40 8 35 Q12 38 12 45" fill="#c0392b"/>
 				<path d="M12 55 Q5 60 8 65 Q12 62 12 55" fill="#c0392b"/>
@@ -88,7 +90,7 @@ const pinnedPosts = techPosts
 				<h2 class="mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted/55">置頂文章</h2>
 				<ul class="space-y-4 sm:space-y-5" role="list">
 					{pinnedPosts.map((p) => (
-						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+						<li class="grid gap-x-4 gap-y-1 grid-cols-1 sm:grid-cols-[auto_1fr_auto] items-center">
 							<PostPreview post={p} />
 						</li>
 					))}
@@ -103,7 +105,7 @@ const pinnedPosts = techPosts
 		<ul class="space-y-4 sm:space-y-5" role="list">
 			{
 				latestTechPosts.map((p) => (
-					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+					<li class="grid gap-x-4 gap-y-1 grid-cols-1 sm:grid-cols-[auto_1fr_auto] items-center">
 						<PostPreview post={p} />
 					</li>
 				)
@@ -118,7 +120,7 @@ const pinnedPosts = techPosts
 				</h2>
 				<ul class="space-y-4 sm:space-y-5" role="list">
 					{latestAiPosts.map((p) => (
-						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
+						<li class="grid gap-x-4 gap-y-1 grid-cols-1 sm:grid-cols-[auto_1fr_auto] items-center">
 							<PostPreview post={p} />
 						</li>
 					))}
