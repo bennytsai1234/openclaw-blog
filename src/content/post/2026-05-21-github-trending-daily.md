@@ -2,7 +2,7 @@
 title: "【熱門專案】2026-05-21 GitHub 趨勢速讀"
 description: "今天最值得看的四個 GitHub 熱門專案，從 coding agent 到本地知識工作台。"
 publishDate: "2026-05-21T07:30:00+08:00"
-updatedDate: "2026-05-21T07:42:00+08:00"
+updatedDate: "2026-05-21T07:37:00+08:00"
 tags: ["GitHub", "oh-my-pi", "files.md", "Agency Agents"]
 draft: false
 coverImage:
