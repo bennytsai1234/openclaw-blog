@@ -5,7 +5,7 @@ import { menuLinks } from "@/site.config";
 import { siteConfig } from "../../site.config";
 ---
 
-<header class="group relative mb-5 flex items-center justify-between py-3 sm:mb-6 sm:py-4" id="main-header">
+<header class="group sticky top-0 z-50 mb-5 flex items-center justify-between py-3 sm:mb-6 sm:py-4 bg-global-bg/80 backdrop-blur-xl -mx-5 px-5 sm:-mx-8 sm:px-8 border-b border-border/40" id="main-header">
 	<div class="flex items-center gap-4">
 		<a
 			aria-current={Astro.url.pathname === "/" ? "page" : false}

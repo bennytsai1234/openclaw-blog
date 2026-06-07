@@ -66,9 +66,9 @@ function formatDate(date: Date): string {
 		title,
 	}}
 >
-	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="Reading progress"></div>
+	<div id="reading-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={0} aria-label="閱讀進度"></div>
 	
-	<article class="w-full break-words" data-pagefind-body>
+	<article class="w-full break-words animate-fade-in" data-pagefind-body>
 		<div id="blog-hero" class="mx-auto mb-8 w-full max-w-2xl sm:mb-10"><Masthead content={post} readingTime={readingTime} /></div>
 		<div
 			class="article-prose prose prose-lg mx-auto max-w-2xl [overflow-wrap:anywhere] prose-headings:font-bold prose-headings:text-accent-2 sm:prose-th:before:content-none"
